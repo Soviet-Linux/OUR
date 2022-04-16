@@ -1,0 +1,11 @@
+{
+    "dependencies": [],
+    "info": {
+        "build": "",
+        "download": "",
+        "special": ""
+    },
+    "name": "man-pages",
+    "type": "bin",
+    "version": "5.13"
+}
