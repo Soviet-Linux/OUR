@@ -1,34 +1,32 @@
-Soviet Linux OUR
-================
+# <p align="center">OUR - the main repository for Soviet Linux.</p>
 
-The Soviet Linux OUR (Our User-made Repository) is the main repository in Soviet Linux. 
+
+<p align="center">The Soviet Linux OUR (Our User-made Repository) is the main repository in Soviet Linux.</p>
 
 Adding Packages
 ---------------
 
-We welcome all of our users to contribute packages to the OUR. Just make a pull request with the added package files.
+All of our users are welcome to contribute packages to the OUR. Simply submit a pull request with the new package files.
 
 Package Format
 --------------
 
-We use a format called `.spm`. This is how it works:
-
+Follow this example to create a package:
 ```
-[type of package]
-[dependencies (space sperated)]
-[Download Command]
-[Command to install in build]
-[(name of the file in build ) (where to install the file)|(other file in build ) (where to install the file ) ]
+{
+    "name" : "<package name>",
+    "type" : "<src,bin,local>",
+    "version" : "<version>",
+    "dependencies" : ["<a dependencie>","<other dependencie>"],
+    "info" : 
+    {
+        "download" : "<download command>",
+        "build" : "<build command>",
+        "special" : "<special command>"
+    },
+    "locations" : ["<location>","<other location>"]
+}
 ```
+If its a source package leave the location blank
 
-An example `.spm` file looks like this:
-
-```
-source
-bash git make 
-git clone https://github.com/jaseg/lolcat
-make && make DESTDIR=$BUILD_ROOT/ install
-lolcat /bin/lolcat|censor /bin/censor
-```
-
-
+for more info see the [docs](https://docs.sovietlinux.ml/repo)
