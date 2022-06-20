@@ -15,13 +15,14 @@ Follow this example to create a package:
 ```
 {
     "name" : "<package name>",
-    "type" : "<src,bin,local>",
+    "type" : "<src,bin>",
     "version" : "<version>",
     "dependencies" : ["<a dependencie>","<other dependencie>"],
     "info" : 
     {
-        "download" : "<download command>",
         "build" : "<build command>",
+        "test" : "<test command>",
+        "install" : "<nstall command>",
         "special" : "<special command>"
     },
     "locations" : ["<location>","<other location>"]
