@@ -1,0 +1,44 @@
+#!/bin/python3
+
+import json
+import os
+
+allPattern = """
+{
+    "all" :[]
+}
+"""
+packagePattern = """
+{
+     "name" : "",
+     "type" : "",
+     "version" : ""
+}
+""" 
+
+allPattern_json = json.loads(allPattern)
+packagePattern_json = json.loads(packagePattern)
+repo = input("Enter the repository name: ")
+cmd = """
+mkdir /tmp/mkall.tmp.d/src
+find %s -name '*.spm.tar.gz' -exec tar -xvf {} -C /tmp/mkall.tmp.d/src \;
+mkdir /tmp/mkall.tmp.d/bin
+find %s -name '*.spm.tar.gz' -exec tar -xvf {} -C /tmp/mkall.tmp.d/bin \;
+find /tmp/mkall.tmp.d/ -name '*.spm' > /tmp/mkall.tmp.d/spm_locs.txt
+cat /tmp/mkall.tmp.d/spm_locs.txt 
+""" % (repo+"/src",repo+"/bin")
+os.system(cmd)
+
+spm_locs = open("/tmp/mkall.tmp.d/spm_locs.txt", "r")
+for spm_loc in spm_locs:
+    spm_loc = spm_loc.strip()
+    spm_loc_json = json.loads(open(spm_loc, "r").read())
+    packagePattern_json["name"] = spm_loc_json["name"]
+    packagePattern_json["type"] = spm_loc_json["type"]
+    packagePattern_json["version"] = spm_loc_json["version"]
+    allPattern_json["all"].append(packagePattern_json.copy())
+# print (allPattern_json)
+print (json.dumps(allPattern_json, indent=4))
+open ("all.json","w").write(json.dumps(allPattern_json, indent=4)) 
+
+os.system("rm -rf /tmp/mkall.temp.d")
