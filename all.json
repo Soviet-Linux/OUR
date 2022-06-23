@@ -1,11 +1,6 @@
 {
     "all": [
         {
-            "name": "vim",
-            "type": "bin",
-            "version": "8.2.4383"
-        },
-        {
             "name": "iana-etc",
             "type": "src",
             "version": "20220207"
