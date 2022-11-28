@@ -1,0 +1,12 @@
+[info]
+name = openssh
+version = 9.1p1
+url = https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.1p1.tar.gz
+
+[download]
+curl https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.1p1.tar.gz | tar -xz
+
+[install]
+./configure --prefix=/usr
+make 
+make DESTDIR=$BUILD_ROOT install
