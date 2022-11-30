@@ -1,0 +1,19 @@
+[info]
+name = libspm
+version = cvs
+type = src
+url = https://github.com/Soviet-Linux/libspm.git
+
+[dependencies]
+git
+sqlite
+curl
+
+[download]
+git clone $URL
+mv libspm libspm-cvs
+
+[install]
+make 
+make formats
+make DESTDIR=$BUILD_ROOT install

@@ -1,0 +1,24 @@
+[info]
+name = bzip2
+version = 1.0.8
+type = src
+url = https://sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz
+
+[download]
+curl $URL | tar -xz
+
+[install]
+make -f Makefile-libbz2_so
+make clean
+make
+make PREFIX=$BUILD_ROOT/usr install
+#installing libs
+install -D libbz2.so.* $BUILD_ROOT/usr/lib
+install -D bzip2-shared $BUILD_ROOT/usr/bin/bzip2
+# installing binaries
+ln -sfv bzip2 $BUILD_ROOT/usr/bin/bzcat
+ln -svf bzip2 $BUILD_ROOT/usr/bin/bunzip2
+# cleaning
+rm -rv $BUILD_ROOT/usr/lib/libbz2.a
+
+

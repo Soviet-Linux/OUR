@@ -1,0 +1,17 @@
+[info]
+name = attr
+version = 2.5.1
+type = src
+url = https://download.savannah.gnu.org/releases/attr/attr-2.5.1.tar.gz
+
+[download]
+# Here we are having some problems :
+# The package URL downt work with curl 
+# Maybe because of mirror or redirection
+wget $URL
+tar -xvz -f $NAME-$VERSION.tar.gz  
+
+[install]
+./configure --prefix=/usr
+make
+make DESTDIR=$BUILD_ROOT install

@@ -1,6 +1,7 @@
 [info]
 name = sqlite
 version = 3400000
+type = src
 url = https://www.sqlite.org/2022/sqlite-autoconf-3400000.tar.gz
 
 [download]

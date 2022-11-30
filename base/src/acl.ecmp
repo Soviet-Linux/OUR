@@ -1,0 +1,13 @@
+[info]
+name = acl
+version = 2.3.1
+type = src
+url = https://bigsearcher.com/mirrors/nongnu/acl/acl-2.3.1.tar.xz
+
+[download]
+curl $URL | tar -xJ
+
+[install]
+./configure --prefix=/usr
+make
+make DESTDIR=$BUILD_ROOT install

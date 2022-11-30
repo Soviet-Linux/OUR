@@ -4,7 +4,7 @@
 name = vim
 version = 9.0.0228
 type = src
-license =MIT
+license = MIT
 url=https://anduin.linuxfromscratch.org/BLFS/vim/vim-9.0.0228.tar.gz
 
 # package description , it can be on multiple lines and we support makdown

@@ -1,0 +1,13 @@
+[info]
+name = readline
+version = 8.2
+type = src
+url = http://git.savannah.gnu.org/cgit/readline.git/snapshot/readline-8.2.tar.gz
+
+[download]
+curl $URL | tar -xz
+
+[install]
+./configure --prefix=/usr
+make
+make DESTDIR=$BUILD_ROOT install

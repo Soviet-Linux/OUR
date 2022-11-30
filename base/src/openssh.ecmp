@@ -1,6 +1,8 @@
 [info]
 name = openssh
 version = 9.1p1
+type = src
+type = src
 url = https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.1p1.tar.gz
 
 [download]

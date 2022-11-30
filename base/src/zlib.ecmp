@@ -1,0 +1,14 @@
+[info]
+name = zlib
+version = 1.2.13
+type = src
+url = https://zlib.net/zlib-1.2.13.tar.gz
+
+[download]
+curl $URL | tar -xz
+
+[install]
+./configure --prefix=/usr
+make
+make DESTDIR=$BUILD_ROOT install
+rm -fv $BUILD_ROOT/usr/lib/libz.a

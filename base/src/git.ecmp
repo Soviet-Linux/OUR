@@ -1,6 +1,7 @@
 [info]
 name = git
 version = 2.38.1
+type = src
 url = https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.38.1.tar.xz
 
 [download]
