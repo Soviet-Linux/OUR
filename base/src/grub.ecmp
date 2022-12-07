@@ -1,0 +1,18 @@
+[info]
+name = grub
+version = 2.06
+type = src
+url = https://ftp.gnu.org/gnu/grub/grub-2.06.tar.xz
+
+[download]
+curl $URL | tar -xJ
+
+[install]
+./configure --prefix=/usr        \
+            --sysconfdir=/etc    \
+            --disable-efiemu     \
+            --with-platform=efi  \
+            --target=x86_64      \
+            --disable-werror     
+make 
+make DESTDIR=$BUILD_ROOT install

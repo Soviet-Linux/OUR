@@ -22,7 +22,6 @@ curl $URL | tar -xz
 
 # this is basically a bash script to install the package
 [install] 
-sh autogen.sh
 ./configure --prefix=/usr
 make
 make DESTDIR=$BUILD_ROOT install

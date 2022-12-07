@@ -1,0 +1,14 @@
+[info]
+name = popt
+version = 1.19
+type = src
+url = http://ftp.rpm.org/popt/releases/popt-1.x/popt-1.19.tar.gz
+
+[download]
+curl $URL | tar -xz
+
+[install]
+./configure --prefix=/usr --disable-static 
+make
+make DESTDIR=$BUILD_ROOT install
+

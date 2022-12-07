@@ -1,0 +1,17 @@
+[info]
+name = mandoc
+version = 1.14.6
+type = src
+url = https://mandoc.bsd.lv/snapshots/mandoc-1.14.6.tar.gz
+
+[download]
+# IDK why , curl has an issue with this url
+wget $URL 
+ls
+tar -xf $NAME-$VERSION.tar.gz 
+
+[install]
+./configure 
+make mandoc
+install -vDm755 mandoc   $BUILD_ROOT/usr/bin 
+install -vDm644 mandoc.1 $BUILD_ROOT/usr/share/man/man1

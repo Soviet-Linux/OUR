@@ -1,0 +1,16 @@
+[info]
+name = efivar
+version = 38
+type = src
+url = https://github.com/rhboot/efivar/releases/download/38/efivar-38.tar.bz2
+
+[download]
+wget $URL
+tar -xf $NAME-$VERSION.tar.bz2
+
+[install]
+sed '/prep :/a\\ttouch prep' -i src/Makefile
+sed '/sys\/mount\.h/d' -i src/util.h
+sed '/unistd\.h/a#include <sys/mount.h>' -i src/gpt.c src/linux.c
+make
+make install LIBDIR=/usr/lib DESTDIR=$BUILD_ROOT

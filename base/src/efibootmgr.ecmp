@@ -1,0 +1,13 @@
+[info]
+name = efibootmgr
+version = 18
+type = src
+url = https://github.com/rhboot/efibootmgr/archive/18/efibootmgr-18.tar.gz
+
+[download]
+wget $URL  
+tar -xf $NAME-$VERSION.tar.gz
+
+[install]
+make EFIDIR=GRUB EFI_LOADER=grubx64.efi
+make DESTDIR=$BUILD_ROOT  install EFIDIR=GRUB

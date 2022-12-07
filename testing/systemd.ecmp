@@ -1,0 +1,11 @@
+[info]
+name = systemd
+version = 252
+
+[download]
+curl https://codeload.github.com/systemd/systemd/tar.gz/refs/tags/v252 | tar -xz
+
+[install]
+meson setup build/ 
+ninja -C build/
+
