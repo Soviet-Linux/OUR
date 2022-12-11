@@ -1,0 +1,14 @@
+[info]
+name = python
+version = 3.9.16
+type = src
+url = https://www.python.org/ftp/python/3.9.16/Python-3.9.16.tar.xz
+
+[download]
+curl $URL | tar -xz
+
+[install]
+cd Python-3.9.16
+./configure
+make
+make install
