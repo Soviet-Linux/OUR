@@ -1,0 +1,14 @@
+[info]
+name = nano
+version = 4.7
+type = src
+url = https://www.nano-editor.org/dist/v7/nano-7.0.tar.gz
+
+[download]
+curl $URL | tar -zxvf nano-4.7.tar.gz
+
+[install]
+cd nano-4.7
+./configure
+make
+make install
