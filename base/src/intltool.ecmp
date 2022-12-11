@@ -1,0 +1,26 @@
+ 
+[info] # basic information about the package
+name = intltool
+version = 0.50.2
+type = src
+license = GPLv2
+URL =  http://launchpad.net/intltool/trunk/0.50.2/+download/intltool-0.50.2.tar.gz
+
+[description] # package description , it can be on multiple lines and we support makdown
+The Intltool is an internationalization tool used for extracting translatable strings from source files
+
+[dependencies] # the dependencies version support operators are: =, '<','>','<=','>='.
+
+[makedeps] # the dependencies needed to build the package
+
+[install] # this is basically a bash script to install the package
+curl $URL | tar -xz
+./configure --prefix=/usr
+make
+make DESTDIR=$BUILD_ROOT install
+
+[special] # a script to run after the package is installed
+echo "the package is installed"
+echo "done..."
+
+[locations] # the locations of the files installed by the package
