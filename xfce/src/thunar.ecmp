@@ -1,0 +1,33 @@
+[info] # basic information about the package
+name = thunar
+version = 4.16.0
+type = src
+license = GPLv2
+URL = https://archive.xfce.org/xfce/4.16/src/$NAME-$VERSION.tar.bz2
+
+[description] # package description , it can be on multiple lines and we support makdown
+Thunar is a modern file manager for the Xfce Desktop Environment. Thunar has been designed from the ground up to be fast and easy to use. Its user interface is clean and intuitive and does not include any confusing or useless options by default. Thunar starts up quickly and navigating through files and folders is fast and responsive.
+
+[dependencies] # the dependencies version support operators are: =, '<','>','<=','>='.
+libxfce4ui
+exo
+libpng
+gtk
+glib
+
+[makedeps] # the dependencies needed to build the package
+
+
+[install] # this is basically a bash script to install the package
+curl $URL | tar -xj
+sh autogen.sh
+./configure --prefix=/usr
+make
+make DESTDIR=$BUILD_ROOT install
+
+[special] # a script to run after the package is installed
+echo "the package is installed"
+echo "done..."
+
+[locations] # the locations of the files installed by the package
+

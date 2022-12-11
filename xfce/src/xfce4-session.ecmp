@@ -1,0 +1,31 @@
+[info] # basic information about the package
+name = xfce4-session
+version = 4.16.0
+type = src
+license = GPLv2
+URL = https://archive.xfce.org/xfce/4.16/src/$NAME-$VERSION.tar.bz2
+
+[description] # package description , it can be on multiple lines and we support makdown
+Xfce4-session is a session manager for Xfce. Its task is to save the state of your desktop (opened applications and their location) and restore it during a next startup. You can create several different sessions and choose one of them on startup.
+
+[dependencies] # the dependencies version support operators are: =, '<','>','<=','>='.
+libxfce4ui
+perl-xml-parser
+libwnck
+gdbus
+
+[makedeps] # the dependencies needed to build the package
+
+
+[install] # this is basically a bash script to install the package
+curl $URL | tar -xj
+sh autogen.sh
+./configure --prefix=/usr
+make
+make DESTDIR=$BUILD_ROOT install
+
+[special] # a script to run after the package is installed
+echo "the package is installed"
+echo "done..."
+
+[locations] # the locations of the files installed by the package
