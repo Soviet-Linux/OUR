@@ -1,0 +1,47 @@
+# basic information about the package
+[info]
+name = autoconf
+version = 3.7.2
+type = src
+license = GPL-3.0-or-later
+url = http://www.cmake.org/files/v3.7/cmake-$VERSION.tar.gz
+
+# package description
+[description]
+Autoconf is an extensible package of M4 macros that produce shell scripts to automatically configure software source code packages.
+
+# the dependencies version support operators are: =, '<','>','<=','>='.
+[dependencies]
+m4
+perl
+
+# the dependencies needed to build the package
+[makedeps]
+make
+gcc
+
+# this is basically a bash script to install the package
+[install]
+wget $URL
+wget http://www.linuxfromscratch.org/patches/blfs/8.0/autoconf-2.13-consolidated_fixes-1.patch
+tar -xzvf autoconf-$VERSION.tar.gz
+cd autoconf-$VERSION
+patch -Np1 -i ../autoconf-2.13-consolidated_fixes-1.patch &&
+mv -v autoconf.texi autoconf213.texi                      &&
+rm -v autoconf.info                                       &&
+./configure --prefix=/usr --program-suffix=2.13           &&
+make
+
+sudo make install                                      &&
+sudo install -v -m644 autoconf213.info /usr/share/info &&
+sudo install-info --info-dir=/usr/share/info autoconf213.info
+
+# a script to run after the package is installed
+[special]
+echo "the autoconf package is installed"
+echo "done..."
+
+# the locations of the files installed by the package
+[locations]
+/usr/bin/autoconf
+/usr/share/autoconf
