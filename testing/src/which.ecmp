@@ -1,0 +1,37 @@
+# basic information about the package
+[info]
+name = which
+version = 2.21
+type = src
+license = GPL-3.0
+url = http://ftp.gnu.org/gnu/which/which-$URL.tar.gz
+
+# package description
+[description]
+This package contains the `which` command, which allows users to find the location of executables in their search path. It is a useful tool for checking whether a particular command is available, and for finding out which version of a command will be executed.
+
+# dependencies
+[dependencies]
+none
+
+# build dependencies
+[makedeps]
+automake
+autoconf
+
+# install script
+[install]
+wget $URL
+tar -xzvf which-$VERSION.tar.gz
+cd which-$VERSION
+./configure --prefix=/usr &&
+make
+sudo make install
+
+# post-install script
+[special]
+echo "which is installed"
+
+# installed files
+[locations]
+/usr/bin/which
