@@ -1,0 +1,42 @@
+# basic information about the package
+[info] 
+name = libtasn1
+version = 4.16.0
+type = src
+license = LGPL-2.1
+url = https://ftp.gnu.org/gnu/libtasn1/libtasn1-$VERSION.tar.gz
+
+# package description , it can be on multiple lines and we support makdown
+[description] 
+This package contains the libtasn1 library, which is used for handling ASN.1 data structures. It is a dependency of many other packages that need to work with ASN.1 data.
+
+# the dependencies version support operators are: =, '<','>','<=','>='.
+[dependencies] 
+libtool
+autoconf
+automake
+
+# the dependencies needed to build the package
+[makedeps] 
+make
+gcc
+
+# this is basically a bash script to install the package
+[install]
+wget $URL
+tar -xzvf libtasn1-4.16.0.tar.gz
+cd libtasn1-4.16.0 
+./configure --prefix=/usr --disable-static 
+make
+sudo make install
+
+# a script to run after the package is installed
+[special] 
+echo "The libtasn1 package is installed"
+echo "done..."
+
+# the locations of the files installed by the package
+[locations] 
+/usr/lib/libtasn1.so
+/usr/include/libtasn1.h
+/usr/share/doc/libtasn1
