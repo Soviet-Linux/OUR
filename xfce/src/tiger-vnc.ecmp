@@ -1,0 +1,14 @@
+[info]
+name = tiger-vnc
+version = latest
+type = src
+url = https://github.com/TigerVNC/tigervnc.git
+
+[makedeps]
+git
+
+[download]
+git clone https://github.com/TigerVNC/tigervnc.git 
+
+
+# NOT FINISHED
