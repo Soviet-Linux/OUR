@@ -9,6 +9,8 @@ import sqlite3
 import os   
 import glob
 
+os.remove('all.db')
+
 def parse_ecmp(ecmp_file,ecmp_values):
     with open(ecmp_file, 'r') as f:
         for line in f:
