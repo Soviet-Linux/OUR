@@ -1,0 +1,45 @@
+# basic information about the package
+[info] 
+name = wget
+version = 1.19.1
+type = src
+license = GPL-3.0-or-later
+url = http://ftp.gnu.org/gnu/wget/wget-$VERSION.tar.xz
+
+# package description , it can be on multiple lines and we support markdown
+[description] 
+This package provides a command-line tool for downloading files from the internet.
+It supports a variety of protocols and options for downloading files, including HTTP, HTTPS, FTP, and more.
+
+# the dependencies version support operators are: =, '<','>','<=','>='.
+[dependencies] 
+openssl
+python3
+gnu-tls
+
+# the dependencies needed to build the package
+[makedeps] 
+autoconf
+automake
+libtool
+
+# this is basically a bash script to install the package
+[install]
+wget $URL
+tar -xzvf wget-$VERSION.tar.gz
+cd wget-$VERSION
+./configure --prefix=/usr      \
+            --sysconfdir=/etc  \
+            --with-ssl=openssl &&
+make
+sudo make install
+
+# a script to run after the package is installed
+[special] 
+echo "the package is installed"
+echo "done..."
+
+# the locations of the files installed by the package
+[locations] 
+/usr/bin/wget
+/usr/share/man/man1/wget.1

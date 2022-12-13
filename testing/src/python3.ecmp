@@ -4,6 +4,9 @@ version = 3.9.16
 type = src
 url = https://www.python.org/ftp/python/3.9.16/Python-3.9.16.tar.xz
 
+[dependencies]
+libffi
+
 [download]
 curl $URL | tar -xz
 
