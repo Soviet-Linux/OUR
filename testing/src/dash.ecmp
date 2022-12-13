@@ -1,0 +1,30 @@
+[info]
+name = dash
+version = 0.5.9.1
+type = src
+license = BSD-3-Clause
+url = http://gondor.apana.org.au/~herbert/dash/files/dash-$VERSION.tar.gz
+
+[description]
+This package provides the `dash` command-line shell. It is a lightweight and efficient shell that is often used as the default shell on Linux systems. It has a smaller footprint and faster execution time compared to other shells, such as `bash` and `zsh`.
+
+[makedeps]
+autoconf
+automake
+libtool
+
+[install]
+wget $URL
+tar -xzvf dash-$VERSION.tar.gz
+cd dash-$VERSION
+./configure --bindir=/bin --mandir=/usr/share/man &&
+make
+sudo make install
+
+[special]
+echo "dash is installed"
+echo "done..."
+
+[locations]
+/usr/bin/dash
+/usr/share/man/man1/dash.1.gz
