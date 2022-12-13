@@ -1,0 +1,38 @@
+[info] 
+name = util-macros
+version = 1.19.1
+type = src
+license = MIT
+url = http://ftp.x.org/pub/individual/util/util-macros-$VERSION.tar.bz2
+[description] 
+This package contains a set of useful macros for use in X Window System applications.
+
+[dependencies]
+xorg-proto
+
+[makedeps]
+autoconf
+automake
+libtool
+
+[install]
+wget $URL
+tar -xzvf util-macros-$VERSION.tar.gz
+cd util-macros-$VERSION 
+./configure --prefix=/usr
+make
+make DESTDIR="$BUILD_ROOT" install
+
+install -m755 -d "$BUILD_ROOT/usr/lib"
+mv "$BUILD_ROOT/usr/share/pkgconfig" "$BUILD_ROOT/usr/lib/"
+install -m755 -d "$BUILD_ROOT/usr/share/licenses/$NAME"
+install -m644 COPYING "$BUILD_ROOT/usr/share/licenses/$NAME/"
+
+[special] 
+echo "util-macros has been installed"
+
+[locations]
+/usr/share/aclocal/util-macros.m4
+/usr/share/man/man1/util-macros.1
+/usr/share/pkgconfig
+/usr/share/util-macros
