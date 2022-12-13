@@ -1,0 +1,52 @@
+# basic information about the package
+[info]
+name = python2-bin
+version = 2.7.13
+type = src
+license = MIT
+url = https://www.python.org/ftp/python/$VERSION/Python-$VERSION.tar.xz
+
+# package description
+[description]
+This package contains the python2 programming language interpreter. It allows you to run python2 programs and scripts on your system.
+
+# dependencies
+[dependencies]
+gcc
+make
+bzip2
+
+# dependencies needed to build the package
+[makedeps]
+gcc
+make
+
+# script to install the package
+[install]
+wget $URL
+tar -xzvf Python-$VERSION.tar.xz
+cd Python-$VERSION
+./configure --prefix=/usr       \
+            --enable-shared     \
+            --with-system-expat \
+            --with-system-ffi   \
+            --with-ensurepip=yes \
+            --enable-unicode=ucs4 &&
+make
+sudo make install &&
+sudo chmod -v 755 /usr/lib/libpython2.7.so.1.0
+
+# script to run after the package is installed
+[special]
+echo "The python2 package is installed"
+echo "done..."
+
+# locations of the files installed by the package
+[locations]
+/usr/bin/python2
+/usr/share/man/man1/python2.1
+/usr/include/python2.x
+/usr/lib/libpython2.x.so
+/usr/include/python2.7 
+/usr/lib/python2.7 
+/usr/share/doc/python-2.7.13
