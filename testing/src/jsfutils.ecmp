@@ -1,0 +1,42 @@
+[info]
+name = jfsutils
+version = 1.1.15
+type = src
+license = GPLv2
+url = http://jfs.sourceforge.net/project/pub/jfsutils-$VERSION.tar.gz
+
+[description]
+This package provides the user-space utilities for managing JFS (Journaled File System) filesystems. It includes utilities for creating, modifying, and checking JFS filesystems, as well as for managing filesystem logs and other aspects of the filesystem.
+
+[dependencies]
+e2fsprogs
+
+[makedeps]
+autoconf
+automake
+libtool
+
+[install]
+wget $URL
+tar -xzvf jfsutils-$VERSION.tar.gz
+cd jfsutils-$VERSION
+sed "s@<unistd.h>@&\n#include <sys/types.h>@g" -i fscklog/extract.c &&
+./configure &&
+make
+sudo make install
+
+[special]
+echo "jfsutils is installed"
+echo "done..."
+
+[locations]
+/usr/bin/jfs_mkfs
+/usr/share/man/man8/jfs_mkfs.8.gz
+/usr/bin/fsck.jfs
+/usr/bin/jfs_debugfs
+/usr/bin/jfs_fsck
+/usr/bin/jfs_fscklog
+/usr/bin/jfs_logdump
+/usr/bin/jfs_mkfs
+/usr/bin/jfs_tune
+/usr/bin/mkfs.jfs
