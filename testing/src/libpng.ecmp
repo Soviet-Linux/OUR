@@ -1,0 +1,43 @@
+# basic information about the package
+[info]
+name = libpng
+version = 1.6.28
+type = src
+license = zlib
+url = http://downloads.sourceforge.net/libpng/libpng-$VERSION.tar.xz
+
+# package description
+[description]
+This package contains the libpng library, which provides support for reading and writing PNG (Portable Network Graphics) image files. It is widely used by many applications and libraries for handling PNG images.
+
+# dependencies
+[dependencies]
+zlib
+
+# build dependencies
+[makedeps]
+automake
+autoconf
+
+# install script
+[install]
+wget $URL
+wget http://downloads.sourceforge.net/project/apng/libpng/libpng16/libpng-$VERSION-apng.patch.gz
+tar -xzvf libpng-$VERSION.tar.gz
+cd libpng-$VERSION
+gzip -cd ../libpng-1.6.28-apng.patch.gz | patch -p0
+LIBS=-lpthread ./configure --prefix=/usr --disable-static &&
+make
+
+sudo make install &&
+sudo mkdir -v /usr/share/doc/libpng-1.6.28 &&
+sudo cp -v README libpng-manual.txt /usr/share/doc/libpng-1.6.28
+
+# post-install script
+[special]
+echo "libpng is installed"
+
+# installed files
+[locations]
+/usr/lib/libpng.so
+/usr/include/png.h

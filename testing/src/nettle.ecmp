@@ -1,0 +1,44 @@
+# basic information about the package
+[info]
+name = nettle
+version = 3.3
+type = src
+license = LGPL-2.1-or-later
+url = https://ftp.gnu.org/gnu/nettle/nettle-$VERSION.tar.gz
+
+# package description
+[description]
+Nettle is a cryptographic library that provides a variety of cryptographic algorithms, including public-key encryption, symmetric-key encryption, and hashing.
+
+# the dependencies version support operators are: =, '<','>','<=','>='.
+[dependencies]
+openssl
+
+# the dependencies needed to build the package
+[makedeps]
+make
+gcc
+
+# this is basically a bash script to install the package
+[install]
+wget $URL
+tar -xzvf nettle-$VERSION.tar.gz
+cd nettle-$VERSION
+./configure --prefix=/usr --disable-static &&
+make
+
+sudo make install &&
+sudo chmod   -v   755 /usr/lib/lib{hogweed,nettle}.so &&
+sudo install -v -m755 -d /usr/share/doc/nettle-$VERSION &&
+sudo install -v -m644 nettle.html /usr/share/doc/nettle-$VERSION
+
+# a script to run after the package is installed
+[special]
+echo "the nettle package is installed"
+echo "done..."
+
+# the locations of the files installed by the package
+[locations]
+/usr/bin/nettle-hash
+/usr/include/nettle
+/usr/lib/nettle

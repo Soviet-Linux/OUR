@@ -1,0 +1,29 @@
+# basic information about the package
+[info] 
+name = ICU
+version = 58.2
+type = src
+license = MIT
+url = http://download.icu-project.org/files/icu4c/58.2/icu4c-58_2-src.tgz
+
+# package description , it can be on multiple lines and we support markdown
+[description] 
+The International Components for Unicode (ICU) package is a mature, widely used set of C/C++ libraries providing Unicode and Globalization support for software applications. ICU is widely portable and gives applications the same results on all platforms.
+
+
+# this is basically a bash script to install the package
+[install]
+wget $URL
+wget http://www.linuxfromscratch.org/patches/blfs/8.0/icu4c-58.2-fix_enumeration-1.patch
+tar -xzvf icu4c-58_2-src.tgz
+cd icu4c-58_2-src
+patch -p1 -i ../icu4c-58.2-fix_enumeration-1.patch
+cd source &&
+./configure --prefix=/usr &&
+make
+sudo make install
+
+# a script to run after the package is installed
+[special] 
+echo "ICU is installed"
+echo "done..."

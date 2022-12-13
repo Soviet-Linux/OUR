@@ -1,0 +1,35 @@
+# basic information about the package
+[info]
+name = libXdmcp
+version = 1.1.2
+type = src
+license = MIT
+url = http://ftp.x.org/pub/individual/lib/libXdmcp-$VERSION.tar.bz2
+
+# package description
+[description]
+The libXdmcp package contains a library implementing the X Display Manager Control Protocol. This is useful for allowing clients to interact with the X Display Manager.
+
+# dependencies
+[dependencies]
+xorg-proto
+
+# build dependencies
+[makedeps]
+automake
+autoconf
+
+# install script
+[install]
+wget $URL
+tar -xzvf libXdmcp-$VERSION.tar.bz2
+cd libXdmcp-$VERSION
+./configure $XORG_CONFIG &&
+make
+sudo make install
+
+# post-install script
+[special]
+echo "libXdmcp is installed"
+
+

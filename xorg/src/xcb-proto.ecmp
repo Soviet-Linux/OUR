@@ -1,0 +1,40 @@
+# basic information about the package
+[info]
+name = libXdmcp
+version = 1.12
+type = src
+license = MIT
+url = http://xcb.freedesktop.org/dist/xcb-proto-$VERSION.tar.bz2
+
+# package description
+[description]
+The libXdmcp package contains a library implementing the X Display Manager Control Protocol. This is useful for allowing clients to interact with the X Display Manager.
+
+# dependencies
+[dependencies]
+xorg-proto
+python3
+
+# build dependencies
+[makedeps]
+automake
+autoconf
+
+# install script
+[install]
+wget $URL
+wget http://www.linuxfromscratch.org/patches/blfs/8.0/xcb-proto-1.12-python3-1.patch
+wget http://www.linuxfromscratch.org/patches/blfs/8.0/xcb-proto-1.12-schema-1.patch
+tar -xzvf xcb-proto-$VERSION.tar.bz2
+cd xcb-proto-$VERSION
+patch -Np1 -i ../xcb-proto-1.12-schema-1.patch
+patch -Np1 -i ../xcb-proto-1.12-python3-1.patch
+./configure $XORG_CONFIG &&
+make
+sudo make install
+
+# post-install script
+[special]
+echo "libXdmcp is installed"
+
+

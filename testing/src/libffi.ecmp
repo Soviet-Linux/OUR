@@ -1,0 +1,45 @@
+# basic information about the package
+[info]
+name = libffi
+version = 3.2.1
+type = src
+license = MIT
+url = ftp://sourceware.org/pub/libffi/libffi-$VERSION.tar.gz
+
+# package description
+[description]
+This package contains a portable foreign function interface library. It allows programs to call functions that are implemented in different programming languages.
+
+# dependencies
+[dependencies]
+
+
+# dependencies needed to build the package
+[makedeps]
+
+
+# script to install the package
+[install]
+wget $URL
+tar -xzvf libffi-$VERSION.tar.gz
+cd libffi-$VERSION
+sed -e '/^includesdir/ s/$(libdir).*$/$(includedir)/' \
+    -i include/Makefile.in &&
+
+sed -e '/^includedir/ s/=.*$/=@includedir@/' \
+    -e 's/^Cflags: -I${includedir}/Cflags:/' \
+    -i libffi.pc.in        &&
+
+./configure --prefix=/usr --disable-static &&
+make
+
+sudo make install
+
+# script to run after the package is installed
+[special]
+echo "The libffi package is installed"
+echo "done..."
+
+[locations]
+/usr/include/libffi-$VERSION
+/usr/lib/libffi.so

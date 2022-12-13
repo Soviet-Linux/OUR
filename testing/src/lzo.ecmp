@@ -1,0 +1,42 @@
+# basic information about the package
+[info] 
+name = LZO
+version = 2.10
+type = src
+license = GPL-2.0
+URL = https://www.oberhumer.com/opensource/lzo/download/lzo-$VERSION.tar.gz
+
+# package description , it can be on multiple lines and we support makdown
+[description] 
+This package contains the LZO data compression library. It is a fast and lightweight compression algorithm that is widely used in many applications.
+
+# the dependencies version support operators are: =, '<','>','<=','>='.
+[dependencies] 
+
+# the dependencies needed to build the package
+[makedeps] 
+make
+gcc
+
+# this is basically a bash script to install the package
+[install]
+wget $URL
+tar -xzvf lzo-2.10.tar.gz
+cd lzo-2.10 
+./configure --prefix=/usr                    \
+            --enable-shared                  \
+            --disable-static                 \
+            --docdir=/usr/share/doc/lzo-2.09 &&
+make
+sudo make install
+
+# a script to run after the package is installed
+[special] 
+echo "The LZO package is installed"
+echo "done..."
+
+# the locations of the files installed by the package
+[locations] 
+/usr/lib/liblzo2.so
+/usr/include/lzo/lzo1x.h
+/usr/share/doc/lzo-2.10

@@ -1,0 +1,34 @@
+[info]
+name = ed
+version = 1.14.1
+type = src
+license = GPLv3
+url = http://ftp.gnu.org/pub/gnu/ed/ed-$VERSION.tar.lz
+
+[description]
+This package provides the `ed` command-line text editor. It is a simple, line-oriented editor that allows users to create and modify text files from the command line. It is often used as a default editor in Unix-like operating systems.
+
+[dependencies]
+ncurses
+
+[makedeps]
+autoconf
+automake
+libtool
+
+[install]
+wget $URL
+tar -xzvf ed-$VERSION.tar.lz
+cd ed-$VERSION
+./configure --prefix=/usr --bindir=/bin &&
+make
+sudo make install
+
+[special]
+echo "ed is installed"
+echo "done..."
+
+[locations]
+/usr/bin/ed
+/usr/bin/red
+/usr/share/man/man1/ed.1.gz
