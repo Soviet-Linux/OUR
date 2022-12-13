@@ -1,0 +1,46 @@
+# basic information about the package
+[info] 
+name = cmake
+version = 3.7.2
+type = src
+license = BSD-3-Clause
+url = http://www.cmake.org/files/v3.7/cmake-3.7.2.tar.gz
+
+# package description , it can be on multiple lines and we support markdown
+[description] 
+This package provides a cross-platform build system generator.
+It is widely used for generating makefiles and build scripts for various platforms and compilers.
+
+# the dependencies version support operators are: =, '<','>','<=','>='.
+[dependencies] 
+curl
+libarchive
+
+# the dependencies needed to build the package
+[makedeps] 
+
+# this is basically a bash script to install the package
+[install]
+wget https://cmake.org/files/v3.19/cmake-3.19.0.tar.gz
+tar -xzvf cmake-3.19.0.tar.gz
+cd cmake-3.19.0 
+sed -i '/CMAKE_USE_LIBUV 1/s/1/0/' CMakeLists.txt     &&
+sed -i '/"lib64"/s/64//' Modules/GNUInstallDirs.cmake &&
+
+./bootstrap --prefix=/usr       \
+            --system-libs       \
+            --mandir=/share/man \
+            --no-system-jsoncpp \
+            --docdir=/share/doc/cmake-3.7.2 &&
+make
+sudo make install
+
+# a script to run after the package is installed
+[special] 
+echo "the package is installed"
+echo "done..."
+
+# the locations of the files installed by the package
+[locations] 
+/usr/bin/cmake
+/usr/share/cmake-3.19/Modules/
