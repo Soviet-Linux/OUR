@@ -1,0 +1,44 @@
+[info]
+name = fuse
+version = 2.9.9
+type = src
+license = LGPLv2.1
+url = https://github.com/libfuse/libfuse/releases/download/fuse-$VERSION/fuse-$VERSION.tar.gz
+
+[description]
+This package provides the user-space utilities for the FUSE (Filesystem in Userspace) kernel module. It allows users to create and mount their own filesystems without requiring special privileges or modifying the kernel.
+
+[dependencies]
+
+[makedeps]
+autoconf
+automake
+
+[install]
+wget $URL
+tar -xzvf fuse-$VERSION.tar.gz
+cd fuse-$VERSION
+./configure --prefix=/usr    \
+            --disable-static \
+            INIT_D_PATH=/tmp/init.d &&
+
+make
+sudomake install &&
+
+sudo mv -v   /usr/lib/libfuse.so.* /lib &&
+sudo ln -sfv /lib/libfuse.so.$VERSION /usr/lib/libfuse.so &&
+sudo rm -rf  /tmp/init.d &&
+
+sudo install -v -m755 -d /usr/share/doc/fuse-$VERSION &&
+sudo install -v -m644    doc/{how-fuse-works,kernel.txt} \
+                    /usr/share/doc/fuse-$VERSION
+
+
+[special]
+echo "fuse is installed"
+echo "done..."
+
+[locations]
+/lib/libfuse.so.*
+/usr/lib/libfuse.so
+/usr/share/doc/fuse-$VERSION
