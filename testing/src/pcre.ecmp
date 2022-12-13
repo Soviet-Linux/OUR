@@ -1,0 +1,43 @@
+# basic information about the package
+[info] 
+name = PCRE
+version = 8.40
+type = src
+license = MIT
+url = ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-$VERSION.tar.bz2
+
+# package description , it can be on multiple lines and we support markdown
+[description] 
+The PCRE package contains Perl Compatible Regular Expression libraries. These are useful for implementing regular expression pattern matching using the same syntax and semantics as Perl 5.
+
+# the dependencies needed to build the package
+[makedeps] 
+make
+
+# this is basically a bash script to install the package
+[install]
+wget $URL
+tar -xzvf pcre-$VERSION.tar.bz2
+cd pcre-$VERSION
+./configure --prefix=/usr                     \
+            --docdir=/usr/share/doc/pcre-8.40 \
+            --enable-unicode-properties       \
+            --enable-pcre16                   \
+            --enable-pcre32                   \
+            --enable-pcregrep-libz            \
+            --enable-pcregrep-libbz2          \
+            --enable-pcretest-libreadline     \
+            --disable-static                 &&
+make
+
+sudo make install                     &&
+sudo mv -v /usr/lib/libpcre.so.* /lib &&
+sudo ln -sfv ../../lib/$(readlink /usr/lib/libpcre.so) /usr/lib/libpcre.so
+
+# a script to run after the package is installed
+[special] 
+echo "PCRE is installed"
+echo "done..."
+
+# the locations of the files installed by the package
+[locations] 
