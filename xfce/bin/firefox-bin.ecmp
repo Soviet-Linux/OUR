@@ -1,0 +1,11 @@
+[info]
+name = firefox
+version = 109.0a1
+type = bin
+url = https://ftp.mozilla.org/pub/firefox/nightly/2022/12/2022-12-12-09-48-33-mozilla-central/firefox-$VERSION.en-US.linux-x86_64.tar.bz2
+
+[download]
+wget $URL | tar -xf firefox-$VERSION.en-US.linux-x86_64.tar.bz2
+
+[locations]
+/usr/bin/firefox
