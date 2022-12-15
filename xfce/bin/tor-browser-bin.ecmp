@@ -1,0 +1,11 @@
+[info]
+name = tor-browser
+version = 12.0a5
+type = bin
+url = https://www.torproject.org/dist/torbrowser/$VERSION/tor-browser-linux64-$VERSION_ALL.tar.xz
+
+[download]
+wget $URL | tar -xvf tor-browser-linux64-$VERSION_ALL.tar.xz
+
+[locations]
+/usr/bin/tor-browser
