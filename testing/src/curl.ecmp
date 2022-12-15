@@ -4,8 +4,10 @@ version = 7.86.0
 url = https://curl.se/download/curl-7.86.0.tar.gz
 license = MIT
 
-[makdeps]
+[makedeps]
 git
+
+[dependencies]
 openssl
 
 [download]
