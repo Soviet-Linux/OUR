@@ -1,44 +1,26 @@
 [info]
 name = curl
-version = 7.52.1
-type = src
+version = 7.86.0
+url = https://curl.se/download/curl-7.86.0.tar.gz
 license = MIT
-url = https://curl.haxx.se/download/curl-$VERSION.tar.lzma
 
-[description]
-curl is a command-line tool that is used to transfer data over a network. It is commonly used to download files from the internet, but can also be used to upload files, make HTTP requests, and more. This package is essential for many other programs that rely on network connectivity.
-
-[dependencies]
+[makdeps]
+git
 openssl
-gnu-tls
 
-[makedeps]
-autoconf
-automake
-libtool
+[download]
+curl $URL | tar -xz
+
+[test]
+make test
 
 [install]
-wget $URL
-wget http://www.linuxfromscratch.org/patches/blfs/8.0/curl-7.52.1-valgrind_filter-1.patch
-tar -xzvf dash-$VERSION.tar.gz
-cd dash-$VERSION
-patch -Np1 -i ../curl-7.52.1-valgrind_filter-1.patch &&
 ./configure --prefix=/usr                           \
             --disable-static                        \
             --enable-threaded-resolver              \
-            --with-ca-path=/etc/ssl/certs &&
+            --with-ca-path=/etc/ssl/certs           \
+            --with-openssl
 make
+make DESTDIR=$BUILD_ROOT install
 
-sudo make install &&
-sudo rm -rf docs/examples/.deps &&
-sudo find docs \( -name Makefile\* \
-          -o -name \*.1       \
-          -o -name \*.3 \)    \
-          -exec rm {} \;      &&
-sudo install -v -d -m755 /usr/share/doc/curl-7.52.1 &&
-sudo cp -v -R docs/*     /usr/share/doc/curl-7.52.1
-
-[special]
-echo "dash is installed"
-echo "done..."
 
