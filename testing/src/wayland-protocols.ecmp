@@ -1,0 +1,42 @@
+# basic information about the package
+[info]
+name = wayland-protocols
+version = 1.20
+type = src
+license = MIT
+url = https://wayland.freedesktop.org/releases/wayland-protocols-$VERSION.tar.xz
+
+# package description
+[description]
+This package contains the Wayland protocols, a set of standard interfaces that define the communication between Wayland clients and the Wayland server.
+
+# dependencies
+[dependencies]
+wayland
+
+# build dependencies
+[makedeps]
+wget
+tar
+make
+sudo
+
+# install script
+[install]
+wget $URL
+tar -xf wayland-protocols-$VERSION.tar.xz
+cd wayland-protocols-$VERSION
+./configure --prefix=/usr &&
+make
+
+sudo make install
+
+# post-install script
+[special]
+echo "wayland-protocols has been installed"
+
+# installed file locations
+[locations]
+/usr/share/wayland-protocols/stable
+/usr/include/wayland-server-protocol.h
+/usr/include/wayland-client-protocol.h
