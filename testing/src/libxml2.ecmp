@@ -1,0 +1,49 @@
+# basic information about the package
+[info]
+name = libxml2
+version = 2.9.10
+type = src
+license = MIT
+url = http://xmlsoft.org/sources/libxml2-$VERSION.tar.gz
+
+# package description
+[description]
+This package contains the libxml2 library, a C language library for parsing and manipulating XML files. It is a widely used library that is required by many other packages.
+
+# dependencies
+[dependencies]
+
+# build dependencies
+[makedeps]
+wget
+sudo
+
+# install script
+[install]
+wget $URL
+wget http://www.linuxfromscratch.org/patches/blfs/svn/libxml2-2.9.10-security_fixes-1.patch
+tar -xf libxml2-$VERSION.tar.gz
+cd libxml2-$VERSION
+patch -p1 -i ../libxml2-2.9.10-security_fixes-1.patch
+sed -i '/if Py/{s/Py/(Py/;s/)/))/}' python/{types.c,libxml.c}
+sed -i 's/test.test/#&/' python/tests/tstLastError.py
+sed -i 's/ TRUE/ true/' encoding.c
+./configure --prefix=/usr    \
+            --disable-static \
+            --with-history   \
+            --with-python=/usr/bin/python3 &&
+make
+
+sudo make install
+
+# post-install script
+[special]
+echo "libxml2 has been installed"
+
+# installed file locations
+[locations]
+/usr/lib/libxml2.so
+/usr/include/libxml2/libxml/parser.h
+/usr/include/libxml2/libxml/tree.h
+/usr/include/libxml2/libxml/xpath.h
+/usr/include/libxml2/libxml/xmlstring.h
