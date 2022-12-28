@@ -1,0 +1,44 @@
+# basic information about the package
+[info]
+name = wayland
+version = 1.19.0
+type = src
+license = MIT
+url = https://wayland.freedesktop.org/releases/wayland-$VERSION.tar.xz
+
+# package description
+[description]
+This package contains the Wayland display server and associated libraries and utilities. It allows applications to communicate with the display server and display their output on the screen.
+
+# dependencies
+[dependencies]
+libxml2
+
+# build dependencies
+[makedeps]
+wget
+sudo 
+make
+
+# install script
+[install]
+wget $URL
+tar -xf wayland-$VERSION.tar.xz
+cd wayland-$VERSION
+./configure --prefix=/usr    \
+            --disable-static \
+            --disable-documentation &&
+make
+
+sudo make install
+
+# post-install script
+[special]
+echo "Wayland has been installed"
+
+# installed file locations
+[locations]
+/usr/bin/wayland-scanner
+/usr/bin/wayland-server
+/usr/lib/libwayland-server.so
+/usr/include/wayland-server.h
