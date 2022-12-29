@@ -1,0 +1,25 @@
+[info]
+name = ripgrep
+version = lat-src
+type = src
+license = GPLv3
+url = https://git.sovietlinux.ml/tutelwastaken/get
+
+[description]
+The Ripgrep package is a cli downloader(Like wget) and a cli file viewer with more tools also like (cat)
+
+[makedeps]
+go-bin
+git
+
+[install]
+git clone $URL
+cd get/src
+go build main.go ripgrep
+sudo mv ripgrep /usr/bin/
+
+[special]
+echo "Done Installing", $NAME
+
+[locations]
+/usr/bin 

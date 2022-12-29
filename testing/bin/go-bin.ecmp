@@ -1,0 +1,25 @@
+[info]
+name = go
+version = 1.19.4
+type = bin
+url = https://go.dev/dl/go1.19.4.linux-amd64.tar.gz
+
+[description]
+golang official compiler
+
+[makedeps]
+wget
+
+[install]
+wget $URL
+echo "Done Downloading"
+tar -xzvf go1.19.4.linux-amd64.tar.gz
+cd go1.19.4.linux-amd64.tar.gz
+sudo mv go /usr/bin/
+
+[special]
+echo "Done Installing"
+echo "Installed"
+
+[locations]
+/usr/bin/
