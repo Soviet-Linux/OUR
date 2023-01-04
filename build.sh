@@ -68,7 +68,7 @@ buildall() {
                 echo "Docker is not installed"
                 exit 1
             fi
-            docker run -v `pwd`:`pwd` -w `pwd` pkd667/sovietlinux sh build.sh build
+            docker run -v `pwd`:`pwd` -w `pwd` pkd667/sovietlinux bash build.sh buildall
             exit $?
         else
             read -r -p "Do you wan to continue executing on current system ? [y/N] " res
