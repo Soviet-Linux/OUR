@@ -62,6 +62,12 @@ buildall() {
         res=${res,,}    # tolower
         if [[ "$res" =~ ^(yes|y)$ ]] ; then
             
+            #chekc if docker is installed
+            docker --version > /dev/null
+            if [ $? -ne 0 ]; then
+                echo "Docker is not installed"
+                exit 1
+            fi
             docker run -v `pwd`:`pwd` -w `pwd` pkd667/sovietlinux sh build.sh build
             exit $?
         else
