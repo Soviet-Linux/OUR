@@ -1,20 +1,22 @@
- 
-[info] # basic information about the package
+[info] 
 name = intltool
-version = 0.50.2
+version = vcs
 type = src
 license = GPLv2
-URL =  http://launchpad.net/intltool/trunk/0.50.2/+download/intltool-0.50.2.tar.gz
+url = https://salsa.debian.org/gnome-team/intltool.git
 
 [description] # package description , it can be on multiple lines and we support makdown
 The Intltool is an internationalization tool used for extracting translatable strings from source files
 
-[dependencies] # the dependencies version support operators are: =, '<','>','<=','>='.
-
-[makedeps] # the dependencies needed to build the package
+[download]
+git clone $URL 
+mv $NAME $NAME-$VERSION
 
 [install] # this is basically a bash script to install the package
-curl $URL | tar -xz
+# fix an automake link error
+autoreconf
+aclocal
+automake
 ./configure --prefix=/usr
 make
 make DESTDIR=$BUILD_ROOT install

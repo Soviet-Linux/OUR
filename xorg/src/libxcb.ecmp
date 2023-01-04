@@ -20,16 +20,18 @@ libxdmcp
 [makedeps]
 automake
 autoconf
+wget
+
+[download]
+wget $URL
+tar -xvf $NAME-$VERSION.tar.bz2 
+wget https://www.linuxfromscratch.org/patches/downloads/libxcb/libxcb-1.12-python3-1.patch
+
 
 # install script
 [install]
-wget $URL
-wget http://www.linuxfromscratch.org/patches/blfs/8.0/libxcb-1.12-python3-1.patch
-tar -xzvf libxcb-$VERSION.tar.gz
-cd libxcb-$VERSION
 patch -Np1 -i ../libxcb-1.12-python3-1.patch
-sed -i "s/pthread-stubs//" configure &&
-
+sed -i "s/pthread-stubs//" configure 
 ./configure $XORG_CONFIG      \
             --enable-xinput   \
             --without-doxygen \

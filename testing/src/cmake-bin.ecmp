@@ -1,0 +1,11 @@
+[info]
+name = cmake
+version = 3.25.1
+type = bin
+url = https://github.com/Kitware/CMake/releases/download/v$VERSION/cmake-$VERSION-linux-x86_64.tar.gz
+
+[download]
+wget $URL | tar -xzvf cmake-$VERSION-linux-x86_64.tar.gz
+
+[locations]
+/usr/bin/cmake

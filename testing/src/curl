@@ -1,0 +1,28 @@
+[info]
+name = curl
+version = 7.86.0
+url = https://curl.se/download/curl-7.86.0.tar.gz
+license = MIT
+
+[makedeps]
+git
+
+[dependencies]
+openssl
+
+[download]
+curl $URL | tar -xz
+
+[test]
+make test
+
+[install]
+./configure --prefix=/usr                           \
+            --disable-static                        \
+            --enable-threaded-resolver              \
+            --with-ca-path=/etc/ssl/certs           \
+            --with-openssl
+make
+make DESTDIR=$BUILD_ROOT install
+
+
