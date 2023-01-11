@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 CCCP_ARGS="debug 3 verbose"
 
