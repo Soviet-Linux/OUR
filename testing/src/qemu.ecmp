@@ -33,6 +33,8 @@ GLib-2.74.4
 
 [install]
 wget https://download.qemu-project.org/qemu-7.2.0.tar.xz
+tar -xvf qemu-7.2.0.tar.xz
+cd qemu-7.2.0.tar.xz
 if [ $(uname -m) = i686 ]; then
    QEMU_ARCH=i386-softmmu
 else
@@ -65,4 +67,3 @@ echo "done.."
 /etc
 /var
 /usr/share/doc/qemu-7.2.0
-
