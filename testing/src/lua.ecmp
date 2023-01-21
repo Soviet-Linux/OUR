@@ -1,0 +1,52 @@
+[info]
+name = lua
+type = src
+version = 5.4.4
+url = https://www.lua.org/ftp/lua-5.4.4.tar.gz
+
+[description]
+Lua is a powerful light-weight programming language designed for extending applications. It is also frequently used as a general-purpose, stand-alone language. Lua is implemented as a small library of C functions, written in ANSI C, and compiles unmodified in all known platforms. The implementation goals are simplicity, efficiency, portability, and low embedding cost. The result is a fast language engine with small footprint, making it ideal in embedded systems too. 
+
+[install]
+wget $URL
+tar -xzvf lua-5.4.4.tar.gz
+cd lua-5.4.4
+cat > lua.pc << "EOF"
+V=5.4
+R=5.4.4
+
+prefix=/usr
+INSTALL_BIN=${prefix}/bin
+INSTALL_INC=${prefix}/include
+INSTALL_LIB=${prefix}/lib
+INSTALL_MAN=${prefix}/share/man/man1
+INSTALL_LMOD=${prefix}/share/lua/${V}
+INSTALL_CMOD=${prefix}/lib/lua/${V}
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Lua
+Description: An Extensible Extension Language
+Version: ${R}
+Requires:
+Libs: -L${libdir} -llua -lm -ldl
+Cflags: -I${includedir}
+EOF
+patch -Np1 -i ../lua-5.4.4-shared_library-2.patch &&
+sudo make linux
+sudo make INSTALL_TOP=/usr                \
+     INSTALL_DATA="cp -d"            \
+     INSTALL_MAN=/usr/share/man/man1 \
+     TO_LIB="liblua.so liblua.so.5.4 liblua.so.5.4.4" \
+     install &&
+
+sudo mkdir -pv                      /usr/share/doc/lua-5.4.4 &&
+sudo cp -v doc/*.{html,css,gif,png} /usr/share/doc/lua-5.4.4 &&
+
+sudo install -v -m644 -D lua.pc /usr/lib/pkgconfig/lua.pc
+
+[locations]
+/usr
+/usr/share/man/man1
+/usr/share/doc/lua-5.4.4
