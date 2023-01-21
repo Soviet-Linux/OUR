@@ -29,7 +29,7 @@ QEMU as a whole is released under the GNU General Public License,
 version 2.
 
 [dependencies]
-GLib-2.74.4
+glib
 
 [install]
 wget $URL
