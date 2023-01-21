@@ -1,0 +1,20 @@
+[info]
+name = nasm
+version = 2.16.01
+type = src
+url = https://www.nasm.us/pub/nasm/releasebuilds/2.16.01/nasm-2.16.01.tar.xz
+
+[description]
+NASM (Netwide Assembler) is an 80x86 assembler designed for portability and modularity. It includes a disassembler as well.
+
+[install]
+wget $URL
+tar -xf nasm-2.16.01.tar.xz
+cd nasm-2.16.01
+./configure --prefix=/usr &&
+make
+sudo make install
+
+[locations]
+/usr/bin
+
