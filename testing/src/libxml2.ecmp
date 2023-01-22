@@ -1,0 +1,28 @@
+[info]
+name = libxml2
+type = src
+version = 2.10.3
+url = https://download.gnome.org/sources/libxml2/2.10/libxml2-2.10.3.tar.xz
+
+[description]
+The libxml2 package contains libraries and utilities used for parsing XML files. 
+
+[install]
+wget $URL
+tar -xvf libxml2-2.10.3.tar.xz
+cd libxml2-2.10.3
+./configure --prefix=/usr           \
+            --sysconfdir=/etc       \
+            --disable-static        \
+            --with-history          \
+            PYTHON=/usr/bin/python3 \
+            --docdir=/usr/share/doc/libxml2-2.10.3 &&
+make
+make install
+
+[locations]
+/usr/include/libxml2
+/usr/lib/cmake/libxml2
+/usr/share/doc/libxml2-2.10.3
+/usr/share/gtk-doc/html/libxml2
+
