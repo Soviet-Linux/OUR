@@ -1,0 +1,17 @@
+[info]
+name = duktape
+type = src
+version = 2.7.0
+url = https://duktape.org/duktape-2.7.0.tar.xz
+
+[description]
+duktape is an embeddable Javascript engine, with a focus on portability and compact footprint. 
+
+[install]
+wget $URL
+tar -xf duktape-2.7.0.tar.xz
+cd duktape-2.7.0
+sed -i 's/-Os/-O2/' Makefile.sharedlibrary
+make -f Makefile.sharedlibrary INSTALL_PREFIX=/usr
+make -f Makefile.sharedlibrary INSTALL_PREFIX=/usr install
+

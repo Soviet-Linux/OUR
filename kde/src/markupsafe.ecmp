@@ -1,0 +1,16 @@
+[info]
+name = markupsafe
+type = src
+version = 2.1.2
+url = https://files.pythonhosted.org/packages/source/M/MarkupSafe/MarkupSafe-2.1.2.tar.gz
+
+[install]
+wget $URL
+tar -xf MarkupSafe-2.1.2.tar.gz
+cd MarkupSafe-2.1.2
+pip wheel -w dist --no-build-isolation --no-deps $PWD
+pip install --no-index --find-links dist --no-cache-dir --no-user markupsafe
+
+[locations]
+/usr/lib/python3.11/site-packages/markupSafe
+/usr/lib/python3.11/site-packages/MarkupSafe-2.1.2.dist-info

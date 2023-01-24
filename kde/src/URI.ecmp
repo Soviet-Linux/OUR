@@ -1,0 +1,16 @@
+[info]
+name = URI
+type = src
+version = 5.17
+url = https://www.cpan.org/authors/id/O/OA/OALDERS/URI-5.17.tar.gz
+
+[description]
+ This module implements the URI class. Objects of this class represent "Uniform Resource Identifier references" as specified in RFC 2396 (and updated by RFC 2732). A Uniform Resource Identifier is a compact string of characters that identifies an abstract or physical resource. A Uniform Resource Identifier can be further classified as either a Uniform Resource Locator (URL) or a Uniform Resource Name (URN). The distinction between URL and URN does not matter to the URI class interface. A "URI-reference" is a URI that may have additional information attached in the form of a fragment identifier.
+
+[install]
+wget $URL
+tar -xf URI-5.17.tar.gz
+cd URI-5.17
+perl Makefile.PL &&
+make            
+make install
