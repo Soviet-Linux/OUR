@@ -1,38 +1,17 @@
-# basic information about the package
 [info]
-name = libXau
-version = 1.0.8
+name = libxau
 type = src
-license = MIT
-url = http://ftp.x.org/pub/individual/lib/libXau-$VERSION.tar.bz2
+version = 1.0.11
+url = https://www.x.org/pub/individual/lib/libXau-1.0.11.tar.xz]
 
-# package description
-[description]
-This package contains the libXau library, which provides an interface to the X11 Authorization Protocol. It is required by many other X11 applications and libraries.
-
-# dependencies
 [dependencies]
-xorg-proto
+xorgproto
 
-# build dependencies
-[makedeps]
-automake
-autoconf
+[description]
+The libXau package contains a library implementing the X11 Authorization Protocol. This is useful for restricting client access to the display.
 
-# install script
 [install]
-wget $URL
-tar -xzvf libXau-$VERSION.tar.bz2
-cd libXau-$VERSION
 ./configure $XORG_CONFIG &&
 make
-sudo make install
+make install
 
-# post-install script
-[special]
-echo "libXau is installed"
-
-# installed files
-[locations]
-/usr/lib/libXau.so
-/usr/include/X11/Xauth.h

@@ -1,0 +1,33 @@
+[info]
+name = xorg-server
+type = src
+version = 21.1.6
+url = https://www.x.org/pub/individual/xserver/xorg-server-21.1.6.tar.xz
+
+[dependencies]
+libxcvt
+pixman
+xorgfonts
+xkeyboard-config
+
+[description]
+The Xorg Server is the core of the X Window system. 
+
+[install]
+wget $URL
+tar -xf xorg-server-21.1.6.tar.xz
+cd xorg-server-21.1.6
+mkdir build &&
+cd    build &&
+
+meson --prefix=$XORG_PREFIX \
+      --localstatedir=/var  \
+      -Dsuid_wrapper=true   \
+      -Dxkb_output_dir=/var/lib/xkb &&
+ninja
+ninja install &&
+mkdir -pv /etc/X11/xorg.conf.d &&
+cat >> /etc/sysconfig/createfiles << "EOF"
+/tmp/.ICE-unix dir 1777 root root
+/tmp/.X11-unix dir 1777 root root
+EOF

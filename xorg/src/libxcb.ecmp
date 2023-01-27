@@ -1,49 +1,23 @@
-# basic information about the package
 [info]
 name = libxcb
-version = 1.12
 type = src
-license = MIT
-url = http://xcb.freedesktop.org/dist/libxcb-$VERSION.tar.bz2
+version = 1.15
+url = https://xorg.freedesktop.org/archive/individual/lib/libxcb-1.15.tar.xz
 
-# package description
-[description]
-This package contains the libxcb library, which provides an interface to the X11 Window System protocol. It is a replacement for the older Xlib interface, and is required by many other X11 applications and libraries.
-
-# dependencies
 [dependencies]
 libxau
 xcb-proto
-libxdmcp
 
-# build dependencies
-[makedeps]
-automake
-autoconf
-wget
+[description]
+The libxcb package provides an interface to the X Window System protocol, which replaces the current Xlib interface. Xlib can also use XCB as a transport layer, allowing software to make requests and receive responses with both. 
 
-[download]
-wget $URL
-tar -xvf $NAME-$VERSION.tar.bz2 
-wget https://www.linuxfromscratch.org/patches/downloads/libxcb/libxcb-1.12-python3-1.patch
-
-
-# install script
 [install]
-patch -Np1 -i ../libxcb-1.12-python3-1.patch
-sed -i "s/pthread-stubs//" configure 
+wget $URL
+tar -xf libxcb-1.15.tar.xz
+cd libxcb-1.15
+PYTHON=python3                \
 ./configure $XORG_CONFIG      \
-            --enable-xinput   \
             --without-doxygen \
-            --docdir='${datadir}'/doc/libxcb-1.12 &&
+            --docdir='${datadir}'/doc/libxcb-1.15 &&
 make
-sudo make install
-
-# post-install script
-[special]
-echo "libxcb is installed"
-
-# installed files
-[locations]
-/usr/lib/libxcb.so
-/usr/include/xcb/xcb.h
+make install

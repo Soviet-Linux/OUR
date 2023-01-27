@@ -1,0 +1,19 @@
+[info]
+name = xcb-util-image
+type = src
+version = 0.4.1
+url = https://xcb.freedesktop.org/dist/xcb-util-image-0.4.1.tar.xz
+
+[dependencies]
+xcb-util
+
+[description]
+The xcb-util-image package provides additional extensions to the XCB library. 
+
+[install]
+wget $URL
+tar -xf xcb-util-image-0.4.1.tar.xz
+cd xcb-util-image-0.4.1
+./configure $XORG_CONFIG &&
+make
+make install
