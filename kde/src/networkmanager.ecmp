@@ -1,0 +1,48 @@
+[info]
+name = networkmanager
+type = src
+version = 1.40.10
+url = https://download.gnome.org/sources/NetworkManager/1.40/NetworkManager-1.40.10.tar.xz
+
+[dependencies]
+jasson
+libndp
+
+[install]
+wget $URL
+tar -xf NetworkManager-1.40.10.tar.xz
+cd NetworkManager-1.40.10
+sed -e 's/-qt4/-qt5/'              \
+    -e 's/moc_location/host_bins/' \
+    -i examples/C/qt/meson.build   &&
+
+sed -e 's/Qt/&5/'                  \
+    -i meson.build
+grep -rl '^#!.*python$' | xargs sed -i '1s/python/&3/'
+mkdir build &&
+cd    build &&
+
+CXXFLAGS+="-O2 -fPIC"            \
+meson --prefix=/usr              \
+      --buildtype=release        \
+      -Dlibaudit=no              \
+      -Dlibpsl=false             \
+      -Dnmtui=true               \
+      -Dovs=false                \
+      -Dppp=false                \
+      -Dselinux=false            \
+      -Dsession_tracking=elogind \
+      -Dmodem_manager=false      \
+      -Dsystemdsystemunitdir=no  \
+      -Dsystemd_journal=false    \
+      -Dqt=false                 \
+      .. &&
+ninja
+ninja install &&
+mv -v /usr/share/doc/NetworkManager{,-1.40.10}
+for file in $(echo ../man/*.[1578]); do
+    section=${file##*.} &&
+    install -vdm 755 /usr/share/man/man$section
+    install -vm 644 $file /usr/share/man/man$section/
+done
+cp -Rv ../docs/{api,libnm} /usr/share/doc/NetworkManager-1.40.10

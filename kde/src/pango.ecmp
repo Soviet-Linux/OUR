@@ -1,0 +1,26 @@
+[info]
+name = pango
+type = src
+version = 1.50.12
+url = https://download.gnome.org/sources/pango/1.50/pango-1.50.12.tar.xz
+
+[dependencies]
+fontconfig
+freetype
+harfbuzz
+fribidi
+glib
+
+[description]
+Pango is a library for laying out and rendering text, with an emphasis on internationalization. It can be used anywhere that text layout is needed, though most of the work on Pango so far has been done in the context of the GTK+ widget toolkit.
+
+[install]
+wget $URL
+tar -xf pango-1.50.12.tar.xz
+cd pango-1.50.12
+mkdir build &&
+cd    build &&
+
+meson --prefix=/usr --buildtype=release --wrap-mode=nofallback .. &&
+ninja
+ninja install

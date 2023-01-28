@@ -1,0 +1,21 @@
+[info]
+name = harfbuzz
+type = src
+version = 6.0.0
+url = https://github.com/harfbuzz/harfbuzz/releases/download/6.0.0/harfbuzz-6.0.0.tar.xz
+
+[description]
+The HarfBuzz package contains an OpenType text shaping engine. 
+
+[install]
+wget $URL
+tar -xf harfbuzz-6.0.0.tar.xz
+cd harfbuzz-6.0.0
+mkdir build &&
+cd    build &&
+
+meson --prefix=/usr        \
+      --buildtype=release  \
+      -Dgraphite2=enabled  &&
+ninja
+ninja install

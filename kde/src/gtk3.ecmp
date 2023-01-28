@@ -1,0 +1,49 @@
+[info]
+name = gtk3
+type = src
+version = 3.24.36
+url = https://download.gnome.org/sources/gtk+/3.24/gtk+-3.24.36.tar.xz
+
+[dependencies]
+at-spi2-core
+gdk-pixbuf
+libepoxy
+pango
+
+[description]
+ The GTK+ 3 package contains libraries used for creating graphical user interfaces for applications.
+
+
+[install]
+wget $URL
+tar -xf gtk+-3.24.36.tar.xz
+cd gtk+-3.24.36
+mkdir build &&
+cd    build &&
+meson setup --prefix=/usr           \
+            --buildtype=release     \
+            -Dman=true              \
+            -Dbroadway_backend=true \
+            .. &&
+ninja
+ninja install
+mkdir -vp ~/.config/gtk-3.0
+cat > ~/.config/gtk-3.0/settings.ini << "EOF"
+[Settings]
+gtk-theme-name = Adwaita
+gtk-icon-theme-name = oxygen
+gtk-font-name = DejaVu Sans 12
+gtk-cursor-theme-size = 18
+gtk-toolbar-style = GTK_TOOLBAR_BOTH_HORIZ
+gtk-xft-antialias = 1
+gtk-xft-hinting = 1
+gtk-xft-hintstyle = hintslight
+gtk-xft-rgba = rgb
+gtk-cursor-theme-name = Adwaita
+EOF
+cat > ~/.config/gtk-3.0/gtk.css << "EOF"
+*  {
+   -GtkScrollbar-has-backward-stepper: 1;
+   -GtkScrollbar-has-forward-stepper: 1;
+}
+EOF
