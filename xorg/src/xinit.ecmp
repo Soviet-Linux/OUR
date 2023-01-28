@@ -1,0 +1,20 @@
+[info]
+name = xinit
+type = src
+version = 1.4.2
+url = https://www.x.org/pub/individual/app/xinit-1.4.2.tar.xz
+
+[dependencies]
+xorglibs
+
+[description]
+The xinit package contains a usable script to start the xserver. 
+
+[install]
+wget $URL
+tar -xf xinit-1.4.2.tar.xz
+cd xinit-1.4.2
+./configure $XORG_CONFIG --with-xinitdir=/etc/X11/app-defaults &&
+make
+make install &&
+ldconfig
