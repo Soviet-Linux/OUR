@@ -1,0 +1,19 @@
+[info]
+name = java
+type = bin
+version = 19.0.1
+url = https://anduin.linuxfromscratch.org/BLFS/OpenJDK/OpenJDK-19.0.1/OpenJDK-19.0.1+10-x86_64-bin.tar.xz
+
+[dependencies]
+alsa-lib
+cups
+giflib
+
+[install]
+wget $URL
+tar -xf OpenJDK-19.0.1+10-x86_64-bin.tar.xz
+cd OpenJDK-19.0.1+10-x86_64-bin
+sudo install -vdm755 /opt/OpenJDK-19.0.1-bin &&
+sudo mv -v * /opt/OpenJDK-19.0.1-bin         &&
+sudo chown -R root:root /opt/OpenJDK-19.0.1-bin
+sudo ln -sfn OpenJDK-19.0.1-bin /opt/jdk

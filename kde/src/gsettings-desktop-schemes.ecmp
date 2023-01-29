@@ -1,0 +1,25 @@
+[info]
+name = gsettings-desktop-schemas
+type = src
+version = 43.0
+url = https://download.gnome.org/sources/gsettings-desktop-schemas/43/gsettings-desktop-schemas-43.0.tar.xz
+
+[dependencies]
+glib
+gobject-introspection
+
+[description]
+The GSettings Desktop Schemas package contains a collection of GSettings schemas for settings shared by various components of a GNOME Desktop. 
+
+[install]
+wget $URL
+tar -xf gsettings-desktop-schemas-43.0.tar.xz
+cd gsettings-desktop-schemas-43.0
+sed -i -r 's:"(/system):"/org/gnome\1:g' schemas/*.in &&
+
+mkdir build &&
+cd    build &&
+
+meson --prefix=/usr --buildtype=release .. &&
+ninja
+ninja install

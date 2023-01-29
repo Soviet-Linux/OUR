@@ -1,0 +1,25 @@
+[info]
+name = libpoxy
+type = src
+version = 1.5.10
+url = https://download.gnome.org/sources/libepoxy/1.5/libepoxy-1.5.10.tar.xz
+
+[dependencies]
+mesa
+
+[description]
+libepoxy is a library for handling OpenGL function pointer management.
+
+[install]
+wget $URL
+tar -xf libepoxy-1.5.10.tar.xz
+cd libepoxy-1.5.10
+mkdir build &&
+cd    build &&
+
+meson --prefix=/usr --buildtype=release .. &&
+ninja
+ninja install
+
+[locations]
+/usr/include/epoxy

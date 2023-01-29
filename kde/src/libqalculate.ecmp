@@ -1,0 +1,23 @@
+[info]
+name = libqalculate
+type = src
+version = 4.5.1
+url = https://github.com/Qalculate/libqalculate/releases/download/v4.5.1/libqalculate-4.5.1.tar.gz
+
+[dependencies]
+curl
+icu
+libxml2
+
+[description]
+ The libqalculate package contains a library that provides functions for a multi-purpose calculator.
+
+[install]
+wget $URL
+tar -xf libqalculate-4.5.1.tar.gz
+cd libqalculate-4.5.1
+./configure --prefix=/usr    \
+            --disable-static \
+            --docdir=/usr/share/doc/libqalculate-4.5.1 &&
+make
+make install

@@ -1,0 +1,34 @@
+[info]
+name = qca
+type = src
+version = 2.3.5
+url = https://download.kde.org/stable/qca/2.3.5/qca-2.3.5.tar.xz
+
+[dependencies]
+make-ca
+cmake
+qt
+which
+
+[description]
+Qca aims to provide a straightforward and cross-platform crypto API, using Qt datatypes and conventions. Qca separates the API from the implementation, using plugins known as Providers. 
+
+[install]
+wget $URL
+tar -xf qca-2.3.5.tar.xz
+cd qca-2.3.5
+sed -i 's@cert.pem@certs/ca-bundle.crt@' CMakeLists.txt
+mkdir build &&
+cd    build &&
+
+cmake -DCMAKE_INSTALL_PREFIX=$QT5DIR            \
+      -DCMAKE_BUILD_TYPE=Release                \
+      -DQCA_MAN_INSTALL_DIR:PATH=/usr/share/man \
+      .. &&
+make
+make install
+
+[locations]
+$QT5DIR/include/Qca-qt5
+$QT5DIR/lib/cmake/Qca-qt5
+$QT5DIR/lib/qca-qt5

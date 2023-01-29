@@ -1,0 +1,19 @@
+[info]
+name = xcb-util
+type = src
+version = 0.4.1
+url = https://xcb.freedesktop.org/dist/xcb-util-0.4.1.tar.xz
+
+[dependencies]
+libxcb
+
+[description]
+The xcb-util package provides additional extensions to the XCB library, many that were previously found in Xlib, but are not part of core X protocol. 
+
+[install]
+wget $URL
+tar -xf xcb-util-0.4.1.tar.xz
+cd xcb-util-0.4.1
+./configure $XORG_CONFIG &&
+make
+make install

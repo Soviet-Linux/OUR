@@ -1,0 +1,22 @@
+[info]
+name = libpng
+type = src
+version = 1.6.39
+url = https://deac-riga.dl.sourceforge.net/project/libpng/libpng16/1.6.39/libpng-1.6.39.tar.xz
+
+[description]
+The libpng package contains libraries used by other programs for reading and writing PNG files. The PNG format was designed as a replacement for GIF and, to a lesser extent, TIFF, with many improvements and extensions and lack of patent problems.
+
+[install]
+wget $URL
+tar -xf libpng-1.6.39.tar.xz
+cd libpng-1.6.39
+./configure --prefix=/usr --disable-static &&
+make
+make install &&
+mkdir -v /usr/share/doc/libpng-1.6.39 &&
+cp -v README libpng-manual.txt /usr/share/doc/libpng-1.6.39
+
+[locations]
+/usr/include/libpng16
+/usr/share/doc/libpng-1.6.39

@@ -1,0 +1,21 @@
+[info]
+name = cracklib
+type = src
+version = 2.9.8
+url = https://github.com/cracklib/cracklib/releases/download/v2.9.8/cracklib-2.9.8.tar.bz2
+
+[description]
+The CrackLib package contains a library used to enforce strong passwords by comparing user selected passwords to words in chosen word lists. 
+
+[install]
+wget $URL
+tar -xf cracklib-2.9.8.tar.bz2
+cd cracklib-2.9.8.tar.bz2
+autoreconf -fiv &&
+
+PYTHON=python3               \
+./configure --prefix=/usr    \
+            --disable-static \
+            --with-default-dict=/usr/lib/cracklib/pw_dict &&
+make
+make install

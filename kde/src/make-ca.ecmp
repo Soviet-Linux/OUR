@@ -1,0 +1,48 @@
+[info]
+name = make-ca
+type = src
+version = 1.12
+url = https://github.com/lfs-book/make-ca/releases/download/v1.12/make-ca-1.12.tar.xz
+
+[dependencies]
+p11-kit
+
+[description]
+ Public Key Infrastructure (PKI) is a method to validate the authenticity of an otherwise unknown entity across untrusted networks. PKI works by establishing a chain of trust, rather than trusting each individual host or entity explicitly. In order for a certificate presented by a remote entity to be trusted, that certificate must present a complete chain of certificates that can be validated using the root certificate of a Certificate Authority (CA) that is trusted by the local machine.
+
+Establishing trust with a CA involves validating things like company address, ownership, contact information, etc., and ensuring that the CA has followed best practices, such as undergoing periodic security audits by independent investigators and maintaining an always available certificate revocation list. This is well outside the scope of BLFS (as it is for most Linux distributions). The certificate store provided here is taken from the Mozilla Foundation, who have established very strict inclusion policies.
+
+[install]
+wget $URL
+tar -xf make-ca-1.12.tar.xz
+cd make-ca-1.12
+make install &&
+install -vdm755 /etc/ssl/local
+/usr/sbin/make-ca -g
+cat > /etc/cron.weekly/update-pki.sh << "EOF" &&
+#!/bin/bash
+/usr/sbin/make-ca -g
+EOF
+chmod 754 /etc/cron.weekly/update-pki.sh
+wget http://www.cacert.org/certs/root.crt &&
+wget http://www.cacert.org/certs/class3.crt &&
+openssl x509 -in root.crt -text -fingerprint -setalias "CAcert Class 1 root" \
+        -addtrust serverAuth -addtrust emailProtection -addtrust codeSigning \
+        > /etc/ssl/local/CAcert_Class_1_root.pem &&
+openssl x509 -in class3.crt -text -fingerprint -setalias "CAcert Class 3 root" \
+        -addtrust serverAuth -addtrust emailProtection -addtrust codeSigning \
+        > /etc/ssl/local/CAcert_Class_3_root.pem &&
+/usr/sbin/make-ca -r
+openssl x509 -in /etc/ssl/certs/Makebelieve_CA_Root.pem \
+             -text \
+             -fingerprint \
+             -setalias "Disabled Makebelieve CA Root" \
+             -addreject serverAuth \
+             -addreject emailProtection \
+             -addreject codeSigning \
+       > /etc/ssl/local/Disabled_Makebelieve_CA_Root.pem &&
+/usr/sbin/make-ca -r
+
+[locations]
+/etc/ssl/{certs,local}
+/etc/pki/{nssdb,anchors,tls/{certs,java}}

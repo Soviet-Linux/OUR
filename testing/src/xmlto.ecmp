@@ -1,0 +1,27 @@
+[info]
+name = xmlto 
+version = 0.0.28
+type = src
+url = https://releases.pagure.org/xmlto/xmlto-0.0.28.tar.bz2
+
+[description]
+The xmlto package is a front-end to a XSL toolchain. It chooses an appropriate stylesheet for the conversion you want and applies it using an external XSLT processor. It also performs any necessary post-processing.
+
+[dependencies]
+docbook-xml
+docbook-xsl-nons
+libxslt
+
+[install]
+wget $URL
+tar -xf xmlto-0.0.28.tar.bz2
+cd xmlto-0.0.28
+LINKS="/usr/bin/links" \
+./configure --prefix=/usr &&
+
+make
+sudo make install
+
+[locations]
+/usr/bin/links
+/usr

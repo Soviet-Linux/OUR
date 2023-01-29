@@ -1,0 +1,19 @@
+[info]
+name = xcb-util-renderutil
+type = src
+version = 0.3.10
+url = https://xcb.freedesktop.org/dist/xcb-util-renderutil-0.3.10.tar.xz
+
+[dependencies]
+libxcb
+
+[description]
+The xcb-util-renderutil package provides additional extensions to the XCB library.
+
+[install]
+wget $URL
+tar -xf xcb-util-renderutil-0.3.10.tar.xz
+cd xcb-util-renderutil-0.3.10
+./configure $XORG_CONFIG &&
+make
+make install

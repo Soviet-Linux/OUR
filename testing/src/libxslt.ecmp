@@ -1,0 +1,30 @@
+[info]
+name = libxslt
+type = src
+version = 1.1.37
+url = https://download.gnome.org/sources/libxslt/1.1/libxslt-1.1.37.tar.xz
+
+[description]
+The libxslt package contains XSLT libraries used for extending libxml2 libraries to support XSLT files. 
+
+[dependencies]
+libxml2
+
+[install]
+wget $URL
+tar -xf libxslt-1.1.37.tar.xz
+cd libxslt-1.1.37
+./configure --prefix=/usr                          \
+            --disable-static                       \
+            --docdir=/usr/share/doc/libxslt-1.1.37 \
+            PYTHON=/usr/bin/python3 &&
+make
+make install
+
+[locations]
+/usr/include/libexslt
+/usr/include/libxslt
+/usr/lib/libxslt-plugins
+/usr/share/doc/libxslt-1.1.37
+/usr/share/doc/libxslt-python-1.1.37
+

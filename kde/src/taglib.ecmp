@@ -1,0 +1,22 @@
+[info]
+name = taglib
+type = src
+version = 1.13
+url = https://taglib.org/releases/taglib-1.13.tar.gz
+
+[dependencies]
+cmake
+
+[install]
+wget $URL
+tar -xf taglib-1.13.tar.gz
+cd taglib-1.13
+mkdir build &&
+cd    build &&
+
+cmake -DCMAKE_INSTALL_PREFIX=/usr \
+      -DCMAKE_BUILD_TYPE=Release  \
+      -DBUILD_SHARED_LIBS=ON \
+      .. &&
+make
+make install` 

@@ -1,0 +1,24 @@
+[info]
+name = cython
+type = src
+version = 0.29.33
+url = https://github.com/cython/cython/releases/download/0.29.33/Cython-0.29.33.tar.gz
+
+[dependencies]
+python2
+python3
+
+[description]
+The Cython package provides a compiler for writing C extensions for the Python language. 
+
+[install]
+wget $URL
+tar -xf Cython-0.29.33.tar.gz
+cd Cython-0.29.33
+pip wheel -w dist --no-build-isolation --no-deps $PWD
+pip install --no-index --find-links dist --no-cache-dir --no-user Cython
+
+[locations]
+/usr/lib/python3.11/site-packages/Cython
+/usr/lib/python3.11/site-packages/Cython-0.29.33.dist-info
+/usr/lib/python3.11/site-packages/pyximport

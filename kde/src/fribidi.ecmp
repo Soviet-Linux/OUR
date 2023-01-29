@@ -1,0 +1,19 @@
+[info]
+name = fribidi
+type = src
+version = 1.0.12
+url = https://github.com/fribidi/fribidi/releases/download/v1.0.12/fribidi-1.0.12.tar.xz
+
+[description]
+The FriBidi package is an implementation of the Unicode Bidirectional Algorithm (BIDI). This is useful for supporting Arabic and Hebrew alphabets in other packages. 
+
+[install]
+wget $URL
+tar -xf fribidi-1.0.12.tar.xz
+cd fribidi-1.0.12
+mkdir build &&
+cd    build &&
+
+meson --prefix=/usr --buildtype=release .. &&
+ninja
+ninja install

@@ -1,0 +1,25 @@
+[info]
+name = plasma-wayland-protocols
+type = src
+version = 1.10.0
+url = https://download.kde.org/stable/plasma-wayland-protocols/plasma-wayland-protocols-1.10.0.tar.xz
+
+[description]
+This package provides a custom set of protocol definitions for KDE.
+
+[dependencies]
+extra-cmake-modules
+
+[install]
+wget $URL
+tar -xf plasma-wayland-protocols-1.10.0.tar.xz
+cd plasma-wayland-protocols-1.10.0
+mkdir build &&
+cd    build &&
+
+cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+make install
+
+[locations]
+/usr/share/plasma-wayland-protocols
+/usr/lib/cmake/PlasmaWaylandProtocols

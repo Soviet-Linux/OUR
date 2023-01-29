@@ -1,0 +1,40 @@
+[info]
+name = mesa
+type = src
+version = 22.3.3
+url = https://mesa.freedesktop.org/archive/mesa-22.3.3.tar.xz
+
+[dependencies]
+libdrm
+mako
+python3
+
+[description]
+Mesa is an OpenGL compatible 3D graphics library. 
+
+[install]
+wget $URL
+tar -xf mesa-22.3.3.tar.xz
+cd mesa-22.3.3.tar.xz
+mkdir build &&
+cd    build &&
+
+meson setup                   \
+      --prefix=$XORG_PREFIX   \
+      --buildtype=release     \
+      -Dplatforms=x11,wayland \
+      -Dgallium-drivers=auto  \
+      -Dvulkan-drivers=""     \
+      -Dvalgrind=disabled     \
+      -Dlibunwind=disabled    \
+      ..                      &&
+
+ninja
+ninja install
+install -v -dm755 /usr/share/doc/mesa-22.3.3 &&
+cp -rfv ../docs/* /usr/share/doc/mesa-22.3.3
+
+[locations]
+$XORG_PREFIX/{include/{EGL,GLES,GLES2,GLES3,KHR}
+$XORG_PREFIX/lib/{dri,vdpau}}
+$XORG_PREFIX/share/drirc.d
