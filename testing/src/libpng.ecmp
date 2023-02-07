@@ -1,14 +1,14 @@
 # basic information about the package
 [info]
 name = libpng
-version = 1.6.28
+version = 1.6.37
 type = src
 license = zlib
-url = http://downloads.sourceforge.net/libpng/libpng-$VERSION.tar.xz
+url = https://downloads.sourceforge.net/$name/$name-$version.tar.xz
 
 # package description
 [description]
-This package contains the libpng library, which provides support for reading and writing PNG (Portable Network Graphics) image files. It is widely used by many applications and libraries for handling PNG images.
+A collection of routines used to create PNG format graphics files
 
 # dependencies
 [dependencies]
@@ -19,19 +19,18 @@ zlib
 automake
 autoconf
 
+[download]
+wget $URL
+wget https://downloads.sourceforge.net/project/apng/libpng/libpng16/$name-$version-apng.patch.gz
+tar -xf $name-$version.tar.xz
+
 # install script
 [install]
-wget $URL
-wget http://downloads.sourceforge.net/project/apng/libpng/libpng16/libpng-$VERSION-apng.patch.gz
-tar -xzvf libpng-$VERSION.tar.gz
-cd libpng-$VERSION
-gzip -cd ../libpng-1.6.28-apng.patch.gz | patch -p0
-LIBS=-lpthread ./configure --prefix=/usr --disable-static &&
+cd $name-$version
+gzip -cd $SRC/$name-$version-apng.patch.gz | patch -p0
+LIBS=-lpthread ./configure --prefix=/usr --disable-static
 make
-
-sudo make install &&
-sudo mkdir -v /usr/share/doc/libpng-1.6.28 &&
-sudo cp -v README libpng-manual.txt /usr/share/doc/libpng-1.6.28
+make DESTDIR=$PKG install
 
 # post-install script
 [special]
@@ -39,5 +38,23 @@ echo "libpng is installed"
 
 # installed files
 [locations]
-/usr/lib/libpng.so
-/usr/include/png.h
+usr/bin/libpng-config
+usr/bin/libpng16-config
+usr/bin/png-fix-itxt
+usr/bin/pngfix
+usr/include/libpng16/
+usr/include/libpng16/png.h
+usr/include/libpng16/pngconf.h
+usr/include/libpng16/pnglibconf.h
+usr/include/png.h
+usr/include/pngconf.h
+usr/include/pnglibconf.h
+usr/lib/libpng.so
+usr/lib/libpng16.so
+usr/lib/libpng16.so.16
+usr/lib/libpng16.so.16.37.0
+usr/lib/pkgconfig/libpng.pc
+usr/lib/pkgconfig/libpng16.pc
+usr/share/man/man3/libpng.3.gz
+usr/share/man/man3/libpngpf.3.gz
+usr/share/man/man5/png.5.gz

@@ -1,22 +1,26 @@
 [info] 
 name = intltool
-version = vcs
+version = 0.51.0
 type = src
 license = GPLv2
-url = https://salsa.debian.org/gnome-team/intltool.git
+url = http://launchpad.net/intltool/trunk/$version/+download/$name-$version.tar.gz
+
+[makedeps]
+automake
+autoconfig
+make
+wget
 
 [description] # package description , it can be on multiple lines and we support makdown
 The Intltool is an internationalization tool used for extracting translatable strings from source files
 
 [download]
-git clone $URL 
-mv $NAME $NAME-$VERSION
+wget $URL 
+tar -xf $name-$version.tar.gz
 
-[install] # this is basically a bash script to install the package
-# fix an automake link error
-autoreconf
-aclocal
-automake
+[install]
+cd $name-$version
+sed -i 's:\\\${:\\\$\\{:' intltool-update.in
 ./configure --prefix=/usr
 make
 make DESTDIR=$BUILD_ROOT install
@@ -26,3 +30,16 @@ echo "the package is installed"
 echo "done..."
 
 [locations] # the locations of the files installed by the package
+usr/bin/intltool-extract
+usr/bin/intltool-merge
+usr/bin/intltool-prepare
+usr/bin/intltool-update
+usr/bin/intltoolize
+usr/share/aclocal/intltool.m4
+usr/share/intltool/
+usr/share/intltool/Makefile.in.in
+usr/share/man/man8/intltool-extract.8.gz
+usr/share/man/man8/intltool-merge.8.gz
+usr/share/man/man8/intltool-prepare.8.gz
+usr/share/man/man8/intltool-update.8.gz
+usr/share/man/man8/intltoolize.8.gz

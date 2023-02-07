@@ -3,42 +3,57 @@ name = fuse
 version = 2.9.9
 type = src
 license = LGPLv2.1
-url = https://github.com/libfuse/libfuse/releases/download/fuse-$VERSION/fuse-$VERSION.tar.gz
+url = https://github.com/libfuse/libfuse/releases/download/fuse-$version/fuse-$version.tar.gz
 
 [description]
-This package provides the user-space utilities for the FUSE (Filesystem in Userspace) kernel module. It allows users to create and mount their own filesystems without requiring special privileges or modifying the kernel.
+Simple interface for userspace programs to export a virtual filesystem to the Linux kernel
 
-[dependencies]
 
-[makedeps]
-autoconf
-automake
+[download]
+wget $URL
+wget https://pastebin.com/raw/dMQB4rTv -O fuse.conf
+tar -xzvf fuse-$VERSION.tar.gz
 
 [install]
-wget $URL
-tar -xzvf fuse-$VERSION.tar.gz
-cd fuse-$VERSION
+cd fuse-$version
 ./configure --prefix=/usr    \
             --disable-static \
-            INIT_D_PATH=/tmp/init.d &&
-
+            INIT_D_PATH=/tmp/init.d
 make
-sudomake install &&
-
-sudo mv -v   /usr/lib/libfuse.so.* /lib &&
-sudo ln -sfv /lib/libfuse.so.$VERSION /usr/lib/libfuse.so &&
-sudo rm -rf  /tmp/init.d &&
-
-sudo install -v -m755 -d /usr/share/doc/fuse-$VERSION &&
-sudo install -v -m644    doc/{how-fuse-works,kernel.txt} \
-                    /usr/share/doc/fuse-$VERSION
-
-
-[special]
-echo "fuse is installed"
-echo "done..."
+make DESTDIR=$BUILD_ROOT install
+install -d $BUILD_ROOT/lib
+mv -v   $BUILD_ROOT/usr/lib/libfuse.so.* $BUILD_ROOT/lib
+ln -sfv ../../lib/libfuse.so.2.9.9 $BUILD_ROOT/usr/lib/libfuse.so
+rm -rf $BUILD_ROOT/tmp $BUILD_ROOT/dev
+install -Dm 644 fuse.conf $BUILD_ROOT/etc/fuse.conf
 
 [locations]
-/lib/libfuse.so.*
-/usr/lib/libfuse.so
-/usr/share/doc/fuse-$VERSION
+etc/fuse.conf
+etc/udev/
+etc/udev/rules.d/
+etc/udev/rules.d/99-fuse.rules
+lib/libfuse.so.2
+lib/libfuse.so.2.9.9
+sbin/mount.fuse
+usr/bin/fusermount
+usr/bin/ulockmgr_server
+usr/include/fuse.h
+usr/include/fuse/
+usr/include/fuse/cuse_lowlevel.h
+usr/include/fuse/fuse.h
+usr/include/fuse/fuse_common.h
+usr/include/fuse/fuse_common_compat.h
+usr/include/fuse/fuse_compat.h
+usr/include/fuse/fuse_lowlevel.h
+usr/include/fuse/fuse_lowlevel_compat.h
+usr/include/fuse/fuse_opt.h
+usr/include/ulockmgr.h
+usr/lib/libfuse.so
+usr/lib/libulockmgr.so
+usr/lib/libulockmgr.so.1
+usr/lib/libulockmgr.so.1.0.1
+usr/lib/pkgconfig/
+usr/lib/pkgconfig/fuse.pc
+usr/share/man/man1/fusermount.1.gz
+usr/share/man/man1/ulockmgr_server.1.gz
+usr/share/man/man8/mount.fuse.8.gz

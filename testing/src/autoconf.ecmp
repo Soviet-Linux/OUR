@@ -1,10 +1,10 @@
 # basic information about the package
 [info]
 name = autoconf
-version = 3.7.2
+version = 2.71
 type = src
 license = GPL-3.0-or-later
-url = http://www.cmake.org/files/v3.7/cmake-$VERSION.tar.gz
+url = https://ftp.gnu.org/gnu/autoconf/autoconf-$VERSION.tar.gz
 
 # package description
 [description]
@@ -20,10 +20,12 @@ perl
 make
 gcc
 
+[download]
+wget $URL | tar -xz
+wget http://www.linuxfromscratch.org/patches/blfs/8.0/autoconf-2.13-consolidated_fixes-1.patch
+
 # this is basically a bash script to install the package
 [install]
-wget $URL
-wget http://www.linuxfromscratch.org/patches/blfs/8.0/autoconf-2.13-consolidated_fixes-1.patch
 tar -xzvf autoconf-$VERSION.tar.gz
 cd autoconf-$VERSION
 patch -Np1 -i ../autoconf-2.13-consolidated_fixes-1.patch &&

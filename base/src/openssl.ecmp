@@ -1,8 +1,13 @@
 [info]
 name = openssl
-version = 1.1.1d
+version = 1.1.1t
 type = src
-url = https://www.openssl.org/source/openssl-1.1.1d.tar.gz
+url = https://www.openssl.org/source/openssl-$VERSION.tar.gz
+
+[makedeps]
+pkg-config
+curl
+make
 
 [download]
 curl $URL | tar -xz
@@ -16,3 +21,5 @@ curl $URL | tar -xz
 make
 sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
 make MANSUFFIX=ssl DESTDIR=$BUILD_ROOT install
+
+[locations]

@@ -2,13 +2,29 @@
 name = popt
 version = 1.19
 type = src
-url = http://ftp.rpm.org/popt/releases/popt-1.x/popt-1.19.tar.gz
+url = http://ftp.rpm.org/mirror/$name/$name-$version.tar.gz
+
+[description]
+Popt libraries which are used by some programs to parse command-line options
+
+[makedeps]
+pkg-config
+curl
+make
 
 [download]
 curl $URL | tar -xz
 
 [install]
-./configure --prefix=/usr --disable-static 
+cd $name-$version
+./configure --prefix=/usr --disable-static --disable-nls
 make
 make DESTDIR=$BUILD_ROOT install
 
+[locations]
+usr/include/popt.h
+usr/lib/libpopt.so
+usr/lib/libpopt.so.0
+usr/lib/libpopt.so.0.0.0
+usr/lib/pkgconfig/popt.pc
+usr/share/man/man3/popt.3.gz

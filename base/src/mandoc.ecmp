@@ -2,7 +2,10 @@
 name = mandoc
 version = 1.14.6
 type = src
-url = https://mandoc.bsd.lv/snapshots/mandoc-1.14.6.tar.gz
+url = http://mandoc.bsd.lv/snapshots/$name-$version.tar.gz
+
+[description]
+mandoc - a document processor for mdoc and man
 
 [download]
 # IDK why , curl has an issue with this url
@@ -11,7 +14,59 @@ ls
 tar -xf $NAME-$VERSION.tar.gz 
 
 [install]
-./configure 
-make mandoc
-install -vDm755 mandoc   $BUILD_ROOT/usr/bin 
-install -vDm644 mandoc.1 $BUILD_ROOT/usr/share/man/man1
+	cd $name-$version
+
+	cat >configure.local <<-'EOF'
+		OSNAME=CRUX
+		PREFIX=/usr
+		MANDIR=/usr/share/man
+
+		MANPATH_DEFAULT="/usr/share/man:/usr/manv"
+		MANPATH_BASE="/usr/share/man:/usr/man"
+
+		MANM_MANCONF="mandoc.conf"
+		
+		MANM_MAN="mandoc_man"
+		MANM_MDOC="mandoc_mdoc"
+		MANM_ROFF="mandoc_roff"
+		MANM_EQN="mandoc_eqn"
+		MANM_TBL="mandoc_tbl"
+	
+		BINM_MAN=mman
+		BINM_APROPOS=mapropos
+		BINM_WHATIS=mwhatis
+		BINM_MAKEWHATIS=mandocdb
+		BINM_SOELIM=msoelim
+	
+		LN="ln -sf"
+	EOF
+
+	./configure
+	make
+	make DESTDIR=$BUILD_ROOT install
+
+	rm -rf $BUILD_ROOT/share/examples
+
+[locations]
+usr/bin/demandoc
+usr/bin/mandoc
+usr/bin/mapropos
+usr/bin/mman
+usr/bin/msoelim
+usr/bin/mwhatis
+usr/sbin/mandocdb
+usr/share/man/man1/demandoc.1.gz
+usr/share/man/man1/mandoc.1.gz
+usr/share/man/man1/mapropos.1.gz
+usr/share/man/man1/mman.1.gz
+usr/share/man/man1/msoelim.1.gz
+usr/share/man/man1/mwhatis.1.gz
+usr/share/man/man5/mandoc.conf.5.gz
+usr/share/man/man5/mandoc.db.5.gz
+usr/share/man/man7/mandoc_char.7.gz
+usr/share/man/man7/mandoc_eqn.7.gz
+usr/share/man/man7/mandoc_man.7.gz
+usr/share/man/man7/mandoc_mdoc.7.gz
+usr/share/man/man7/mandoc_roff.7.gz
+usr/share/man/man7/mandoc_tbl.7.gz
+usr/share/man/man8/mandocdb.8.gz

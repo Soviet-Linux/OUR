@@ -2,12 +2,21 @@
 name = alsa-lib
 type = src
 version = 1.2.8
-url = https://www.alsa-project.org/files/pub/lib/alsa-lib-1.2.8.tar.bz2
+url = https://www.alsa-project.org/files/pub/lib/alsa-lib-$VERSION.tar.bz2
+
+[makedeps]
+pkg-config
+curl
+make
+sudo
+
+[download]
+wget $URL | tar -xz
 
 [install]
 wget $URL
-tar -xf alsa-lib-1.2.8.tar.bz2
-cd alsa-lib-1.2.8
+tar -xf alsa-lib-$VERSION.tar.bz2
+cd alsa-lib-$VERSION
 ./configure &&
 make
 sudo make install
