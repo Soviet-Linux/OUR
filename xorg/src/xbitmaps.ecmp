@@ -21,7 +21,7 @@ cd xbitmaps-$version
 	--sysconfdir=/etc \
 	--localstatedir=/var \
 	--disable-static
-make DESTDIR=$PKG install
+make DESTDIR=$BUILD_ROOT install
 
 [locations]
 usr/include/X11/

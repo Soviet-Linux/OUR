@@ -15,7 +15,7 @@ meson $name-$version build \
 		-Dcompat-rules=true \
 		-Dxorg-rules-symlinks=true
 meson compile -C build
-DESTDIR=$PKG meson install -C build
+DESTDIR=$BUILD_ROOT meson install -C build
 
 [locations]
 usr/share/X11/xkb/keycodes/sgi_vndr/

@@ -19,7 +19,7 @@ Utility libraries for XC Binding - Convenience functions for the Render extensio
 		--localstatedir=/var \
 		--disable-static
 	make
-	make DESTDIR=$PKG install
+	make DESTDIR=$BUILD_ROOT install
 
 [locations]
 usr/include/xcb/

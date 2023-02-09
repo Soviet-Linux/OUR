@@ -31,9 +31,9 @@ meson $name-$version build \
 		-D suid_wrapper=true \
 		-D xorg=true
 	meson compile -C build
-	DESTDIR=$PKG meson install -C build
+	DESTDIR=$BUILD_ROOT meson install -C build
 
-	install -m 755 -d $PKG/etc/X11/xorg.conf.d
+	install -m 755 -d $BUILD_ROOT/etc/X11/xorg.conf.d
 
 [locations]
 etc/X11/

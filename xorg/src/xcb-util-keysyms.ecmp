@@ -22,7 +22,7 @@ cd xcb-util-keysyms-$version.tar.xz
 	--localstatedir=/var \
 	--disable-static
 make
-make DESTDIR=$PKG install
+make DESTDIR=$BUILD_ROOT install
 
 [locations]
 usr/include/xcb/xcb_keysyms.h
