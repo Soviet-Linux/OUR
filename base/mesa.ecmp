@@ -1,0 +1,143 @@
+[info]
+name = mesa
+version = 22.3.5
+url = https://mesa.freedesktop.org/archive/$name-$version.tar.xz
+
+[description]
+OpenGL compatible 3D graphics library
+
+[dependencies]
+python3-mako 
+elfutils 
+bison 
+flex 
+libxext 
+libxdamage 
+libxshmfence 
+libxxf86vm 
+libxrandr 
+libdrm 
+libglvnd 
+glslang 
+llvm
+libva 
+libvdpau 
+wayland-protocols
+
+[download]
+wget $URL
+tar -xf $name-$version.tar.xz
+
+[install]
+
+    meson setup $name-$version _build \
+       -D b_ndebug=true \
+       -D b_lto=false \
+       -D platforms=x11,wayland \
+       -D gallium-drivers=r300,r600,radeonsi,nouveau,virgl,svga,swrast,i915,iris,crocus,zink,d3d12 \
+       -D vulkan-drivers=amd,intel,swrast,virtio-experimental,intel_hasvk \
+       -D vulkan-layers=device-select,overlay \
+       -D dri3=enabled \
+       -D egl=enabled \
+       -D gallium-extra-hud=true \
+       -D gallium-nine=true \
+       -D gallium-omx=bellagio \
+       -D gallium-opencl=icd \
+       -D gallium-va=enabled \
+       -D gallium-vdpau=enabled \
+       -D gallium-xa=enabled \
+       -D gbm=enabled \
+       -D gles1=disabled \
+       -D gles2=enabled \
+       -D glvnd=true \
+       -D glx=dri \
+       -D libunwind=enabled \
+       -D llvm=enabled \
+       -D lmsensors=enabled \
+       -D osmesa=true \
+       -D shared-glapi=enabled \
+       -D microsoft-clc=disabled \
+       -D valgrind=disabled \
+       -D tools=[] \
+       -D zstd=enabled \
+       -D video-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc \
+       -D buildtype=plain \
+       --wrap-mode=nofallback \
+       -D prefix=/usr \
+       -D sysconfdir=/etc
+	meson compile -C build
+	DESTDIR=$BUILD_ROOT meson install -C build
+
+	# indirect rendering symlink
+	ln -s libGLX_mesa.so.0 $BUILD_ROOT/usr/lib/libGLX_indirect.so.0
+
+[locations]
+usr/bin/mesa-overlay-control.py
+usr/include/EGL/
+usr/include/EGL/eglext_angle.h
+usr/include/EGL/eglmesaext.h
+usr/include/GL/
+usr/include/GL/internal/
+usr/include/GL/internal/dri_interface.h
+usr/include/GL/osmesa.h
+usr/include/gbm.h
+usr/include/xa_composite.h
+usr/include/xa_context.h
+usr/include/xa_tracker.h
+usr/lib/dri/crocus_dri.so
+usr/lib/dri/i915_dri.so
+usr/lib/dri/iris_dri.so
+usr/lib/dri/kms_swrast_dri.so
+usr/lib/dri/nouveau_dri.so
+usr/lib/dri/nouveau_drv_video.so 
+usr/lib/dri/r300_dri.so
+usr/lib/dri/r600_dri.so
+usr/lib/dri/r600_drv_video.so
+usr/lib/dri/radeonsi_dri.so
+usr/lib/dri/radeonsi_drv_video.so
+usr/lib/dri/swrast_dri.so
+usr/lib/dri/virtio_gpu_dri.so
+usr/lib/dri/virtio_gpu_drv_video.so
+usr/lib/dri/vmwgfx_dri.so
+usr/lib/dri/zink_dri.so
+usr/lib/libEGL_mesa.so
+usr/lib/libEGL_mesa.so.0
+usr/lib/libEGL_mesa.so.0.0.0
+usr/lib/libGLX_indirect.so.0
+usr/lib/libGLX_mesa.so
+usr/lib/libGLX_mesa.so.0
+usr/lib/libGLX_mesa.so.0.0.0
+usr/lib/libOSMesa.so
+usr/lib/libOSMesa.so.8
+usr/lib/libOSMesa.so.8.0.0
+usr/lib/libVkLayer_INTEL_nullhw.so
+usr/lib/libVkLayer_MESA_device_select.so
+usr/lib/libVkLayer_MESA_overlay.so
+usr/lib/libgbm.so
+usr/lib/libgbm.so.1
+usr/lib/libgbm.so.1.0.0
+usr/lib/libglapi.so
+usr/lib/libglapi.so.0
+usr/lib/libglapi.so.0.0.0
+usr/lib/libvulkan_intel.so
+usr/lib/libvulkan_radeon.so
+usr/lib/libxatracker.so
+usr/lib/libxatracker.so.2
+usr/lib/libxatracker.so.2.5.0
+usr/lib/pkgconfig/
+usr/lib/pkgconfig/dri.pc
+usr/lib/pkgconfig/gbm.pc
+usr/lib/pkgconfig/osmesa.pc
+usr/lib/pkgconfig/xatracker.pc
+usr/share/drirc.d/00-mesa-defaults.conf
+usr/share/drirc.d/00-radv-defaults.conf
+usr/share/glvnd/egl_vendor.d/
+usr/share/glvnd/egl_vendor.d/50_mesa.json
+usr/share/vulkan/explicit_layer.d/
+usr/share/vulkan/explicit_layer.d/VkLayer_INTEL_nullhw.json
+usr/share/vulkan/explicit_layer.d/VkLayer_MESA_overlay.json
+usr/share/vulkan/icd.d/
+usr/share/vulkan/icd.d/intel_icd.x86_64.json
+usr/share/vulkan/icd.d/radeon_icd.x86_64.json
+usr/share/vulkan/implicit_layer.d/
+usr/share/vulkan/implicit_layer.d/VkLayer_MESA_device_select.json
