@@ -34,10 +34,10 @@ tar -xf $NAME-$VERSION.tar.bz2
 	     SHAREDIR=/usr/share/hwdata \
 	     MANDIR=/usr/share/man	\
 	     SHARED=yes                 \
-	     DESTDIR=$PKG		\
+	     DESTDIR=$BUILD_ROOT		\
 	     install install-lib
 
-	chmod -v 755 $PKG/usr/lib/libpci.so
+	chmod -v 755 $BUILD_ROOT/usr/lib/libpci.so
 
 [locations]
 usr/include/pci/

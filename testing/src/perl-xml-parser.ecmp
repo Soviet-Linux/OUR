@@ -21,7 +21,7 @@ tar -xf $name-$version.tar.xz
 cd XML-Parser-$version
 perl Makefile.PL
 make
-make DESTDIR=$PKG install
+make DESTDIR=$BUILD_ROOT install
 
 [special] # a script to run after the package is installed
 echo "the package is installed"

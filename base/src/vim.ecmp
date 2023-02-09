@@ -41,18 +41,18 @@ curl $URL | tar -xz
 		--with-tlib=ncursesw \
 		--without-x
 	make
-	make DESTDIR=$PKG install
+	make DESTDIR=$BUILD_ROOT install
 
-	mv $PKG/usr/share/man/man1 $SRC/man1
-	rm -r $PKG/usr/share/man/*
-	mv $SRC/man1 $PKG/usr/share/man/man1
+	mv $BUILD_ROOT/usr/share/man/man1 $SRC/man1
+	rm -r $BUILD_ROOT/usr/share/man/*
+	mv $SRC/man1 $BUILD_ROOT/usr/share/man/man1
 
 	# no desktop files and icons
-	rm -r $PKG/usr/share/applications \
-	      $PKG/usr/share/icons
+	rm -r $BUILD_ROOT/usr/share/applications \
+	      $BUILD_ROOT/usr/share/icons
 
-	mkdir -pv $PKG/etc
-cat > $PKG/etc/vimrc << "EOF"
+	mkdir -pv $BUILD_ROOT/etc
+cat > $BUILD_ROOT/etc/vimrc << "EOF"
 " Begin /etc/vimrc
 
 " Ensure defaults are set before customizing settings, not after
@@ -70,7 +70,7 @@ endif
 " End /etc/vimrc
 EOF
 
-	ln -sv vim $PKG/usr/bin/vi
+	ln -sv vim $BUILD_ROOT/usr/bin/vi
 
 [locations]
 vim-8.2.2609-1

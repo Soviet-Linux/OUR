@@ -1,0 +1,33 @@
+[info]
+name = libxshmfence
+version = 1.3.2
+url = http://ftp.x.org/pub/individual/lib/libxshmfence-$version.tar.xz
+
+[description]
+A library that exposes a event API on top of Linux futexes
+
+[dependencies]
+xorgproto
+
+[download]
+wget $URL
+tar -xf libxkbfile-$version.tar.xz
+
+[install]
+	cd libxshmfence-$version
+xorg-libraries
+	./configure \
+		--prefix=/usr \
+                --sysconfdir=/etc \
+                --localstatedir=/var \
+                --disable-static
+	make
+	make DESTDIR=$BUILD_ROOT install
+
+[locations]
+usr/include/X11/
+usr/include/X11/xshmfence.h
+usr/lib/libxshmfence.so
+usr/lib/libxshmfence.so.1
+usr/lib/libxshmfence.so.1.0.0
+usr/lib/pkgconfig/xshmfence.pc

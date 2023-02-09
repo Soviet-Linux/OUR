@@ -1,0 +1,38 @@
+[info]
+name = libxfont2
+version = 2.0.6
+url = http://ftp.x.org/pub/individual/lib/libXfont2-$version.tar.xz
+
+[description]
+X11 font rasterisation library
+
+[dependencies]
+zlib 
+libfontenc 
+freetype2 
+xtrans
+
+[download]
+wget $URL
+tar -xf libXfont2-$version.tar.xz
+
+[install]
+	cd libXfont2-$version
+
+	./configure \
+		--prefix=/usr \
+                --sysconfdir=/etc \
+                --localstatedir=/var \
+                --disable-static \
+		--disable-devel-docs
+	make
+	make DESTDIR=$BUILD_ROOT install
+
+[locations]
+usr/include/X11/
+usr/include/X11/fonts/
+usr/include/X11/fonts/libxfont2.h
+usr/lib/libXfont2.so
+usr/lib/libXfont2.so.2
+usr/lib/libXfont2.so.2.0.0
+usr/lib/pkgconfig/xfont2.pc

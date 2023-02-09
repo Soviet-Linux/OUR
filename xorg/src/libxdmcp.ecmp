@@ -2,7 +2,7 @@
 name = libxdmcp
 type = src
 version = 1.1.4
-url = https://www.x.org/pub/individual/lib/libXdmcp-1.1.4.tar.xz
+url = http://ftp.x.org/pub/individual/lib/libXdmcp-$version.tar.xz
 
 [dependencies]
 xorgproto
@@ -12,10 +12,24 @@ libxslt
 [description]
 The libXdmcp package contains a library implementing the X Display Manager Control Protocol. This is useful for allowing clients to interact with the X Display Manager.
 
+[download]
+wget $URL
+tar -xf libXdmcp-$version.tar.xz
+
 [install]
-./configure $XORG_CONFIG --docdir=/usr/share/doc/libXdmcp-1.1.4 &&
+cd libXdmcp-$version
+./configure \
+	--prefix=/usr \
+	--sysconfdir=/etc \
+	--localstatedir=/var \
+	--disable-static
 make
-make install
+make DESTDIR=$BUILD_ROOT install
 
 [locations]
-/xorg/share/doc/libXdmcp-1.1.4
+usr/include/X11/
+usr/include/X11/Xdmcp.h
+usr/lib/libXdmcp.so
+usr/lib/libXdmcp.so.6
+usr/lib/libXdmcp.so.6.0.0
+usr/lib/pkgconfig/xdmcp.pc

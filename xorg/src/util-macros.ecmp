@@ -2,20 +2,29 @@
 name = util-macros
 type = src
 version = 1.19.3
-url = https://www.x.org/pub/individual/util/util-macros-1.19.3.tar.bz2
+url = http://ftp.x.org/pub/individual/util/util-macros-$version.tar.bz2
 
 [dependencies]
 xorgbuildenv
 
 [description]
- The util-macros package contains the m4 macros used by all of the Xorg packages. 
+X.Org Autotools macros
+
+[download]
+wget $URL
+tar -xf util-macros-$version.tar.bz2
 
 [install]
-wget $URL
-tar -xf util-macros-1.19.3.tar.bz2
-./configure $XORG_CONFIG
-make install
+	cd $name-$version
+
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static
+	make DESTDIR=$BUILD_ROOT install
 
 [locations]
-/xorg/share/pkgconfig
-/xorg/share/util-macros
+usr/share/aclocal/xorg-macros.m4
+usr/share/pkgconfig/xorg-macros.pc
+usr/share/util-macros/INSTALL

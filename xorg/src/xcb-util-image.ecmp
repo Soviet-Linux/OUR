@@ -2,18 +2,25 @@
 name = xcb-util-image
 type = src
 version = 0.4.1
-url = https://xcb.freedesktop.org/dist/xcb-util-image-0.4.1.tar.xz
+url = https://xorg.freedesktop.org/archive/individual/xcb/xcb-util-image-$version.tar.xz
 
 [dependencies]
-xcb-util
+libxcb 
+xcb-util 
 
 [description]
-The xcb-util-image package provides additional extensions to the XCB library. 
+Utility libraries for XC Binding - Port of Xlib's XImage and XShmImage functions
+
+[download]
+wget $URL
+tar -xf xcb-util-image-$version.tar.xz
 
 [install]
-wget $URL
-tar -xf xcb-util-image-0.4.1.tar.xz
-cd xcb-util-image-0.4.1
-./configure $XORG_CONFIG &&
+cd $name-$version
+./configure \
+	--prefix=/usr \
+	--sysconfdir=/etc \
+	--localstatedir=/var \
+	--disable-static
 make
-make install
+make DESTDIR=$PKG install

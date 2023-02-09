@@ -1,0 +1,62 @@
+[info]
+name = libxmu
+version = 1.1.4
+url = http://ftp.x.org/pub/individual/lib/libXmu-$version.tar.xz
+
+[description]
+X11 miscellaneous micro-utility library
+
+[dependencies]
+libx11 
+libxt 
+libxext
+
+[download]
+wget $URL
+tar -xf libXmu-$version.tar.xz
+
+[install]
+	cd libXmu-$version
+
+	./configure \
+		--prefix=/usr \
+                --sysconfdir=/etc \
+                --localstatedir=/var \
+                --disable-static
+	make
+	make DESTDIR=$BUILD_ROOT install
+
+[locations]
+usr/include/X11/
+usr/include/X11/Xmu/
+usr/include/X11/Xmu/Atoms.h
+usr/include/X11/Xmu/CharSet.h
+usr/include/X11/Xmu/CloseHook.h
+usr/include/X11/Xmu/Converters.h
+usr/include/X11/Xmu/CurUtil.h
+usr/include/X11/Xmu/CvtCache.h
+usr/include/X11/Xmu/DisplayQue.h
+usr/include/X11/Xmu/Drawing.h
+usr/include/X11/Xmu/Editres.h
+usr/include/X11/Xmu/EditresP.h
+usr/include/X11/Xmu/Error.h
+usr/include/X11/Xmu/ExtAgent.h
+usr/include/X11/Xmu/Initer.h
+usr/include/X11/Xmu/Lookup.h
+usr/include/X11/Xmu/Misc.h
+usr/include/X11/Xmu/StdCmap.h
+usr/include/X11/Xmu/StdSel.h
+usr/include/X11/Xmu/SysUtil.h
+usr/include/X11/Xmu/WhitePoint.h
+usr/include/X11/Xmu/WidgetNode.h
+usr/include/X11/Xmu/WinUtil.h
+usr/include/X11/Xmu/Xct.h
+usr/include/X11/Xmu/Xmu.h
+usr/lib/libXmu.so
+usr/lib/libXmu.so.6
+usr/lib/libXmu.so.6.2.0
+usr/lib/libXmuu.so
+usr/lib/libXmuu.so.1
+usr/lib/libXmuu.so.1.0.0
+usr/lib/pkgconfig/xmu.pc
+usr/lib/pkgconfig/xmuu.pc

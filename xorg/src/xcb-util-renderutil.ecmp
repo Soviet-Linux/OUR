@@ -2,18 +2,29 @@
 name = xcb-util-renderutil
 type = src
 version = 0.3.10
-url = https://xcb.freedesktop.org/dist/xcb-util-renderutil-0.3.10.tar.xz
+url = https://xorg.freedesktop.org/archive/individual/xcb/xcb-util-renderutil-$version.tar.xz
 
 [dependencies]
 libxcb
 
 [description]
-The xcb-util-renderutil package provides additional extensions to the XCB library.
+Utility libraries for XC Binding - Convenience functions for the Render extension
 
 [install]
-wget $URL
-tar -xf xcb-util-renderutil-0.3.10.tar.xz
-cd xcb-util-renderutil-0.3.10
-./configure $XORG_CONFIG &&
-make
-make install
+	cd $name-$version
+
+  	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static
+	make
+	make DESTDIR=$PKG install
+
+[locations]
+usr/include/xcb/
+usr/include/xcb/xcb_renderutil.h
+usr/lib/libxcb-render-util.so
+usr/lib/libxcb-render-util.so.0
+usr/lib/libxcb-render-util.so.0.0.0
+usr/lib/pkgconfig/xcb-renderutil.pc

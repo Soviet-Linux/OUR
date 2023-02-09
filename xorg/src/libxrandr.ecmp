@@ -1,0 +1,51 @@
+[info]
+name = libxrandr
+version = 1.5.3
+url = http://ftp.x.org/pub/individual/lib/libXrandr-$version.tar.xz
+
+[description]
+X11 RandR extension library
+
+[dependencies]
+libxext 
+libxrender 
+libx11 
+
+[download]
+wget $URL
+tar -xf libXrandr-$version.tar.xz
+
+[install]
+	cd libXrandr-$version
+
+	./configure \
+		--prefix=/usr \
+                --sysconfdir=/etc \
+                --localstatedir=/var \
+                --disable-static
+	make
+	make DESTDIR=$BUILD_ROOT install
+
+[locations]
+usr/include/X11/
+usr/include/X11/extensions/
+usr/include/X11/extensions/Xrandr.h
+usr/lib/libXrandr.so
+usr/lib/libXrandr.so.2
+usr/lib/libXrandr.so.2.2.0
+usr/lib/pkgconfig/xrandr.pc
+usr/share/man/man3/XRRConfigCurrentConfiguration.3.gz
+usr/share/man/man3/XRRConfigCurrentRate.3.gz
+usr/share/man/man3/XRRConfigRates.3.gz
+usr/share/man/man3/XRRConfigRotations.3.gz
+usr/share/man/man3/XRRConfigSizes.3.gz
+usr/share/man/man3/XRRConfigTimes.3.gz
+usr/share/man/man3/XRRFreeScreenConfigInfo.3.gz
+usr/share/man/man3/XRRGetScreenInfo.3.gz
+usr/share/man/man3/XRRQueryExtension.3.gz
+usr/share/man/man3/XRRQueryVersion.3.gz
+usr/share/man/man3/XRRRootToScreen.3.gz
+usr/share/man/man3/XRRSelectInput.3.gz
+usr/share/man/man3/XRRSetScreenConfig.3.gz
+usr/share/man/man3/XRRSetScreenConfigAndRate.3.gz
+usr/share/man/man3/Xrandr.3.gz

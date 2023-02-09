@@ -17,6 +17,7 @@ python3
 [download]
 curl https://pastebin.com/raw/62AWutrQ -o grub.default
 curl $URL | tar -xJ
+mv grub.default $name-$version/
 
 [install]
 cd $name-$version

@@ -2,18 +2,31 @@
 name = xcb-util-keysyms
 type = src
 version = 0.4.1
-url = https://xcb.freedesktop.org/dist/xcb-util-keysyms-0.4.1.tar.xz
+url = https://xorg.freedesktop.org/archive/individual/xcb/xcb-util-keysyms-$version.tar.xz
 
 [dependencies]
 libxcb
 
 [description]
-The xcb-util-keysyms package contains a library for handling standard X key constants and conversion to/from keycodes. 
+Utility libraries for XC Binding - Standard X key constants and conversion to/from keycodes
+
+[download]
+wget $URL
+tar -xf xcb-util-keysyms-$version.tar.xz
 
 [install]
-wget $URL
-tar -xf xcb-util-keysyms-0.4.1.tar.xz
-cd xcb-util-keysyms-0.4.1
-./configure $XORG_CONFIG &&
+cd xcb-util-keysyms-$version.tar.xz
+./configure \
+	--prefix=/usr \
+	--sysconfdir=/etc \
+	--localstatedir=/var \
+	--disable-static
 make
-make install
+make DESTDIR=$PKG install
+
+[locations]
+usr/include/xcb/xcb_keysyms.h
+usr/lib/libxcb-keysyms.so
+usr/lib/libxcb-keysyms.so.1
+usr/lib/libxcb-keysyms.so.1.0.0
+usr/lib/pkgconfig/xcb-keysyms.pc

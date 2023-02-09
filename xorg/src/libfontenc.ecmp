@@ -1,0 +1,36 @@
+[info]
+name = libfontenc
+version = 1.1.7
+url = http://ftp.x.org/pub/individual/lib/$name-$version.tar.xz
+
+[description]
+X11 font encoding library
+
+[dependencies]
+zlib 
+font-util 
+xorgproto
+
+[download]
+wget $URL
+tar -xf $name-$version.tar.xz
+
+[install]
+	cd libfontenc-$version
+
+	./configure \
+		--prefix=/usr \
+                --sysconfdir=/etc \
+                --localstatedir=/var \
+                --disable-static
+	make
+	make DESTDIR=$BUILD_ROOT install
+
+[locations]
+usr/include/X11/
+usr/include/X11/fonts/
+usr/include/X11/fonts/fontenc.h
+usr/lib/libfontenc.so
+usr/lib/libfontenc.so.1
+usr/lib/libfontenc.so.1.0.0
+usr/lib/pkgconfig/fontenc.pc

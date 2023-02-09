@@ -26,9 +26,9 @@ cd $name-$version
             --with-md5-passwords              \
             --with-privsep-path=/var/lib/sshd
 make
-make DESTDIR=$PKG install
-install -v -m755    contrib/ssh-copy-id $PKG/usr/bin
+make DESTDIR=$BUILD_ROOT install
+install -v -m755    contrib/ssh-copy-id $BUILD_ROOT/usr/bin
 install -v -m644    contrib/ssh-copy-id.1 \
-                    $PKG/usr/share/man/man1
+                    $BUILD_ROOT/usr/share/man/man1
 sed '/^#ChallengeResponseAuthentication yes$/c ChallengeResponseAuthentication no' \
-    -i $PKG/etc/ssh/sshd_config
+    -i $BUILD_ROOT/etc/ssh/sshd_config

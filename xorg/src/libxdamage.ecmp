@@ -1,0 +1,34 @@
+[description]
+X11 damaged region extension library
+
+[dependencies]
+libxfixes 
+libx11 
+[info]
+name = libxdamage
+version = 1.1.6
+url = http://ftp.x.org/pub/individual/lib/libXdamage-$version.tar.xz
+
+[download]
+wget $URL
+tar -xf libXdamage-$version.tar.xz
+
+[install]
+	cd libXdamage-$version
+
+	./configure \
+		--prefix=/usr \
+                --sysconfdir=/etc \
+                --localstatedir=/var \
+                --disable-static
+	make
+	make DESTDIR=$BUILD_ROOT install
+    
+[locations]
+usr/include/X11/
+usr/include/X11/extensions/
+usr/include/X11/extensions/Xdamage.h
+usr/lib/libXdamage.so
+usr/lib/libXdamage.so.1
+usr/lib/libXdamage.so.1.1.0
+usr/lib/pkgconfig/xdamage.pc

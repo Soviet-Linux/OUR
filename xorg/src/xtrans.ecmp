@@ -1,0 +1,35 @@
+[info]
+name = xtrans
+type = src
+version = 1.4.0
+url = http://ftp.x.org/pub/individual/lib/xtrans-$version.tar.bz2
+
+[description]
+X transport library
+
+[download]
+wget $URL
+tar -xf xtrans-$version.tar.bz2
+
+[install]
+cd $name-$version
+./configure \
+	--prefix=/usr \
+            --sysconfdir=/etc \
+            --localstatedir=/var \
+            --disable-static
+make
+make DESTDIR=$BUILD_ROOT install
+
+[locations]
+usr/include/X11/
+usr/include/X11/Xtrans/
+usr/include/X11/Xtrans/Xtrans.c
+usr/include/X11/Xtrans/Xtrans.h
+usr/include/X11/Xtrans/Xtransint.h
+usr/include/X11/Xtrans/Xtranslcl.c
+usr/include/X11/Xtrans/Xtranssock.c
+usr/include/X11/Xtrans/Xtransutil.c
+usr/include/X11/Xtrans/transport.c
+usr/share/aclocal/xtrans.m4
+usr/share/pkgconfig/xtrans.pc

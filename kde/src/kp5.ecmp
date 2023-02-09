@@ -95,7 +95,7 @@ while read -r line; do
     file=$(echo $line | cut -d" " -f2)
 
     pkg=$(echo $file|sed 's|^.*/||')          # Remove directory
-    packagedir=$(echo $pkg|sed 's|\.tar.*||') # Package directory
+    packagedir=$(echo $BUILD_ROOT|sed 's|\.tar.*||') # Package directory
 
     tar -xf $file
     pushd $packagedir

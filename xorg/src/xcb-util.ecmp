@@ -2,7 +2,7 @@
 name = xcb-util
 type = src
 version = 0.4.1
-url = https://xcb.freedesktop.org/dist/xcb-util-0.4.1.tar.xz
+url = https://xorg.freedesktop.org/archive/individual/xcb/xcb-util-$version.tar.xz
 
 [dependencies]
 libxcb
@@ -10,10 +10,30 @@ libxcb
 [description]
 The xcb-util package provides additional extensions to the XCB library, many that were previously found in Xlib, but are not part of core X protocol. 
 
-[install]
+[download]
 wget $URL
-tar -xf xcb-util-0.4.1.tar.xz
-cd xcb-util-0.4.1
-./configure $XORG_CONFIG &&
+tar -xf xcb-util-$version.tar.xz
+
+[install]
+cd $name-$version
+./configure \
+	--prefix=/usr \
+	--sysconfdir=/etc \
+	--localstatedir=/var \
+	--disable-static
 make
-make install
+make DESTDIR=$BUILD_ROOT install
+
+[locations]
+usr/include/xcb/
+usr/include/xcb/xcb_atom.h
+usr/include/xcb/xcb_aux.h
+usr/include/xcb/xcb_event.h
+usr/include/xcb/xcb_util.h
+usr/lib/libxcb-util.so
+usr/lib/libxcb-util.so.1
+usr/lib/libxcb-util.so.1.0.0
+usr/lib/pkgconfig/xcb-atom.pc
+usr/lib/pkgconfig/xcb-aux.pc
+usr/lib/pkgconfig/xcb-event.pc
+usr/lib/pkgconfig/xcb-util.pc

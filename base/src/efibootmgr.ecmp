@@ -19,13 +19,14 @@ wget
 wget $URL  
 wget https://pastebin.com/raw/wb5YBKNc -O efivar.patch
 tar -xf $NAME-$VERSION.tar.gz
+mv efivar.patch $name-$version/
 
 [install]
 cd $name-$version
-patch -Np1 -i ../efivar.patch
+patch -Np1 -i efivar.patch
 EFIDIR=/boot/efi make
-install -D src/efibootmgr $PKG/usr/sbin/efibootmgr
-install -D src/efibootmgr.8 $PKG/usr/share/man/man8/efibootmgr.8
+install -D src/efibootmgr $BUILD_ROOT/usr/sbin/efibootmgr
+install -D src/efibootmgr.8 $BUILD_ROOT/usr/share/man/man8/efibootmgr.8
 
 [locations]
 usr/sbin/efibootmgr

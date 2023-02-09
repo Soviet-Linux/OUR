@@ -1,0 +1,33 @@
+[info]
+name = libpciaccess
+version = 0.17
+url = http://ftp.x.org/pub/individual/lib/libpciaccess-$version.tar.xz
+
+[description]
+X11 PCI access library
+
+[download]
+wget $URL
+tar -xf libpciaccess-$version.tar.xz
+
+[install]
+	cd libpciaccess-$version
+
+	./configure \
+		--prefix=/usr \
+                --sysconfdir=/etc \
+                --localstatedir=/var \
+                --disable-static
+	make
+	make DESTDIR=$BUILD_ROOT install
+
+[locations]
+usr/
+usr/include/
+usr/include/pciaccess.h
+usr/lib/
+usr/lib/libpciaccess.so
+usr/lib/libpciaccess.so.0
+usr/lib/libpciaccess.so.0.11.1
+usr/lib/pkgconfig/
+usr/lib/pkgconfig/pciaccess.pc

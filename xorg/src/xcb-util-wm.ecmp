@@ -2,18 +2,38 @@
 name = xcb-util-wm
 type = src
 version = 0.4.2
-url = https://xcb.freedesktop.org/dist/xcb-util-wm-0.4.2.tar.xz
+url = https://xorg.freedesktop.org/archive/individual/xcb/xcb-util-wm-$version.tar.xz
 
 [dependencies]
 libxcb
 
 [description]
-The xcb-util-wm package contains libraries which provide client and window-manager helpers for EWMH and ICCCM. 
+libraries for XC Binding - client and window-manager helpers for ICCCM
+
+[download]
+wget $URL
+tar -xf xcb-util-wm-$version.tar.xz
 
 [install]
-wget $URL
-tar -xf xcb-util-wm-0.4.2.tar.xz
-cd xcb-util-wm-0.4.2
-./configure $XORG_CONFIG &&
+
+cd xcb-util-wm-$version.tar.xz
+./configure \
+	--prefix=/usr \
+	--sysconfdir=/etc \
+	--localstatedir=/var \
+	--disable-static
 make
-make install
+make DESTDIR=$PKG install
+
+[locations]
+usr/include/xcb/
+usr/include/xcb/xcb_ewmh.h
+usr/include/xcb/xcb_icccm.h
+usr/lib/libxcb-ewmh.so
+usr/lib/libxcb-ewmh.so.2
+usr/lib/libxcb-ewmh.so.2.0.0
+usr/lib/libxcb-icccm.so
+usr/lib/libxcb-icccm.so.4
+usr/lib/libxcb-icccm.so.4.0.0
+usr/lib/pkgconfig/xcb-ewmh.pc
+usr/lib/pkgconfig/xcb-icccm.pc

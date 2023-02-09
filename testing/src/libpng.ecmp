@@ -30,7 +30,7 @@ cd $name-$version
 gzip -cd $SRC/$name-$version-apng.patch.gz | patch -p0
 LIBS=-lpthread ./configure --prefix=/usr --disable-static
 make
-make DESTDIR=$PKG install
+make DESTDIR=$BUILD_ROOT install
 
 # post-install script
 [special]

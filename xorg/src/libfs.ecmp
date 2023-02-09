@@ -1,0 +1,34 @@
+[description]
+X11 Font Services Library
+
+[dependencies]
+xorgproto 
+xtrans
+
+[info]
+name = libfs
+version = 1.0.9
+url = http://ftp.x.org/pub/individual/lib/libFS-$version.tar.xz
+
+[download]
+wget $URL
+tar -xf libFS-$version.tar.xz
+
+[install]
+cd libFS-$version
+./configure \
+	--prefix=/usr \
+            --sysconfdir=/etc \
+            --localstatedir=/var \
+            --disable-static
+make
+make DESTDIR=$BUILD_ROOT install
+
+[locations]
+usr/include/X11/
+usr/include/X11/fonts/
+usr/include/X11/fonts/FSlib.h
+usr/lib/libFS.so
+usr/lib/libFS.so.6
+usr/lib/libFS.so.6.0.0
+usr/lib/pkgconfig/libfs.pc

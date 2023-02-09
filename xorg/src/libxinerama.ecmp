@@ -1,0 +1,41 @@
+[info]
+name = libxinerama
+version = 1.1.5
+url = http://ftp.x.org/pub/individual/lib/libXinerama-$version.tar.xz
+
+[description]
+X11 Xinerama extension library
+
+[dependencies]
+libx11 
+libxext 
+
+[download]
+wget $URL
+tar -xf libXinerama-$version.tar.xz
+
+[install]
+	cd libXinerama-$version
+
+	./configure \
+		--prefix=/usr \
+                --sysconfdir=/etc \
+                --localstatedir=/var \
+                --disable-static
+	make
+	make DESTDIR=$BUILD_ROOT install
+
+[locations]
+usr/include/X11/
+usr/include/X11/extensions/
+usr/include/X11/extensions/Xinerama.h
+usr/include/X11/extensions/panoramiXext.h
+usr/lib/libXinerama.so
+usr/lib/libXinerama.so.1
+usr/lib/libXinerama.so.1.0.0
+usr/lib/pkgconfig/xinerama.pc
+usr/share/man/man3/Xinerama.3.gz
+usr/share/man/man3/XineramaIsActive.3.gz
+usr/share/man/man3/XineramaQueryExtension.3.gz
+usr/share/man/man3/XineramaQueryScreens.3.gz
+usr/share/man/man3/XineramaQueryVersion.3.gz

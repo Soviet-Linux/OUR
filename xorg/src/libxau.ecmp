@@ -2,7 +2,7 @@
 name = libxau
 type = src
 version = 1.0.11
-url = https://www.x.org/pub/individual/lib/libXau-1.0.11.tar.xz]
+url = http://ftp.x.org/pub/individual/lib/libXau-$version.tar.xz
 
 [dependencies]
 xorgproto
@@ -10,8 +10,33 @@ xorgproto
 [description]
 The libXau package contains a library implementing the X11 Authorization Protocol. This is useful for restricting client access to the display.
 
-[install]
-./configure $XORG_CONFIG &&
-make
-make install
+[download]
+wget $URL
+tar -xf libXau-$version.tar.xz
 
+[install]
+cd libXau-$version
+./configure \
+	--prefix=/usr \
+	--sysconfdir=/etc \
+	--localstatedir=/var \
+	--disable-static
+make
+make DESTDIR=$BUILD_ROOT install
+
+[locations]
+usr/include/X11/
+usr/include/X11/Xauth.h
+usr/lib/libXau.so
+usr/lib/libXau.so.6
+usr/lib/libXau.so.6.0.0
+usr/lib/pkgconfig/xau.pc
+usr/share/man/man3/Xau.3.gz
+usr/share/man/man3/XauDisposeAuth.3.gz
+usr/share/man/man3/XauFileName.3.gz
+usr/share/man/man3/XauGetAuthByAddr.3.gz
+usr/share/man/man3/XauGetBestAuthByAddr.3.gz
+usr/share/man/man3/XauLockAuth.3.gz
+usr/share/man/man3/XauReadAuth.3.gz
+usr/share/man/man3/XauUnlockAuth.3.gz
+usr/share/man/man3/XauWriteAuth.3.gz

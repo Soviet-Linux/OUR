@@ -1,0 +1,41 @@
+[info]
+name = libxres
+version = 1.2.2
+url = http://ftp.x.org/pub/individual/lib/libXres-$version.tar.xz
+
+[description]
+X11 Resource extension library
+
+[dependencies]
+libx11 
+libxext 
+
+[download]
+wget $URL
+tar -xf libXrandr-$version.tar.xz
+
+[install]
+	cd libXres-$version
+
+	./configure \
+		--prefix=/usr \
+                --sysconfdir=/etc \
+                --localstatedir=/var \
+                --disable-static
+	make
+	make DESTDIR=$BUILD_ROOT install
+
+[locations]
+usr/include/X11/
+usr/include/X11/extensions/
+usr/include/X11/extensions/XRes.h
+usr/lib/libXRes.so
+usr/lib/libXRes.so.1
+usr/lib/libXRes.so.1.0.0
+usr/lib/pkgconfig/xres.pc
+usr/share/man/man3/XRes.3.gz
+usr/share/man/man3/XResQueryClientPixmapBytes.3.gz
+usr/share/man/man3/XResQueryClientResources.3.gz
+usr/share/man/man3/XResQueryClients.3.gz
+usr/share/man/man3/XResQueryExtension.3.gz
+usr/share/man/man3/XResQueryVersion.3.gz

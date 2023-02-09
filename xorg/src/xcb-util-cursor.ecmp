@@ -2,18 +2,34 @@
 name = xcb-util-cursor
 type = src
 version = 0.1.4
-url = https://xcb.freedesktop.org/dist/xcb-util-cursor-0.1.4.tar.xz
+url = https://xorg.freedesktop.org/archive/individual/xcb/xcb-util-cursor-$version.tar.xz
 
 [dependencies]
-xcb-util
+xcb-util-renderutil libxcb xcb-util-image 
 
 [description]
 The xcb-util-cursor package provides a module that implements the XCB cursor library. It is the XCB replacement for libXcursor. 
 
-[install]
+[download]
 wget $URL
-tar -xf xcb-util-cursor-0.1.4.tar.xz
-cd xcb-util-cursor-0.1.4
-./configure $XORG_CONFIG &&
-make
-make install
+tar -xf xcb-util-cursor-$version.tar.xz
+
+[install]
+
+	cd xcb-util-cursor-$version.tar.xz
+
+  	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static
+	make
+	make DESTDIR=$PKG install
+
+[locations]
+usr/include/xcb/
+usr/include/xcb/xcb_cursor.h
+usr/lib/libxcb-cursor.so
+usr/lib/libxcb-cursor.so.0
+usr/lib/libxcb-cursor.so.0.0.0
+usr/lib/pkgconfig/xcb-cursor.pc
