@@ -24,3 +24,13 @@ cd $name-$version
 	--disable-static
 make
 make DESTDIR=$PKG install
+
+[locations]
+usr/include/xcb/
+usr/include/xcb/xcb_bitops.h
+usr/include/xcb/xcb_image.h
+usr/include/xcb/xcb_pixel.h
+usr/lib/libxcb-image.so
+usr/lib/libxcb-image.so.0
+usr/lib/libxcb-image.so.0.0.0
+usr/lib/pkgconfig/xcb-image.pc
