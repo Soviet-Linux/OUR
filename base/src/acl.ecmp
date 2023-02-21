@@ -15,7 +15,7 @@ curl
 attr
 
 [download]
-curl $URL | tar -xJ
+curl $URL | tar -xz
 
 [install]
 cd $name-$version
