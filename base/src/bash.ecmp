@@ -7,14 +7,6 @@ url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.gz
 [description]
 The Bourne-Again SHell
 
-[makedeps]
-make
-curl
-
-[dependencies]
-ncurses 
-readline
-
 [download]
 curl -L $URL | tar -xz
 
