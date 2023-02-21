@@ -15,11 +15,9 @@ wget
 # Here we are having some problems :
 # The package URL downt work with curl 
 # Maybe because of mirror or redirection
-wget $URL
-tar -xvz -f $NAME-$VERSION.tar.gz  
+curl -L | tar -xvz
 
 [install]
-	cd $name-$version
 
 	./configure --prefix=/usr \
 	            --bindir=/bin \
@@ -37,32 +35,3 @@ tar -xvz -f $NAME-$VERSION.tar.gz
 
 	rm -fr $BUILD_ROOT/usr/share/doc
 
-[locations]
-bin/attr
-bin/getfattr
-bin/setfattr
-etc/xattr.conf
-lib/libattr.so.1
-lib/libattr.so.1.1.2501
-usr/include/attr/
-usr/include/attr/attributes.h
-usr/include/attr/error_context.h
-usr/include/attr/libattr.h
-usr/lib/libattr.so
-usr/lib/pkgconfig/
-usr/lib/pkgconfig/libattr.pc
-usr/share/man/man1/
-usr/share/man/man1/attr.1.gz
-usr/share/man/man1/getfattr.1.gz
-usr/share/man/man1/setfattr.1.gz
-usr/share/man/man3/
-usr/share/man/man3/attr_get.3.gz
-usr/share/man/man3/attr_getf.3.gz
-usr/share/man/man3/attr_list.3.gz
-usr/share/man/man3/attr_listf.3.gz
-usr/share/man/man3/attr_multi.3.gz
-usr/share/man/man3/attr_multif.3.gz
-usr/share/man/man3/attr_remove.3.gz
-usr/share/man/man3/attr_removef.3.gz
-usr/share/man/man3/attr_set.3.gz
-usr/share/man/man3/attr_setf.3.gz

@@ -5,8 +5,7 @@ name = vim
 version = 9.0.0948
 type = src
 license = MIT
-url = https://codeload.github.com/vim/vim/tar.gz/refs/tags/v$VERSION
-
+url = https://github.com/vim/vim/archive/v$VERSION/vim-v$VERSION.tar.gz
 
 # package description , it can be on multiple lines and we support makdown
 [description] 
@@ -16,7 +15,7 @@ Vi Improved, a highly configurable, improved version of the vi text editor
 
 # the download url can be a local file or a remote url
 [download]
-curl $URL | tar -xz 
+curl -L $URL | tar -xz 
 
 
 # this is basically a bash script to install the package
