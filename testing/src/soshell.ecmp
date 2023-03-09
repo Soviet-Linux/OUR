@@ -1,0 +1,23 @@
+[info]
+name = soshell
+type = src
+version = 0.0.1
+lisence = GPL-v3.0
+url = https://github.com/Soviet-Linux/soshell/archive/refs/tags/0.0.1.tar.gz
+
+[description]
+A minimal shell in c
+
+[makedeps]
+gcc
+
+[install]
+cd tmp
+wget $URL
+tar -xf soshell-0.0.1.tar.gz
+cd soshell-0.0.1
+gcc -Ofast -o soshell src/main.c
+cp soshell /usr/bin/
+
+[locations]
+/usr/bin/soshell
