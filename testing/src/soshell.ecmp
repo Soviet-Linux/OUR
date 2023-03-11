@@ -10,13 +10,14 @@ A minimal shell in c
 
 [makedeps]
 gcc
+make
 
 [install]
 cd tmp
 wget $URL
 tar -xf soshell-0.0.1.tar.gz
 cd soshell-0.0.1
-gcc -Ofast -o soshell src/main.c
+make
 cp soshell /usr/bin/
 
 [locations]
