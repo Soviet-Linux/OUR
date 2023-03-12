@@ -1,0 +1,39 @@
+[info]
+name = swm
+type = src
+version = git
+license = GPL-v3.0
+url = https://github.com/Soviet-Linux/SovietWM
+
+[dependenices]
+glib2
+base-devel
+cmake
+libxcb
+libx11
+gtk3
+alacritty
+cargo
+
+[makedeps]
+make
+git
+
+[install]
+cd /tmp
+git clone --recursive $URL
+cd SovietWM
+make build
+sudo make install
+
+[special]
+echo "Do you want to start with x11"
+function yes_or_no {
+    while true; do
+        read -p "$* [y/n]: " yn
+        case $yn in
+            [Yy]*) sed -e '32s/$/exec SovietWM/' ~/.xinitrc  ;;  
+            [Nn]*) echo "Ok not touching xinitrc" ;;
+        esac
+    done
+}
