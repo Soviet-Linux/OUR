@@ -1,0 +1,23 @@
+[info]
+name = notification-daemon
+type = src
+version = 3.20.0
+url = https://download.gnome.org/sources/notification-daemon/3.20/notification-daemon-3.20.0.tar.xz
+
+[dependencies]
+gtk3
+libcanberra
+
+[description]
+The Notification Daemon package contains a daemon that displays passive pop-up notifications.
+
+[install]
+wget $URL 
+tar -xf notification-daemon-3.20.0.tar.xz
+cd notification-daemon-3.20.0
+./configure --prefix=/usr    \
+            --sysconfsir=/etc \
+            --disable-static &&
+make 
+make install
+

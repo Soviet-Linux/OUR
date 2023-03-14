@@ -1,0 +1,34 @@
+[info]
+name = libnotify
+type = src
+version = 0.8.1
+url = https://download.gnome.org/sources/libnotify/0.8/libnotify-0.8.1.tar.xz
+
+[dependencies]
+gtk3
+gobject-introspection
+xmlto
+notification-daemon
+xfce4-notifyd
+
+[description]
+The libnotify library is used to send desktop notifications to a notification daemon, as defined in the Desktop Notifications spec. These notifications can be used to inform the user about an event or display some form of information without getting in the user's way.
+
+[install]
+wget $URL 
+tar -xf libnotify-0.8.1.tar.xz
+cd libnotify-0.8.1
+mkdir build &&
+cd    build &&
+
+meson --prefix=/usr       \
+      --buildtype=release \
+      -Dgtk_doc=false     \
+      -Dman=false .. &&
+ninja
+ninja install &&
+mv -v /usr/share/doc/libnotify{,-0.8.1}
+
+[locations]
+/usr/include/libnotify/ 
+
