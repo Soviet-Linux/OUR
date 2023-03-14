@@ -1,0 +1,26 @@
+[info]
+name = bfc
+type = src
+license = GPL-v3.0
+version = 0.0.1
+url = https://github.com/Soviet-Linux/bfc/archive/refs/tags/0.0.1.tar.gz
+
+[description]
+A Brainfuck interpreter in c
+
+[makedeps]
+make
+gcc
+
+[install]
+wget $URL
+tar -xf bfc-0.0.1.tar.gz
+cd bfc-0.0.1/src/
+make
+mv bfc /usr/bin/
+
+[special]
+echo "done.."
+
+[locations]
+/usr/bin/bfc
