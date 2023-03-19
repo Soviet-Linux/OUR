@@ -1,0 +1,26 @@
+[info]
+name = jamify
+type = src 
+version = 0.0.1
+url = https://github.com/Soviet-Linux/jamify/archive/refs/tags/0.0.2.tar.gz
+
+[description]
+Jamify a ultra lightweight cli music player
+
+[dependencies]
+python2
+python3
+python-pip
+
+[makedeps]
+git 
+
+[install]
+cd /tmp 
+wget $URL 
+tar -xf jamify-0.0.2.tar.gz
+cd jamify-0.0.2 
+make install
+
+[locations]
+/usr/bin/jamify
