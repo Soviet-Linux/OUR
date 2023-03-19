@@ -16,7 +16,7 @@ make
 cd tmp
 wget $URL
 tar -xf soshell-0.0.3.tar.gz
-cd soshell-0.0.2
+cd soshell-0.0.3
 make
 make install
 
