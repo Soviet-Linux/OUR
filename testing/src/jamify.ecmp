@@ -1,7 +1,7 @@
 [info]
 name = jamify
 type = src 
-version = 0.0.1
+version = 0.0.2
 url = https://github.com/Soviet-Linux/jamify/archive/refs/tags/0.0.2.tar.gz
 
 [description]
@@ -18,8 +18,8 @@ git
 [install]
 cd /tmp 
 wget $URL 
-tar -xf jamify-0.0.2.tar.gz
-cd jamify-0.0.2 
+tar -xf 0.0.2.tar.gz
+cd 0.0.2 
 make install
 
 [locations]
