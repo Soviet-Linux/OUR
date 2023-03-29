@@ -1,0 +1,23 @@
+[info]
+name = glibmm
+type = src
+version = 2.66.5
+url = https://download.gnome.org/sources/glibmm/2.66/glibmm-2.66.5.tar.xz
+
+[dependencies]
+glib 
+libsigc++
+
+[description]
+The GLibmm package is a set of C++ bindings for GLib 
+
+[install]
+wget $URL 
+tar -xf glibmm-2.66.5.tar.xz
+cd glibmm-2.66.5
+mkdir bld &&
+cd    bld &&
+
+meson --prefix=/usr --buildtype=release .. &&
+ninja
+ninja install

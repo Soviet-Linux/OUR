@@ -1,0 +1,23 @@
+[info]
+name = libsigc++
+type = src
+version = 2.12.0
+url = https://download.gnome.org/sources/libsigc++/2.12/libsigc++-2.12.0.tar.xz
+
+[dependencies]
+boost
+libxslt
+
+[description]
+The libsigc++ package implements a typesafe callback system for standard C++.
+
+[install]
+wget $URL 
+tar -xf libsigc++-2.12.0.tar.xz
+cd libsigc++-2.12.0
+mkdir bld &&
+cd    bld &&
+
+meson setup --prefix=/usr --buildtype=release .. &&
+ninja
+ninja install 
