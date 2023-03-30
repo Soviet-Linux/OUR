@@ -1,0 +1,63 @@
+[info]
+name = llvm
+type = src
+version = 15.0.7
+
+[dependencies]
+cmake
+
+[description]
+ The LLVM package contains a collection of modular and reusable compiler and toolchain technologies. The Low Level Virtual Machine (LLVM) Core libraries provide a modern source and target-independent optimizer, along with code generation support for many popular CPUs (as well as some less common ones!). These libraries are built around a well specified code representation known as the LLVM intermediate representation ("LLVM IR").
+
+Clang provides new C, C++, Objective C and Objective C++ front-ends for LLVM and is required by some desktop packages such as firefox and for rust if that is built using the system LLVM.
+
+The Compiler RT package provides runtime sanitizer and profiling libraries for developers who use Clang and LLVM. 
+
+[install]
+wget https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.7/llvm-15.0.7.src.tar.xz
+wget https://anduin.linuxfromscratch.org/BLFS/llvm/llvm-cmake-15.0.7.src.tar.xz
+wget https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.7/clang-15.0.7.src.tar.xz
+wget https://www.linuxfromscratch.org/patches/blfs/11.3/clang-15.0.7-enable_default_ssp-1.patch 
+wget https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.7/compiler-rt-15.0.7.src.tar.xz
+
+tar -xf llvm-15.0.7.src.tar.xz
+cd llvm-15.0.7.src 
+tar -xf ../llvm-cmake-15.0.7.src.tar.xz &&
+sed '/LLVM_COMMON_CMAKE_UTILS/s@../cmake@cmake-15.0.7.src@' \
+    -i CMakeLists.txt
+tar -xf ../clang-15.0.7.src.tar.xz -C tools &&
+mv tools/clang-15.0.7.src tools/clang 
+tar -xf ../compiler-rt-15.0.7.src.tar.xz -C projects &&
+mv projects/compiler-rt-15.0.7.src projects/compiler-rt 
+grep -rl '#!.*python' | xargs sed -i '1s/python$/python3/'
+patch -Np2 -d tools/clang <../clang-15.0.7-enable_default_ssp-1.patch 
+mkdir -v build &&
+cd       build &&
+
+CC=gcc CXX=g++                                  \
+cmake -DCMAKE_INSTALL_PREFIX=/usr               \
+      -DLLVM_ENABLE_FFI=ON                      \
+      -DCMAKE_BUILD_TYPE=Release                \
+      -DLLVM_BUILD_LLVM_DYLIB=ON                \
+      -DLLVM_LINK_LLVM_DYLIB=ON                 \
+      -DLLVM_ENABLE_RTTI=ON                     \
+      -DLLVM_TARGETS_TO_BUILD="host;AMDGPU;BPF" \
+      -DLLVM_BINUTILS_INCDIR=/usr/include       \
+      -DLLVM_INCLUDE_BENCHMARKS=OFF             \
+      -DCLANG_DEFAULT_PIE_ON_LINUX=ON           \
+      -Wno-dev -G Ninja ..                      &&
+ninja
+cmake -DLLVM_BUILD_DOCS=ON            \
+      -DLLVM_ENABLE_SPHINX=ON         \
+      -DSPHINX_WARNINGS_AS_ERRORS=OFF \
+      -Wno-dev -G Ninja ..            &&
+ninja docs-llvm-html  docs-llvm-man
+ninja docs-clang-html docs-clang-man
+ninja install &&
+cp bin/FileCheck /usr/bin 
+install -v -d -m755 /usr/share/doc/llvm-15.0.7            &&
+mv -v /usr/share/doc/LLVM/llvm /usr/share/doc/llvm-15.0.7 &&
+rmdir -v --ignore-fail-on-non-empty /usr/share/doc/LLVM 
+install -v -d -m755 /usr/share/doc/llvm-15.0.7             &&
+mv -v /usr/share/doc/LLVM/clang /usr/share/doc/llvm-15.0.7 &&
+rmdir -v --ignore-fail-on-non-empty /usr/share/doc/LLVM

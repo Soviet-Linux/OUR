@@ -1,0 +1,27 @@
+[info]
+name = intel-gmmlib
+type = src
+version = 22.3.4 
+url = https://github.com/intel/gmmlib/archive/refs/tags/intel-gmmlib-22.3.4.tar.gz
+
+[dependencies]
+cmake
+
+[description]
+The Intel-gmmlib package contains the Intel Graphics Memory Management Library, which provides device specific memory and buffer management functions for the Intel Media Driver for VAAPI and the Intel Graphics Computer Runtime for OpenCL (TM).
+
+[install]
+wget $URL 
+tar -xf intel-gmmlib-22.3.4.tar.gz
+cd intel-gmmlib-22.3.4 
+mkdir build &&
+cd    build &&
+
+cmake -DCMAKE_INSTALL_PREFIX=/usr   \
+      -DBUILD_TYPE=Release          \
+      -Wno-dev ..                   &&
+make
+make install 
+
+[locations]
+/usr/include/igdgmm
