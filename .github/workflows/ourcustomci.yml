@@ -18,6 +18,4 @@ jobs:
     - name: Install libcurl
       run: sudo apt-get install libcurl4-gnutls-dev -y
     - name: configure libspm and test files
-      run: git clone https://github.com/Soviet-Linux/libspm && cd libspm && make all && make formats && make test && sudo make install && sudo ln -s bin/spm-test /bin/spm-test
-    - name: Try .ecmp files
-      run: spm-test install testing/src/*.ecmp && spm-test install lxde/src/*.ecmp && spm-test install xorg/src/*.ecmp && spm-test install xfce/src/*.ecmp && spm-test install kde/src/*.ecmp && spm-test install base/src/*.ecmp
+      run: git clone https://github.com/Soviet-Linux/libspm && cd libspm && make all && make formats && make test && sudo make install && sudo ln -s bin/spm-test /bin/spm-test && spm-test install testing/src/*.ecmp && spm-test install lxde/src/*.ecmp && spm-test install xorg/src/*.ecmp && spm-test install xfce/src/*.ecmp && spm-test install kde/src/*.ecmp && spm-test install base/src/*.ecmp
