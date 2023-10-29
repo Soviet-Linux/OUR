@@ -11,9 +11,9 @@ jobs:
   build:
 
 
-    runs-on: ghcr.io/soviet-linux/cccp:sha256-b57f307e4817a525a76ae581bc0220f97073d19806c4ddf8649eaae3df1b956d.sig
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
     - name: Test packages
-      run: spm-test install testing/src/*.ecmp && spm-test install lxde/src/*.ecmp && spm-test install xorg/src/*.ecmp && spm-test install xfce/src/*.ecmp && spm-test install kde/src/*.ecmp && spm-test install base/src/*.ecmp
+      run: docker run ghcr.io/soviet-linux/cccp spm-test install testing/src/*.ecmp && docker run ghcr.io/soviet-linux/cccp spm-test install lxde/src/*.ecmp && docker run ghcr.io/soviet-linux/cccp spm-test install xorg/src/*.ecmp && spm-test install xfce/src/*.ecmp && docker run ghcr.io/soviet-linux/cccp spm-test install kde/src/*.ecmp && docker run ghcr.io/soviet-linux/cccp spm-test install base/src/*.ecmp
