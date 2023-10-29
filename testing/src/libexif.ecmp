@@ -1,0 +1,22 @@
+[info]
+name = libexif 
+type = src 
+version = 0.6.24
+url = https://github.com/libexif/libexif/releases/download/v0.6.24/libexif-0.6.24.tar.bz2
+
+[description]
+The libfm package contains a library used to develop file managers providing some file management utilities. 
+
+[download]
+curl $URL | tar -xf libexif-0.6.24.tar.bz2 | cd libexif-0.6.24
+
+[install]
+./configure --prefix=/usr    \
+            --disable-static \
+            --with-doc-dir=/usr/share/doc/libexif-0.6.24 &&
+make
+make install
+
+[locations]
+/usr/include/libexif
+/usr/share/doc/libexif-0.6.24

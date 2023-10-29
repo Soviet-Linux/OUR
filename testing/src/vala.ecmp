@@ -1,0 +1,19 @@
+[info]
+name = vala
+type = src 
+version = 0.56.11
+url = https://download.gnome.org/sources/vala/0.56/vala-0.56.11.tar.xz
+
+[description]
+Vala is a new programming language that aims to bring modern programming language features to GNOME developers without imposing any additional runtime requirements and without using a different ABI compared to applications and libraries written in C. 
+
+[dependencies]
+glib
+
+[download]
+curl $URL | tar -xf vala-0.56.11.tar.xz | cd vala-0.56.11
+
+[install]
+./configure --prefix=/usr &&
+make
+make install

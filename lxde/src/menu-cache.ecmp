@@ -1,0 +1,20 @@
+[info]
+name = menu-cache
+type = src
+version = 1.1.0
+url = https://downloads.sourceforge.net/lxde/menu-cache-1.1.0.tar.xz
+
+[description]
+The Menu Cache package contains a library for creating and utilizing caches to speed up the manipulation for freedesktop.org defined application menus. 
+
+[dependencies]
+libfm-extra
+
+[download]
+curl $URL | curl https://www.linuxfromscratch.org/patches/blfs/12.0/menu-cache-1.1.0-consolidated_fixes-1.patch | tar -xf menu-cache-1.1.0.tar.xz | cd menu-cache-1.1.0 && patch -Np1 -i ../menu-cache-1.1.0-consolidated
+
+[install]
+./configure --prefix=/usr    \
+            --disable-static &&
+make
+make install
