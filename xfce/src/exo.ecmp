@@ -1,4 +1,4 @@
- [info] # basic information about the package
+[info] # basic information about the package
 name = exo
 version = 4.16.0
 type = src
