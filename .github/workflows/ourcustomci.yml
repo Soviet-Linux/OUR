@@ -11,11 +11,9 @@ jobs:
   build:
 
 
-    runs-on: ubuntu-latest
+    runs-on: ghcr.io/soviet-linux/cccp:sha256-b57f307e4817a525a76ae581bc0220f97073d19806c4ddf8649eaae3df1b956d.sig
 
     steps:
     - uses: actions/checkout@v3
-    - name: Install libcurl
-      run: sudo apt-get install libcurl4-gnutls-dev -y
-    - name: configure libspm and test files
-      run: git clone https://github.com/Soviet-Linux/libspm && cd libspm && make all && make formats && make test && sudo make install && sudo ln -s bin/spm-test /bin/spm-test && spm-test install testing/src/*.ecmp && spm-test install lxde/src/*.ecmp && spm-test install xorg/src/*.ecmp && spm-test install xfce/src/*.ecmp && spm-test install kde/src/*.ecmp && spm-test install base/src/*.ecmp
+    - name: Test packages
+      run: spm-test install testing/src/*.ecmp && spm-test install lxde/src/*.ecmp && spm-test install xorg/src/*.ecmp && spm-test install xfce/src/*.ecmp && spm-test install kde/src/*.ecmp && spm-test install base/src/*.ecmp
