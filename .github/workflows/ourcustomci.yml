@@ -16,7 +16,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Init Container
-      run: docker pull ghcr.io/soviet-linux/cccp
     - name: Test packages
       run: spm-test install testing/src/*.ecmp && spm-test install lxde/src/*.ecmp && spm-test install xorg/src/*.ecmp && spm-test install xfce/src/*.ecmp && spm-test install kde/src/*.ecmp && spm-test install base/src/*.ecmp
