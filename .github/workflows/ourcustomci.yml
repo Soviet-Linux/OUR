@@ -11,7 +11,7 @@ jobs:
   build:
 
 
-    runs-on: ghcr.io/soviet-linux/cccp
+    runs-on: ubuntu-latest
     container: ghcr.io/soviet-linux/cccp
 
     steps:
