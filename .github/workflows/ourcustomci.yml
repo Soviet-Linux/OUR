@@ -17,7 +17,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Install libcurl
       run: sudo apt-get install libcurl4-gnutls-dev -y
-    - name: configure libspm
-      run: git clone https://github.com/Soviet-Linux/libspm && cd libspm && make all && make formats && make test && sudo make install
+    - name: configure libspm and test files
+      run: git clone https://github.com/Soviet-Linux/libspm && cd libspm && make all && make formats && make test && sudo make install && sudo ln -s bin/spm-test /bin/spm-test
     - name: Try .ecmp files
-      run: ./bin/spm-test install ../testing/src/*.ecmp && ./bin/spm-test install ../lxde/src/*.ecmp && ./bin/spm-test install ../xorg/src/*.ecmp && ./bin/spm-test install ../xfce/src/*.ecmp && ./bin/spm-test install ../kde/src/*.ecmp && ./bin/spm-test install ../base/src/*.ecmp
+      run: spm-test install testing/src/*.ecmp && spm-test install lxde/src/*.ecmp && spm-test install xorg/src/*.ecmp && spm-test install xfce/src/*.ecmp && spm-test install kde/src/*.ecmp && spm-test install base/src/*.ecmp
