@@ -2,7 +2,7 @@
 name = zlib
 version = 1.2.11
 type = src
-url = https://zlib.net/$name-$version.tar.xz
+url = https://zlib.net/fossils/$NAME-$VERSION.tar.gz
 
 [description]
 Compression and decompression routines used by some programs
@@ -18,7 +18,7 @@ make
 curl $URL | tar -xz
 
 [install]
-cd $name-$version
+cd $NAME-$VERSION
 ./configure --prefix=/usr
 make
 make DESTDIR=$BUILD_ROOT install
