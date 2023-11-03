@@ -2,7 +2,7 @@
 name = curl
 version = 7.75.0
 type = src
-url = https://curl.haxx.se/download/$NAME-$VERSION.tar.gz
+url = https://curl.se/download/curl-$VERSION.tar.gz
 license = MIT
 
 [description]
@@ -13,20 +13,20 @@ openssl
 zlib
 
 [download]
-curl $URL | tar -f -xz
+curl $URL | tar -xz
 
 [test]
 make test
 
 [install]
-cd $name-$version
-./configure --prefix=/usr              \
-            --disable-static           \
+
+./configure --prefix=/usr   \
+            --with-openssl \
+            --disable-static \
             --enable-threaded-resolver \
-	    --without-libidn2
+	        --without-libidn2
 make
 make DESTDIR=$BUILD_ROOT install
-
 
 [locations]
 usr/bin/curl
