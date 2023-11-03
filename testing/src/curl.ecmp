@@ -2,7 +2,7 @@
 name = curl
 version = 7.75.0
 type = src
-url = https://curl.haxx.se/download/$name-$version.tar.xz
+url = https://curl.haxx.se/download/$NAME-$VERSION.tar.gz
 license = MIT
 
 [description]
@@ -13,7 +13,7 @@ openssl
 zlib
 
 [download]
-curl $URL | tar -xz
+curl $URL | tar -f -xz
 
 [test]
 make test
