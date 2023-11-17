@@ -21,10 +21,12 @@ make test
 [install]
 
 ./configure --prefix=/usr   \
-            --with-openssl \
             --disable-static \
+            --with-openssl=/usr \
             --enable-threaded-resolver \
-	        --without-libidn2
+	        --without-libidn2 \
+	        --disable-ldap \
+	        --disable-ldaps
 make
 make DESTDIR=$BUILD_ROOT install
 
