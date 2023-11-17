@@ -2,7 +2,7 @@
 name = efivar
 version = 37
 type = src
-url = https://github.com/rhboot/efivar/releases/download/$version/$name-$version.tar.bz2
+url = https://github.com/rhboot/efivar/releases/download/$VERSION/$NAME-$VERSION.tar.bz2
 
 [description]
 Tools and library to manipulate EFI variables
@@ -16,8 +16,7 @@ wget
 make
 
 [download]
-wget $URL
-tar -xf $NAME-$VERSION.tar.bz2
+curl $URL | tar -xz $NAME-$VERSION.tar.bz2
 
 [install]
 make -j1
