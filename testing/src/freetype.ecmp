@@ -1,7 +1,7 @@
 [info]
 name = freetype
 version = 2.10.4
-url = https://downloads.sourceforge.net/freetype/freetype-$version.tar.xz
+url = https://kumisystems.dl.sourceforge.net/project/freetype/freetype2/2.10.4/freetype-2.10.4.tar.xz
 type = src
 
 [description]
@@ -16,7 +16,7 @@ curl
 make
 
 [download]
-curl $URL | tar -xvz
+curl -L $URL | tar -xz
 
 [install]
 ./configure --prefix=/usr --enable-freetype-config --disable-static
