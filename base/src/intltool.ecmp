@@ -3,7 +3,7 @@ name = intltool
 version = 0.51.0
 type = src
 license = GPLv2
-url = http://launchpad.net/intltool/trunk/$version/+download/$name-$version.tar.gz
+url = https://launchpadlibrarian.net/199705878/intltool-0.51.0.tar.gz
 
 [makedeps]
 automake
@@ -13,18 +13,13 @@ wget
 
 [description] # package description , it can be on multiple lines and we support makdown
 The Intltool is an internationalization tool used for extracting translatable strings from source files
-
+z
 [download]
 wget $URL 
-tar -xf $name-$version.tar.gz
+tar -xf $NAME-$VERSION.tar.gz
 
 [install]
 sed -i 's:\\\${:\\\$\\{:' intltool-update.in
 ./configure --prefix=/usr
 make
 make DESTDIR=$BUILD_ROOT install
-
-[special] # a script to run after the package is installed
-echo "the package is installed"
-echo "done..."
-

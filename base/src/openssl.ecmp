@@ -13,13 +13,27 @@ make
 curl $URL | tar -xz
 
 [install]
-./config --prefix=/usr         \
-         --openssldir=/etc/ssl \
-         --libdir=lib          \
-         shared                \
-         zlib-dynamic
-make
-sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
-make MANSUFFIX=ssl DESTDIR=$BUILD_ROOT install
+./config \
+		--prefix=/usr \
+		--libdir=lib \
+		--openssldir=/etc/ssl \
+		enable-ec_nistp_64_gcc_128 \
+		enable-camellia \
+		enable-seed \
+		enable-rfc3779 \
+		no-mdc2 \
+		no-ec2m \
+		no-sm2 \
+		no-sm4 \
+		shared \
+		threads \
+		zlib
 
-[locations]
+	sed -i "s|-O3|$CFLAGS|" Makefile
+
+	make depend
+	make
+	make MANSUFFIX=ssl DESTDIR=$BUILD_ROOT install_sw install_ssldirs install_man_docs
+
+
+#[locations]

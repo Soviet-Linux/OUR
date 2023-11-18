@@ -2,7 +2,7 @@
 name = perl
 version = 5.32.1
 type = src
-url = https://www.cpan.org/src/5.0/$name-$version.tar.xz
+url = https://www.cpan.org/src/5.0/$NAME-$VERSION.tar.xz
 
 [makedeps]
 automake
@@ -15,10 +15,10 @@ The Practical Extraction and Report Language
 
 [download]
 wget $URL 
-tar -xf $name-$version.tar.xz
+tar -xf $NAME-$VERSION.tar.xz
 
 [install]
-cd $name-$version
+cd $NAME-$VERSION
 export BUILD_ZLIB=False
 export BUILD_BZIP2=0
 sh Configure -des -Dprefix=/usr                 \
@@ -30,9 +30,10 @@ sh Configure -des -Dprefix=/usr                 \
                   -Dman3dir=/usr/share/man/man3 \
                   -Dpager="/usr/bin/less -isR"  \
                   -Duseshrplib                  \
-              	  -Dusethreads
+            	  -Dusethreads
 make
 make DESTDIR=$BUILD_ROOT install
+
 
 [special] # a script to run after the package is installed
 echo "the package is installed"
