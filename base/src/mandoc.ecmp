@@ -2,7 +2,7 @@
 name = mandoc
 version = 1.14.6
 type = src
-url = http://mandoc.bsd.lv/snapshots/$name-$version.tar.gz
+url = http://mandoc.bsd.lv/snapshots/$NAME-$VERSION.tar.gz
 
 [description]
 mandoc - a document processor for mdoc and man
@@ -10,12 +10,9 @@ mandoc - a document processor for mdoc and man
 [download]
 # IDK why , curl has an issue with this url
 wget $URL 
-ls
 tar -xf $NAME-$VERSION.tar.gz 
 
 [install]
-	cd $name-$version
-
 	cat >configure.local <<-'EOF'
 		OSNAME=CRUX
 		PREFIX=/usr
