@@ -2,7 +2,7 @@
 name = openssh
 version = 9.2p1
 type = src
-url = https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/$name-$version.tar.gz
+url = https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/$NAME-$VERSION.tar.gz
 
 [description]
 Free version of the SSH connectivity tools
@@ -19,16 +19,16 @@ make
 curl $URL | tar -xz
 
 [install]
-cd $name-$version
 ./configure --prefix=/usr                     \
             --sysconfdir=/etc/ssh             \
 	    --libexecdir=/usr/lib/$name       \
             --with-md5-passwords              \
+            --without-zlib-version-check              \
             --with-privsep-path=/var/lib/sshd
 make
-make DESTDIR=$PKG install
-install -v -m755    contrib/ssh-copy-id $PKG/usr/bin
+make DESTDIR=$BUILD_ROOT install
+install -v -m755    contrib/ssh-copy-id $BUILD_ROOT/usr/bin
 install -v -m644    contrib/ssh-copy-id.1 \
-                    $PKG/usr/share/man/man1
+                    $BUILD_ROOT/usr/share/man/man1
 sed '/^#ChallengeResponseAuthentication yes$/c ChallengeResponseAuthentication no' \
-    -i $PKG/etc/ssh/sshd_config
+    -i $BUILD_ROOT/etc/ssh/sshd_config
