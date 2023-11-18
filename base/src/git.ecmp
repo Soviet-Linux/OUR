@@ -2,14 +2,14 @@
 name = git
 version = 2.30.2
 type = src
-url = https://www.kernel.org/pub/software/scm/$name/$name-$version.tar.xz
+url = https://mirrors.edge.kernel.org/pub/software/scm/$NAME/$NAME-$VERSION.tar.xz
 
 [description]
 Version control system designed to handle everything from small to very large projects with speed and efficiency
 
 [dependencies]
-openssl 
-python2
+openssl
+python2-bin
 
 [download]
 curl $URL | tar -xJ
