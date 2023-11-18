@@ -22,7 +22,7 @@ make test
 
 ./configure --prefix=/usr   \
             --disable-static \
-            --with-openssl=/usr \
+            --with-openssl=/etc/ssl \
             --enable-threaded-resolver \
 	        --without-libidn2 \
 	        --disable-ldap \
