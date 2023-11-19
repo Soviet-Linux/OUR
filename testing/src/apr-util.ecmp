@@ -10,17 +10,17 @@ apr
 [description]
 The Apache Portable Runtime Utility Library provides a predictable and consistent interface to underlying client library interfaces. This application programming interface assures predictable if not identical behavior regardless of which libraries are available on a given platform.
 
+[download]
+curl -L $URL | tar -xz
+
 [install]
-wget $URL 
-tar -xf apr-util-1.6.3.tar.bz2
-cd apr-util-1.6.3 
 ./configure --prefix=/usr       \
             --with-apr=/usr     \
             --with-gdbm=/usr    \
             --with-openssl=/usr \
             --with-crypto &&
 make
-make install
+make install DESTDIR=$BUILD_ROOT
 
 [locations]
 /usr/lib/apr-util-1
