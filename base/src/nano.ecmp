@@ -1,0 +1,23 @@
+[info]
+name = nano
+type = src
+version = 7.2
+url = https://www.nano-editor.org/dist/v7/$NAME-$VERSION.tar.xz
+
+[description]
+The Nano package contains a small, simple text editor which aims to replace Pico, the default editor in the Pine package.
+
+[download]
+curl $URL | tar -xz $NAME-$VERSION.tar.xz
+
+[install]
+./configure --prefix=/usr     \
+            --sysconfdir=/etc \
+            --enable-utf8     \
+            --docdir=/usr/share/doc/nano-$VERSION &&
+make
+make install && install -v -m644 doc/{nano.html,sample.nanorc} /usr/share/doc/nano-$VERSION
+
+[locations]
+/usr/share/nano
+/usr/share/doc/nano-$VERSION
