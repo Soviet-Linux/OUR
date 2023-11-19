@@ -4,6 +4,9 @@ type = src
 version = 1.2.8
 url = https://www.alsa-project.org/files/pub/lib/alsa-lib-$VERSION.tar.bz2
 
+[description] 
+The alsa-lib is a library to interface with ALSA in the Linux kernel and virtual devices using a plugin system.
+
 [makedeps]
 pkg-config
 curl
@@ -11,13 +14,9 @@ make
 sudo
 
 [download]
-wget $URL | tar -xz
+curl $URL | tar -xj
 
 [install]
-wget $URL
-tar -xf alsa-lib-$VERSION.tar.bz2
-cd alsa-lib-$VERSION
 ./configure &&
 make
-sudo make install
-
+make install DESTDIR=$BUILD_ROOT
