@@ -6,20 +6,20 @@ jobs:
     name: Rebuild db
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-	with:
- 	  fetch-depth: 0
-			
-      - name: Rebuild db
-        run: ./mkall
+       - name: Checkout repo
+         uses: actions/checkout@v4
+	 with:
+ 	   fetch-depth: 0
+       
+       - name: Rebuilding DB     
+	 run: ./mkall
 		
-      - name: Commit Changes
-	uses: actions/checkout@v4
- 	run: |
-          date > generated.txt
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add -A
-          git commit -m "Rebuilded Automatically DB"
-          git push
+       - name: Commit Changes
+	 uses: actions/checkout@v4
+ 	 run: |
+           date > generated.txt
+           git config user.name github-actions
+           git config user.email github-actions@github.com
+           git add -A
+           git commit -m "Rebuilded Automatically DB"
+           git push
