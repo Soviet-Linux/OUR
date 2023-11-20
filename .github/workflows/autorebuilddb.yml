@@ -8,14 +8,18 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+	with:
+ 	  fetch-depth: 0
 			
       - name: Rebuild db
         run: ./mkall
 		
       - name: Commit Changes
-        uses: EndBug/add-and-commit@v9
-        with:
-          author_name: Github Actions
-          author_email: actions@github.com
-          message: 'Rebuilded Automatically the db'
-          add: '*'
+	uses: actions/checkout@v4
+ 	run: |
+          date > generated.txt
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add -A
+          git commit -m "Rebuilded Automatically DB"
+          git push
