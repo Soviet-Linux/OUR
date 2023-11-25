@@ -1,11 +1,38 @@
-# Welcome to OUR software repo for Soviet Linux
-* ### Everything on base is known to work with Soviet Linux
-* ### Everything on testing is being tested
-* ### Everything in xfce is us trying to package xfce4 run on Soviet Linux
-* ### Everything in Xorg is us trying to package xorg for Soviet Linux
-* ### Everything in kde is us trying to package kde for Soviet Linux
-* _Also everything is being tried to work using ([CCCP](https://github.com/Soviet-Linux/CCCP) and [libspm](https://github.com/Soviet-Linux/libspm)) or it is known to work with ([CCCP](https://github.com/Soviet-Linux/CCCP) and [libspm](https://github.com/Soviet-Linux/libspm)) \
-If you want to know more about the structure of our packages head to <a href="https://docs.sovietlinux.ml/en/repo"><strong>docs »</strong></a>_ 
-* *You are also encouraged to report problems if you are using cccp and some packages dont work in the mean time you can try installing the package yourself using the [BLFS Handbook provided by Linux from scratch organisation](https://linuxfromscratch.org/blfs/view/stable/)*
+# 🚀 Welcome to Our Software Repository for Soviet Linux
 
-# Also if you want an example of how an ecmp file looks like look at example.ecmp at the root of this repository
+## Overview
+
+This repository contains the ecmp packages for SovietLinux used with CCCP.
+
+### Base
+- Everything listed under "Base" is known to work seamlessly with Soviet Linux. These packages have been thoroughly tested and are considered stable.
+
+### Testing
+- The "Testing" section is where we are actively testing new additions and updates. While these packages may not be finalized, your feedback is valuable in ensuring their stability.
+
+### Xfce
+- In the "Xfce" category, we are working on packaging xfce4 to run smoothly on Soviet Linux. This section represents our ongoing efforts to enhance the user experience with the Xfce desktop environment.
+
+### Xorg
+- The "Xorg" category focuses on packaging Xorg for Soviet Linux. We are diligently working to ensure compatibility and optimal performance with the X Window System.
+
+### KDE
+- Within the "KDE" section, our goal is to package KDE for seamless integration with Soviet Linux. This ongoing effort aims to provide users with a rich and feature-packed KDE desktop environment.
+
+## Dependency Information
+
+To ensure compatibility and functionality, our packages are designed to work with [CCCP](https://github.com/Soviet-Linux/CCCP) and [libspm](https://github.com/Soviet-Linux/libspm). If you're interested in learning more about the structure of our packages, please refer to our [documentation](https://docs.sovietlinux.ml/en/repo).
+
+## Reporting Issues
+
+Your feedback is crucial to us. If you encounter any issues, especially when using CCCP, please report them. Additionally, feel free to install packages manually using the [BLFS Handbook provided by the Linux From Scratch organization](https://linuxfromscratch.org/blfs/view/stable/).
+
+## Example File
+
+For an example of how an ECMP file looks, refer to the "example.ecmp" file located at the root of this repository.
+
+Explore, engage, and help us build a robust software ecosystem for Soviet Linux! 🐧🛠️
+
+--- 
+
+*Note: We encourage you to visit our [documentation](https://github.com/Soviet-Linux/development-docs/wiki) for more in-depth information on the structure of our packages.*
