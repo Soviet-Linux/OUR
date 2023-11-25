@@ -2,7 +2,7 @@
 name = expat
 version = 2.2.10
 type = src
-url = https://sourceforge.net/projects/expat/files/expat/$version/expat-$version.tar.bz2
+url = https://master.dl.sourceforge.net/project/expat/expat/2.2.10/expat-2.2.10-RENAMED-VULNERABLE-PLEASE-USE-2.4.7-INSTEAD.tar.gz?viasf=1
 
 [makedeps]
 automake
@@ -15,11 +15,9 @@ A stream oriented C library for parsing XML
 
 
 [download]
-git clone $URL 
-mv $NAME $NAME-$VERSION
+curl -L $URL | tar -xz
 
 [install]
-cd $name-$version
 # fix a problem with the regression tests
 sed -i 's|usr/bin/env |bin/|' run.sh.in
 ./configure --prefix=/usr --disable-static
