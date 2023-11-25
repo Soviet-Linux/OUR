@@ -17,7 +17,7 @@ curl -L $URL | tar -xz
 ./configure --prefix=/usr       \
             --with-apr=/usr     \
             --with-gdbm=/usr    \
-            --with-openssl=/usr \
+            --with-openssl=/etc/ssl \
             --with-crypto &&
 make
 make install DESTDIR=$BUILD_ROOT
