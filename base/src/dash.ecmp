@@ -13,13 +13,13 @@ autoconf
 automake
 libtool
 
+[download]
+curl -L $URL | tar -xz
+
 [install]
-wget $URL
-tar -xzvf dash-$VERSION.tar.gz
-cd dash-$VERSION
 ./configure --bindir=/bin --mandir=/usr/share/man &&
 make
-sudo make install
+make install DESTDIR=$BUILD_ROOT
 
 [special]
 echo "dash is installed"
