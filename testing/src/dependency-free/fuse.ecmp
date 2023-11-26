@@ -1,21 +1,19 @@
 [info]
-name = fuse
-version = 2.9.9
+name = libfuse-fuse
+version = 2.9.7
 type = src
 license = LGPLv2.1
-url = https://github.com/libfuse/libfuse/releases/download/fuse-$version/fuse-$version.tar.gz
+url = https://codeload.github.com/libfuse/libfuse/tar.gz/refs/tags/fuse-2.9.7
 
 [description]
 Simple interface for userspace programs to export a virtual filesystem to the Linux kernel
 
 
 [download]
-wget $URL
-wget https://pastebin.com/raw/dMQB4rTv -O fuse.conf
-tar -xzvf fuse-$VERSION.tar.gz
+curl $URL | tar -xz
 
 [install]
-cd fuse-$version
+./makeconf.sh
 ./configure --prefix=/usr    \
             --disable-static \
             INIT_D_PATH=/tmp/init.d
@@ -25,7 +23,6 @@ install -d $BUILD_ROOT/lib
 mv -v   $BUILD_ROOT/usr/lib/libfuse.so.* $BUILD_ROOT/lib
 ln -sfv ../../lib/libfuse.so.2.9.9 $BUILD_ROOT/usr/lib/libfuse.so
 rm -rf $BUILD_ROOT/tmp $BUILD_ROOT/dev
-install -Dm 644 fuse.conf $BUILD_ROOT/etc/fuse.conf
 
 [locations]
 etc/fuse.conf
