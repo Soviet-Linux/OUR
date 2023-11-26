@@ -2,17 +2,18 @@
 name = jansson
 type = src
 version = 2.14
-url = https://github.com/akheron/jansson/releases/download/v2.14/jansson-2.14.tar.bz2
+url = https://codeload.github.com/akheron/jansson/tar.gz/refs/tags/v2.14
 
 [description]
 The Jansson package contains a library used to encode, decode, and manipulate JSON data.
 
+[download]
+curl -L $URL | tar -xz
+
 [install]
-wget $URL 
-tar -xf jansson-2.14.tar.bz2
-cd jansson-2.14
 sed -e "/DT/s;| sort;| sed 's/@@libjansson.*//' &;" \
     -i test/suites/api/check-exports
+autoreconf -i    
 ./configure --prefix=/usr --disable-static &&
 make
-make install
+make DESTDIR=$BUILD_ROOT install
