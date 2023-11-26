@@ -7,6 +7,9 @@ url = https://github.com/benhoyt/inih/archive/r56/inih-r56.tar.gz
 [description]
 This package is a simple .INI file parser written in C.
 
+[dependencies]
+ninja
+
 [install]
 mkdir build &&
 cd build &&
