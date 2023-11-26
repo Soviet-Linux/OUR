@@ -8,19 +8,17 @@ url = http://www.libarchive.org/downloads/libarchive-$VERSION.tar.gz
 [description]
 This package provides a library for working with a variety of archive formats, including tar, cpio, zip, and many others. It includes support for reading, writing, and manipulating archives, as well as for handling various compression and encryption formats.
 
-[dependencies]
-
 [makedeps]
 autoconf
 automake
 
+[download]
+curl -L $URL | tar -xz
+
 [install]
-wget $URL
-tar -xzvf libarchive-$VERSION.tar.gz
-cd libarchive-$VERSION
 ./configure --prefix=/usr --disable-static &&
 make
-sudo make install
+make DESTDIR=$BUILD_ROOT install
 
 [special]
 echo "libarchive is installed"
