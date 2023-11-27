@@ -15,7 +15,7 @@ Example
 exampledep
 
 # Here you type any dependencies this program needes on build time
-[makedeps]
+[makedependencies]
 examplebuilddep
 
 # A Script to download and extract the archive

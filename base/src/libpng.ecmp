@@ -4,7 +4,7 @@ name = libpng
 version = 1.6.37
 type = src
 license = zlib
-url = https://downloads.sourceforge.net/$name/$name-$version.tar.xz
+url = https://downloads.sourceforge.net/$NAME/$NAME-$VERSION.tar.xz
 
 # package description
 [description]
@@ -20,17 +20,13 @@ automake
 autoconf
 
 [download]
-wget $URL
-wget https://downloads.sourceforge.net/project/apng/libpng/libpng16/$name-$version-apng.patch.gz
-tar -xf $name-$version.tar.xz
+curl -L $URL | tar -xJ
 
 # install script
 [install]
-cd $name-$version
-gzip -cd $SRC/$name-$version-apng.patch.gz | patch -p0
 LIBS=-lpthread ./configure --prefix=/usr --disable-static
 make
-make DESTDIR=$PKG install
+make DESTDIR=$BUILD_ROOT install
 
 # post-install script
 [special]
