@@ -14,11 +14,9 @@ wget
 The Practical Extraction and Report Language
 
 [download]
-wget $URL 
-tar -xf $NAME-$VERSION.tar.xz
+curl -L $URL | tar -xJ
 
 [install]
-cd $NAME-$VERSION
 export BUILD_ZLIB=False
 export BUILD_BZIP2=0
 sh Configure -des -Dprefix=/usr                 \
