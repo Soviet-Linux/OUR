@@ -7,20 +7,21 @@ url = https://www.php.net/distributions/php-8.2.1.tar.xz
 [description]
 PHP is the PHP Hypertext Preprocessor. Primarily used in dynamic web sites, it allows for programming code to be directly embedded into the HTML markup. It is also useful as a general purpose scripting language.
 
+[download]
+curl -L $URL | tar -xJ
+
 [install]
-wget $URL
-tar -xf php-8.2.1.tar.xz
-cd php-8.2.1
-./configure --prefix=/usr                \
-            --sysconfdir=/etc            \
-            --localstatedir=/var         \
-            --datadir=/usr/share/php     \
-            --mandir=/usr/share/man      \
+./buildconf
+./configure --prefix=$BUILD_ROOT/usr                \
+            --sysconfdir=$BUILD_ROOT/etc            \
+            --localstatedir=$BUILD_ROOT/var         \
+            --datadir=$BUILD_ROOT/usr/share/php     \
+            --mandir=$BUILD_ROOT/usr/share/man      \
             --without-pear               \
             --enable-fpm                 \
             --with-fpm-user=apache       \
             --with-fpm-group=apache      \
-            --with-config-file-path=/etc \
+            --with-config-file-path=$BUILD_ROOT/etc \
             --with-zlib                  \
             --enable-bcmath              \
             --with-bz2                   \
@@ -34,15 +35,10 @@ cd php-8.2.1
             --disable-mbregex            \
             --with-readline              &&
 make
-sudo make install                                     &&
-sudo install -v -m644 php.ini-production /etc/php.ini &&
-
-sudo install -v -m755 -d /usr/share/doc/php-8.2.1 &&
-sudo install -v -m644    CODING_STANDARDS* EXTENSIONS NEWS README* UPGRADING* \
-                    /usr/share/doc/php-8.2.1
+make DESTDIR=$BUILD_ROOT install
 
 [locations]
-/usr/
+/usr/ 
 /etc/
 /var/
 /usr/share/php
