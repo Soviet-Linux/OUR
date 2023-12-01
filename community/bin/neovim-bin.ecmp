@@ -1,0 +1,19 @@
+[info]
+name = nvim
+version = nightly
+type = bin
+url = https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
+
+[download]
+wget $URL 
+tar -xzf nvim-linux64.tar.gz
+cp -r ./nvim-linux64 nvim-nightly
+
+[install]
+cp -r bin $BUILD_ROOT
+cp -r lib $BUILD_ROOT
+cp -r man $BUILD_ROOT
+cp -r share $BUILD_ROOT
+
+[locations]
+/usr/bin
