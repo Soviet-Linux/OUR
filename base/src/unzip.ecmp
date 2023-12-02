@@ -1,0 +1,17 @@
+[info]
+name = unzip
+type = src
+version = 6.0
+url = https://deac-ams.dl.sourceforge.net/project/infozip/UnZip%206.x%20%28latest%29/UnZip%206.0/unzip60.tar.gz
+
+[description]
+The UnZip package contains ZIP extraction utilities. These are useful for extracting files from ZIP archives. ZIP archives are created with PKZIP or Info-ZIP utilities, primarily in a DOS environment.
+[download]
+curl -L $URL | tar -xz
+mv unzip60 unzip-6.0
+
+[install]
+make -f unix/Makefile generic
+make prefix=$BUILD_ROOT/usr MANDIR=$BUILD_ROOT/usr/share/man/man1 \
+ -f unix/Makefile install
+
