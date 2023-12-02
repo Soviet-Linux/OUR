@@ -20,5 +20,6 @@ curl -L $URL | tar -xj
 	make
 	make DESTDIR=$BUILD_ROOT install
 
+[special]
     #something is terribly wrong here and should be fixed >.<
     ln /usr/lib/libapr-1.so.0.7.4 /usr/lib/libapr-1.so
