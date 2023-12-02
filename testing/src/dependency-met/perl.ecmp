@@ -20,22 +20,27 @@ curl -L $URL | tar -xz
 export BUILD_ZLIB=False
 export BUILD_BZIP2=0
 
-	sh Configure -des -Dprefix=/usr                 \
-	                  -Dvendorprefix=/usr           \
-	                  -Dprivlib=/usr/lib/perl5 \
-	                  -Dsitelib=/usr/lib/perl5/site_perl \
-	                  -Dvendorlib=/usr/lib/perl5/site_perl \
-	                  -Dman1dir=/usr/share/man/man1 \
-	                  -Dman3dir=/usr/share/man/man3 \
-	                  -Dpager="/usr/bin/less -isR"  \
-	                  -Duseshrplib                  \
-                  	  -Dusethreads
-make
+mkdir -p /usr/lib/perl5/5.38.2/
+mkdir -p /usr/lib/perl5/5.38.2/site_perl/x86_64-linux-thread-multi
+mkdir -p /usr/lib/perl5/5.38.2/vendor_perl
+
+sh Configure -des \
+-Dprefix=/usr \
+-Dvendorprefix=/usr \
+-Dprivlib=/usr/lib/perl5/5.38.2/core_perl  \
+-Dsitelib=/usr/lib/perl5/5.38.2/site_perl   \
+-Dvendorlib=/usr/lib/perl5/5.38.2/vendor_perl \
+-Dman1dir=/usr/share/man/man1 \
+-Dman3dir=/usr/share/man/man3 \
+-Dpager="/usr/bin/less -isR" \
+-Duseshrplib \
+-Dusethreads
+
+make -j24
 make DESTDIR=$BUILD_ROOT install
+cp -r $BUILD_ROOT /var/cccp/work/test
 
 
 [special] # a script to run after the package is installed
 echo "the package is installed"
 echo "done..."
-
-[locations] # the locations of the files installed by the package
