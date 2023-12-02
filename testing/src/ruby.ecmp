@@ -17,7 +17,7 @@ curl -L $URL | tar -xJ
 ./configure --prefix=/usr   \
             --enable-shared \
             --docdir=/usr/share/doc/ruby-3.2.0 &&
-make -j$(nproc)
+make
 make DESTDIR=$BUILD_ROOT install
 
 [locations]

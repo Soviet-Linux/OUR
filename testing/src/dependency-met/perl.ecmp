@@ -1,0 +1,41 @@
+[info] 
+name = perl
+version = 5.38.2
+type = src
+url = https://www.cpan.org/src/5.0/perl-5.38.2.tar.gz
+
+[makedeps]
+automake
+autoconfig
+make
+wget
+
+[description] # package description , it can be on multiple lines and we support makdown
+The Practical Extraction and Report Language
+
+[download]
+curl -L $URL | tar -xz
+
+[install]
+export BUILD_ZLIB=False
+export BUILD_BZIP2=0
+
+	sh Configure -des -Dprefix=/usr                 \
+	                  -Dvendorprefix=/usr           \
+	                  -Dprivlib=/usr/lib/perl5 \
+	                  -Dsitelib=/usr/lib/perl5/site_perl \
+	                  -Dvendorlib=/usr/lib/perl5/site_perl \
+	                  -Dman1dir=/usr/share/man/man1 \
+	                  -Dman3dir=/usr/share/man/man3 \
+	                  -Dpager="/usr/bin/less -isR"  \
+	                  -Duseshrplib                  \
+                  	  -Dusethreads
+make
+make DESTDIR=$BUILD_ROOT install
+
+
+[special] # a script to run after the package is installed
+echo "the package is installed"
+echo "done..."
+
+[locations] # the locations of the files installed by the package
