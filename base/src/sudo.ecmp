@@ -20,11 +20,11 @@ libtool
 autoconf
 automake
 
+[download]
+curl -L $URL | tar -xz
+
 # this is basically a bash script to install the package
 [install]
-wget $URL
-tar -xzvf sudo-$VERSION.tar.gz
-cd sudo-$VERSION
 ./configure --prefix=/usr              \
             --libexecdir=/usr/lib      \
             --with-secure-path         \
@@ -34,8 +34,8 @@ cd sudo-$VERSION
             --with-passprompt="[sudo] password for %p" &&
 make
 
-sudo make install &&
-sudo ln -sfv libsudo_util.so.0.0.0 /usr/lib/sudo/libsudo_util.so.0
+make DESTDIR=$BUILD_ROOT install &&
+ln -sfv libsudo_util.so.0.0.0 /usr/lib/sudo/libsudo_util.so.0
 
 # a script to run after the package is installed
 [special] 

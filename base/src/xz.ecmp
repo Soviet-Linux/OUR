@@ -1,7 +1,7 @@
 [info]
 name = xz
 version = 5.2.5
-url = https://tukaani.org/$name/$name-$version.tar.xz
+url = https://netix.dl.sourceforge.net/project/lzmautils/xz-5.2.5.tar.xz
 type = src
 
 [description]
@@ -16,10 +16,9 @@ curl
 make
 
 [download]
-curl $URL | tar -xvz
+curl $URL | tar -xJ
 
 [install]
-cd $name-$version
 ./configure --prefix=/usr \
             --disable-static \
 	    --disable-nls

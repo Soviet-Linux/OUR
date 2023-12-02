@@ -19,18 +19,14 @@ openssl
 make
 gcc
 
+[download]
+curl -L $URL | tar -xz
+
 # this is basically a bash script to install the package
 [install]
-wget $URL
-tar -xzvf nettle-$VERSION.tar.gz
-cd nettle-$VERSION
 ./configure --prefix=/usr --disable-static &&
 make
-
-sudo make install &&
-sudo chmod   -v   755 /usr/lib/lib{hogweed,nettle}.so &&
-sudo install -v -m755 -d /usr/share/doc/nettle-$VERSION &&
-sudo install -v -m644 nettle.html /usr/share/doc/nettle-$VERSION
+make DESTDIR=$BUILD_ROOT install
 
 # a script to run after the package is installed
 [special]

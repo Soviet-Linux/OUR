@@ -7,15 +7,18 @@ url = https://cache.ruby-lang.org/pub/ruby/3.2/ruby-3.2.0.tar.xz
 [description]
 The Ruby package contains the Ruby development environment. This is useful for object-oriented scripting. 
 
+[dependencies]
+libyaml
+
+[download]
+curl -L $URL | tar -xJ
+
 [install]
-wget $URL
-tar -xf ruby-3.2.0.tar.xz
-cd ruby-3.2.0
 ./configure --prefix=/usr   \
             --enable-shared \
             --docdir=/usr/share/doc/ruby-3.2.0 &&
 make
-sudo make install
+make DESTDIR=$BUILD_ROOT install
 
 [locations]
 /usr

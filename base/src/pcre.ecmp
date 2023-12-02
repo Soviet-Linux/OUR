@@ -1,10 +1,10 @@
 # basic information about the package
 [info] 
-name = PCRE
+name = pcre
 version = 8.40
 type = src
 license = MIT
-url = ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-$VERSION.tar.bz2
+url = https://kumisystems.dl.sourceforge.net/project/pcre/pcre/8.40/pcre-8.40.tar.gz
 
 # package description , it can be on multiple lines and we support markdown
 [description] 
@@ -14,11 +14,11 @@ The PCRE package contains Perl Compatible Regular Expression libraries. These ar
 [makedeps] 
 make
 
+[download]
+curl -L $URL | tar -xz
+
 # this is basically a bash script to install the package
 [install]
-wget $URL
-tar -xzvf pcre-$VERSION.tar.bz2
-cd pcre-$VERSION
 ./configure --prefix=/usr                     \
             --docdir=/usr/share/doc/pcre-8.40 \
             --enable-unicode-properties       \
@@ -29,10 +29,7 @@ cd pcre-$VERSION
             --enable-pcretest-libreadline     \
             --disable-static                 &&
 make
-
-sudo make install                     &&
-sudo mv -v /usr/lib/libpcre.so.* /lib &&
-sudo ln -sfv ../../lib/$(readlink /usr/lib/libpcre.so) /usr/lib/libpcre.so
+make DESTDIR=$BUILD_ROOT install
 
 # a script to run after the package is installed
 [special] 

@@ -1,0 +1,40 @@
+# basic information about the package
+[info] 
+name = pcre2
+version = 10.42
+type = src
+url = https://codeload.github.com/PCRE2Project/pcre2/tar.gz/refs/tags/pcre2-10.42
+
+# package description , it can be on multiple lines and we support markdown
+[description] 
+The PCRE package contains Perl Compatible Regular Expression libraries. These are useful for implementing regular expression pattern matching using the same syntax and semantics as Perl 5.
+
+# the dependencies needed to build the package
+[makedeps] 
+make
+
+[download]
+curl -L $URL | tar -xz
+cp -r pcre2-pcre2-10.42 pcre2-10.42
+
+# this is basically a bash script to install the package
+[install]
+autoreconf -i
+./configure --prefix=/usr                     \
+            --enable-unicode-properties       \
+            --enable-pcre2-16                   \
+            --enable-pcre2-32                   \
+            --enable-pcregrep-libz            \
+            --enable-pcregrep-libbz2          \
+            --enable-pcretest-libreadline     \
+            --disable-static                 &&
+make
+make DESTDIR=$BUILD_ROOT install
+
+# a script to run after the package is installed
+[special] 
+echo "PCRE is installed"
+echo "done..."
+
+# the locations of the files installed by the package
+[locations] 

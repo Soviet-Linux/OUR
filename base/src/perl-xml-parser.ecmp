@@ -2,7 +2,7 @@
 name = perl-xml-parser
 version = 2.46
 type = src
-url = http://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-$version.tar.gz
+url = http://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-$VERSION.tar.gz
 
 [makedeps]
 automake
@@ -15,13 +15,13 @@ Expat-based XML parser module for perl
 
 [download]
 wget $URL 
-tar -xf $name-$version.tar.xz
+tar -xf XML-Parser-$VERSION.tar.gz
+cp -r ./XML-Parser-$VERSION perl-xml-parser-$VERSION
 
 [install]
-cd XML-Parser-$version
 perl Makefile.PL
 make
-make DESTDIR=$PKG install
+make DESTDIR=$BUILD_ROOT install
 
 [special] # a script to run after the package is installed
 echo "the package is installed"
