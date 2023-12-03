@@ -27,16 +27,10 @@ curl -L $URL | tar -xz
             --enable-shared                  \
             --disable-static                 \
             --docdir=/usr/share/doc/lzo-2.09
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
 
 # a script to run after the package is installed
 [special] 
 echo "The LZO package is installed"
 echo "done..."
-
-# the locations of the files installed by the package
-[locations] 
-/usr/lib/liblzo2.so
-/usr/include/lzo/lzo1x.h
-/usr/share/doc/lzo-2.10

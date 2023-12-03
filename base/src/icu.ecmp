@@ -18,7 +18,7 @@ curl -L $URL | tar -xz
 cd icu4c &&
 cd source &&
 ./configure --prefix=/usr &&
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
 
 # a script to run after the package is installed

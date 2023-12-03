@@ -37,7 +37,7 @@ sh Configure -des \
 -Duseshrplib \
 -Dusethreads
 
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
 
 

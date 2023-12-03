@@ -19,5 +19,5 @@ curl -L $URL | tar -xz
             --enable-avx     \
             --enable-avx2    \
             --enable-float    &&
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install

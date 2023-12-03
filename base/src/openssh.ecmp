@@ -25,7 +25,7 @@ curl $URL | tar -xz
             --with-md5-passwords              \
             --without-zlib-version-check              \
             --with-privsep-path=/var/lib/sshd
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
 install -v -m755    contrib/ssh-copy-id $BUILD_ROOT/usr/bin
 install -v -m644    contrib/ssh-copy-id.1 \

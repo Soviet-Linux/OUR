@@ -39,31 +39,7 @@ tar -xf $NAME-$VERSION.tar.gz
 	EOF
 
 	./configure
-	make
+	make $MAKE_FLAGS
 	make DESTDIR=$BUILD_ROOT install
 
 	rm -rf $BUILD_ROOT/share/examples
-
-[locations]
-usr/bin/demandoc
-usr/bin/mandoc
-usr/bin/mapropos
-usr/bin/mman
-usr/bin/msoelim
-usr/bin/mwhatis
-usr/sbin/mandocdb
-usr/share/man/man1/demandoc.1.gz
-usr/share/man/man1/mandoc.1.gz
-usr/share/man/man1/mapropos.1.gz
-usr/share/man/man1/mman.1.gz
-usr/share/man/man1/msoelim.1.gz
-usr/share/man/man1/mwhatis.1.gz
-usr/share/man/man5/mandoc.conf.5.gz
-usr/share/man/man5/mandoc.db.5.gz
-usr/share/man/man7/mandoc_char.7.gz
-usr/share/man/man7/mandoc_eqn.7.gz
-usr/share/man/man7/mandoc_man.7.gz
-usr/share/man/man7/mandoc_mdoc.7.gz
-usr/share/man/man7/mandoc_roff.7.gz
-usr/share/man/man7/mandoc_tbl.7.gz
-usr/share/man/man8/mandocdb.8.gz

@@ -23,7 +23,7 @@ curl -L $URL | tar -xz
             --disable-static \
 	    --disable-nls    \
             --libexecdir=/usr/lib
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
 chmod -v 755 $BUILD_ROOT/usr/lib/libacl.so
 mkdir -p $BUILD_ROOT/lib

@@ -15,7 +15,7 @@ curl $URL | tar -xz
             --without-bash-malloc \
             --with-installed-readline \
 	    --disable-nls
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
 mkdir -p $BUILD_ROOT/bin
 mv $BUILD_ROOT/usr/bin/bash $BUILD_ROOT/bin

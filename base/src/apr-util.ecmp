@@ -19,7 +19,7 @@ curl -L $URL | tar -xj
 	            --with-gdbm=/usr    \
 	            --with-openssl=/etc/ssl \
 	            --with-crypto
-	make
+	make $MAKE_FLAGS
 	make DESTDIR=$BUILD_ROOT install
 
 [locations]

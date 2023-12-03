@@ -9,7 +9,7 @@ Version control system designed to handle everything from small to very large pr
 
 [dependencies]
 openssl
-python2-bin
+#python2-bin
 
 [download]
 curl $URL | tar -xJ
@@ -19,7 +19,7 @@ make \
 	prefix=/usr \
 	gitexecdir=/usr/lib/git-core \
 	perllibdir="$(/usr/bin/perl -MConfig -wle 'print $Config{installvendorlib}')" \
-	DESTDIR=$BUILD_ROOT install
+	DESTDIR=$BUILD_ROOT install $MAKE_FLAGS
 mkdir -p $BUILD_ROOT/usr/share/git/
 install -m644 ./contrib/completion/git-prompt.sh $BUILD_ROOT/usr/share/git/git-prompt.sh
 rm -r $BUILD_ROOT/usr/share/locale

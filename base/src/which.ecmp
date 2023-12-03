@@ -21,7 +21,7 @@ curl -L $URL | tar -xz
 # install script
 [install]
 ./configure --prefix=/usr &&
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
 
 # post-install script

@@ -19,7 +19,7 @@ curl $URL | tar -xz
 
 [install]
 ./configure --prefix=/usr
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
 mkdir -p $BUILD_ROOT/lib
 mv -v $BUILD_ROOT/usr/lib/libz.so.* $BUILD_ROOT/lib

@@ -14,6 +14,6 @@ git clone $URL
 mv libspm libspm-cvs
 
 [install]
-make 
+make $MAKE_FLAGS
 make formats
 make DESTDIR=$BUILD_ROOT install

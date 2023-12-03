@@ -18,5 +18,5 @@ curl $URL | tar -xj
 
 [install]
 ./configure &&
-make
+make $MAKE_FLAGS
 make install DESTDIR=$BUILD_ROOT

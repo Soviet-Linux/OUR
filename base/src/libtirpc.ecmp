@@ -15,8 +15,7 @@ curl -L $URL | tar -xj
             --sysconfdir=/etc                               \
             --disable-static                                \
             --disable-gssapi                                &&
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install 
 
-[locations]
-/usr/include/tirpc/
+

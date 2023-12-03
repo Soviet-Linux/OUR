@@ -22,7 +22,7 @@ curl $URL | tar -xJ
 ./configure --prefix=/usr \
             --disable-static \
 	    --disable-nls
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
 rm -r $BUILD_ROOT/usr/share/doc
 mkdir -pv $BUILD_ROOT/bin $BUILD_ROOT/lib

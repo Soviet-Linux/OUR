@@ -20,7 +20,7 @@ cp -r ./XML-Parser-$VERSION perl-xml-parser-$VERSION
 
 [install]
 perl Makefile.PL
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
 
 [special] # a script to run after the package is installed

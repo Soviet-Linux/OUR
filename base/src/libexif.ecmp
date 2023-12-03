@@ -15,9 +15,6 @@ autoreconf -i
 ./configure --prefix=/usr    \
             --disable-static \
             --with-doc-dir=/usr/share/doc/libexif-0.6.24 &&
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
 
-[locations]
-/usr/include/libexif
-/usr/share/doc/libexif-0.6.24
