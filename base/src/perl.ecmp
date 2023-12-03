@@ -20,11 +20,6 @@ curl -L $URL | tar -xz
 export BUILD_ZLIB=False
 export BUILD_BZIP2=0
 
-#something is terribly wrong here and should be fixed >.<
-mkdir -p /usr/lib/perl5/5.38.2/
-mkdir -p /usr/lib/perl5/5.38.2/site_perl/x86_64-linux-thread-multi
-mkdir -p /usr/lib/perl5/5.38.2/vendor_perl
-
 sh Configure -des \
 -Dprefix=/usr \
 -Dvendorprefix=/usr \
