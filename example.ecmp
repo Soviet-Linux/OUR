@@ -2,7 +2,7 @@
 [info] 
 name = example
 version = 1.0.0
-type = src # If your are trying to make a package for a binary change this from "src" to "bin"
+type = src # If your are trying to make a package for a binary change this from "src" to "bin" an place it in the /bin dir
 license = Example
 url = example.com # Here you put the url to the archive or binary file
 
@@ -24,14 +24,14 @@ curl -L $URL | tar -xz
 
 # this is basically a bash script to install the package
 [install] 
-echo "EXAMPLE"
+# A package should be installed in the $BUILD_ROOT directory
+# And make provided with $MAKE_FLAGS
+# That is usually achived by having:
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install
 
 # this is a bash script that is run after the installation
 [special]
 echo "This is SPECIAL"
-
-# Here you can manually type any place where upon build time the Makefile installs libs or something else in a specific place
-[locations]
-/usr/lib/example/
 
 # Also it should be noted that there are variables that are set before executing any of the scripts and basically every parameter in the info section is passed as a variable to every script like: for name there is $NAME variable containg the name, $VERSION for the version, $URL for the url and so on.
