@@ -32,7 +32,7 @@ curl $URL | tar -xz
 	sed -i "s|-O3|$CFLAGS|" Makefile
 
 	make depend
-	make
+	make $MAKE_FLAGS
 	make MANSUFFIX=ssl DESTDIR=$BUILD_ROOT install_sw install_ssldirs install_man_docs
 
 

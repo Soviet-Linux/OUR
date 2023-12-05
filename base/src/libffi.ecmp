@@ -23,7 +23,7 @@ sed -e '/^includedir/ s/=.*$/=@includedir@/' \
     -i libffi.pc.in        &&
 
 ./configure --prefix=/usr --disable-static &&
-make
+make $MAKE_FLAGS
 
 make DESTDIR=$BUILD_ROOT install
 
@@ -31,7 +31,3 @@ make DESTDIR=$BUILD_ROOT install
 [special]
 echo "The libffi package is installed"
 echo "done..."
-
-[locations]
-/usr/include/libffi-$VERSION
-/usr/lib/libffi.so

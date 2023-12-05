@@ -11,7 +11,7 @@ curl -L $URL | tar -xz
 mv unzip60 unzip-6.0
 
 [install]
-make -f unix/Makefile generic
+make -f unix/Makefile generic $MAKE_FLAGS
 make prefix=$BUILD_ROOT/usr MANDIR=$BUILD_ROOT/usr/share/man/man1 \
  -f unix/Makefile install
 

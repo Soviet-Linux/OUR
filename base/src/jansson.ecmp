@@ -15,5 +15,5 @@ sed -e "/DT/s;| sort;| sed 's/@@libjansson.*//' &;" \
     -i test/suites/api/check-exports
 autoreconf -i    
 ./configure --prefix=/usr --disable-static &&
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install

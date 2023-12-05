@@ -27,7 +27,7 @@ echo '#define SYS_VIMRC_FILE "/etc/vimrc"' >> src/feature.h
 	--disable-gui \
 	--with-tlib=ncursesw \
 	--without-x
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
 # no desktop files and icons
 rm -r $BUILD_ROOT/usr/share/applications \

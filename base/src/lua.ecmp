@@ -11,11 +11,7 @@ Lua is a powerful light-weight programming language designed for extending appli
 curl -L $URL | tar -xz
 
 [install]
-make linux
+make linux $MAKE_FLAGS
 make local
 cp -r ./install $BUILD_ROOT
 
-[locations]
-/usr
-/usr/share/man/man1
-/usr/share/doc/lua-5.4.4

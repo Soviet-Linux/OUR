@@ -17,7 +17,7 @@ curl $URL | tar -xz
 
 [install]
 ./configure --prefix=/usr --disable-static --disable-nls
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
 
 [locations]

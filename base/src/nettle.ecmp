@@ -25,7 +25,7 @@ curl -L $URL | tar -xz
 # this is basically a bash script to install the package
 [install]
 ./configure --prefix=/usr --disable-static &&
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
 
 # a script to run after the package is installed

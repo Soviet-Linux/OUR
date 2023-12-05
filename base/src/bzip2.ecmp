@@ -18,9 +18,9 @@ curl $URL | tar -xz
 sed -i 's@\(ln -s -f \)$(PREFIX)/bin/@\1@' Makefile
 sed -i "s@(PREFIX)/man@(PREFIX)/share/man@g" Makefile
 
-make -f Makefile-libbz2_so
+make -f Makefile-libbz2_so $MAKE_FLAGS
 make clean
-make
+make $MAKE_FLAGS
 make install PREFIX=$BUILD_ROOT/usr
 mkdir -pv $BUILD_ROOT/bin \
           $BUILD_ROOT/lib \
@@ -33,29 +33,3 @@ rm -v $BUILD_ROOT/usr/bin/bunzip2 \
       $BUILD_ROOT/usr/bin/bzip2
 ln -sv bzip2 $BUILD_ROOT/bin/bunzip2
 ln -sv bzip2 $BUILD_ROOT/bin/bzcat
-
-[locations]
-bin/bunzip2
-bin/bzcat
-bin/bzip2
-lib/libbz2.so.1.0
-lib/libbz2.so.1.0.8
-usr/bin/bzcmp
-usr/bin/bzdiff
-usr/bin/bzegrep
-usr/bin/bzfgrep
-usr/bin/bzgrep
-usr/bin/bzip2recover
-usr/bin/bzless
-usr/bin/bzmore
-usr/include/bzlib.h
-usr/lib/libbz2.a
-usr/lib/libbz2.so
-usr/share/man/man1/bzcmp.1.gz
-usr/share/man/man1/bzdiff.1.gz
-usr/share/man/man1/bzegrep.1.gz
-usr/share/man/man1/bzfgrep.1.gz
-usr/share/man/man1/bzgrep.1.gz
-usr/share/man/man1/bzip2.1.gz
-usr/share/man/man1/bzless.1.gz
-usr/share/man/man1/bzmore.1.gz

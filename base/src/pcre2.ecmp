@@ -28,7 +28,7 @@ autoreconf -i
             --enable-pcregrep-libbz2          \
             --enable-pcretest-libreadline     \
             --disable-static                 &&
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
 
 # a script to run after the package is installed

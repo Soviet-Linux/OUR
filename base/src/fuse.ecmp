@@ -17,7 +17,7 @@ curl $URL | tar -xz
 ./configure --prefix=/usr    \
             --disable-static \
             INIT_D_PATH=/tmp/init.d
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
 install -d $BUILD_ROOT/lib
 mv -v   $BUILD_ROOT/usr/lib/libfuse.so.* $BUILD_ROOT/lib

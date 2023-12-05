@@ -20,10 +20,6 @@ curl -L $URL | tar -xz
 export BUILD_ZLIB=False
 export BUILD_BZIP2=0
 
-mkdir -p /usr/lib/perl5/5.38.2/
-mkdir -p /usr/lib/perl5/5.38.2/site_perl/x86_64-linux-thread-multi
-mkdir -p /usr/lib/perl5/5.38.2/vendor_perl
-
 sh Configure -des \
 -Dprefix=/usr \
 -Dvendorprefix=/usr \
@@ -36,9 +32,8 @@ sh Configure -des \
 -Duseshrplib \
 -Dusethreads
 
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
-cp -r $BUILD_ROOT /var/cccp/work/test
 
 
 [special] # a script to run after the package is installed

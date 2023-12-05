@@ -1,8 +1,8 @@
 [info]
 name = apr 
 type = src
-version = 1.7.2 
-url = https://archive.apache.org/dist/apr/apr-1.7.2.tar.bz2 
+version = 1.7.4
+url = https://archive.apache.org/dist/apr/apr-1.7.4.tar.bz2 
 
 [description]
  The Apache Portable Runtime (APR) is a supporting library for the Apache web server. It provides a set of application programming interfaces (APIs) that map to the underlying Operating System (OS). Where the OS doesn't support a particular function, APR will provide an emulation. Thus programmers can use the APR to make a program portable across different platforms.
@@ -11,14 +11,12 @@ url = https://archive.apache.org/dist/apr/apr-1.7.2.tar.bz2
 curl -L $URL | tar -xj
 
 [install]
-sed -e '/^case "$0"/s;$0;$(readlink -f $0);' \
-    -i apr-config.in 
-./configure --prefix=/usr    \
-            --disable-static \
-            --with-installbuilddir=/usr/share/apr-1/build &&
-make
-make install DESTDIR=$BUILD_ROOT
+	./configure --prefix=/usr    \
+	            --disable-static \
+	            --with-installbuilddir=/usr/share/apr-1/build
+	make $MAKE_FLAGS
+	make DESTDIR=$BUILD_ROOT install
 
-[locations]
-/usr/include/apr-1/ 
-/usr/share/apr-1/ 
+[special]
+    #something is terribly wrong here and should be fixed >.<
+    ln /usr/lib/libapr-1.so.0.7.4 /usr/lib/libapr-1.so

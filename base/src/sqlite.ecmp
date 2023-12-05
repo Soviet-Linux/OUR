@@ -31,7 +31,7 @@ mv $NAME-version-$VERSION $NAME-$VERSION
             -DSQLITE_SECURE_DELETE=1              \
             -DSQLITE_ENABLE_DBSTAT_VTAB=1	      \
 	        -DSQLITE_ENABLE_FTS3_TOKENIZER=1"
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
 
 

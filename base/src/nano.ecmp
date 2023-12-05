@@ -15,7 +15,7 @@ curl $URL | tar -xJ
             --sysconfdir=/etc \
             --enable-utf8     \
             --docdir=/usr/share/doc/nano-$VERSION &&
-make
+make $MAKE_FLAGS
 make install DESTDIR=$BUILD_ROOT && install -v -m644 doc/{nano.html,sample.nanorc} /usr/share/doc/nano-$VERSION
 
 [locations]

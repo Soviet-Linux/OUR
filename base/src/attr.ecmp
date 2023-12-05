@@ -24,7 +24,7 @@ curl $URL | tar -xz
 	            --disable-static \
             	    --sysconfdir=/etc \
 		    --disable-nls
-	make
+	make $MAKE_FLAGS
 	make DESTDIR=$BUILD_ROOT install
 
 	chmod -v 755 $BUILD_ROOT/usr/lib/libattr.so

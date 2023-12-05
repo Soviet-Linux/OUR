@@ -17,16 +17,9 @@ curl -L $URL | tar -xz
 
 [install]
 ./configure --prefix=/usr --disable-static &&
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
 
 [special]
 echo "libarchive is installed"
 echo "done..."
-
-[locations]
-/usr/lib/libarchive.so
-/usr/include/archive.h
-/usr/bin/bsdcat
-/usr/bin/bsdcpio 
-/usr/bin/bsdtar

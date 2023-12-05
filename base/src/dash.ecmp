@@ -18,13 +18,9 @@ curl -L $URL | tar -xz
 
 [install]
 ./configure --bindir=/bin --mandir=/usr/share/man &&
-make
+make $MAKE_FLAGS
 make install DESTDIR=$BUILD_ROOT
 
 [special]
 echo "dash is installed"
 echo "done..."
-
-[locations]
-/usr/bin/dash
-/usr/share/man/man1/dash.1.gz

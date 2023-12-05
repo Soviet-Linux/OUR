@@ -32,7 +32,7 @@ curl -L $URL | tar -xz
             --with-env-editor          \
             --docdir=/usr/share/doc/sudo-1.8.19p2 \
             --with-passprompt="[sudo] password for %p" &&
-make
+make $MAKE_FLAGS
 
 make DESTDIR=$BUILD_ROOT install &&
 ln -sfv libsudo_util.so.0.0.0 /usr/lib/sudo/libsudo_util.so.0

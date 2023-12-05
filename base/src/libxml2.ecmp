@@ -17,12 +17,7 @@ curl -L $URL | tar -xJ
             --with-history          \
             PYTHON=/usr/bin/python3 \
             --docdir=/usr/share/doc/libxml2-2.10.3 &&
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
 
-[locations]
-/usr/include/libxml2
-/usr/lib/cmake/libxml2
-/usr/share/doc/libxml2-2.10.3
-/usr/share/gtk-doc/html/libxml2
 

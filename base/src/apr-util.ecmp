@@ -5,22 +5,21 @@ version = 1.6.3
 url = https://archive.apache.org/dist/apr/apr-util-1.6.3.tar.bz2
 
 [dependencies]
-apr 
+apr
 
 [description]
 The Apache Portable Runtime Utility Library provides a predictable and consistent interface to underlying client library interfaces. This application programming interface assures predictable if not identical behavior regardless of which libraries are available on a given platform.
 
 [download]
-curl -L $URL | tar -xz
+curl -L $URL | tar -xj
 
 [install]
-./configure --prefix=/usr       \
-            --with-apr=/usr     \
-            --with-gdbm=/usr    \
-            --with-openssl=/etc/ssl \
-            --with-crypto &&
-make
-make install DESTDIR=$BUILD_ROOT
+	./configure --prefix=/usr       \
+	            --with-apr=/usr     \
+	            --with-gdbm=/usr    \
+	            --with-openssl=/etc/ssl \
+	            --with-crypto
+	make $MAKE_FLAGS
+	make DESTDIR=$BUILD_ROOT install
 
 [locations]
-/usr/lib/apr-util-1
