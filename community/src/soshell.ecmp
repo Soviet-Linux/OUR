@@ -19,6 +19,3 @@ tar -xf 0.0.4.tar.gz
 cd 0.0.4
 make
 make install
-
-[locations]
-/usr/bin/soshell

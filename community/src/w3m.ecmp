@@ -1,7 +1,7 @@
 [info]
 name = w3m
 version = 0.5.3
-type = bin
+type = src
 url = https://downloads.sourceforge.net/w3m/w3m-0.5.3.tar.gz
 
 [download]

@@ -34,8 +34,7 @@ curl -L $URL | tar -xz
             --with-passprompt="[sudo] password for %p" &&
 make $MAKE_FLAGS
 
-make DESTDIR=$BUILD_ROOT install &&
-ln -sfv libsudo_util.so.0.0.0 /usr/lib/sudo/libsudo_util.so.0
+make DESTDIR=$BUILD_ROOT install
 
 # a script to run after the package is installed
 [special] 
