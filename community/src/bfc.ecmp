@@ -21,6 +21,3 @@ mv bfc /usr/bin/
 
 [special]
 echo "done.."
-
-[locations]
-/usr/bin/bfc

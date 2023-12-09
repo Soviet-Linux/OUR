@@ -14,8 +14,3 @@ curl $URL | tar -xz
 ./configure -bindir=/usr/bin -datadir=~/.fltk -libdir=/lib/fltk
 make
 make DESTDIR=$BUILD_ROOT install
-
-[locations]
-/usr/bin
-/lib/fltk
-~/.fltk/
