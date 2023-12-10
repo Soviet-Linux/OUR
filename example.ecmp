@@ -29,6 +29,8 @@ curl -L $URL | tar -xz
 # That is usually achived by having:
 make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
+# Notice that there is no need to use sudo as cccp
+# is required to be ran as super user
 
 # this is a bash script that is run after the installation
 [special]

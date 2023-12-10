@@ -12,5 +12,5 @@ curl $URL | tar -xz
 
 [install]
 ./configure -bindir=/usr/bin -datadir=~/.fltk -libdir=/lib/fltk
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install

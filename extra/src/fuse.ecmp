@@ -21,36 +21,4 @@ make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
 install -d $BUILD_ROOT/lib
 mv -v   $BUILD_ROOT/usr/lib/libfuse.so.* $BUILD_ROOT/lib
-ln -sfv ../../lib/libfuse.so.2.9.9 $BUILD_ROOT/usr/lib/libfuse.so
 rm -rf $BUILD_ROOT/tmp $BUILD_ROOT/dev
-
-[locations]
-etc/fuse.conf
-etc/udev/
-etc/udev/rules.d/
-etc/udev/rules.d/99-fuse.rules
-lib/libfuse.so.2
-lib/libfuse.so.2.9.9
-sbin/mount.fuse
-usr/bin/fusermount
-usr/bin/ulockmgr_server
-usr/include/fuse.h
-usr/include/fuse/
-usr/include/fuse/cuse_lowlevel.h
-usr/include/fuse/fuse.h
-usr/include/fuse/fuse_common.h
-usr/include/fuse/fuse_common_compat.h
-usr/include/fuse/fuse_compat.h
-usr/include/fuse/fuse_lowlevel.h
-usr/include/fuse/fuse_lowlevel_compat.h
-usr/include/fuse/fuse_opt.h
-usr/include/ulockmgr.h
-usr/lib/libfuse.so
-usr/lib/libulockmgr.so
-usr/lib/libulockmgr.so.1
-usr/lib/libulockmgr.so.1.0.1
-usr/lib/pkgconfig/
-usr/lib/pkgconfig/fuse.pc
-usr/share/man/man1/fusermount.1.gz
-usr/share/man/man1/ulockmgr_server.1.gz
-usr/share/man/man8/mount.fuse.8.gz

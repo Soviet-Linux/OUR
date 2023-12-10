@@ -12,7 +12,7 @@ curl -L $URL | tar -xJ
 
 [install]
 ./configure --prefix=/usr &&
-make $MAKE_FLAGSs
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
 
 [locations]

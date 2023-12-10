@@ -13,5 +13,5 @@ curl -L $URL | tar -xz
 [install]
 ./autogen.sh
 ./configure --prefix=/usr
-make
+make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
