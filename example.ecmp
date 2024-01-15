@@ -5,6 +5,7 @@ version = 1.0.0
 type = src # If your are trying to make a package for a binary change this from "src" to "bin" an place it in the /bin dir
 license = Example
 url = example.com # Here you put the url to the archive or binary file
+sha256 = sha256 checksum of the archive or binary file, can be obtained by downloading the file and running sha256sum "file"
 
 # package description , it can be on multiple lines and we support makdown
 [description] 
