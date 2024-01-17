@@ -21,7 +21,8 @@ examplebuilddep
 
 # A Script to download and extract the archive
 [download]
-curl -L $URL | tar -xz 
+wget $URL
+tar -xzf "file" 
 
 # this is basically a bash script to install the package
 [install] 

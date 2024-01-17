@@ -3,7 +3,7 @@ name = nvim
 version = nightly
 type = bin
 url = https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
-sha256 = 96f5dbaa40f2a5e4a250036897690819e20d35c1bea89d440b6646eb1a5383de
+sha256 = bd38392ce0ad683f1b7789379283f4b0a402d55c26a083367aa235e3cd925472
 
 [download]
 wget $URL 
