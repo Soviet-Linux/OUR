@@ -16,8 +16,8 @@ curl
 attr
 
 [download]
-curl -L $URL --output acl-2.3.1.tar.gz
-tar -xzf acl-2.3.1.tar.gz
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
 
 [install]
 ./configure --prefix=/usr    \

@@ -3,6 +3,7 @@ name = attr
 version = 2.5.1
 type = src
 url = https://de.freedif.org/savannah/$NAME/$NAME-$VERSION.tar.gz
+sha256 = bae1c6949b258a0d68001367ce0c741cebdacdd3b62965d17e5eb23cd78adaf8
 
 [description]
 Utilities to administer the extended attributes on filesystem objects
@@ -12,10 +13,8 @@ make
 wget
 
 [download]
-# Here we are having some problems :
-# The package URL downt work with curl 
-# Maybe because of mirror or redirection
-curl $URL | tar -xz
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
 
 [install]
 
