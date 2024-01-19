@@ -5,6 +5,7 @@ version = 1.0.0
 type = src # If your are trying to make a package for a binary change this from "src" to "bin" an place it in the /bin dir
 license = Example
 url = example.com # Here you put the url to the archive or binary file
+sha256 = sha256 checksum of the archive or binary file, can be obtained by downloading the file and running sha256sum "file"
 
 # package description , it can be on multiple lines and we support makdown
 [description] 
@@ -20,7 +21,8 @@ examplebuilddep
 
 # A Script to download and extract the archive
 [download]
-curl -L $URL | tar -xz 
+wget $URL
+tar -xzf "file" 
 
 # this is basically a bash script to install the package
 [install] 
@@ -29,6 +31,8 @@ curl -L $URL | tar -xz
 # That is usually achived by having:
 make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
+# Notice that there is no need to use sudo as cccp
+# is required to be ran as super user
 
 # this is a bash script that is run after the installation
 [special]
