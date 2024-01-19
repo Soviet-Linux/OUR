@@ -4,7 +4,8 @@ name = autoconf
 version = 2.71
 type = src
 license = GPL-3.0-or-later
-url = https://ftp.gnu.org/gnu/autoconf/autoconf-$VERSION.tar.gz
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.gz
+sha256 = 431075ad0bf529ef13cb41e9042c542381103e80015686222b8a9d4abef42a1c
 
 # package description
 [description]
@@ -21,7 +22,8 @@ make
 gcc
 
 [download]
-curl $URL | tar -xz
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
 
 # this is basically a bash script to install the package
 [install]
