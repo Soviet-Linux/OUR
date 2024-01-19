@@ -3,6 +3,7 @@ name = acl
 version = 2.3.1
 type = src
 url = https://download.savannah.gnu.org/releases/$NAME/$NAME-$VERSION.tar.gz
+sha256 = 760c61c68901b37fdd5eefeeaf4c0c7a26bdfdd8ac747a1edff1ce0e243c11af
 
 [description]
 Utilities to administer Access Control Lists, which are used to define more fine-grained discretionary access rights for files and directories
@@ -15,7 +16,8 @@ curl
 attr
 
 [download]
-curl -L $URL | tar -xz
+curl -L $URL --output acl-2.3.1.tar.gz
+tar -xzf acl-2.3.1.tar.gz
 
 [install]
 ./configure --prefix=/usr    \
