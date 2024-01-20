@@ -24,12 +24,3 @@ tar -xzf $NAME-$VERSION.tar.gz
 		    --disable-nls
 	make $MAKE_FLAGS
 	make DESTDIR=$BUILD_ROOT install
-
-	chmod -v 755 $BUILD_ROOT/usr/lib/libattr.so
-
-	mkdir -p $BUILD_ROOT/lib
-	mv -v $BUILD_ROOT/usr/lib/libattr.so.* $BUILD_ROOT/lib
-	ln -sfv ../../lib/$(readlink $BUILD_ROOT/usr/lib/libattr.so) $BUILD_ROOT/usr/lib/libattr.so
-
-	rm -fr $BUILD_ROOT/usr/share/doc
-
