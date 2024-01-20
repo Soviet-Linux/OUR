@@ -2,15 +2,14 @@
 name = attr
 version = 2.5.1
 type = src
-url = https://de.freedif.org/savannah/$NAME/$NAME-$VERSION.tar.gz
+url = https://download.savannah.gnu.org/releases/attr/attr-2.5.1.tar.gz
 sha256 = bae1c6949b258a0d68001367ce0c741cebdacdd3b62965d17e5eb23cd78adaf8
 
 [description]
 Utilities to administer the extended attributes on filesystem objects
 
-[makedeps]
+[dependencies]
 make
-wget
 
 [download]
 curl -L $URL --output $NAME-$VERSION.tar.gz
