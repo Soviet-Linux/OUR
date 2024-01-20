@@ -8,11 +8,9 @@ sha256 = 760c61c68901b37fdd5eefeeaf4c0c7a26bdfdd8ac747a1edff1ce0e243c11af
 [description]
 Utilities to administer Access Control Lists, which are used to define more fine-grained discretionary access rights for files and directories
 
-[makedeps]
+[dependencies]
 make
 curl
-
-[dependencies]
 attr
 
 [download]
