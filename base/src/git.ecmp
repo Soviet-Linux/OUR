@@ -13,7 +13,8 @@ openssl
 #python2-bin
 
 [download]
-curl $URL | tar -xJ
+curl -L $URL --output $NAME-$VERSION.tar.xz
+tar -xJf $NAME-$VERSION.tar.xz
 
 [install]
 make \
@@ -23,6 +24,5 @@ make \
 	DESTDIR=$BUILD_ROOT install $MAKE_FLAGS
 mkdir -p $BUILD_ROOT/usr/share/git/
 install -m644 ./contrib/completion/git-prompt.sh $BUILD_ROOT/usr/share/git/git-prompt.sh
-rm -r $BUILD_ROOT/usr/share/locale
 
 
