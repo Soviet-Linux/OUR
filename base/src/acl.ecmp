@@ -25,9 +25,4 @@ tar -xzf $NAME-$VERSION.tar.gz
             --libexecdir=/usr/lib
 make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
-chmod -v 755 $BUILD_ROOT/usr/lib/libacl.so
-mkdir -p $BUILD_ROOT/lib
-mv -v $BUILD_ROOT/usr/lib/libacl.so.* $BUILD_ROOT/lib
-ln -sfv ../../lib/$(readlink $BUILD_ROOT/usr/lib/libacl.so) $BUILD_ROOT/usr/lib/libacl.so
-rm -fr $BUILD_ROOT/usr/share/doc
 
