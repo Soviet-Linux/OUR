@@ -5,6 +5,7 @@ version = 8.40
 type = src
 license = MIT
 url = https://kumisystems.dl.sourceforge.net/project/pcre/pcre/8.40/pcre-8.40.tar.gz
+sha256 = 1d75ce90ea3f81ee080cdc04e68c9c25a9fb984861a0618be7bbf676b18eda3e
 
 # package description , it can be on multiple lines and we support markdown
 [description] 

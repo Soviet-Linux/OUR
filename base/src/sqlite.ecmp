@@ -3,6 +3,7 @@ name = sqlite
 version = 3.40.1
 type = src
 url = https://codeload.github.com/sqlite/sqlite/tar.gz/refs/tags/version-3.40.1
+sha256 = b0dba8af0c593d68d07114e3f0bf402885ab8b29e0a32666e57a1725053b822f
 
 [description]
 Software library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine

@@ -3,6 +3,7 @@ name = openssl
 version = 1.1.1t
 type = src
 url = https://www.openssl.org/source/openssl-$VERSION.tar.gz
+sha256 = bf55a9e7a529d3f3639795447a1614a7a39a0df925312515fcd5a9bb7cf5566e
 
 [makedeps]
 pkg-config

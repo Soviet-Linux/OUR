@@ -6,6 +6,7 @@ version = 9.0.0948
 type = src
 license = MIT
 url = https://github.com/vim/vim/archive/v$VERSION/vim-v$VERSION.tar.gz
+sha256 = f0d98cf3005045363066373c6070076f5feaca8de1d34c2d501abc59e90bbc41
 
 # package description , it can be on multiple lines and we support makdown
 [description] 

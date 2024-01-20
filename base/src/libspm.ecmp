@@ -3,6 +3,7 @@ name = libspm
 version = cvs
 type = src
 url = https://github.com/Soviet-Linux/libspm.git
+sha256 = 12d340e5d3630612a6a08ffd5758e6b330f446ba727bc75006107e482b038d10
 
 [dependencies]
 git

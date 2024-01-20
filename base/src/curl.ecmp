@@ -3,6 +3,7 @@ name = curl
 version = 7.75.0
 type = src
 url = https://curl.se/download/curl-$VERSION.tar.gz
+sha256 = 4d51346fe621624c3e4b9f86a8fd6f122a143820e17889f59c18f245d2d8e7a6
 license = MIT
 
 [description]

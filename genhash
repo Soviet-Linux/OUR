@@ -1,0 +1,58 @@
+import os
+import sys
+import requests
+import hashlib
+import re
+from urllib.parse import urlparse
+from urllib.request import urlopen
+ 
+def fetch_and_hash(url, output_dir):
+    parsed_url = urlparse(url)
+    content = urlopen(url).read() if parsed_url.scheme == 'ftp' else requests.get(url).content
+    filename = os.path.join(output_dir, os.path.basename(parsed_url.path))
+    
+    with open(filename, 'wb') as file:
+        file.write(content)
+    
+    sha256_hash = hashlib.sha256(content).hexdigest()
+    return sha256_hash, filename
+ 
+def update_file(input_file, output_dir='/tmp/'):
+    with open(input_file, 'r') as file:
+        content = file.read()
+    
+    url_match = re.search(r'url\s*=\s*(.*)', content)
+    name_match = re.search(r'name\s*=\s*(\S+)', content)
+    version_match = re.search(r'version\s*=\s*(\S+)', content)
+    sha256_match = re.search(r'sha256\s*=\s*(\S+)', content)
+ 
+    if not all((url_match, name_match, version_match)):
+        print("Error: URL, NAME, or VERSION not found in the input file. Exiting.")
+        sys.exit(1)
+ 
+    url, name, version = map(lambda m: m.group(1).strip(), (url_match, name_match, version_match))
+    url = url.replace('$NAME', name).replace('$VERSION', version)
+    
+    sha256_hash, filename = fetch_and_hash(url, output_dir)
+ 
+    if not sha256_match:
+        url_line = re.search(r'url\s*=\s*\S+', content).group(0)
+        updated_content = content.replace(url_line, f'{url_line}\nsha256 = {sha256_hash}')
+    else:
+        updated_content = content
+ 
+    with open(input_file, 'w') as file:
+        file.write(updated_content)
+ 
+    print(f"SHA256 hash added to {input_file}.")
+    print(f"Downloaded file saved to: {filename}")
+ 
+    os.remove(filename)
+    print(f"Downloaded file deleted.")
+ 
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python script.py <input_file>")
+        sys.exit(1)
+    update_file(sys.argv[1])
+ 

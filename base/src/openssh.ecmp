@@ -3,6 +3,7 @@ name = openssh
 version = 9.2p1
 type = src
 url = https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/$NAME-$VERSION.tar.gz
+sha256 = 3f66dbf1655fb45f50e1c56da62ab01218c228807b21338d634ebcdf9d71cf46
 
 [description]
 Free version of the SSH connectivity tools
