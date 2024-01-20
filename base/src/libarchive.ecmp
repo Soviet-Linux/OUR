@@ -4,6 +4,7 @@ version = 3.4.2
 type = src
 license = BSD-3-Clause
 url = http://www.libarchive.org/downloads/libarchive-$VERSION.tar.gz
+sha256 = b60d58d12632ecf1e8fad7316dc82c6b9738a35625746b47ecdcaf4aed176176
 
 [description]
 This package provides a library for working with a variety of archive formats, including tar, cpio, zip, and many others. It includes support for reading, writing, and manipulating archives, as well as for handling various compression and encryption formats.

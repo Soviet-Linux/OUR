@@ -3,6 +3,7 @@ name = libxml2
 type = src
 version = 2.10.3
 url = https://download.gnome.org/sources/libxml2/2.10/libxml2-2.10.3.tar.xz
+sha256 = 5d2cc3d78bec3dbe212a9d7fa629ada25a7da928af432c93060ff5c17ee28a9c
 
 [description]
 The libxml2 package contains libraries and utilities used for parsing XML files. 

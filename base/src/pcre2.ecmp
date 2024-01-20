@@ -4,6 +4,7 @@ name = pcre2
 version = 10.42
 type = src
 url = https://codeload.github.com/PCRE2Project/pcre2/tar.gz/refs/tags/pcre2-10.42
+sha256 = a8e52a9bd1bca8f51c5c24823adc2a99acb12288e289a6507090c1a4a4815010
 
 # package description , it can be on multiple lines and we support markdown
 [description] 

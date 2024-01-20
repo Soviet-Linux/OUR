@@ -3,6 +3,7 @@ name = nano
 type = src
 version = 7.2
 url = https://www.nano-editor.org/dist/v7/$NAME-$VERSION.tar.xz
+sha256 = 86f3442768bd2873cec693f83cdf80b4b444ad3cc14760b74361474fc87a4526
 
 [description]
 The Nano package contains a small, simple text editor which aims to replace Pico, the default editor in the Pine package.

@@ -3,6 +3,7 @@ name = perl-xml-parser
 version = 2.46
 type = src
 url = http://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-$VERSION.tar.gz
+sha256 = d331332491c51cccfb4cb94ffc44f9cd73378e618498d4a37df9e043661c515d
 
 [makedeps]
 automake

@@ -3,6 +3,7 @@ name = sgml-common
 type = src
 version = 0.6.3
 url = https://sourceware.org/ftp/docbook-tools/new-trials/SOURCES/sgml-common-0.6.3.tgz
+sha256 = 7dc418c1d361123ffc5e45d61f1b97257940a8eb35d0bfbbc493381cc5b1f959
 
 [description]
 The SGML Common package contains install-catalog. This is useful for creating and maintaining centralized SGML catalogs. 

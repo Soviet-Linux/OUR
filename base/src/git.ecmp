@@ -3,6 +3,7 @@ name = git
 version = 2.30.2
 type = src
 url = https://mirrors.edge.kernel.org/pub/software/scm/$NAME/$NAME-$VERSION.tar.xz
+sha256 = 41f7d90c71f9476cd387673fcb10ce09ccbed67332436a4cc58d7af32c355faa
 
 [description]
 Version control system designed to handle everything from small to very large projects with speed and efficiency

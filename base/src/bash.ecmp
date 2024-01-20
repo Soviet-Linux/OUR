@@ -3,6 +3,7 @@ name = bash
 version = 5.1
 type = src
 url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.gz
+sha256 = cc012bc860406dcf42f64431bcd3d2fa7560c02915a601aba9cd597a39329baa
 
 [description]
 The Bourne-Again SHell
