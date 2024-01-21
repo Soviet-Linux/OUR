@@ -3,10 +3,11 @@ name = intltool
 version = 0.51.0
 type = src
 license = GPLv2
-url = https://launchpadlibrarian.net/199705878/intltool-0.51.0.tar.gz
+url = https://launchpadlibrarian.net/199705878/$NAME-$VERSION.tar.gz
 sha256 = 67c74d94196b153b774ab9f89b2fa6c6ba79352407037c8c14d5aeb334e959cd
 
-[makedeps]
+[dependencies]
+XML-Parser
 automake
 autoconfig
 make
@@ -14,10 +15,10 @@ wget
 
 [description] # package description , it can be on multiple lines and we support makdown
 The Intltool is an internationalization tool used for extracting translatable strings from source files
-z
+
 [download]
-wget $URL 
-tar -xf $NAME-$VERSION.tar.gz
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
 
 [install]
 sed -i 's:\\\${:\\\$\\{:' intltool-update.in
