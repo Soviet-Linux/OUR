@@ -1,0 +1,28 @@
+[info]
+name = file
+version = 5.45
+type = src
+url = ftp://ftp.astron.com/pub/$NAME/$NAME-$VERSION.tar.gz
+
+[description]
+Utility for determining the type of a given file or files
+
+[dependencies]
+zlib
+xz
+bzip2
+
+[download]
+curl -o $NAME-$VERSION.tar.gz $URL 
+tar -xf $NAME-$VERSION.tar.gz
+
+[install]
+./configure \
+	--prefix=/usr \
+	--enable-fsect-man5 \
+    --enable-static \
+    --disable-libseccomp \
+	--disable-zstdlib
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install
+
