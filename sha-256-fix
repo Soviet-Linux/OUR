@@ -1,0 +1,70 @@
+import os
+import subprocess
+import sys
+import hashlib
+import re
+from urllib.parse import urlparse
+from urllib.request import urlopen
+
+def calculate_sha256(file_path):
+    sha256_hash = hashlib.sha256()
+    with open(file_path, "rb") as file:
+        for byte_block in iter(lambda: file.read(4096), b""):
+            sha256_hash.update(byte_block)
+    return sha256_hash.hexdigest()
+
+def fetch_and_hash(url, output_dir):
+    temp_file_path = "/tmp/temp"
+    command = f"curl -o {temp_file_path} {url}"
+    result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    if result.returncode == 0:
+        sha256_hash = calculate_sha256(temp_file_path)
+        os.remove(temp_file_path)
+        return sha256_hash
+    else:
+        print(f"Error: Could not fetch URL. Please check if it's valid: {result.returncode}")
+        sys.exit(1)
+
+def update_file(input_file, output_dir='/tmp/'):
+    with open(input_file, 'r') as f:
+        content = f.read()
+
+    # Extract URL, NAME, and VERSION from the content
+    url_match = re.search(r'url\s*=\s*(.*)', content)
+    name_match = re.search(r'name\s*=\s*(\S+)', content)
+    version_match = re.search(r'version\s*=\s*(\S+)', content)
+    sha256_match = re.search(r'sha256\s*=\s*(\S+)', content)
+
+    if not (url_match and name_match and version_match):
+        print("URL, NAME, or VERSION not found in the input file. Exiting.")
+        exit(1)
+
+    url = url_match.group(1).strip()
+    name = name_match.group(1).strip()
+    version = version_match.group(1).strip()
+
+    # Replace $NAME and $VERSION in the URL
+    url = url.replace('$NAME', name).replace('$VERSION', version)
+
+    # Fetch and hash the file
+    sha256_hash = fetch_and_hash(url, output_dir)
+
+    # If sha256 line doesn't exist, add it below the url
+    if not sha256_match:
+        url_line = re.search(r'url\s*=\s*\S+', content).group(0)
+        updated_content = content.replace(url_line, f'{url_line}\nsha256 = {sha256_hash}')
+    else:
+        updated_content = content
+
+    # Write the updated content back to the input file
+    with open(input_file, 'w') as f:
+        f.write(updated_content)
+
+    print(f"SHA256 hash added to {input_file}.")
+    print(f"Downloaded file deleted.")
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python script.py <input_file>")
+        exit(1)
+    update_file(sys.argv[1])
