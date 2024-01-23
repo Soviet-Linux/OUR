@@ -1,0 +1,26 @@
+# basic information about the package
+[info]
+name = automake
+version = 1.16
+type = src
+license = GPL-3.0-or-later
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.gz
+sha256 = 80da43bb5665596ee389e6d8b64b4f122ea4b92a685b1dbd813cd1f0e0c2d83f
+
+# package description
+[description]
+GNU Automake is a tool for automatically generating Makefile.in files compliant with the GNU Coding Standards
+
+# the dependencies version support operators are: =, '<','>','<=','>='.
+[dependencies]
+autoconf
+
+[download]
+curl -o $NAME-$VERSION.tar.gz $URL 
+tar -xf $NAME-$VERSION.tar.gz
+
+# this is basically a bash script to install the package
+[install]
+./configure --prefix=/usr
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install
