@@ -3,6 +3,7 @@ name = file
 version = 5.45
 type = src
 url = ftp://ftp.astron.com/pub/$NAME/$NAME-$VERSION.tar.gz
+sha256 = fc97f51029bb0e2c9f4e3bffefdaf678f0e039ee872b9de5c002a6d09c784d82
 
 [description]
 Utility for determining the type of a given file or files
