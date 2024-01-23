@@ -3,31 +3,24 @@ name = acl
 version = 2.3.1
 type = src
 url = https://download.savannah.gnu.org/releases/$NAME/$NAME-$VERSION.tar.gz
+sha256 = 760c61c68901b37fdd5eefeeaf4c0c7a26bdfdd8ac747a1edff1ce0e243c11af
 
 [description]
 Utilities to administer Access Control Lists, which are used to define more fine-grained discretionary access rights for files and directories
 
-[makedeps]
+[dependencies]
 make
 curl
-
-[dependencies]
 attr
 
 [download]
-curl -L $URL | tar -xz
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
 
 [install]
 ./configure --prefix=/usr    \
             --bindir=/bin    \
             --disable-static \
-	    --disable-nls    \
             --libexecdir=/usr/lib
 make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
-chmod -v 755 $BUILD_ROOT/usr/lib/libacl.so
-mkdir -p $BUILD_ROOT/lib
-mv -v $BUILD_ROOT/usr/lib/libacl.so.* $BUILD_ROOT/lib
-ln -sfv ../../lib/$(readlink $BUILD_ROOT/usr/lib/libacl.so) $BUILD_ROOT/usr/lib/libacl.so
-rm -fr $BUILD_ROOT/usr/share/doc
-
