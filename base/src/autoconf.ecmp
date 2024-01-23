@@ -1,10 +1,11 @@
 # basic information about the package
 [info]
 name = autoconf
-version = 2.71
+version = 2.72
 type = src
 license = GPL-3.0-or-later
-url = https://ftp.gnu.org/gnu/autoconf/autoconf-$VERSION.tar.gz
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.gz
+sha256 = afb181a76e1ee72832f6581c0eddf8df032b83e2e0239ef79ebedc4467d92d6e
 
 # package description
 [description]
@@ -14,14 +15,12 @@ Autoconf is an extensible package of M4 macros that produce shell scripts to aut
 [dependencies]
 m4
 perl
-
-# the dependencies needed to build the package
-[makedeps]
 make
 gcc
 
 [download]
-curl $URL | tar -xz
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
 
 # this is basically a bash script to install the package
 [install]
