@@ -1,0 +1,18 @@
+[info]
+name = bison
+version = 3.8
+type = src
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.gz
+sha256 = d5d184d421aee15603939973a6b0f372f908edfb24c5bc740697497021ad9458
+
+[description]
+A parser generator
+
+[download]
+curl -o $NAME-$VERSION.tar.gz $URL 
+tar -xf $NAME-$VERSION.tar.gz
+
+[install]
+./configure --prefix=/usr --disable-nls
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install

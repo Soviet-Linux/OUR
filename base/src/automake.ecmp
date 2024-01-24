@@ -1,15 +1,19 @@
 # basic information about the package
 [info]
-name = autoconf
-version = 2.72
+name = automake
+version = 1.16
 type = src
 license = GPL-3.0-or-later
 url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.gz
-sha256 = afb181a76e1ee72832f6581c0eddf8df032b83e2e0239ef79ebedc4467d92d6e
+sha256 = 80da43bb5665596ee389e6d8b64b4f122ea4b92a685b1dbd813cd1f0e0c2d83f
 
 # package description
 [description]
-Autoconf is an extensible package of M4 macros that produce shell scripts to automatically configure software source code packages.
+GNU Automake is a tool for automatically generating Makefile.in files compliant with the GNU Coding Standards
+
+# the dependencies version support operators are: =, '<','>','<=','>='.
+[dependencies]
+autoconf
 
 [download]
 curl -o $NAME-$VERSION.tar.gz $URL 
