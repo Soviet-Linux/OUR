@@ -1,8 +1,9 @@
 [info]
 name = curl
-version = 7.75.0
+version = 8.5.0
 type = src
-url = https://curl.se/download/curl-$VERSION.tar.gz
+url = https://curl.se/download/$NAME-$VERSION.tar.gz
+sha256 = 05fc17ff25b793a437a0906e0484b82172a9f4de02be5ed447e0cab8c3475add
 license = MIT
 
 [description]
@@ -13,16 +14,14 @@ openssl
 zlib
 
 [download]
-curl $URL | tar -xz
-
-[test]
-make test
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
 
 [install]
 
 ./configure --prefix=/usr   \
             --disable-static \
-            --with-openssl=/etc/ssl \
+            --with-openssl \
             --enable-threaded-resolver \
 	        --without-libidn2 \
 	        --disable-ldap \
