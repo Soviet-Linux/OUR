@@ -1,10 +1,11 @@
 [info] 
 name = expat
-version = 2.2.10
+version = 2.5.0
 type = src
-url = https://master.dl.sourceforge.net/project/expat/expat/2.2.10/expat-2.2.10-RENAMED-VULNERABLE-PLEASE-USE-2.4.7-INSTEAD.tar.gz?viasf=1
+url = https://master.dl.sourceforge.net/project/expat/expat/$VERSION/$NAME-$VERSION.tar.gz?viasf=1
+sha256 = 6b902ab103843592be5e99504f846ec109c1abb692e85347587f237a4ffa1033
 
-[makedeps]
+[dependencies]
 automake
 autoconfig
 make
@@ -15,16 +16,12 @@ A stream oriented C library for parsing XML
 
 
 [download]
-curl -L $URL | tar -xz
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
 
 [install]
-# fix a problem with the regression tests
-sed -i 's|usr/bin/env |bin/|' run.sh.in
+
 ./configure --prefix=/usr --disable-static
 make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
 rm -r $BUILD_ROOT/usr/share/doc
-
-[special] # a script to run after the package is installed
-echo "the package is installed"
-echo "done..."
