@@ -9,14 +9,13 @@ url = https://launchpadlibrarian.net/199705878/intltool-0.51.0.tar.gz
 automake
 autoconfig
 make
-wget
 
-[description] # package description , it can be on multiple lines and we support makdown
+[description]
 The Intltool is an internationalization tool used for extracting translatable strings from source files
-z
+
 [download]
-wget $URL 
-tar -xf $NAME-$VERSION.tar.gz
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
 
 [install]
 sed -i 's:\\\${:\\\$\\{:' intltool-update.in
