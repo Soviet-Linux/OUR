@@ -1,37 +1,25 @@
 [info]
 name = attr
-version = 2.5.1
+version = 2.5.2
 type = src
-url = https://de.freedif.org/savannah/$NAME/$NAME-$VERSION.tar.gz
+url = https://download.savannah.gnu.org/releases/$NAME/$NAME-$VERSION.tar.gz
+sha256 = 39bf67452fa41d0948c2197601053f48b3d78a029389734332a6309a680c6c87
 
 [description]
 Utilities to administer the extended attributes on filesystem objects
 
-[makedeps]
+[dependencies]
 make
-wget
 
 [download]
-# Here we are having some problems :
-# The package URL downt work with curl 
-# Maybe because of mirror or redirection
-curl $URL | tar -xz
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
 
 [install]
 
 	./configure --prefix=/usr \
 	            --bindir=/bin \
 	            --disable-static \
-            	    --sysconfdir=/etc \
-		    --disable-nls
+            	    --sysconfdir=/etc
 	make $MAKE_FLAGS
 	make DESTDIR=$BUILD_ROOT install
-
-	chmod -v 755 $BUILD_ROOT/usr/lib/libattr.so
-
-	mkdir -p $BUILD_ROOT/lib
-	mv -v $BUILD_ROOT/usr/lib/libattr.so.* $BUILD_ROOT/lib
-	ln -sfv ../../lib/$(readlink $BUILD_ROOT/usr/lib/libattr.so) $BUILD_ROOT/usr/lib/libattr.so
-
-	rm -fr $BUILD_ROOT/usr/share/doc
-

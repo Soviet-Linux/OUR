@@ -1,10 +1,11 @@
 # basic information about the package
 [info] 
 name = cmake
-version = 3.7.2
+version = 3.28.1
 type = src
 license = BSD-3-Clause
-url = http://www.cmake.org/files/v3.7/cmake-3.7.2.tar.gz
+url = http://www.cmake.org/files/v3.28/$NAME-$VERSION.tar.gz
+sha256 = 15e94f83e647f7d620a140a7a5da76349fc47a1bfed66d0f5cdee8e7344079ad
 
 # package description , it can be on multiple lines and we support markdown
 [description] 
@@ -17,17 +18,18 @@ curl
 libarchive
 
 [download]
-curl -L $URL | tar -xz
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
 
 # this is basically a bash script to install the package
 [install]
 sed -i '/CMAKE_USE_LIBUV 1/s/1/0/' CMakeLists.txt     &&
 sed -i '/"lib64"/s/64//' Modules/GNUInstallDirs.cmake &&
 
-./bootstrap --prefix=/usr       \
-            --system-libs       \
-            --mandir=/share/man \
+./configure --prefix=/usr       \
             --no-system-jsoncpp \
-            --docdir=/share/doc/cmake-3.7.2 &&
+            --no-system-librhash \
+            --mandir=/share/man \
+            --docdir=/share/doc/cmake-$VERSION &&
 make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install

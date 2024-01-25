@@ -2,17 +2,19 @@
 name = bzip2
 version = 1.0.8
 type = src
-url = https://sourceware.org/pub/bzip2/bzip2-$VERSION.tar.gz
+url = https://sourceware.org/pub/$NAME/$NAME-$VERSION.tar.gz
+sha256 = ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269
 
 [description]
 Programs for compressing and decompressing files
 
-[makedeps]
+[dependencies]
 make
 curl
 
 [download]
-curl $URL | tar -xz
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
 
 [install]
 sed -i 's@\(ln -s -f \)$(PREFIX)/bin/@\1@' Makefile
@@ -22,14 +24,3 @@ make -f Makefile-libbz2_so $MAKE_FLAGS
 make clean
 make $MAKE_FLAGS
 make install PREFIX=$BUILD_ROOT/usr
-mkdir -pv $BUILD_ROOT/bin \
-          $BUILD_ROOT/lib \
-          $BUILD_ROOT/usr/lib
-cp -v bzip2-shared $BUILD_ROOT/bin/bzip2
-cp -av libbz2.so* $BUILD_ROOT/lib
-ln -sv ../../lib/libbz2.so.1.0 $BUILD_ROOT/usr/lib/libbz2.so
-rm -v $BUILD_ROOT/usr/bin/bunzip2 \
-      $BUILD_ROOT/usr/bin/bzcat \
-      $BUILD_ROOT/usr/bin/bzip2
-ln -sv bzip2 $BUILD_ROOT/bin/bunzip2
-ln -sv bzip2 $BUILD_ROOT/bin/bzcat

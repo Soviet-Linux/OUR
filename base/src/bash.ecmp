@@ -1,24 +1,20 @@
 [info]
 name = bash
-version = 5.1
+version = 5.2.9
 type = src
 url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.gz
+sha256 = 68d978264253bc933d692f1de195e2e5b463a3984dfb4e5504b076865f16b6dd
 
 [description]
 The Bourne-Again SHell
 
 [download]
-curl $URL | tar -xz
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
 
 [install]
 ./configure --prefix=/usr \
             --without-bash-malloc \
-            --with-installed-readline \
-	    --disable-nls
+            --with-installed-readline 
 make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
-mkdir -p $BUILD_ROOT/bin
-mv $BUILD_ROOT/usr/bin/bash $BUILD_ROOT/bin
-ln -s bash $BUILD_ROOT/bin/sh
-rm -r $BUILD_ROOT/usr/share/{doc,info}
-
