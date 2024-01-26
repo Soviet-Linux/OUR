@@ -1,17 +1,20 @@
 # basic information about the package
 [info]
 name = libffi
-version = 3.2.1
+version = 3.4.3
 type = src
 license = MIT
-url = ftp://sourceware.org/pub/libffi/libffi-$VERSION.tar.gz
+url = https://gcc.gnu.org/pub/$NAME/$NAME-$VERSION.tar.gz
+sha256 = 4416dd92b6ae8fcb5b10421e711c4d3cb31203d77521a77d85d0102311e6c3b8
 
 # package description
 [description]
 This package contains a portable foreign function interface library. It allows programs to call functions that are implemented in different programming languages.
 
 [download]
-curl -L $URL | tar -xz
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
+
 
 # script to install the package
 [install]
@@ -26,8 +29,3 @@ sed -e '/^includedir/ s/=.*$/=@includedir@/' \
 make $MAKE_FLAGS
 
 make DESTDIR=$BUILD_ROOT install
-
-# script to run after the package is installed
-[special]
-echo "The libffi package is installed"
-echo "done..."
