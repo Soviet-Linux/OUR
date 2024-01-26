@@ -1,18 +1,19 @@
 [info]
 name = git
-version = 2.30.2
+version = 2.9.5
 type = src
-url = https://mirrors.edge.kernel.org/pub/software/scm/$NAME/$NAME-$VERSION.tar.xz
+url = https://mirrors.edge.kernel.org/pub/software/scm/$NAME/$NAME-$VERSION.tar.gz
+sha256 = 8fa575338137d6d850b52d207cf7155cd1f4003ebd698f0fb75f65efb862ef7f
 
 [description]
 Version control system designed to handle everything from small to very large projects with speed and efficiency
 
 [dependencies]
 openssl
-#python2-bin
 
 [download]
-curl $URL | tar -xJ
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
 
 [install]
 make \
@@ -22,6 +23,3 @@ make \
 	DESTDIR=$BUILD_ROOT install $MAKE_FLAGS
 mkdir -p $BUILD_ROOT/usr/share/git/
 install -m644 ./contrib/completion/git-prompt.sh $BUILD_ROOT/usr/share/git/git-prompt.sh
-rm -r $BUILD_ROOT/usr/share/locale
-
-
