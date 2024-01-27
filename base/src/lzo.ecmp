@@ -5,6 +5,7 @@ version = 2.10
 type = src
 license = GPL-2.0
 url = https://www.oberhumer.com/opensource/$NAME/download/$NAME-$VERSION.tar.gz
+sha256 = c0f892943208266f9b6543b3ae308fab6284c5c90e627931446fb49b4221a072
 
 # package description , it can be on multiple lines and we support makdown
 [description] 
@@ -12,8 +13,8 @@ This package contains the LZO data compression library. It is a fast and lightwe
 
 # the dependencies version support operators are: =, '<','>','<=','>='.
 [dependencies] 
-make
-gcc
+#make
+#gcc
 
 [download]
 curl -L $URL --output $NAME-$VERSION.tar.gz
