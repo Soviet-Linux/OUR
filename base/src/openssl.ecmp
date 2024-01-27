@@ -1,16 +1,18 @@
 [info]
 name = openssl
-version = 1.1.1t
+version = 3.2.0
 type = src
-url = https://www.openssl.org/source/openssl-$VERSION.tar.gz
+url = https://www.openssl.org/source/$NAME-$VERSION.tar.gz
+sha256 = 14c826f07c7e433706fb5c69fa9e25dab95684844b4c962a2cf1bf183eb4690e
 
-[makedeps]
+[dependencies]
 pkg-config
 curl
 make
 
 [download]
-curl $URL | tar -xz
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
 
 [install]
 ./config \
@@ -34,6 +36,3 @@ curl $URL | tar -xz
 	make depend
 	make $MAKE_FLAGS
 	make MANSUFFIX=ssl DESTDIR=$BUILD_ROOT install_sw install_ssldirs install_man_docs
-
-
-#[locations]
