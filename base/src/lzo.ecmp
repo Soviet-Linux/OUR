@@ -13,8 +13,8 @@ This package contains the LZO data compression library. It is a fast and lightwe
 
 # the dependencies version support operators are: =, '<','>','<=','>='.
 [dependencies] 
-#make
-#gcc
+make
+gcc
 
 [download]
 curl -L $URL --output $NAME-$VERSION.tar.gz
