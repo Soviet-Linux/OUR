@@ -2,16 +2,18 @@
 name = m4
 version = 1.4.19
 type = src
-url = https://ftp.gnu.org/gnu/m4/m4-1.4.19.tar.gz
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.gz
+sha256 = 3be4a26d825ffdfda52a56fc43246456989a3630093cced3fbddf4771ee58a70
 
 [description]
 GNU M4 is an implementation of the traditional Unix macro processor.
 
-[makedeps]
+[dependencies]
 make
 
 [download]
-curl -L $URL | tar -xz
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
 
 [install]
 ./configure --prefix=/usr 
