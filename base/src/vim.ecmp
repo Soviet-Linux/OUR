@@ -2,20 +2,20 @@
 # basic information about the package
 [info] 
 name = vim
-version = 9.0.0948
+version = 9.1.0059
 type = src
 license = MIT
-url = https://github.com/vim/vim/archive/v$VERSION/vim-v$VERSION.tar.gz
+url = https://codeload.github.com/$NAME/$NAME/tar.gz/refs/tags/v$VERSION
+sha256 = 7463ef80dc13d6a26cef1fa65a8f33c618ed4e324b1e7d133a2458aba1c0848a
 
 # package description , it can be on multiple lines and we support makdown
 [description] 
 Vi Improved, a highly configurable, improved version of the vi text editor
 
-
-
 # the download url can be a local file or a remote url
 [download]
-curl -L $URL | tar -xz 
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
 
 
 # this is basically a bash script to install the package
@@ -52,5 +52,5 @@ endif
 " End /etc/vimrc
 EOF
 
-	ln -sv vim $BUILD_ROOT/usr/bin/vi
+ln -sv vim $BUILD_ROOT/usr/bin/vi
 
