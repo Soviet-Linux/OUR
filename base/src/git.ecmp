@@ -1,9 +1,9 @@
 [info]
 name = git
-version = 2.9.5
+version = 2.43.0
 type = src
 url = https://mirrors.edge.kernel.org/pub/software/scm/$NAME/$NAME-$VERSION.tar.gz
-sha256 = 8fa575338137d6d850b52d207cf7155cd1f4003ebd698f0fb75f65efb862ef7f
+sha256 = ed238f5c72a014f238cc49fe7df4c6883732a3881111b381c105e2c5be77302f
 
 [description]
 Version control system designed to handle everything from small to very large projects with speed and efficiency
