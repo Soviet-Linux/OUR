@@ -1,8 +1,9 @@
 [info]
 name = sqlite
-version = 3.40.1
+version = 3.45.0
 type = src
-url = https://codeload.github.com/sqlite/sqlite/tar.gz/refs/tags/version-3.40.1
+url = https://codeload.github.com/$NAME/$NAME/tar.gz/refs/tags/version-$VERSION
+sha256 = 7d9a5014a5c4dccd1c3532fec62d937750a1ad47fd07cdd4bd2a157dc3bf8944
 
 [description]
 Software library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine
@@ -11,14 +12,13 @@ Software library that implements a self-contained, serverless, zero-configuratio
 zlib
 readline
 ncurses
-
-[makedeps]
 pkg-config
 curl
 make
 
 [download]
-curl $URL | tar -xz
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
 mv $NAME-version-$VERSION $NAME-$VERSION
 
 [install]
@@ -33,14 +33,3 @@ mv $NAME-version-$VERSION $NAME-$VERSION
 	        -DSQLITE_ENABLE_FTS3_TOKENIZER=1"
 make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
-
-
-[locations]
-usr/bin/sqlite3
-usr/include/sqlite3.h
-usr/include/sqlite3ext.h
-usr/lib/libsqlite3.so
-usr/lib/libsqlite3.so.0
-usr/lib/libsqlite3.so.0.8.6
-usr/lib/pkgconfig/sqlite3.pc
-usr/share/man/man1/sqlite3.1.gz
