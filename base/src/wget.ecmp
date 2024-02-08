@@ -1,0 +1,26 @@
+[info] 
+name = wget
+version = 1.22.0
+type = src
+license = GPL-3.0
+url = https://ftp.gnu.org/gnu/wget/wget-latest.tar.gz
+sha256 = 81542f5cefb8faacc39bbbc6c82ded80e3e4a88505ae72ea51df27525bcde04c
+
+[description] 
+wget is package for retrieving files using HTTP, HTTPS, FTP and FTPS
+it is a non-interactive commandline tool
+
+[download]
+curl $URL
+tar -xzf "wget-latest.tar.gz" 
+
+[install] 
+cd wget-latest
+./configure
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install
+rm wget-latest.tar.gz
+rm -r wget-latest
+
+[special]
+echo "Installation complete!"
