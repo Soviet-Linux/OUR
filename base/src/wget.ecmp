@@ -11,10 +11,10 @@ wget is package for retrieving files using HTTP, HTTPS, FTP and FTPS
 it is a non-interactive commandline tool
 
 [download]
-curl -f $URL --output wget-latest.tar.gz
-tar -xzf "wget-latest.tar.gz"
+curl -f $URL --output wget-$VERSION.tar.gz
+tar -xzf "wget-$VERSION.tar.gz"
 
 [install] 
-./configure
+./configure --prefix=/usr
 make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
