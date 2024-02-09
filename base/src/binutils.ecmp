@@ -1,0 +1,22 @@
+[info]
+name = binutils
+version = 2.42
+type = src
+license = GPL
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.gz
+sha256 = 5d2a6c1d49686a557869caae08b6c2e83699775efd27505e01b2f4db1a024ffc
+
+[description]
+The GNU Binutils are a collection of binary tools, As well as some libraries. Most of these programs use BFD, the Binary File Descriptor library, to do low-level manipulation. Many of them also use the opcodes library to assemble and disassemble machine instructions.
+
+The binutils have been ported to most major Unix variants as well as Wintel systems, and their main reason for existence is to give the GNU system (and GNU/Linux) the facility to compile and link programs.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+./configure --prefix=/usr
+
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install
