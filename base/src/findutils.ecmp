@@ -1,0 +1,22 @@
+# basic information about the package
+[info]
+name = findutils
+version = 4.9.0
+type = src
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.xz
+sha256 = a2bfb8c09d436770edc59f50fa483e785b161a3b7b9d547573cb08065fd462fe
+
+# package description , it can be on multiple lines and we support markdown
+[description]
+The Findutils package contains programs to find files. These programs are provided to recursively search through a
+directory tree and to create, maintain, and search a database
+
+[download]
+curl  $URL -o $NAME-$VERSION.tar.xz
+tar -xf $NAME-$VERSION.tar.xz
+
+# this is basically a bash script to install the package
+[install]
+./configure --prefix=/usr --localstatedir=/var/lib/locate
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install
