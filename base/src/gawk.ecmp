@@ -1,0 +1,19 @@
+[info]
+name = gawk
+version = 5.3.0
+type = src
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.gz
+sha256 = 378f8864ec21cfceaa048f7e1869ac9b4597b449087caf1eb55e440d30273336
+
+[description]
+The Gawk package contains programs for manipulating text files.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+sed -i 's/extras//' Makefile.in
+./configure --prefix=/usr
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install
