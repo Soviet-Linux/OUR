@@ -1,0 +1,21 @@
+[info]
+name = diffutils
+version = 3.10
+type = src
+license = GPL
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.xz
+sha256 = 90e5e93cc724e4ebe12ede80df1634063c7a855692685919bfe60b556c9bd09e
+
+[description]
+GNU Diffutils is a package of several programs related to finding differences between files.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.xz
+tar -xf $NAME-$VERSION.tar.xz
+
+[install]
+./configure --prefix=/usr
+
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install
+
