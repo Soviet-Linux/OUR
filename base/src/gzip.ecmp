@@ -1,0 +1,18 @@
+[info]
+name = gzip
+version = 1.13
+type = src
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.gz
+sha256 = 20fc818aeebae87cdbf209d35141ad9d3cf312b35a5e6be61bfcfbf9eddd212a
+
+[description]
+The Gzip package contains programs for compressing and decompressing files.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+./configure --prefix=/usr
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install
