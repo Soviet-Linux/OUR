@@ -1,0 +1,22 @@
+[info]
+name = gmp
+version = 6.3.0
+type = src
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.gz
+sha256 = e56fd59d76810932a0555aa15a14b61c16bed66110d3c75cc2ac49ddaa9ab24c
+
+[description]
+The GMP package contains math libraries. These have useful functions for arbitrary precision arithmetic.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+./configure --prefix=/usr    \
+            --enable-cxx     \
+            --disable-static \
+            --docdir=/usr/share/doc/$NAME-$VERSION
+make $MAKE_FLAGS
+make html
+make DESTDIR=$BUILD_ROOT install
