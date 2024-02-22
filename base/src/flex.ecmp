@@ -1,0 +1,27 @@
+[info]
+name = flex
+version = 2.6.4
+type = src
+url = https://github.com/westes/$NAME/files/981163/$NAME-$VERSION.tar.gz
+sha256 = e87aae032bf07c26f85ac0ed3250998c37621d95f8bd748b31f15b33c45ee995
+
+[description]
+
+The Flex package contains a utility for generating programs that recognize patterns in text.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+./configure --prefix=/usr \
+            --docdir=/usr/share/doc/$NAME-$VERSION \
+            --disable-static
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install
+
+# A few programs do not know about flex yet and try to run its predecessor, lex. To support those programs, create a
+# symbolic link named lex that runs flex in lex emulation mode:
+
+ln -sv flex $BUILD_ROOT/usr/bin/lex
+ln -sv flex.1 $BUILD_ROOT/usr/share/man/man1/lex.1
