@@ -13,11 +13,11 @@ Example
 
 # Here you type any dependencies this program needes on runtime
 [dependencies]
-exampledep
+example-1
 
-# Here you type any dependencies this program needes on build time
-[makedependencies]
-examplebuilddep
+# Here you type any optional dependencies this program might need
+[optional]
+example-2
 
 # A Script to download and extract the archive
 [download]
