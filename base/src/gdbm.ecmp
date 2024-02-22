@@ -1,0 +1,21 @@
+[info]
+name = gdbm
+version = 1.23
+type = src
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.gz
+sha256 = 74b1081d21fff13ae4bd7c16e5d6e504a4c26f7cde1dca0d963a484174bbcacd
+
+[description]
+
+The GDBM package contains the GNU Database Manager. It is a library of database functions that uses extensible hashing and works like the standard UNIX dbm. The library provides primitives for storing key/data pairs, searching and retrieving the data by its key and deleting a key along with its data.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+./configure --prefix=/usr    \
+            --disable-static \
+            --enable-libgdbm-compat
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install
