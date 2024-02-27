@@ -22,12 +22,12 @@ if [ "$INPUT_0" != "${answer#[Yy]}" ] ;then
     ./configure --prefix=/usr    \
             --enable-cxx     \
             --disable-static \
+            --host=x86_64-pc-linux-gnu \
             --docdir=/usr/share/doc/$NAME-$VERSION
 else
     ./configure --prefix=/usr    \
                 --enable-cxx     \
                 --disable-static \
-                --host=x86_64-pc-linux-gnu \
                 --docdir=/usr/share/doc/$NAME-$VERSION
 fi
 
