@@ -1,0 +1,28 @@
+[info]
+name = expect
+version = 5.45.4
+type = src
+url =  https://sourceforge.net/projects/$NAME/files/Expect/$VERSION/$NAME$VERSION.tar.gz
+sha256 = 49a7da83b0bdd9f46d04a04deec19c7767bb9a323e40c4781f89caf760b92c34
+
+[description]
+
+The Expect package contains tools for automating, via scripted dialogues, interactive applications such as telnet, ftp,
+passwd, fsck, rlogin, and tip. Expect is also useful for testing these same applications as well as easing all sorts of
+tasks that are prohibitively difficult with anything else. The DejaGnu framework is written in Expect.
+
+[download]
+curl -L -o $NAME-$VERSION.tar.gz $URL
+tar -xf $NAME-$VERSION.tar.gz
+
+# This is here because cccp expects src dir to be $NAME and $VERSION separated by a dash
+mv $NAME$VERSION $NAME-$VERSION
+
+[install]
+./configure --prefix=/usr \
+    --with-tcl=/usr/lib \
+    --enable-shared \
+    --mandir=/usr/share/man \
+    --with-tclinclude=/usr/include
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install
