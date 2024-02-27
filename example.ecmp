@@ -2,10 +2,13 @@
 [info] 
 name = example
 version = 1.0.0
-type = src # If your are trying to make a package for a binary change this from "src" to "bin" an place it in the /bin dir
+ # If your are trying to make a package for a binary change this from "src" to "bin" an place it in the /bin dir
+type = src
 license = Example
-url = example.com # Here you put the url to the archive or binary file
-sha256 = sha256 checksum of the archive or binary file, can be obtained by downloading the file and running sha256sum "file"
+# Here you put the url to the archive or binary file
+url = example.com 
+# checksum of the archive or binary file can be obtained by downloading the file and running sha256sum "file"
+sha256 = sha256sum
 
 # package description , it can be on multiple lines and we support makdown
 [description] 
@@ -19,10 +22,20 @@ example-1
 [optional]
 example-2
 
+[inputs]
+
+# Use this to ask the user something, be aware that the input
+# might be Y or N, since those can be passed by default form cccp
+# so you should have sensible defaults in case that happens
+
+this is a question, users input will be stored in $INPUT_n
+this is a second question, users input will be stored in $INPUT_1
+this is a third question, users input will be stored in $INPUT_2
+
 # A Script to download and extract the archive
 [download]
-wget $URL
-tar -xzf "file" 
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
 
 # this is basically a bash script to install the package
 [install] 
