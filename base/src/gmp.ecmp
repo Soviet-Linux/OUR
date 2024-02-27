@@ -17,18 +17,19 @@ tar -xzf $NAME-$VERSION.tar.gz
 
 [install]
 
-if [ "$INPUT_0" != "${answer#[Yy]}" ] ;then
+if [[ "$INPUT_0" != @(Y|y) ]]; then
+    echo USING CUSTOM
+    ./configure --prefix=/usr    \
+                --enable-cxx     \
+                --disable-static \
+                --docdir=/usr/share/doc/$NAME-$VERSION
+else
     echo USING GENERIC
     ./configure --prefix=/usr    \
             --enable-cxx     \
             --disable-static \
             --host=x86_64-pc-linux-gnu \
             --docdir=/usr/share/doc/$NAME-$VERSION
-else
-    ./configure --prefix=/usr    \
-                --enable-cxx     \
-                --disable-static \
-                --docdir=/usr/share/doc/$NAME-$VERSION
 fi
 
 make $MAKE_FLAGS
