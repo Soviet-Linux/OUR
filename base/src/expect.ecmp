@@ -12,7 +12,7 @@ passwd, fsck, rlogin, and tip. Expect is also useful for testing these same appl
 tasks that are prohibitively difficult with anything else. The DejaGnu framework is written in Expect.
 
 [download]
-curl -o $NAME-$VERSION.tar.gz $URL
+curl -L -o $NAME-$VERSION.tar.gz $URL
 tar -xf $NAME-$VERSION.tar.gz
 
 # This is here because cccp expects src dir to be $NAME and $VERSION separated by a dash
