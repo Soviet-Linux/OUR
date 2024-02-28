@@ -1,15 +1,15 @@
 [info]
 name = zlib
-version = 1.3
+version = 1.3.1
 type = src
 url = https://zlib.net/$NAME-$VERSION.tar.xz
-sha256 = dd16fb1d67bfab79a72f5e8390735c49e3e8e70b4945a15ab1f81ddb78658fb3
+sha256 = 38ef96b8dfe510d42707d9c781877914792541133e1870841463bfa73f883e32
 
 [description]
 Compression and decompression routines used by some programs
 
 [download]
-curl -o $NAME-$VERSION.tar.gz $URL 
+curl -o $NAME-$VERSION.tar.gz $URL
 tar -xf $NAME-$VERSION.tar.gz
 
 [install]
