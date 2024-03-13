@@ -1,0 +1,21 @@
+[info]
+name = groff
+version = 1.23.0
+type = src
+license = GPL
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.gz
+sha256 = 6b9757f592b7518b4902eb6af7e54570bdccba37a871fddb2d30ae3863511c13
+
+[description]
+
+groff is a typesetting system that reads plain text input files that include formatting commands to produce output in PostScript, PDF, HTML, or DVI formats or for display to a terminal. Formatting commands can be low-level typesetting primitives, macros from a supplied package, or user-defined macros. All three approaches can be combined.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+./configure --prefix=/usr
+
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install
