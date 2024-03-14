@@ -1,0 +1,19 @@
+[info]
+name = flit-core
+version = 3.9.0
+type = src
+url = https://pypi.org/packages/source/f/$NAME/flit_core-$VERSION.tar.gz
+sha256 = 72ad266176c4a3fcfab5f2930d76896059851240570ce9a98733b658cb786eba
+
+[description]
+
+Flit-core is the distribution-building parts of Flit, a packaging tool for simple Python modules.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
+mv flit_core-$VERSION $NAME-$VERSION
+
+[install]
+pip3 wheel -w dist --no-cache-dir --no-build-isolation --no-deps $PWD
+pip3 install --target $BUILD_ROOT --no-index --no-user --find-links dist flit_core
