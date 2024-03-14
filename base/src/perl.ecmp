@@ -5,12 +5,6 @@ type = src
 url = https://www.cpan.org/src/5.0/$NAME-$VERSION.tar.gz
 sha256 = a0a31534451eb7b83c7d6594a497543a54d488bc90ca00f5e34762577f40655e
 
-[dependencies]
-automake
-autoconfig
-make
-wget
-
 [description] # package description , it can be on multiple lines and we support makdown
 The Practical Extraction and Report Language
 

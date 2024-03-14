@@ -12,15 +12,6 @@ sha256 = 6d6ee863a3bc26c87661093a74ec63e10fd031ceba714642d21636dfe25e3e00
 This package provides a command-line tool for running commands with superuser privileges.
 It is commonly used to allow users to execute commands as the root user or another user with elevated privileges.
 
-# the dependencies version support operators are: =, '<','>','<=','>='.
-[dependencies] 
-
-# the dependencies needed to build the package
-[makedeps] 
-libtool
-autoconf
-automake
-
 [download]
 curl -L $URL --output $NAME-$VERSION.tar.gz
 tar -xzf $NAME-$VERSION.tar.gz

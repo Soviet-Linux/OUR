@@ -8,14 +8,6 @@ sha256 = 7d9a5014a5c4dccd1c3532fec62d937750a1ad47fd07cdd4bd2a157dc3bf8944
 [description]
 Software library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine
 
-[dependencies]
-zlib
-readline
-ncurses
-pkg-config
-curl
-make
-
 [download]
 curl -L $URL --output $NAME-$VERSION.tar.gz
 tar -xzf $NAME-$VERSION.tar.gz

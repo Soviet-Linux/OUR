@@ -8,9 +8,6 @@ sha256 = 3be4a26d825ffdfda52a56fc43246456989a3630093cced3fbddf4771ee58a70
 [description]
 GNU M4 is an implementation of the traditional Unix macro processor.
 
-[dependencies]
-make
-
 [download]
 curl -L $URL --output $NAME-$VERSION.tar.gz
 tar -xzf $NAME-$VERSION.tar.gz

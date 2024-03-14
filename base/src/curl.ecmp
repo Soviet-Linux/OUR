@@ -9,10 +9,6 @@ license = MIT
 [description]
 Utility and a library used for transferring files
 
-[dependencies]
-openssl
-zlib
-
 [download]
 curl -L $URL --output $NAME-$VERSION.tar.gz
 tar -xzf $NAME-$VERSION.tar.gz

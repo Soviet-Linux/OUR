@@ -12,11 +12,6 @@ sha256 = 15e94f83e647f7d620a140a7a5da76349fc47a1bfed66d0f5cdee8e7344079ad
 This package provides a cross-platform build system generator.
 It is widely used for generating makefiles and build scripts for various platforms and compilers.
 
-# the dependencies version support operators are: =, '<','>','<=','>='.
-[dependencies] 
-curl
-libarchive
-
 [download]
 curl -L $URL --output $NAME-$VERSION.tar.gz
 tar -xzf $NAME-$VERSION.tar.gz

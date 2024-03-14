@@ -8,9 +8,6 @@ sha256 = ed238f5c72a014f238cc49fe7df4c6883732a3881111b381c105e2c5be77302f
 [description]
 Version control system designed to handle everything from small to very large projects with speed and efficiency
 
-[dependencies]
-openssl
-
 [download]
 curl -L $URL --output $NAME-$VERSION.tar.gz
 tar -xzf $NAME-$VERSION.tar.gz
