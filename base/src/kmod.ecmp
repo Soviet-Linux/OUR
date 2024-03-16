@@ -26,7 +26,7 @@ make DESTDIR=$BUILD_ROOT install
 
 # “sanitized” kernel headers or smthing
 for target in depmod insmod modinfo modprobe rmmod; do
-  ln -sfv $BUILD_ROOT/bin/kmod /usr/sbin/$target
+  ln -sfv /bin/kmod /usr/sbin/$target
 done
 
 ln -sfv kmod /usr/bin/lsmod
