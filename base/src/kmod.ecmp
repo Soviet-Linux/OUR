@@ -1,0 +1,33 @@
+[info]
+name = kmod
+version = 31
+type = src
+license = LGPL
+url = https://www.kernel.org/pub/linux/utils/kernel/$NAME/$NAME-$VERSION.tar.xz
+sha256 = f5a6949043cc72c001b728d8c218609c5a15f3c33d75614b78c79418fcf00d80
+
+[description]
+The Kmod package contains libraries and utilities for loading kernel modules
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.xz
+tar -xJf $NAME-$VERSION.tar.xz
+
+[install]
+./configure --prefix=/usr          \
+            --sysconfdir=/etc      \
+            --with-openssl         \
+            --with-xz              \
+            --with-zstd            \
+            --with-zlib
+
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install
+
+# “sanitized” kernel headers or smthing
+for target in depmod insmod modinfo modprobe rmmod; do
+  ln -sfv /bin/kmod /usr/sbin/$target
+done
+
+ln -sfv kmod /usr/bin/lsmod
+
