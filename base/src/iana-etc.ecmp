@@ -1,0 +1,16 @@
+[info]
+name = iana-etc
+version = 20240125
+type = src
+url = https://github.com/Mic92/$NAME/releases/download/$VERSION/$NAME-$VERSION.tar.gz
+sha256 = b829c47815182bfd14998c05a34bdd85eefda542fa6120de378add0094064275
+
+[description]
+The Iana-Etc package provides data for network services and protocols.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+mkdir $BUILD_ROOT/etc && cp services protocols $BUILD_ROOT/etc
