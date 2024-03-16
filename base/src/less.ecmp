@@ -1,0 +1,19 @@
+[info]
+name = less
+version = 643
+type = src
+license = GPL
+url = https://www.greenwoodsoftware.com/less/less-643.tar.gz
+sha256 = 2911b5432c836fa084c8a2e68f6cd6312372c026a58faaa98862731c8b6052e8
+
+[description]
+The Less package contains a text file viewer.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+./configure --prefix=/usr --sysconfdir=/etc
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install
