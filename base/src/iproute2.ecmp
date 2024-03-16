@@ -1,0 +1,20 @@
+[info]
+name = iproute2
+version = 6.7.0
+type = src
+license = GPLv2
+url = https://www.kernel.org/pub/linux/utils/net/$NAME/$NAME-$VERSION.tar.xz
+sha256 = ff942dd9828d7d1f867f61fe72ce433078c31e5d8e4a78e20f02cb5892e8841d
+
+[description]
+The IPRoute2 package contains programs for basic and advanced IPV4-based networking.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.xz
+tar -xJf $NAME-$VERSION.tar.xz
+
+[install]
+sed -i /ARPD/d Makefile
+rm -fv man/man8/arpd.8
+make $MAKE_FLAGS NETNS_RUN_DIR=/run/netns
+make SBINDIR=/usr/sbin DESTDIR=$BUILD_ROOT install
