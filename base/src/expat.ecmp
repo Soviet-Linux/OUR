@@ -5,12 +5,6 @@ type = src
 url = https://master.dl.sourceforge.net/project/expat/expat/$VERSION/$NAME-$VERSION.tar.gz?viasf=1
 sha256 = 6b902ab103843592be5e99504f846ec109c1abb692e85347587f237a4ffa1033
 
-[dependencies]
-automake
-autoconfig
-make
-git
-
 [description] # package description , it can be on multiple lines and we support makdown
 A stream oriented C library for parsing XML
 

@@ -11,11 +11,6 @@ sha256 = c0f892943208266f9b6543b3ae308fab6284c5c90e627931446fb49b4221a072
 [description] 
 This package contains the LZO data compression library. It is a fast and lightweight compression algorithm that is widely used in many applications.
 
-# the dependencies version support operators are: =, '<','>','<=','>='.
-[dependencies] 
-make
-gcc
-
 [download]
 curl -L $URL --output $NAME-$VERSION.tar.gz
 tar -xzf $NAME-$VERSION.tar.gz

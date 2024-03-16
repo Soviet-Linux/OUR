@@ -9,10 +9,6 @@ sha256 = df404eb7222cf30b4f8f93828677890a2986b66ff8bf39dac32a804e96ddf104
 [description]
 This package provides a library for working with a variety of archive formats, including tar, cpio, zip, and many others. It includes support for reading, writing, and manipulating archives, as well as for handling various compression and encryption formats.
 
-[dependencies]
-autoconf
-automake
-
 [download]
 curl -L $URL --output $NAME-$VERSION.tar.gz
 tar -xzf $NAME-$VERSION.tar.gz

@@ -5,11 +5,6 @@ type = src
 url = https://github.com/Soviet-Linux/libspm.git
 sha256 = "development version, none"
 
-[dependencies]
-git
-sqlite
-curl
-
 [download]
 git clone $URL
 mv libspm libspm-cvs

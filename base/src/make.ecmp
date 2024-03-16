@@ -8,11 +8,6 @@ sha256 = dd16fb1d67bfab79a72f5e8390735c49e3e8e70b4945a15ab1f81ddb78658fb3
 [description]
 Program for compiling packages
 
-[dependencies]
-zlib
-xz
-bzip2
-
 [download]
 curl -o $NAME-$VERSION.tar.gz $URL 
 tar -xf $NAME-$VERSION.tar.gz
