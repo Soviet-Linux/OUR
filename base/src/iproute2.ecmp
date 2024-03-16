@@ -16,5 +16,5 @@ tar -xJf $NAME-$VERSION.tar.xz
 [install]
 sed -i /ARPD/d Makefile
 rm -fv man/man8/arpd.8
-make NETNS_RUN_DIR=/run/netns
+make $MAKE_FLAGS NETNS_RUN_DIR=/run/netns
 make SBINDIR=/usr/sbin DESTDIR=$BUILD_ROOT install
