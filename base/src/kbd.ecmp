@@ -15,9 +15,7 @@ tar -xJf $NAME-$VERSION.tar.xz
 
 [install]
 #This is bad, we should have a variable for every repo, I will make it later.
-#curl -L https://raw.githubusercontent.com/Soviet-Linux/OUR/main/base/patches/kbd-2.6.4-backspace-1.patch --output kbd-2.6.4-backspace-1.patch
-
-curl -L https://raw.githubusercontent.com/AleksArt000/OUR/kbd/base/patches/kbd-2.6.4-backspace-1.patch --output kbd-2.6.4-backspace-1.patch
+curl -L https://raw.githubusercontent.com/Soviet-Linux/OUR/main/base/patch/kbd-2.6.4-backspace-1.patch --output kbd-2.6.4-backspace-1.patch
 patch -Np1 -i kbd-2.6.4-backspace-1.patch
 
 sed -i '/RESIZECONS_PROGS=/s/yes/no/' configure
