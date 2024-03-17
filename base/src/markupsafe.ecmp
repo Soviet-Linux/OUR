@@ -7,8 +7,7 @@ url = https://pypi.org/packages/source/M/$NAME/$NAME-$VERSION.tar.gz
 sha256 = d283d37a890ba4c1ae73ffadf8046435c76e7bc2247bbb63c00bd1a709c6544b
 
 [description]
-
-Flit-core is the distribution-building parts of Flit, a packaging tool for simple Python modules.
+MarkupSafe is a Python module that implements an XML/HTML/XHTML Markup safe string.
 
 [download]
 curl -L $URL --output $NAME-$VERSION.tar.gz
