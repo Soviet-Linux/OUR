@@ -1,0 +1,26 @@
+[info]
+name = kbd
+version = 2.6.4
+type = src
+license = GPL
+url = https://www.kernel.org/pub/linux/utils/$NAME/$NAME-$VERSION.tar.xz
+sha256 = 519f8d087aecca7e0a33cd084bef92c066eb19731666653dcc70c9d71aa40926
+
+[description]
+The Kbd package contains key-table files, console fonts, and keyboard utilities.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.xz
+tar -xJf $NAME-$VERSION.tar.xz
+
+[install]
+#This is bad, we should have a variable for every repo, I will make it later.
+curl -L https://raw.githubusercontent.com/Soviet-Linux/OUR/main/base/patch/kbd-2.6.4-backspace-1.patch --output kbd-2.6.4-backspace-1.patch
+patch -Np1 -i kbd-2.6.4-backspace-1.patch
+
+sed -i '/RESIZECONS_PROGS=/s/yes/no/' configure
+sed -i 's/resizecons.8 //' docs/man/man8/Makefile.in
+
+./configure --prefix=/usr --disable-vlock
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install
