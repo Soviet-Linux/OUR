@@ -1,0 +1,29 @@
+[info]
+name = man-db
+type = src
+version = 2.12.0
+url = https://download.savannah.gnu.org/releases/$NAME/$NAME-$VERSION.tar.xz
+sha256 = 497360e423cf0bd99eacdb7c6215dea92e6d6e89ee940393c2bae0e77cb9b7d0
+
+[description]
+The Man-DB package contains programs for finding and viewing man pages.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.xz
+tar -xJf $NAME-$VERSION.tar.xz
+
+[install]
+./configure --prefix=/usr                         \
+            --docdir=/usr/share/doc/$NAME-$VERSION \
+            --sysconfdir=/etc                     \
+            --disable-setuid                      \
+            --enable-cache-owner=bin              \
+            --with-browser=/usr/bin/lynx          \
+            --with-vgrind=/usr/bin/vgrind         \
+            --with-grap=/usr/bin/grap             \
+            --with-systemdtmpfilesdir=            \
+            --with-systemdsystemunitdir=
+make
+make DESTDIR=$BUILD_ROOT install
+
+
