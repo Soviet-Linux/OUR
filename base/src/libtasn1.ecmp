@@ -1,0 +1,23 @@
+# basic information about the package
+[info]
+name = libtasn1
+version = 4.19.0
+type = src
+license = LGPL
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.gz
+sha256 = 1613f0ac1cf484d6ec0ce3b8c06d56263cc7242f1c23b30d82d23de345a63f7a
+
+# package description
+[description]
+Libtasn1 is the ASN.1 library used by GnuTLS, p11-kit and some other packages. It was originally written by Fabio Fiorina, and now maintained as a GNU package.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
+
+
+# script to install the package
+[install]
+./configure --prefix=/usr
+make
+make DESTDIR=$BUILD_ROOT install
