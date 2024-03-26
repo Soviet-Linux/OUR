@@ -1,0 +1,19 @@
+[info]
+name = libcap
+version = 2.69
+type = src
+license = BSD-3-Clause
+url = https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/$NAME-$VERSION.tar.xz
+sha256 = f311f8f3dad84699d0566d1d6f7ec943a9298b28f714cae3c931dfd57492d7eb
+
+[description]
+The Libcap package implements the userspace interface to the POSIX 1003.1e capabilities available in Linux kernels. These capabilities partition the all-powerful root privilege into a set of distinct privileges.
+
+[download]
+curl -L $URL -o $NAME-$VERSION.tar.xz
+tar -xf $NAME-$VERSION.tar.xz
+
+[install]
+sed -i '/install -m.*STA/d' libcap/Makefile
+make prefix=/usr lib=lib
+make prefix=$BUILD_ROOT/usr lib=lib install
