@@ -1,0 +1,19 @@
+[info]
+name = mpc
+version = 1.3.1
+type = src
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.gz
+sha256 = ab642492f5cf882b74aa0cb730cd410a81edcdbec895183ce930e706c1c759b8
+
+[description]
+A library for the arithmetic of complex numbers with arbitrarily high precision and correct rounding of the result
+
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+./configure --prefix=/usr
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install
