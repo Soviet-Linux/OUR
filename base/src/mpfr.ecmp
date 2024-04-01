@@ -1,0 +1,18 @@
+[info]
+name = mpfr
+version = 4.2.1
+type = src
+url = https://www.mpfr.org/$NAME-$VERSION/$NAME-$VERSION.tar.xz
+sha256 = 277807353a6726978996945af13e52829e3abd7a9a5b7fb2793894e18f1fcbb2
+
+[description]
+Functions for multiple precision math
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.xz
+tar -xf $NAME-$VERSION.tar.xz
+
+[install]
+./configure --prefix=/usr
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install
