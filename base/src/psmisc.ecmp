@@ -1,0 +1,21 @@
+[info]
+name = psmisc
+version = 23.6
+type = src
+url = https://sourceforge.net/projects/$NAME/files/$NAME/$NAME-$VERSION.tar.xz
+sha256 = 257dde06159a4c49223d06f1cccbeb68933a4514fc8f1d77c64b54f0d108822a
+
+[description]
+Programs for displaying information about running processes
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.xz
+tar -xf $NAME-$VERSION.tar.xz
+
+[install]
+./configure --prefix=/usr --disable-nls
+make
+make DESTDIR=$BUILD_ROOT install
+mkdir -p $BUILD_ROOT/bin
+mv -v $BUILD_ROOT/usr/bin/fuser   $BUILD_ROOT/bin
+mv -v $BUILD_ROOT/usr/bin/killall $BUILD_ROOT/bin
