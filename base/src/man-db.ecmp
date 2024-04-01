@@ -3,7 +3,7 @@ name = man-db
 type = src
 version = 2.12.0
 url = https://download.savannah.gnu.org/releases/$NAME/$NAME-$VERSION.tar.xz
-sha256 = 497360e423cf0bd99eacdb7c6215dea92e6d6e89ee940393c2bae0e77cb9b7d0
+sha256 = 415a6284a22764ad22ff0f66710d853be7790dd451cd71436e3d25c74d996a95
 
 [description]
 The Man-DB package contains programs for finding and viewing man pages.
