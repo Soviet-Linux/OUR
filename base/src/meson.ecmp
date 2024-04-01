@@ -1,0 +1,17 @@
+[info]
+name = meson
+version = 1.4.0
+type = src
+url = https://github.com/mesonbuild/meson/archive/refs/tags/$VERSION.tar.gz
+sha256 = 61382f295378bddcd9bebb3a9a9065b1cbc671fa41b80964ab02726f9a5f3a88
+
+[description]
+Open source build system meant to be both extremely fast, and, even more importantly, as user friendly as possible
+
+[download]
+curl -L $URL --output $VERSION.tar.gz
+tar -xzf $VERSION.tar.gz
+
+[install]
+python3 setup.py build
+python3 setup.py install --root=$BUILD_ROOT
