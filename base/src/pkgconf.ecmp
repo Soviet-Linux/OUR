@@ -1,0 +1,20 @@
+[info]
+name = pkgconf
+version = 2.2.0
+type = src
+url = https://github.com/$NAME/$NAME/archive/refs/tags/$NAME-$VERSION.tar.gz
+sha256 = 2c72cbf37b2d42a9fbf7ed8f0e5432a0b0925481f67995a21ecf77962a6000bc
+
+[description]
+package compiler and linker metadata toolkit 
+
+[download]
+curl -L $URL --output $NAME-$NAME-$VERSION.tar.gz
+tar -xzf $NAME-$NAME-$VERSION.tar.gz
+mv $NAME-$NAME-$VERSION $NAME-$VERSION
+
+[install]
+./autogen.sh
+./configure --prefix=/usr
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install
