@@ -1,0 +1,17 @@
+[info]
+name = ninja
+version = 1.11.1
+type = src
+url = https://github.com/ninja-build/ninja/archive/refs/tags/v$VERSION.tar.gz
+sha256 = 31747ae633213f1eda3842686f83c2aa1412e0f5691d1c14dbbcc67fe7400cea
+
+[description]
+Small build system with a focus on speed
+
+[download]
+curl -L $URL --output v$VERSION.tar.gz
+tar -xzf v$VERSION.tar.gz
+
+[install]
+python3 ./configure.py --bootstrap
+install -Dm755 ninja $BUILD_ROOT/usr/bin/ninja
