@@ -1,0 +1,21 @@
+[info]
+name = procps-ng
+version = 4.0.4
+type = src
+url = https://sourceforge.net/projects/$NAME/files/Production/$NAME-$VERSION.tar.xz
+sha256 = 22870d6feb2478adb617ce4f09a787addaf2d260c5a8aa7b17d889a962c5e42e
+
+[description]
+Programs for monitoring processes
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.xz
+tar -xf $NAME-$VERSION.tar.xz
+
+[install]
+./configure --prefix=/usr \
+            --exec-prefix= \
+            --disable-static \
+            --disable-kill 
+make
+make DESTDIR=$BUILD_ROOT install
