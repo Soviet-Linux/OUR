@@ -1,0 +1,22 @@
+[info]
+name = libxcrypt
+version = 4.4.36
+type = src
+license = LGPL
+url = https://github.com/besser82/$NAME/releases/download/v$VERSION/$NAME-$VERSION.tar.xz
+sha256 = e5e1f4caee0a01de2aee26e3138807d6d3ca2b8e67287966d1fefd65e1fd8943
+
+[description]
+The Libxcrypt package contains a modern library for one-way hashing of passwords.
+[download]
+curl -L $URL -o $NAME-$VERSION.tar.xz
+tar -xf $NAME-$VERSION.tar.xz
+
+[install]
+./configure --prefix=/usr                \
+            --enable-hashes=strong,glibc \
+            --enable-obsolete-api=no     \
+            --disable-static             \
+            --disable-failure-tokens
+make
+make DESTDIR=$BUILD_ROOT install
