@@ -1,0 +1,18 @@
+[info]
+name = ncurses
+version = 6.4
+type = src
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.gz
+sha256 = 6931283d9ac87c5073f30b6290c4c75f21632bb4fc3603ac8100812bed248159
+
+[description]
+Libraries for terminal-independent handling of character screens
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+./configure --prefix=/usr
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install
