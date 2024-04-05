@@ -1,0 +1,18 @@
+[info]
+name = patch
+version = 2.7
+type = src
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.gz
+sha256 = 59c29f56faa0a924827e6a60c6accd6e2900eae5c6aaa922268c717f06a62048
+
+[description]
+A program for modifying or creating files by applying a “patch” file typically created by the diff program
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+./configure --prefix=/usr 
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install
