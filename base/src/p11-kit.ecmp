@@ -14,9 +14,8 @@ curl -L $URL --output $NAME-$VERSION.tar.xz
 tar -xJf $NAME-$VERSION.tar.xz
 
 [install]
-meson setup $BUILD_ROOT   \
+meson setup _build   \
       --prefix=/usr       \
       --buildtype=release 
-cd $BUILD_ROOT
-meson compile
-meson install
+meson compile -C _build
+DESTDIR=$BUILD_ROOT meson install -C _build
