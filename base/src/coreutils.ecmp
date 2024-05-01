@@ -1,0 +1,31 @@
+[info] 
+name = coreutils
+version = 9.5
+type = src
+license = GPLv3
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.xz
+sha256 = cd328edeac92f6a665de9f323c93b712af1858bc2e0d88f3f7100469470a1b8a
+
+[description] 
+The Coreutils package contains the basic utility programs needed by every operating system. 
+
+[download]
+curl -O $URL
+tar xf $NAME-$VERSION.tar.xz
+
+[install]
+# Patch from LFS: POSIX requires that programs from Coreutils recognize character boundaries correctly even in multibyte locales. The following patch fixes this non-compliance and other internationalization-related bugs.
+cp $SOVIET_REPOS_DIR/OUR/base/patch/coreutils-$VERSION-i18n-1.patch coreutils-$VERSION-i18n-1.patch
+patch -Np1 -i ./coreutils-$VERSION-i18n-1.patch
+# Fix a security vulnerability in the split utility: 
+sed -e '/n_out += n_hold/,+4 s|.*bufsize.*|//&|' -i src/split.c
+# The patch for internationalization has modified the build system, so the configuration files must be regenerated.
+autoreconf -fiv
+# FORCE_UNSAFE_CONFIGURE allows the package to be built by the root user.
+# The purpose of the --enable-no-install switch is to prevent Coreutils from installing programs that will be installed by other packages. 
+FORCE_UNSAFE_CONFIGURE=1 ./configure --prefix=/usr --enable-no-install-program=kill,uptime
+make $MAKE_FLAGS
+make install
+# Move programs to the locations specified by the FHS:
+mv -v /usr/share/man/man1/chroot.1 /usr/share/man/man8/chroot.8
+sed -i 's/"1"/"8"/' /usr/share/man/man8/chroot.8
