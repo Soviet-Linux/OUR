@@ -19,6 +19,5 @@ tar -xzf $NAME-$VERSION.tar.gz
 # script to install the package
 [install]
 ./configure --prefix=/usr
-make $MAKE_FLAGS
-
+make
 make DESTDIR=$BUILD_ROOT install
