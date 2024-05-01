@@ -1,0 +1,20 @@
+[info]
+name = tar
+type = src
+version = 1.35
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.xz
+sha256 = 4d62ff37342ec7aed748535323930c7cf94acf71c3591882b26a7ea50f3edc16
+
+[description]
+ The Tar package provides the ability to create tar archives as well as perform various other kinds of archive manipulation. Tar can be used on previously created archives to extract files, to store additional files, or to update or list files which were already stored. 
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.xz
+tar -xJf $NAME-$VERSION.tar.xz
+
+[install]
+FORCE_UNSAFE_CONFIGURE=1  \
+./configure --prefix=/usr
+make
+make DESTDIR=$BUILD_ROOT install
+make -C doc install-html docdir=$BUILD_ROOT/usr/share/doc/$NAME-$VERSION
