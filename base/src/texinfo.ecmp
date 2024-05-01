@@ -1,0 +1,19 @@
+[info]
+name = texinfo
+version = 7.1
+type = src
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.xz
+sha256 = deeec9f19f159e046fdf8ad22231981806dac332cc372f1c763504ad82b30953
+
+[description]
+GNU stream editor
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.xz
+tar -xJf $NAME-$VERSION.tar.xz
+
+[install]
+./configure --prefix=/usr
+make
+make DESTDIR=$BUILD_ROOT install
+make TEXMF=$BUILD_ROOT/usr/share/texmf install-tex
