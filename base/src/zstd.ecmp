@@ -1,0 +1,17 @@
+[info]
+name = zstd
+version = 1.5.5
+type = src
+url = https://github.com/facebook/$NAME/releases/download/v$VERSION/$NAME-$VERSION.tar.gz
+sha256 = 9c4396cc829cfae319a6e2615202e82aad41372073482fce286fac78646d3ee4
+
+[description]
+Zstandard is a real-time compression algorithm, providing high compression ratios. It offers a very wide range of compression / speed trade-offs, while being backed by a very fast decoder. 
+
+[download]
+curl -L -o $NAME-$VERSION.tar.gz $URL
+tar -xf $NAME-$VERSION.tar.gz
+
+[install]
+make prefix=/usr
+make DESTDIR=$BUILD_ROOT prefix=/usr install
