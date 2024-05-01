@@ -6,7 +6,7 @@ url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.xz
 sha256 = deeec9f19f159e046fdf8ad22231981806dac332cc372f1c763504ad82b30953
 
 [description]
-GNU stream editor
+The Texinfo package contains programs for reading, writing, and converting info pages. 
 
 [download]
 curl -L $URL --output $NAME-$VERSION.tar.xz
