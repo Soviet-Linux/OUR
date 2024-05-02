@@ -1,0 +1,43 @@
+[info]
+name = shadow
+type = src
+version = 4.14.5
+url = https://github.com/shadow-maint/$NAME/releases/download/$VERSION/$NAME-$VERSION.tar.xz
+sha256 = cba74bc7b05d89c015afe23131f9159ece38779d40a8af4cf162852e6e85ca23
+
+[description]
+ The Shadow package contains programs for handling passwords in a secure way. 
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.xz
+tar -xJf $NAME-$VERSION.tar.xz
+
+[install]
+#  Disable the installation of the groups program and its man pages, as Coreutils provides a better version.
+sed -i 's/groups$(EXEEXT) //' src/Makefile.in
+find man -name Makefile.in -exec sed -i 's/groups\.1 / /'   {} \;
+find man -name Makefile.in -exec sed -i 's/getspnam\.3 / /' {} \;
+find man -name Makefile.in -exec sed -i 's/passwd\.5 / /'   {} \;
+
+#Instead of using the default crypt method, use the much more secure YESCRYPT method of password encryption, which also allows passwords longer than 8 characters.
+sed -e 's:#ENCRYPT_METHOD DES:ENCRYPT_METHOD YESCRYPT:' \
+    -e 's:/var/spool/mail:/var/mail:'                   \
+    -e '/PATH=/{s@/sbin:@@;s@/bin:@@}'                  \
+    -i etc/login.defs
+
+# The file /usr/bin/passwd needs to exist because its location is hardcoded in some programs;
+touch $BUILD_ROOT/usr/bin/passwd
+
+./configure --sysconfdir=/etc   \
+            --disable-static    \
+            --with-{b,yes}crypt \
+            --without-libbsd    \
+            --with-group-name-max-length=32
+make
+make DESTDIR=$BUILD_ROOT exec_prefix=/usr install
+make DESTDIR=$BUILD_ROOT -C man install-man
+
+pwconv
+grpconv
+mkdir -p $BUILD_ROOT/etc/default
+useradd -D --gid 999
