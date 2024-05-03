@@ -10,7 +10,7 @@ sha256 = be28112dac813d2053545c14bf13a16401a21877f1a69eb6ea5d84c4a0f3d870
 The Python 3 package contains the Python development environment. It is useful for object-oriented programming, writing scripts, prototyping large programs, and developing entire applications. Python is an interpreted computer language. 
 
 [download]
-curl -O $URL
+curl -L $URL --output $NAME-$VERSION.tar.xz
 tar xf $NAME-$VERSION.tar.xz
 
 [install]
