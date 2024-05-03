@@ -14,8 +14,8 @@ tar -xf $NAME-$VERSION.tar.xz
 
 [install]
 ./configure --prefix=/usr \
-            --exec-prefix= \
             --disable-static \
-            --disable-kill 
+            --disable-kill \
+            --with-systemd
 make
 make DESTDIR=$BUILD_ROOT install
