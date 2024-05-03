@@ -1,0 +1,27 @@
+[info]
+name = readline
+version = 8.2
+type = src
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.gz
+sha256 = 3feb7171f16a84ee82ca18a36d7b9be109a52c04f492a053331d7d1095007c35
+
+[description]
+The Readline package is a set of libraries that offer command-line editing and history capabilities. 
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+sed -i '/MV.*old/d' Makefile.in
+sed -i '/{OLDSUFF}/c:' support/shlib-install
+
+cp $SOVIET_REPOS_DIR/OUR/base/patch/readline-8.2-upstream_fixes-3.patch readline-8.2-upstream_fixes-3.patch
+patch -Np1 -i readline-8.2-upstream_fixes-3.patch
+
+./configure --prefix=/usr    \
+            --disable-static \
+            --with-curses    \
+            --docdir=/usr/share/doc/$NAME-$VERSION
+make SHLIB_LIBS="-lncursesw"
+make SHLIB_LIBS="-lncursesw" DESTDIR=$BUILD_ROOT install
