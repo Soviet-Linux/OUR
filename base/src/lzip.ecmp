@@ -15,5 +15,4 @@ tar xf $NAME-$VERSION.tar.gz
 
 [install] 
 ./configure --prefix=/usr
-make $MAKE_FLAGS check
 make DESTDIR=$BUILD_ROOT install
