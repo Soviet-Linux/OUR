@@ -1,0 +1,204 @@
+Submitted By:            Xi Ruoyao <xry111 at xry111 dot site>
+Date:                    2024-02-10
+Initial Package Version: 255
+Origin:                  Upstream (PR 30549 and 30363)
+Upstream Status:         Applied
+Description:             Fixes CVE-2023-7008, a security vulnerability in
+                         DNSSEC verification allowing a MITM attack.  And
+                         Fix a bug breaking "systemd-analyze verify" an
+                         instantiated unit.
+
+From f56136eb9f7e1bb0f34cd1bace60c4c02a0ed6ea Mon Sep 17 00:00:00 2001
+From: Michal Sekletar <msekleta@redhat.com>
+Date: Wed, 20 Dec 2023 16:44:14 +0100
+Subject: [PATCH] resolved: actually check authenticated flag of SOA
+ transaction
+
+Fixes #25676
+---
+ src/resolve/resolved-dns-transaction.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/resolve/resolved-dns-transaction.c b/src/resolve/resolved-dns-transaction.c
+index 696fce532a41f..fe88e502e7c11 100644
+--- a/src/resolve/resolved-dns-transaction.c
++++ b/src/resolve/resolved-dns-transaction.c
+@@ -2808,7 +2808,7 @@ static int dns_transaction_requires_rrsig(DnsTransaction *t, DnsResourceRecord *
+                         if (r == 0)
+                                 continue;
+ 
+-                        return FLAGS_SET(t->answer_query_flags, SD_RESOLVED_AUTHENTICATED);
++                        return FLAGS_SET(dt->answer_query_flags, SD_RESOLVED_AUTHENTICATED);
+                 }
+ 
+                 return true;
+@@ -2835,7 +2835,7 @@ static int dns_transaction_requires_rrsig(DnsTransaction *t, DnsResourceRecord *
+                         /* We found the transaction that was supposed to find the SOA RR for us. It was
+                          * successful, but found no RR for us. This means we are not at a zone cut. In this
+                          * case, we require authentication if the SOA lookup was authenticated too. */
+-                        return FLAGS_SET(t->answer_query_flags, SD_RESOLVED_AUTHENTICATED);
++                        return FLAGS_SET(dt->answer_query_flags, SD_RESOLVED_AUTHENTICATED);
+                 }
+ 
+                 return true;
+
+From 6d9d55657946385916fa4db7149a9b389645ee73 Mon Sep 17 00:00:00 2001
+From: Yu Watanabe <watanabe.yu+github@gmail.com>
+Date: Thu, 7 Dec 2023 19:29:29 +0900
+Subject: [PATCH 1/2] analyze: also find template unit when a template instance
+ is specified
+
+Fixes a regression caused by 2f6181ad4d6c126e3ebf6880ba30b3b0059c6fc8.
+
+Fixes #30357.
+
+Co-authored-by: Jeff King <peff@peff.net>
+---
+ src/analyze/analyze-verify-util.c | 64 +++++++++++++++++++++++++------
+ 1 file changed, 53 insertions(+), 11 deletions(-)
+
+diff --git a/src/analyze/analyze-verify-util.c b/src/analyze/analyze-verify-util.c
+index 26d1130477123..6fbd6fa54c37d 100644
+--- a/src/analyze/analyze-verify-util.c
++++ b/src/analyze/analyze-verify-util.c
+@@ -72,6 +72,54 @@ int verify_prepare_filename(const char *filename, char **ret) {
+         return 0;
+ }
+ 
++static int find_unit_directory(const char *p, char **ret) {
++        _cleanup_free_ char *a = NULL, *u = NULL, *t = NULL, *d = NULL;
++        int r;
++
++        assert(p);
++        assert(ret);
++
++        r = path_make_absolute_cwd(p, &a);
++        if (r < 0)
++                return r;
++
++        if (access(a, F_OK) >= 0) {
++                r = path_extract_directory(a, &d);
++                if (r < 0)
++                        return r;
++
++                *ret = TAKE_PTR(d);
++                return 0;
++        }
++
++        r = path_extract_filename(a, &u);
++        if (r < 0)
++                return r;
++
++        if (!unit_name_is_valid(u, UNIT_NAME_INSTANCE))
++                return -ENOENT;
++
++        /* If the specified unit is an instance of a template unit, then let's try to find the template unit. */
++        r = unit_name_template(u, &t);
++        if (r < 0)
++                return r;
++
++        r = path_extract_directory(a, &d);
++        if (r < 0)
++                return r;
++
++        free(a);
++        a = path_join(d, t);
++        if (!a)
++                return -ENOMEM;
++
++        if (access(a, F_OK) < 0)
++                return -errno;
++
++        *ret = TAKE_PTR(d);
++        return 0;
++}
++
+ int verify_set_unit_path(char **filenames) {
+         _cleanup_strv_free_ char **ans = NULL;
+         _cleanup_free_ char *joined = NULL;
+@@ -79,21 +127,15 @@ int verify_set_unit_path(char **filenames) {
+         int r;
+ 
+         STRV_FOREACH(filename, filenames) {
+-                _cleanup_free_ char *a = NULL;
+-                char *t;
++                _cleanup_free_ char *t = NULL;
+ 
+-                r = path_make_absolute_cwd(*filename, &a);
+-                if (r < 0)
++                r = find_unit_directory(*filename, &t);
++                if (r == -ENOMEM)
+                         return r;
+-
+-                if (access(a, F_OK) < 0)
+-                        continue;
+-
+-                r = path_extract_directory(a, &t);
+                 if (r < 0)
+-                        return r;
++                        continue;
+ 
+-                r = strv_consume(&ans, t);
++                r = strv_consume(&ans, TAKE_PTR(t));
+                 if (r < 0)
+                         return r;
+         }
+
+From 9d51ab78300364c71a0e1f138e1d2cbc65771b93 Mon Sep 17 00:00:00 2001
+From: Yu Watanabe <watanabe.yu+github@gmail.com>
+Date: Fri, 8 Dec 2023 10:41:49 +0900
+Subject: [PATCH 2/2] test: add test cases for issue #30357
+
+---
+ test/units/testsuite-65.sh | 38 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 38 insertions(+)
+
+diff --git a/test/units/testsuite-65.sh b/test/units/testsuite-65.sh
+index 265a07f01d810..6c819dfe4a4ee 100755
+--- a/test/units/testsuite-65.sh
++++ b/test/units/testsuite-65.sh
+@@ -296,6 +296,44 @@ EOF
+ # Verifies that the --offline= option works with --root=
+ systemd-analyze security --threshold=90 --offline=true --root=/tmp/img/ testfile.service
+ 
++cat <<EOF >/tmp/foo@.service
++[Service]
++ExecStart=ls
++EOF
++
++cat <<EOF >/tmp/hoge@test.service
++[Service]
++ExecStart=ls
++EOF
++
++# issue #30357
++pushd /tmp
++systemd-analyze verify foo@bar.service
++systemd-analyze verify foo@.service
++systemd-analyze verify hoge@test.service
++(! systemd-analyze verify hoge@nonexist.service)
++(! systemd-analyze verify hoge@.service)
++popd
++pushd /
++systemd-analyze verify tmp/foo@bar.service
++systemd-analyze verify tmp/foo@.service
++systemd-analyze verify tmp/hoge@test.service
++(! systemd-analyze verify tmp/hoge@nonexist.service)
++(! systemd-analyze verify tmp/hoge@.service)
++popd
++pushd /usr
++systemd-analyze verify ../tmp/foo@bar.service
++systemd-analyze verify ../tmp/foo@.service
++systemd-analyze verify ../tmp/hoge@test.service
++(! systemd-analyze verify ../tmp/hoge@nonexist.service)
++(! systemd-analyze verify ../tmp/hoge@.service)
++popd
++systemd-analyze verify /tmp/foo@bar.service
++systemd-analyze verify /tmp/foo@.service
++systemd-analyze verify /tmp/hoge@test.service
++(! systemd-analyze verify /tmp/hoge@nonexist.service)
++(! systemd-analyze verify /tmp/hoge@.service)
++
+ # Added an additional "INVALID_ID" id to the .json to verify that nothing breaks when input is malformed
+ # The PrivateNetwork id description and weight was changed to verify that 'security' is actually reading in
+ # values from the .json file when required. The default weight for "PrivateNetwork" is 2500, and the new weight
