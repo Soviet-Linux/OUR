@@ -1,0 +1,19 @@
+[info]
+name = make-ca
+version = 1.13
+type = src
+url =  https://github.com/lfs-book/$NAME/releases/download/v$VERSION/$NAME-$VERSION.tar.xz
+sha256 = 8671a196bc3e46287bbdf745475697d07fa46bb337071f81509d2b4359cdbbe8
+
+[description]
+Public Key Infrastructure (PKI) is a method to validate the authenticity of an otherwise unknown entity across untrusted networks. 
+
+[download]
+curl -L -o $NAME-$VERSION.tar.xz $URL 
+tar -xJf $NAME-$VERSION.tar.xz
+
+[install]
+make DESTDIR=$BUILD_ROOT install
+install -vdm755 $BUILD_ROOT/etc/ssl/local
+/usr/sbin/make-ca -g
+systemctl enable update-pki.timer
