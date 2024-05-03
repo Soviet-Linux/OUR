@@ -1,0 +1,43 @@
+[info] 
+name = glibc
+version = 2.39
+type = src
+license = GPL2
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.xz
+sha256 = f77bd47cf8170c57365ae7bf86696c118adb3b120d3259c64c502d3dc1e2d926
+
+[description] 
+The GNU C Library - The project provides the core libraries for the GNU system and GNU/Linux systems, as well as many other systems that use Linux as the kernel. These libraries provide critical APIs including ISO C11, POSIX.1-2008, BSD, OS-specific APIs and more. These APIs include such foundational facilities as open, read, write, malloc, printf, getaddrinfo, dlopen, pthread_create, crypt, login, exit and more. 
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.xz
+tar xf $NAME-$VERSION.tar.xz
+
+[install]
+# Patch 1 - Some of the Glibc programs use the non-FHS compliant /var/db directory to store their runtime data. Apply the following patch to make such programs store their runtime data in the FHS-compliant locations:
+cp $SOVIET_REPOS_DIR/OUR/base/patch/$NAME-$VERSION-fhs-1.patch
+patch -Np1 -i $NAME-$VERSION-fhs-1.patch
+# Patch 2 - $ix a security vulnerability:
+cp $SOVIET_REPOS_DIR/OUR/base/patch/$NAME-$VERSION-upstream_fix-2.patch
+patch -Np1 -i $NAME-$VERSION-upstream_fix-2.patch
+
+mkdir build
+cd build
+../configure \
+--prefix=/usr \
+--disable-werror \
+--enable-kernel=4.14 \
+--enable-stack-protector=strong \
+--with-headers=/usr/include \
+--disable-nscd \
+--enable-cet
+make $MAKE_FLAGS
+# Fix the Makefile to skip an outdated sanity check that fails with a modern Glibc configuration: 
+sed '/test-installation/s@$(PERL)@echo not running@' -i ../Makefile
+make DESTDIR=$BUILD_ROOT install
+# Fix a hardcoded path to the executable loader in the ldd script:
+sed '/RTLDLIST=/s@/usr@@g' -i /usr/bin/ldd
+# add all the locales
+echo 'Installing Locales...'
+make DESTDIR=$BUILD_ROOT localedata/install-locales
+localedef -i C -f UTF-8 C.UTF-8
