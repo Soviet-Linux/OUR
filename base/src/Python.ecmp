@@ -1,0 +1,22 @@
+[info] 
+name = Python
+version = 3.12.2
+type = src
+license = PSF
+url = https://www.python.org/ftp/python/$VERSION/Python-$VERSION.tar.xz
+sha256 = be28112dac813d2053545c14bf13a16401a21877f1a69eb6ea5d84c4a0f3d870
+
+[description]
+The Python 3 package contains the Python development environment. It is useful for object-oriented programming, writing scripts, prototyping large programs, and developing entire applications. Python is an interpreted computer language. 
+
+[download]
+curl -O $URL
+tar xf $NAME-$VERSION.tar.xz
+
+[install]
+./configure --prefix=/usr        \
+            --enable-shared      \
+            --with-system-expat  \
+            --enable-optimizations
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install
