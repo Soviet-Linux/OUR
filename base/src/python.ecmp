@@ -1,5 +1,5 @@
 [info] 
-name = Python
+name = python
 version = 3.12.2
 type = src
 license = PSF
