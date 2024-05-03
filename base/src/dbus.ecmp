@@ -1,0 +1,32 @@
+[info] 
+name = dbus
+version = 1.14.10
+type = src
+license = GPL-2.0
+url = https://dbus.freedesktop.org/releases/$NAME/$NAME-$VERSION.tar.xz
+sha256 = ba1f21d2bd9d339da2d4aa8780c09df32fea87998b73da24f49ab9df1e36a50f
+
+[description] 
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.xz
+tar xf $NAME-$VERSION.tar.xz
+
+[install] 
+./configure --prefix=/usr \
+            --sysconfdir=/etc \
+            --localstatedir=/var \
+            --runstatedir=/run \
+            --enable-user-session \
+            --disable-doxygen-docs \
+            --disable-xml-docs \
+            --disable-static \
+            --enable-systemd \
+            --docdir=/usr/share/doc/dbus-$VERSION \
+            --with-system-socket=/run/dbus/system_bus_socket
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install
+
+#From LFS: If you are using a DESTDIR install, dbus-daemon-launch-helper needs to be fixed afterwards. Issue, as root user:
+chown -v root:messagebus /usr/libexec/dbus-daemon-launch-helper
+chmod -v      4750       /usr/libexec/dbus-daemon-launch-helper
