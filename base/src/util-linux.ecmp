@@ -29,6 +29,6 @@ tar xf $NAME-$VERSION.tar.xz
             --disable-static      \
             --without-python      \
             ADJTIME_PATH=/var/lib/hwclock/adjtime \
-            --docdir=/usr/share/doc/util-linux-2.4
+            --docdir=/usr/share/doc/util-linux-$VERSION
 make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
