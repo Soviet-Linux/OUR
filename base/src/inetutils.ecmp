@@ -1,0 +1,32 @@
+[info] 
+name = inetutils
+version = 2.5
+type = src
+license = GPLv3
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.xz
+sha256 = 87697d60a31e10b5cb86a9f0651e1ec7bee98320d048c0739431aac3d5764fb6
+
+[description] 
+The Inetutils package contains programs for basic networking. 
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.xz
+tar xf $NAME-$VERSION.tar.xz
+
+[install] 
+#  --disable-logger: This option prevents Inetutils from installing the logger program, which is used by scripts to pass messages to the System Log Daemon. Do not install it because Util-linux installs a more recent version.
+#  --disable-whois: This option disables the building of the Inetutils whois client, which is out of date.
+#  --disable-r*: These parameters disable building obsolete programs that should not be used due to security issues. The functions provided by these programs can be provided by the openssh package
+#  --disable-servers: This disables the installation of the various network servers included as part of the Inetutils package. Some are insecure by nature and are only considered safe on trusted networks. Note that better replacements are available for many of these servers.
+./configure --prefix=/usr        \
+            --bindir=/usr/bin    \
+            --localstatedir=/var \
+            --disable-logger     \
+            --disable-whois      \
+            --disable-rcp        \
+            --disable-rexec      \
+            --disable-rlogin     \
+            --disable-rsh        \
+            --disable-servers
+make $MAKE_FLAGS
+make DESTDIR=$BUILD_ROOT install
