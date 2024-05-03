@@ -22,7 +22,7 @@ tar xf $NAME-$VERSION.tar.xz
             --disable-xml-docs \
             --disable-static \
             --enable-systemd \
-            --docdir=/usr/share/doc/dbus-1.14.10 \
+            --docdir=/usr/share/doc/dbus-$VERSION \
             --with-system-socket=/run/dbus/system_bus_socket
 make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
