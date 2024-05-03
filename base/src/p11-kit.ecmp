@@ -1,0 +1,21 @@
+[info]
+name = p11-kit
+version = 0.25.3
+type = src
+license = LGPL
+url = https://github.com/p11-glue/$NAME/releases/download/$VERSION/$NAME-$VERSION.tar.xz
+sha256 = d8ddce1bb7e898986f9d250ccae7c09ce14d82f1009046d202a0eb1b428b2adc
+
+[description]
+p11-kit is a library and utilities that provide a standard configuration and convenience functions for loading and enumerating PKCS#11 modules.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.xz
+tar -xJf $NAME-$VERSION.tar.xz
+
+[install]
+meson setup _build   \
+      --prefix=/usr       \
+      --buildtype=release 
+meson compile -C _build
+DESTDIR=$BUILD_ROOT meson install -C _build
