@@ -47,6 +47,7 @@ meson setup \
 ninja $MAKE_FLAGS
 DESTDIR=$BUILD_ROOT ninja install
 
+[special]
 # Create the /etc/machine-id file needed by systemd-journald:
 systemd-machine-id-setup
 
