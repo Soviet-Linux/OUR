@@ -13,9 +13,6 @@ curl -L $URL --output $NAME-$VERSION.tar.xz
 tar -xf $NAME-$VERSION.tar.xz
 
 [install]
-./configure --prefix=/usr --disable-nls
+./configure --prefix=/usr
 make
 make DESTDIR=$BUILD_ROOT install
-mkdir -p $BUILD_ROOT/bin
-mv -v $BUILD_ROOT/usr/bin/fuser   $BUILD_ROOT/bin
-mv -v $BUILD_ROOT/usr/bin/killall $BUILD_ROOT/bin
