@@ -25,8 +25,7 @@ curl -L $URL --output $NAME-$VERSION.tar.xz
 tar xf $NAME-$VERSION.tar.xz
 
 [install]
-mkdir -pv $BUILD_ROOT/opt/rustc-1.77.0      &&
-ln -svfn $BUILD_ROOT/opt/rustc-1.77.0 $BUILD_ROOT/opt/rustc
+mkdir -pv $BUILD_ROOT/opt/rustc
 
 # A suitable config.toml file which will configure the build. 
 cat << EOF > config.toml
@@ -45,8 +44,9 @@ tools = ["cargo", "clippy", "rustdoc", "rustfmt"]
 vendor = true
 
 ?[install]
-prefix = "$BUILD_ROOT/opt/rustc-1.77.0"
-docdir = "$BUILD_ROOT/share/doc/rustc-1.77.0"
+# There are some wonky stuff with links to directories
+prefix = "$BUILD_ROOT/opt/rustc"
+docdir = "$BUILD_ROOT/share/doc/rustc"
 
 ?[rust]
 channel = "stable"
@@ -68,9 +68,9 @@ python3 x.py build
 python3 x.py install rustc std &&
 python3 x.py install --stage=1 cargo clippy rustfmt
 
-rm -fv $BUILD_ROOT/opt/rustc-1.77.0/share/doc/rustc-1.77.0/*.old   &&
+rm -fv $BUILD_ROOT/opt/rustc/share/doc/rustc/*.old   &&
 install DESTDIR=$BUILD_ROOT -vm644 README.md                                \
-               /opt/rustc-1.77.0/share/doc/rustc-1.77.0 &&
+               /opt/rustc/share/doc/rustc &&
 
 install DESTDIR=$BUILD_ROOT -vdm755 /usr/share/zsh/site-functions      &&
 ln -sfv /opt/rustc/share/zsh/site-functions/_cargo \
@@ -87,4 +87,5 @@ PATH="$PATH:/opt/rustc/bin"
 # End /etc/profile.d/rustc.sh
 EOF
 
+# Does not work, will probably have to ask the user to systemctl --user daemon-reload or smth
 source $BUILD_ROOT/etc/profile.d/rustc.sh
