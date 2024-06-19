@@ -6,8 +6,8 @@ url = https://static.rust-lang.org/dist/$NAME-$VERSION.tar.xz
 sha256 = 66126989782cbf77fa3aff121bbb108429f2d46fe19328c3de231553de711b90
 
 [dependencies]
-cmake 
-curl 
+cmake
+curl
 
 [optional]
 libssh2
@@ -25,7 +25,6 @@ curl -L $URL --output $NAME-$VERSION.tar.xz
 tar xf $NAME-$VERSION.tar.xz
 
 [install]
-mkdir -pv $BUILD_ROOT/opt/rustc
 
 # A suitable config.toml file which will configure the build. 
 cat << EOF > config.toml
@@ -44,9 +43,8 @@ tools = ["cargo", "clippy", "rustdoc", "rustfmt"]
 vendor = true
 
 ?[install]
-# There are some wonky stuff with links to directories
-prefix = "$BUILD_ROOT/opt/rustc"
-docdir = "$BUILD_ROOT/share/doc/rustc"
+prefix = "$BUILD_ROOT/usr"
+docdir = "$BUILD_ROOT/usr/share/doc/rustc"
 
 ?[rust]
 channel = "stable"
@@ -63,29 +61,20 @@ sed -i 's/?//g' config.toml
   export LIBSSH2_SYS_USE_PKG_CONFIG=1; }    &&
 { [ ! -e /usr/include/sqlite3.h ] ||
   export LIBSQLITE3_SYS_USE_PKG_CONFIG=1; } &&
+
+sudo su
+
 python3 x.py build
 
 python3 x.py install rustc std &&
-python3 x.py install --stage=1 cargo clippy rustfmt
+python3 x.py install --stage=1 cargo clippy 
 
-rm -fv $BUILD_ROOT/opt/rustc/share/doc/rustc/*.old   &&
+exit
+
+rm -fv $BUILD_ROOT/usr/share/doc/rustc/*.old   &&
 install DESTDIR=$BUILD_ROOT -vm644 README.md                                \
-               /opt/rustc/share/doc/rustc &&
+               $BUILD_ROOT/usr/share/doc/rustc &&
 
-install DESTDIR=$BUILD_ROOT -vdm755 /usr/share/zsh/site-functions      &&
-ln -sfv /opt/rustc/share/zsh/site-functions/_cargo \
-        /usr/share/zsh/site-functions
-
-mkdir $BUILD_ROOT/etc/
-mkdir $BUILD_ROOT/etc/profile.d/
-
-cat > $BUILD_ROOT/etc/profile.d/rustc.sh << "EOF"
-# Begin /etc/profile.d/rustc.sh
-
-PATH="$PATH:/opt/rustc/bin"
-
-# End /etc/profile.d/rustc.sh
-EOF
-
-# Does not work, will probably have to ask the user to systemctl --user daemon-reload or smth
-source $BUILD_ROOT/etc/profile.d/rustc.sh
+install DESTDIR=$BUILD_ROOT -vdm755 $BUILD_ROOT/usr/share/zsh/site-functions      &&
+ln -sfv $BUILD_ROOT/usr/share/zsh/site-functions/_cargo \
+        $BUILD_ROOT/usr/share/zsh/site-functions
