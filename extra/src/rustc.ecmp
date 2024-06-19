@@ -62,14 +62,11 @@ sed -i 's/?//g' config.toml
 { [ ! -e /usr/include/sqlite3.h ] ||
   export LIBSQLITE3_SYS_USE_PKG_CONFIG=1; } &&
 
-sudo su
-
 python3 x.py build
 
-python3 x.py install rustc std &&
-python3 x.py install --stage=1 cargo clippy 
-
-exit
+# This seems to fail in chroot, but should work fine on a system
+sudo python3 x.py install rustc std &&
+sudo python3 x.py install --stage=1 cargo clippy 
 
 rm -fv $BUILD_ROOT/usr/share/doc/rustc/*.old   &&
 install DESTDIR=$BUILD_ROOT -vm644 README.md                                \
