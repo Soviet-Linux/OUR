@@ -1,10 +1,10 @@
 [info] 
 name = systemd
-version = 255
+version = 256.1
 type = src
 license = GPLv3
 url = https://github.com/systemd/systemd/archive/v$VERSION/$NAME-$VERSION.tar.gz
-sha256 = 
+sha256 = 9c9243209e5b1bf429fc213ade6111a95769531a3a741bdf01c8a5dbeeab9f8a
 
 [description] 
 The systemd package contains programs for controlling the startup, running, and shutdown of the system. 
@@ -16,10 +16,6 @@ tar xf $NAME-$VERSION.tar.gz
 [install]
 # Remove two unneeded groups, render and sgx, from the default udev rules:
 sed -i -e 's/GROUP="render"/GROUP="video"/' -e 's/GROUP="sgx", //' rules.d/50-udev-default.rules.in
-
-# Fix a security vulnerability in the DNSSEC verification of systemd-resolved and a bug breaking running systemd-analyze verify on an instantiated systemd unit
-cp $SOVIET_REPOS_DIR/OUR/base/patch/$NAME-$VERSION-upstream_fixes-1.patch
-patch -Np1 -i $NAME-$VERSION-upstream_fixes-1.patch
 
 mkdir build
 cd build
@@ -33,12 +29,9 @@ meson setup \
 -Dlink-boot-shared=true \
 -Dlink-portabled-shared=true \
 -Dfirst-boot-full-preset=true \
--Dnscd=true \
+-Dnscd=false \
 -Ddefault-dnssec=no \
 -Ddefault-locale='C.UTF-8' \
--Dukify=enabled \
--Dvmspawn=enabled \
--Dbootloader=enabled \
 -Dfallback-hostname='sovietlinux' \
 -Dsbat-distro-summary='Soviet Linux' \
 -Dsbat-distro-version='Vanguard' \

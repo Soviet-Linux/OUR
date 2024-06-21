@@ -1,10 +1,10 @@
 [info] 
 name = gcc
-version = 13.2.0
+version = 14.1.0
 type = src
 license = GPLv3 with exceptions
 url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION/$NAME-$VERSION.tar.xz
-sha256 = e275e76442a6067341a27f04c5c6b83d8613144004c0413528863dc6b5c743da
+sha256 = e283c654987afe3de9d8080bc0bd79534b5ca0d681a73a11ff2b5d3767426840
 
 [description] 
 The GCC package contains the GNU compiler collection, which includes the C and C++ compilers. 
@@ -14,7 +14,6 @@ curl -L $URL --output $NAME-$VERSION.tar.xz
 tar xf $NAME-$VERSION.tar.xz
 
 [install] 
-# gcc build will fail with error=format-security flag, make sure it's removed
 export CFLAGS=${CFLAGS/-Werror=format-security/}
 export CXXFLAGS=${CXXFLAGS/-Werror=format-security/}
 mkdir build
@@ -25,17 +24,17 @@ cd build
              --enable-default-ssp     \
              --disable-multilib       \
              --disable-fixincludes    \
-             --with-system-zlib
+             --with-system-zlib       \
+             --enable-lto
 make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
-
-[special]
+# [special]
 # link gcc to cc
-ln -sv /usr/bin/gcc /usr/bin/cc
+(cd $BUILD_ROOT
+ln -sv usr/bin/gcc usr/bin/cc
 # also link gcc to c99 because tzdata
-ln -sv /usr/bin/gcc /usr/bin/c99
+ln -sv usr/bin/gcc usr/bin/c99
 # link gcc man to cc man
-ln -sv gcc.1 /usr/share/man/man1/cc.1
-# move a misplaced file
-mkdir -pv /usr/share/gdb/auto-load/usr/lib
-mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib
+ln -sv gcc.1 usr/share/man/man1/cc.1
+)
+

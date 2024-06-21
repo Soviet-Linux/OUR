@@ -14,6 +14,9 @@ curl -L $URL --output $NAME-$VERSION.tar.xz
 tar xf $NAME-$VERSION.tar.xz
 
 [install] 
+# needed to build with gcc 14.1
+sed -i 's/def HAVE_TERMCAP_TGETENT/ 1/' telnet/telnet.c
+
 #  --disable-logger: This option prevents Inetutils from installing the logger program, which is used by scripts to pass messages to the System Log Daemon. Do not install it because Util-linux installs a more recent version.
 #  --disable-whois: This option disables the building of the Inetutils whois client, which is out of date.
 #  --disable-r*: These parameters disable building obsolete programs that should not be used due to security issues. The functions provided by these programs can be provided by the openssh package

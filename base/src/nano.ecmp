@@ -15,7 +15,7 @@ tar -xJf $NAME-$VERSION.tar.xz
 [install]
 ./configure --prefix=/usr     \
             --sysconfdir=/etc \
-            --enable-utf8     \
-            --docdir=/usr/share/doc/nano-$VERSION &&
+            --enable-utf8     
+
 make $MAKE_FLAGS
-make install DESTDIR=$BUILD_ROOT && install -v -m644 doc/{nano.html,sample.nanorc} /usr/share/doc/nano-$VERSION
+make DESTDIR=$BUILD_ROOT install

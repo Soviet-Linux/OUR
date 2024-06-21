@@ -28,5 +28,5 @@ make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
 
 #From LFS: If you are using a DESTDIR install, dbus-daemon-launch-helper needs to be fixed afterwards. Issue, as root user:
-chown -v root:messagebus /usr/libexec/dbus-daemon-launch-helper
-chmod -v      4750       /usr/libexec/dbus-daemon-launch-helper
+chown -v root:messagebus $BUILD_ROOT/usr/libexec/dbus-daemon-launch-helper
+chmod -v      4750       $BUILD_ROOT/usr/libexec/dbus-daemon-launch-helper

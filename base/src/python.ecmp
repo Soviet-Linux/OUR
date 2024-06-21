@@ -12,6 +12,7 @@ The Python 3 package contains the Python development environment. It is useful f
 [download]
 curl -L $URL --output $NAME-$VERSION.tar.xz
 tar xf $NAME-$VERSION.tar.xz
+mv Python-$VERSION python-$VERSION
 
 [install]
 ./configure --prefix=/usr        \

@@ -1,21 +1,20 @@
 [info] 
 name = expat
-version = 2.5.0
+version = 2.6.2
 type = src
-url = https://master.dl.sourceforge.net/project/expat/expat/$VERSION/$NAME-$VERSION.tar.gz?viasf=1
-sha256 = 6b902ab103843592be5e99504f846ec109c1abb692e85347587f237a4ffa1033
+url = https://master.dl.sourceforge.net/project/expat/expat/$VERSION/$NAME-$VERSION.tar.xz
+sha256 = ee14b4c5d8908b1bec37ad937607eab183d4d9806a08adee472c3c3121d27364
 
 [description] # package description , it can be on multiple lines and we support makdown
 A stream oriented C library for parsing XML
 
 
 [download]
-curl -L $URL --output $NAME-$VERSION.tar.gz
-tar -xzf $NAME-$VERSION.tar.gz
+curl -L $URL --output $NAME-$VERSION.tar.xz
+tar -xf $NAME-$VERSION.tar.xz
 
 [install]
 
 ./configure --prefix=/usr --disable-static
 make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
-rm -r $BUILD_ROOT/usr/share/doc

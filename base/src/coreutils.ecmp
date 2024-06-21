@@ -15,7 +15,7 @@ tar xf $NAME-$VERSION.tar.xz
 
 [install]
 # Patch from LFS: POSIX requires that programs from Coreutils recognize character boundaries correctly even in multibyte locales. The following patch fixes this non-compliance and other internationalization-related bugs.
-cp $SOVIET_REPOS_DIR/OUR/base/patch/coreutils-$VERSION-i18n-1.patch coreutils-$VERSION-i18n-1.patch
+cp $SOVIET_REPOS_DIR/OUR/base/patch/coreutils-$VERSION-i18n-1.patch coreutils-$VERSION-i18n-1.patch .
 patch -Np1 -i ./coreutils-$VERSION-i18n-1.patch
 # Fix a security vulnerability in the split utility: 
 sed -e '/n_out += n_hold/,+4 s|.*bufsize.*|//&|' -i src/split.c
@@ -26,6 +26,8 @@ autoreconf -fiv
 FORCE_UNSAFE_CONFIGURE=1 ./configure --prefix=/usr --enable-no-install-program=kill,uptime
 make $MAKE_FLAGS
 make DESTDIR=$BUILD_ROOT install
+# [special]
 # Move programs to the locations specified by the FHS:
-mv -v /usr/share/man/man1/chroot.1 /usr/share/man/man8/chroot.8
-sed -i 's/"1"/"8"/' /usr/share/man/man8/chroot.8
+mkdir -pv $BUILD_ROOT/usr/share/man/man8
+mv -v $BUILD_ROOT/usr/share/man/man1/chroot.1 $BUILD_ROOT/usr/share/man/man8/chroot.8
+sed -i 's/"1"/"8"/' $BUILD_ROOT/usr/share/man/man8/chroot.8
