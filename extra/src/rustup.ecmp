@@ -1,0 +1,20 @@
+[info]
+name = rustup
+type = src
+version = 1.27.1
+url = https://static.rust-lang.org/rustup/rustup-init.sh
+sha256 = 32a680a84cf76014915b3f8aa44e3e40731f3af92cd45eb0fcc6264fd257c428
+
+[description]
+rustup installs The Rust Programming Language from the official release channels
+
+[download]
+curl -L $URL --output $NAME.sh
+mkdir $NAME-$VERSION && cd $NAME-$VERSION
+
+[install]
+mv ../$NAME.sh ./$NAME.sh
+DIR=$HOME/.rustup/toolchains/*/
+HOME=$BUILD_ROOT$HOME
+sh $NAME.sh -y
+mv $BUILD_ROOT/$DIR $BUILD_ROOT/usr/ 

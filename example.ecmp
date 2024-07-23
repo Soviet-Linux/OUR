@@ -1,53 +1,115 @@
- # basic information about the package
+
+# basic information about the package
+
 [info] 
 name = example
 version = 1.0.0
- # If your are trying to make a package for a binary change this from "src" to "bin" an place it in the /bin dir
- # Use a container "con" if you don't need to install any files, like for a meta package
+
+    # If your are trying to make a package for a binary change this from "src" to "bin" an place it in the /bin dir
+
 type = src
+
+    # If you intend to make a bundle, that is:
+    # A package that has no file of it's own, and only used to group dependencies and execute scripts
+    # use the "con" type
+
 license = Example
- # Here you put the url to the archive or binary file
+
+    # Here you put the url to the project
+
 url = example.com 
- # checksum of the archive or binary file can be obtained by downloading the file and running sha256sum "file"
-sha256 = sha256sum
 
- # package description , it can be on multiple lines
+    # The environment variable is like an additional config file that gets parsed along side the default one
+    # Useful if you are working on a complex project, and want to have a common set of variables
+
+environment = example_environment
+
+# Package exports
+
+[exports]
+
+// These is how you create an environment
+// This file will be written to the default config dir as the name of the package
+
+MY_EXAMPLE_PREFIX=/usr/example/
+
+// Notice the different style of comments, in order to not conflict with the comments of the package, and still be visible when the file is written
+// In order to access $MY_EXAMPLE_PREFIX in other packages, you would have to put ```environment = example``` in them.
+
+# package description
+
 [description] 
-Example
+Example package
 
- # Here you type any dependencies this program needes on runtime
+# Here you type any dependencies this program needes
+
 [dependencies]
-example-1
+example-dependency-1
 
- # Here you type any optional dependencies this program might need
+# Here you type any optional dependencies this program might need
+
 [optional]
-example-2
+example-dependency-2
+
+# Use this to ask the user something
 
 [inputs]
 
- # Use this to ask the user something, be aware that the input
- # might be Y or N, since those can be passed by default form cccp
- # so you should have sensible defaults in case that happens
+    # be aware that the input might be Y or N since those
+    # can be passed by default form cccp so you should
+    # have sensible defaults in case that happens
 
 this is a question, users input will be stored in $INPUT_n
 this is a second question, users input will be stored in $INPUT_1
 this is a third question, users input will be stored in $INPUT_2
 
- # A Script to download and extract the archive
+# These are the files that need to be downloaded
+
+[files]
+
+    # They are downloaded in the following format: name url sha256
+
+IMG_9524.png https://example.com/IMG_9524.png d181ac6256...(sha256)
+$NAME-$VERSION.tar.gz  https://example.com/$NAME-$VERSION.tar.gz bc968e5286...(sha256)
+
+# A Script to extract the archive
+
 [download]
-curl -L $URL --output $NAME-$VERSION.tar.gz
+
+    # The result should be a folder $NAME-$VERSION with the source
+
 tar -xzf $NAME-$VERSION.tar.gz
 
- # this is basically a bash script to install the package
+# this is basically a bash script to install the package
+
 [install] 
- # A package should be installed in the $BUILD_ROOT directory
- # That is usually achived by having:
+
+    # A package should be installed in the $BUILD_ROOT directory
+    # And make provided with $MAKE_FLAGS
+    # That is usually achived by having:
+
 make
 make DESTDIR=$BUILD_ROOT install
 
- # this is a bash script that is run after the installation
+    # Notice that there is no need to use sudo as
+    # packages are first installed to a temp dir
+    # and then moved to their location as root
+
+# this is a bash script that is run after the installation
+
 [special]
+
+    # If you want to run a command as root to do post-install work
+    # do it here
+
 echo "This is SPECIAL"
 
- # Also it should be noted that there are variables that are set before executing any of the scripts
- # Every parameter in the info section is passed as a variable to every script like: for name there is $NAME variable containg the name, $VERSION for the version, $URL for the url and so on.
+# Also it should be noted that there are variables that are set before executing any of the scripts:
+#
+#   $NAME
+#   $VERSION
+#   $TYPE
+#   $URL
+#   $LICENSE
+# 
+# Which correspond to the package info in order to make updating easier.
