@@ -18,6 +18,23 @@ license = Example
 
 url = example.com 
 
+    # The environment variable is like an additional config file that gets parsed along side the default one
+    # Useful if you are working on a complex project, and want to have a common set of variables
+
+environment = example_environment
+
+# Package exports
+
+[exports]
+
+// These is how you create an environment
+// This file will be written to the default config dir as the name of the package
+
+MY_EXAMPLE_PREFIX=/usr/example/
+
+// Notice the different style of comments, in order to not conflict with the comments of the package, and still be visible when the file is written
+// In order to access $MY_EXAMPLE_PREFIX in other packages, you would have to put ```environment = example``` in them.
+
 # package description
 
 [description] 
@@ -51,8 +68,8 @@ this is a third question, users input will be stored in $INPUT_2
 
     # They are downloaded in the following format: name url sha256
 
-IMG_9524.png https://example.com/IMG_9524.png d181ac62565005...(sha256)
-$NAME-$VERSION.tar.gz  https://example.com/$NAME-$VERSION.tar.gz d181ac62565005...(sha256)
+IMG_9524.png https://example.com/IMG_9524.png d181ac6256...(sha256)
+$NAME-$VERSION.tar.gz  https://example.com/$NAME-$VERSION.tar.gz bc968e5286...(sha256)
 
 # A Script to extract the archive
 
