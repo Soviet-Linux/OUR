@@ -1,4 +1,4 @@
-name: OUR .ecmp file check CI
+name: Check ECMP files
 
 on:
   push:
