@@ -1,0 +1,29 @@
+name: Check ECMP files
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+
+jobs:
+  build:
+
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install libcurl
+      run: sudo apt-get install libcurl4-gnutls-dev -y
+      
+    - name: configure libspm
+      run: |
+        git clone https://github.com/Soviet-Linux/libspm --recurse-submodules 
+        make -C libspm all 
+        make -C libspm test 
+        sudo make -C libspm install
+    - name: Try .ecmp files
+      run: |
+        find -name "*.ecmp" -exec sh -c './libspm/bin/package-test "$1" || exit 255' _ {} \;
