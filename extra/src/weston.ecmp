@@ -1,0 +1,23 @@
+[info] 
+name = weston
+version = 13.0.92
+type = src
+url = https://gitlab.freedesktop.org/wayland/weston/
+
+[description] 
+Weston is a Wayland compositor designed for correctness, reliability, predictability, and performance.
+
+[dependencies]
+wayland
+wayland-protocols
+
+[files]
+weston-13.0.92.tar.xz https://gitlab.freedesktop.org/wayland/weston/-/releases/13.0.92/downloads/weston-13.0.92.tar.xz bdabae02683199c1cfa9bee30c83ea1d351310c5d21de02d03d1c73e9656fd62
+
+[download]
+tar -xf $NAME-$VERSION.tar.xz
+
+[install]
+meson build/ --prefix=/usr
+ninja -C build/
+DESTDIR=$BUILD_ROOT ninja install
