@@ -26,4 +26,4 @@ jobs:
         sudo make -C libspm install
     - name: Try .ecmp files
       run: |
-        find -name "*.ecmp" -exec sh -c './libspm/bin/package-test "$1" || exit 255' _ {} \;
+        find -name "*.ecmp" -exec sh -c './libspm/bin/package-test {}' \;
