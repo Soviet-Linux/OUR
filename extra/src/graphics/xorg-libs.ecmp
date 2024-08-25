@@ -1,0 +1,151 @@
+[info]
+name = xorg-libs
+type = src
+version = 7
+url = https://www.x.org/pub/individual/lib/
+environment = xorg-build-env
+
+[dependencies]
+libxcb
+fontconfig
+
+[description]
+The Xorg libraries provide library routines that are used within all X Window applications.
+
+[files]
+xtrans-1.5.0.tar.xz https://www.x.org/pub/individual/lib/xtrans-1.5.0.tar.xz 1ba4b703696bfddbf40bacf25bce4e3efb2a0088878f017a50e9884b0c8fb1bd
+libX11-1.8.7.tar.xz https://www.x.org/pub/individual/lib/libX11-1.8.7.tar.xz 05f267468e3c851ae2b5c830bcf74251a90f63f04dd7c709ca94dc155b7e99ee
+libXext-1.3.6.tar.xz https://www.x.org/pub/individual/lib/libXext-1.3.6.tar.xz edb59fa23994e405fdc5b400afdf5820ae6160b94f35e3dc3da4457a16e89753
+libFS-1.0.9.tar.xz https://www.x.org/pub/individual/lib/libFS-1.0.9.tar.xz 597379438b3242ccc7d7b0fc432dc6c844eca0d4a82a7b82518bfeb203fc208a
+libICE-1.1.1.tar.xz https://www.x.org/pub/individual/lib/libICE-1.1.1.tar.xz 03e77afaf72942c7ac02ccebb19034e6e20f456dcf8dddadfeb572aa5ad3e451
+libSM-1.2.4.tar.xz https://www.x.org/pub/individual/lib/libSM-1.2.4.tar.xz fdcbe51e4d1276b1183da77a8a4e74a137ca203e0bcfb20972dd5f3347e97b84
+libXScrnSaver-1.2.4.tar.xz https://www.x.org/pub/individual/lib/libXScrnSaver-1.2.4.tar.xz 75cd2859f38e207a090cac980d76bc71e9da99d48d09703584e00585abc920fe
+libXt-1.3.0.tar.xz https://www.x.org/pub/individual/lib/libXt-1.3.0.tar.xz 52820b3cdb827d08dc90bdfd1b0022a3ad8919b57a39808b12591973b331bf91
+libXmu-1.1.4.tar.xz https://www.x.org/pub/individual/lib/libXmu-1.1.4.tar.xz 210de3ab9c3e9382572c25d17c2518a854ce6e2c62c5f8315deac7579e758244
+libXpm-3.5.17.tar.xz https://www.x.org/pub/individual/lib/libXpm-3.5.17.tar.xz 64b31f81019e7d388c822b0b28af8d51c4622b83f1f0cb6fa3fc95e271226e43
+libXaw-1.0.15.tar.xz https://www.x.org/pub/individual/lib/libXaw-1.0.15.tar.xz ab35f70fde9fb02cc71b342f654846a74328b74cb3a0703c02d20eddb212754a
+libXfixes-6.0.1.tar.xz https://www.x.org/pub/individual/lib/libXfixes-6.0.1.tar.xz b695f93cd2499421ab02d22744458e650ccc88c1d4c8130d60200213abc02d58
+libXcomposite-0.4.6.tar.xz https://www.x.org/pub/individual/lib/libXcomposite-0.4.6.tar.xz fe40bcf0ae1a09070eba24088a5eb9810efe57453779ec1e20a55080c6dc2c87
+libXrender-0.9.11.tar.xz https://www.x.org/pub/individual/lib/libXrender-0.9.11.tar.xz bc53759a3a83d1ff702fb59641b3d2f7c56e05051fa0cfa93501166fa782dc24
+libXcursor-1.2.1.tar.xz https://www.x.org/pub/individual/lib/libXcursor-1.2.1.tar.xz 46c143731610bafd2070159a844571b287ac26192537d047a39df06155492104
+libXdamage-1.1.6.tar.xz https://www.x.org/pub/individual/lib/libXdamage-1.1.6.tar.xz 52733c1f5262fca35f64e7d5060c6fcd81a880ba8e1e65c9621cf0727afb5d11
+libfontenc-1.1.7.tar.xz https://www.x.org/pub/individual/lib/libfontenc-1.1.7.tar.xz c0d36991faee06551ddbaf5d99266e97becdc05edfae87a833c3ff7bf73cfec2
+libXfont2-2.0.6.tar.xz https://www.x.org/pub/individual/lib/libXfont2-2.0.6.tar.xz 74ca20017eb0fb3f56d8d5e60685f560fc85e5ff3d84c61c4cb891e40c27aef4
+libXft-2.3.8.tar.xz https://www.x.org/pub/individual/lib/libXft-2.3.8.tar.xz 5e8c3c4bc2d4c0a40aef6b4b38ed2fb74301640da29f6528154b5009b1c6dd49
+libXi-1.8.1.tar.xz https://www.x.org/pub/individual/lib/libXi-1.8.1.tar.xz 89bfc0e814f288f784202e6e5f9b362b788ccecdeb078670145eacd8749656a7
+libXinerama-1.1.5.tar.xz https://www.x.org/pub/individual/lib/libXinerama-1.1.5.tar.xz 5094d1f0fcc1828cb1696d0d39d9e866ae32520c54d01f618f1a3c1e30c2085c
+libXrandr-1.5.4.tar.xz https://www.x.org/pub/individual/lib/libXrandr-1.5.4.tar.xz 1ad5b065375f4a85915aa60611cc6407c060492a214d7f9daf214be752c3b4d3
+libXres-1.2.2.tar.xz https://www.x.org/pub/individual/lib/libXres-1.2.2.tar.xz 9a7446f3484b9b7538ac5ee30d2c1ce9e5b7fbbaf1440e02f6cca186a1fa745f
+libXtst-1.2.4.tar.xz https://www.x.org/pub/individual/lib/libXtst-1.2.4.tar.xz 84f5f30b9254b4ffee14b5b0940e2622153b0d3aed8286a3c5b7eeb340ca33c8
+libXv-1.0.12.tar.xz https://www.x.org/pub/individual/lib/libXv-1.0.12.tar.xz aaf7fa09f689f7a2000fe493c0d64d1487a1210db154053e9e2336b860c63848
+libXvMC-1.0.14.tar.xz https://www.x.org/pub/individual/lib/libXvMC-1.0.14.tar.xz e4be9eb6b6bafdbbf81f47f7163047215376e45e2dc786d0ea6181c930725ed9
+libXxf86dga-1.1.6.tar.xz https://www.x.org/pub/individual/lib/libXxf86dga-1.1.6.tar.xz be44427579808fe3a217d59f51cae756a26913eb6e4c8738ccab65ff56d7980f
+libXxf86vm-1.1.5.tar.xz https://www.x.org/pub/individual/lib/libXxf86vm-1.1.5.tar.xz 247fef48b3e0e7e67129e41f1e789e8d006ba47dba1c0cdce684b9b703f888e7
+libpciaccess-0.18.tar.xz https://www.x.org/pub/individual/lib/libpciaccess-0.18.tar.xz 5461b0257d495254346f52a9c329b44b346262663675d3fecdb204a7e7c262a9
+libxkbfile-1.1.3.tar.xz https://www.x.org/pub/individual/lib/libxkbfile-1.1.3.tar.xz a9b63eea997abb9ee6a8b4fbb515831c841f471af845a09de443b28003874bec
+libxshmfence-1.3.2.tar.xz https://www.x.org/pub/individual/lib/libxshmfence-1.3.2.tar.xz 870df257bc40b126d91b5a8f1da6ca8a524555268c50b59c0acd1a27f361606f
+libXpresent-1.0.1.tar.xz https://www.x.org/pub/individual/lib/libXpresent-1.0.1.tar.xz b964df9e5a066daa5e08d2dc82692c57ca27d00b8cc257e8e960c9f1cf26231b
+
+[download]
+cat > list << "EOF"
+xtrans-1.5.0.tar.xz
+libX11-1.8.7.tar.xz
+libXext-1.3.6.tar.xz
+libFS-1.0.9.tar.xz
+libICE-1.1.1.tar.xz
+libSM-1.2.4.tar.xz
+libXScrnSaver-1.2.4.tar.xz
+libXt-1.3.0.tar.xz
+libXmu-1.1.4.tar.xz
+libXpm-3.5.17.tar.xz
+libXaw-1.0.15.tar.xz
+libXfixes-6.0.1.tar.xz
+libXcomposite-0.4.6.tar.xz
+libXrender-0.9.11.tar.xz
+libXcursor-1.2.1.tar.xz
+libXdamage-1.1.6.tar.xz
+libfontenc-1.1.7.tar.xz
+libXfont2-2.0.6.tar.xz
+libXft-2.3.8.tar.xz
+libXi-1.8.1.tar.xz
+libXinerama-1.1.5.tar.xz
+libXrandr-1.5.4.tar.xz
+libXres-1.2.2.tar.xz
+libXtst-1.2.4.tar.xz
+libXv-1.0.12.tar.xz
+libXvMC-1.0.14.tar.xz
+libXxf86dga-1.1.6.tar.xz
+libXxf86vm-1.1.5.tar.xz
+libpciaccess-0.18.tar.xz
+libxkbfile-1.1.3.tar.xz
+libxshmfence-1.3.2.tar.xz
+libXpresent-1.0.1.tar.xz
+EOF
+mkdir xorg-libs-7
+cp ./*.tar.xz xorg-libs-7/
+
+[install]
+
+PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$XORG_PREFIX/lib/pkgconfig   
+PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$XORG_PREFIX/share/pkgconfig 
+PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$BUILD_ROOT$XORG_PREFIX/lib/pkgconfig   
+PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$BUILD_ROOT$XORG_PREFIX/share/pkgconfig
+
+LIBRARY_PATH=$LIBRARY_PATH:$XORG_PREFIX/lib
+C_INCLUDE_PATH=$C_INCLUDE_PATH:$XORG_PREFIX/include         
+CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:$XORG_PREFIX/include
+LIBRARY_PATH=$LIBRARY_PATH:$BUILD_ROOT$XORG_PREFIX/lib
+C_INCLUDE_PATH=$C_INCLUDE_PATH:$BUILD_ROOT$XORG_PREFIX/include         
+CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:$BUILD_ROOT$XORG_PREFIX/include
+
+for package in $(grep -v '^#' ../list | awk '{print $1}')
+do
+  packagedir=${package%.tar.?z*}
+
+  echo ""
+  echo "  HERE:"
+  echo "  Building $packagedir in $PWD with $PKG_CONFIG_PATH"
+  echo ""
+
+  tar -xf $package
+  pushd $packagedir
+  docdir="--docdir=$XORG_PREFIX/share/doc/$packagedir"
+  
+  case $packagedir in
+    libXfont2-[0-9]* )
+      PKG_CONFIG_PATH=$PKG_CONFIG_PATH ./configure $XORG_CONFIG $docdir --disable-devel-docs
+    ;;
+
+    libXt-[0-9]* )
+      PKG_CONFIG_PATH=$PKG_CONFIG_PATH ./configure $XORG_CONFIG $docdir \
+                  --with-appdefaultdir=/etc/X11/app-defaults
+    ;;
+
+    libXpm-[0-9]* )
+      PKG_CONFIG_PATH=$PKG_CONFIG_PATH ./configure $XORG_CONFIG $docdir --disable-open-zfile
+    ;;
+  
+    libpciaccess* )
+      mkdir build
+      cd    build
+        PKG_CONFIG_PATH=$PKG_CONFIG_PATH meson setup --prefix=$XORG_PREFIX --buildtype=release .. &&
+        LIBRARY_PATH=$LIBRARY_PATH C_INCLUDE_PATH=$C_INCLUDE_PATH CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH LD_RUN_PATH=$LIBRARY_PATH ninja &&
+        DESTDIR=$BUILD_ROOT ninja install &&
+      popd     # $packagedir
+      continue # for loop
+    ;;
+
+    * )
+      PKG_CONFIG_PATH=$PKG_CONFIG_PATH ./configure $XORG_CONFIG $docdir
+    ;;
+  esac
+
+  LIBRARY_PATH=$LIBRARY_PATH C_INCLUDE_PATH=$C_INCLUDE_PATH CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH LD_RUN_PATH=$LIBRARY_PATH make &&
+  make DESTDIR=$BUILD_ROOT install &&
+  popd
+  rm -rf $packagedir
+  libtool --finish $BUILD_ROOT/usr/lib
+done
+
+[special]
+/sbin/ldconfig

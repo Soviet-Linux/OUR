@@ -1,0 +1,38 @@
+[info]
+name = xorgproto
+type = src
+version = 2023.2
+url = https://xorg.freedesktop.org/archive/individual/proto/
+environment = xorg-build-env
+
+[dependencies]
+util-macros
+
+[optional]
+fop
+libxslt
+xmlto
+
+[files]
+xorgproto-2023.2.tar.xz https://xorg.freedesktop.org/archive/individual/proto/xorgproto-2023.2.tar.xz
+
+[description]
+The xorgproto package provides the header files required to build the X Window system,
+and to allow other applications to build against the installed X Window system. 
+
+[files]
+xorgproto-2023.2.tar.xz https://xorg.freedesktop.org/archive/individual/proto/xorgproto-2023.2.tar.xz b61fbc7db82b14ce2dc705ab590efc32b9ad800037113d1973811781d5118c2c
+
+[download]
+tar -xf xorgproto-2023.2.tar.xz
+
+[install]
+mkdir build
+cd    build
+
+meson --prefix=$XORG_PREFIX -Dlegacy=true ..
+ninja
+DESTDIR=$BUILD_ROOT ninja install
+
+[special]
+mv -v $XORG_PREFIX/share/doc/xorgproto{,-2023.2}

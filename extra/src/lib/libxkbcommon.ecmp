@@ -1,0 +1,29 @@
+[info]
+name = libxkbcommon
+type = src
+version = 1.7.0
+url = https://www.x.org/pub/individual/data/xkeyboard-config
+environment = xorg-build-env
+
+[dependencies]
+xkeyboard-config
+
+[description]
+libxkbcommon is a keymap compiler and support library which processes a reduced subset of keymaps as defined by the XKB specification. 
+
+[files]
+libxkbcommon-1.7.0.tar.xz https://xkbcommon.org/download/libxkbcommon-1.7.0.tar.xz 65782f0a10a4b455af9c6baab7040e2f537520caa2ec2092805cdfd36863b247
+
+[download]
+tar -xf libxkbcommon-1.7.0.tar.xz
+
+[install]
+mkdir build &&
+cd    build &&
+
+meson setup ..             \
+      --prefix=/usr        \
+      --buildtype=release  \
+      -D enable-docs=false &&
+ninja
+DESTDIR=$BUILD_ROOT ninja install

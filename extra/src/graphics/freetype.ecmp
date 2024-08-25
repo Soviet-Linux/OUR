@@ -1,0 +1,24 @@
+[info]
+name = freetype
+type = src
+version = 2.13.2
+url = https://downloads.sourceforge.net/freetype/
+
+[description]
+The FreeType2 package contains a library which allows applications to properly render TrueType fonts. 
+
+[files]
+freetype-2.13.2.tar.xz https://downloads.sourceforge.net/freetype/freetype-2.13.2.tar.xz 12991c4e55c506dd7f9b765933e62fd2be2e06d421505d7950a132e4f1bb484d
+
+[download]
+tar -xf freetype-2.13.2.tar.xz
+
+[install]
+sed -ri "s:.*(AUX_MODULES.*valid):\1:" modules.cfg &&
+
+sed -r "s:.*(#.*SUBPIXEL_RENDERING) .*:\1:" \
+    -i include/freetype/config/ftoption.h  &&
+
+./configure --prefix=/usr --enable-freetype-config --disable-static &&
+make
+make DESTDIR=$BUILD_ROOT install

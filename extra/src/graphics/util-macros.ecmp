@@ -1,0 +1,19 @@
+[info]
+name = util-macros
+type = src
+version = 1.20.0
+url = https://www.x.org/pub/individual/util/
+environment = xorg-build-env
+
+[description]
+The util-macros package contains the m4 macros used by all of the Xorg packages. 
+
+[files]
+util-macros-1.20.0.tar.xz https://www.x.org/pub/individual/util/util-macros-1.20.0.tar.xz 0b86b262dbe971edb4ff233bc370dfad9f241d09f078a3f6d5b7f4b8ea4430db
+
+[download]
+tar -xf util-macros-1.20.0.tar.xz
+
+[install]
+./configure $XORG_CONFIG
+make DESTDIR=$BUILD_ROOT install
