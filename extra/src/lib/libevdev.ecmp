@@ -1,0 +1,26 @@
+[info]
+name = libevdev
+type = src
+version = 1.13.2
+url = https://www.freedesktop.org/software/libevdev/
+environment = xorg-build-env
+
+[description]
+The libevdev package contains common functions for Xorg input drivers.
+ 
+[files]
+libevdev-1.13.2.tar.xz https://www.freedesktop.org/software/libevdev/libevdev-1.13.2.tar.xz 3eca86a6ce55b81d5bce910637fc451c8bbe373b1f9698f375c7f1ad0de3ac48
+
+[download]
+tar -xf libevdev-1.13.2.tar.xz
+
+[install]
+mkdir build &&
+cd    build &&
+
+meson setup ..                  \
+      --prefix=$XORG_PREFIX     \
+      --buildtype=release       \
+      -D documentation=disabled &&
+ninja
+DESTDIR=$BUILD_ROOT ninja install

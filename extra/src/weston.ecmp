@@ -11,6 +11,11 @@ Weston is a Wayland compositor designed for correctness, reliability, predictabi
 wayland
 wayland-protocols
 libxkbcommon
+pixman
+libinput
+libdrm
+mesa
+
 
 [files]
 weston-13.0.92.tar.xz https://gitlab.freedesktop.org/wayland/weston/-/releases/13.0.92/downloads/weston-13.0.92.tar.xz bdabae02683199c1cfa9bee30c83ea1d351310c5d21de02d03d1c73e9656fd62
@@ -37,7 +42,7 @@ meson setup                                 \
     -Dbackend-pipewire=false                \
     -Dcolor-management-lcms=false           \  
     -Dbackend-drm-screencast-vaapi=false    &&
-cd    build &&
+cd build &&
 ninja
 DESTDIR=$BUILD_ROOT ninja install
 

@@ -1,0 +1,31 @@
+[info]
+name = libdrm
+type = src
+version = 2.4.122
+url = https://dri.freedesktop.org/libdrm/
+environment = xorg-build-env
+
+[dependencies]
+xorg-libs
+
+[description]
+Libdrm provides a userspace library for accessing the direct rendering manager (DRM) on operating systems that support the ioctl interface.
+Libdrm is a low-level library, typically used by graphics drivers such as the Mesa DRI drivers, the X drivers, libva and similar projects. 
+
+[files]
+libdrm-2.4.122.tar.xz https://dri.freedesktop.org/libdrm/libdrm-2.4.122.tar.xz d9f5079b777dffca9300ccc56b10a93588cdfbc9dde2fae111940dfb6292f251
+
+[download]
+tar -xf libdrm-2.4.122.tar.xz
+
+[install]
+mkdir build &&
+cd    build &&
+
+meson setup --prefix=$XORG_PREFIX \
+            --buildtype=release   \
+            -D udev=true          \
+            -D valgrind=disabled  \
+            ..                    &&
+ninja
+DESTDIR=$BUILD_ROOT ninja install

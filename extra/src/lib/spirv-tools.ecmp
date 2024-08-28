@@ -1,0 +1,14 @@
+[info]
+name = 
+type = src
+version = 
+url = 
+
+[description]
+
+[files]
+
+[download]
+tar -xzf .tar.gz
+
+[install]
