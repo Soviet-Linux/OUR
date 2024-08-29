@@ -12,6 +12,10 @@ Mako
 
 [optional]
 glslang
+libclc
+ply
+cbindgen
+rust-bindgen
 
 [inputs]
 Which Gallium3D drivers should be built? <auto,r300,r600,radeonsi,nouveau,virgl,svga,swrast,iris,crocus,i915,zink>, if unsure, type 'auto'.

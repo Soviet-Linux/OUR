@@ -1,0 +1,23 @@
+[info]
+name = cbindgen
+type = src
+version = 0.27.0
+url =   https://github.com/mozilla/cbindgen/
+
+[dependencies]
+#TODO: replace with rustc
+rustup
+
+[description]
+Cbindgen can be used to generate C bindings for Rust code. 
+
+[files]
+cbindgen-0.27.0.tar.gz https://github.com/mozilla/cbindgen/archive/v0.27.0/cbindgen-0.27.0.tar.gz af74dd0452ace58895088048873a765fffacc3ad55eea00c0f2999cc4bcf9b5d
+
+[download]
+tar -xzf cbindgen-0.27.0.tar.gz
+
+[install]
+cargo build --release
+mkdir -p $BUILD_ROOT/usr/bin/ &&
+install -Dm755 target/release/cbindgen $BUILD_ROOT/usr/bin/

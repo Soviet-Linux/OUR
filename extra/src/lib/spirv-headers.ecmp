@@ -1,14 +1,24 @@
 [info]
-name = 
+name = spirv-headers
 type = src
-version = 
-url = 
+version = 1.3.290.0
+url = https://github.com/KhronosGroup/SPIRV-Headers/
 
 [description]
+The SPIRV-Headers package contains headers that allow for applications to use the SPIR-V language and instruction set with Vulkan.
+SPIR-V is a binary intermediate language for representing graphical shader stages and compute kernels for multiple Khronos APIs, including OpenGL and Vulkan.
 
 [files]
+SPIRV-Headers-1.3.290.0.tar.gz https://github.com/KhronosGroup/SPIRV-Headers/archive/vulkan-sdk-1.3.290.0/SPIRV-Headers-1.3.290.0.tar.gz 1b9ff8a33e07814671dee61fe246c67ccbcfc9be6581f229e251784499700e24
 
 [download]
-tar -xzf .tar.gz
+tar -xzf SPIRV-Headers-1.3.290.0.tar.gz
+mv ./SPIRV-Headers-vulkan-sdk-1.3.290.0  ./spirv-headers-1.3.290.0/
 
 [install]
+mkdir build &&
+cd    build &&
+
+cmake -D CMAKE_INSTALL_PREFIX=/usr -G Ninja .. &&
+ninja
+DESTDIR=$BUILD_ROOT ninja install
