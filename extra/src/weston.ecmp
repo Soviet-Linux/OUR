@@ -17,6 +17,8 @@ libdrm
 mesa
 cairo
 libjpeg-turbo
+seatd
+hwdata
 
 [files]
 weston-13.0.92.tar.xz https://gitlab.freedesktop.org/wayland/weston/-/releases/13.0.92/downloads/weston-13.0.92.tar.xz bdabae02683199c1cfa9bee30c83ea1d351310c5d21de02d03d1c73e9656fd62
@@ -30,8 +32,9 @@ cp aurora.jpg $BUILD_ROOT/usr/share/backgrounds/
 
 [install]
 mkdir build &&
+cd build &&
 
-meson setup                                 \
+meson setup ..                              \
     --prefix=/usr                           \
     -Dsystemd=false                         \
     -Dxwayland=false                        \
@@ -41,13 +44,14 @@ meson setup                                 \
     -Dbackend-rdp=false                     \
     -Dbackend-x11=false                     \
     -Dbackend-pipewire=false                \
-    -Dcolor-management-lcms=false           \  
+    -Dcolor-management-lcms=false           \
     -Dbackend-drm-screencast-vaapi=false    &&
-cd build &&
 ninja
 DESTDIR=$BUILD_ROOT ninja install
 
 [special]
+mkdir -p /etc/xdg/weston/ &&
+touch /etc/xdg/weston/weston.ini &&
 cat > /etc/xdg/weston/weston.ini << "EOF"
 [shell]
 locking=true
