@@ -18,8 +18,8 @@ cbindgen
 rust-bindgen
 
 [inputs]
-Which Gallium3D drivers should be built? <auto,r300,r600,radeonsi,nouveau,virgl,svga,swrast,iris,crocus,i915,zink>, if unsure, type 'auto'.
-Which Vulkan drivers should be built? <auto,amd,intel,intel_hasvk,nouveau,swrast,"">, if unsure, type 'auto'.
+Which Gallium3D drivers should be built? <auto,r300,r600,radeonsi,nouveau,virgl,svga,swrast,iris,crocus,i915,zink>, if unsure - type 'auto'.
+Which Vulkan drivers should be built? <auto,amd,intel,intel_hasvk,nouveau,swrast,"">, if unsure - type 'auto'.
 
 [description]
 Mesa is an OpenGL compatible 3D graphics library. 

@@ -16,3 +16,4 @@ tar -xzf Mako-1.3.5.tar.gz
 [install]
 pip3 wheel -w dist --no-build-isolation --no-deps --no-cache-dir $PWD
 pip3 install --no-deps --target $BUILD_ROOT/usr/lib/python3.12/site-packages/ --no-index --find-links=dist --no-cache-dir --no-user Mako
+mv $BUILD_ROOT/usr/lib/python3.12/site-packages/bin/ $BUILD_ROOT/usr/bin/

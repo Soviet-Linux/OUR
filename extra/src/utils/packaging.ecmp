@@ -1,0 +1,19 @@
+[info]
+name = packaging
+type = src
+version = 24.1
+url = https://files.pythonhosted.org/packages/source/p/packaging/
+
+[description]
+The Packaging library provides utilities that implement the interoperability specifications which have clearly one correct behaviour (PEP440) or benefit-
+greatly from having a single shared implementation (PEP425). This includes utilities for version handling, specifiers, markers, tags, and requirements.
+
+[files]
+packaging-24.1.tar.gz https://files.pythonhosted.org/packages/source/p/packaging/packaging-24.1.tar.gz 026ed72c8ed3fcce5bf8950572258698927fd1dbda10a5e981cdf0ac37f4f002
+
+[download]
+tar -xzf packaging-24.1.tar.gz
+
+[install]
+pip3 wheel -w dist --no-build-isolation --no-deps --no-cache-dir $PWD
+pip3 install --no-deps --target $BUILD_ROOT/usr/lib/python3.12/site-packages/ --no-index --find-links=dist --no-cache-dir --no-user packaging
