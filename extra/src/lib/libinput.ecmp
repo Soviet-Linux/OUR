@@ -6,6 +6,8 @@ url = https://gitlab.freedesktop.org/libinput/
 environment = xorg-build-env
 
 [dependencies]
+libevdev
+mtdev
 xorg-build-env
 
 [description]
