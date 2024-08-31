@@ -5,6 +5,9 @@ version = 1.26.1
 url = https://gitlab.freedesktop.org/libinput/
 environment = xorg-build-env
 
+[dependencies]
+xorg-build-env
+
 [description]
 libinput is a library that handles input devices for display servers and other applications that need to directly deal with input devices. 
 

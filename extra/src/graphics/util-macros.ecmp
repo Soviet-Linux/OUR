@@ -5,6 +5,9 @@ version = 1.20.0
 url = https://www.x.org/pub/individual/util/
 environment = xorg-build-env
 
+[dependencies]
+xorg-build-env
+
 [description]
 The util-macros package contains the m4 macros used by all of the Xorg packages. 
 

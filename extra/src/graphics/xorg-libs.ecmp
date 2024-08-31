@@ -6,6 +6,7 @@ url = https://www.x.org/pub/individual/lib/
 environment = xorg-build-env
 
 [dependencies]
+xorg-build-env
 libxcb
 fontconfig
 

@@ -6,6 +6,7 @@ url = https://www.x.org/pub/individual/data/xkeyboard-config
 environment = xorg-build-env
 
 [dependencies]
+xorg-build-env
 xorg-libs
 
 [description]

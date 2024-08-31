@@ -5,6 +5,9 @@ version = 1.13.2
 url = https://www.freedesktop.org/software/libevdev/
 environment = xorg-build-env
 
+[dependencies]
+xorg-build-env
+
 [description]
 The libevdev package contains common functions for Xorg input drivers.
  

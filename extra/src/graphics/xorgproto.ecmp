@@ -6,6 +6,7 @@ url = https://xorg.freedesktop.org/archive/individual/proto/
 environment = xorg-build-env
 
 [dependencies]
+xorg-build-env
 util-macros
 
 [optional]

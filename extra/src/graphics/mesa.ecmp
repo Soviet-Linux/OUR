@@ -6,6 +6,7 @@ url = https://mesa.freedesktop.org/
 environment = xorg-build-env
 
 [dependencies]
+xorg-build-env
 xorg-libs
 libdrm
 Mako

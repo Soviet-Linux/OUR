@@ -6,6 +6,7 @@ url = https://xorg.freedesktop.org/archive/individual/proto/
 environment = xorg-build-env
 
 [optional]
+xorg-build-env
 libxml2
 
 [description]

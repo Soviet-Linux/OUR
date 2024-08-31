@@ -6,6 +6,7 @@ url = https://xorg.freedesktop.org/archive/individual/lib/
 environment = xorg-build-env
 
 [dependencies]
+xorg-build-env
 libXau
 xcb-proto
 
