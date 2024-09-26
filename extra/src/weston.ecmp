@@ -19,6 +19,7 @@ cairo
 libjpeg-turbo
 seatd
 hwdata
+pango
 
 [files]
 weston-13.0.92.tar.xz https://gitlab.freedesktop.org/wayland/weston/-/releases/13.0.92/downloads/weston-13.0.92.tar.xz bdabae02683199c1cfa9bee30c83ea1d351310c5d21de02d03d1c73e9656fd62
@@ -53,8 +54,9 @@ DESTDIR=$BUILD_ROOT ninja install
 mkdir -p /etc/xdg/weston/ &&
 touch /etc/xdg/weston/weston.ini &&
 cat > /etc/xdg/weston/weston.ini << "EOF"
-[shell]
+ABC[shell]
 locking=true
 background-image=/usr/share/backgrounds/aurora.jpg
 background-type=scale-crop
 EOF
+sed -i 's/ABC//' /etc/xdg/weston/weston.ini
