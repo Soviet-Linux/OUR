@@ -1,0 +1,29 @@
+[info]
+name = screen
+version = 4.9.1
+type = src
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.gz
+sha256 = 26cef3e3c42571c0d484ad6faf110c5c15091fbf872b06fa7aa4766c7405ac69
+
+
+[description]
+Screen is a terminal multiplexor that runs several separate processes, typically interactive shells, on a single physical character-based terminal.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+sh autogen.sh
+./configure --prefix=/usr \
+            --infodir=/usr/share/info \
+	    --mandir=/usr/share/man \
+	    --with-socket-dir=/run/screen \
+	    --with-pty-group=5 \
+	    --with-sys-screenrc=/etc/srceenrc
+
+sed -i -e "s%/usr/local/etc/screenrc%/etc/screenrc%" {etc,doc}/*
+make
+mkdir -p $SOVIET_BUILD_DIR/etc
+install -m 644 etc/etcscreenrc $SOVIET_BUILD_DIR/etc/screenrc 
+make DESTDIR=$SOVIET_BUILD_DIR install

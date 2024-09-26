@@ -1,0 +1,19 @@
+[info]
+name = kexec-tools
+version = 2.0.29
+type = src
+url = https://www.kernel.org/pub/linux/utils/kernel/kexec/$NAME-$VERSION.tar.xz
+sha256 = 67b1ac503aade45a54db0bc79228a8830a35d5d4f83cee932cff3e7a81a4a9ec
+
+[description]
+
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.xz
+tar -xf $NAME-$VERSION.tar.xz
+
+[install]
+./configure --prefix=/usr
+
+make
+make DESTDIR=$SOVIET_BUILD_DIR install

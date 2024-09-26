@@ -16,11 +16,8 @@ mv Linux-PAM-$VERSION $NAME-$VERSION
 
 [install] 
 ./configure --prefix=/usr   \
-            --sbindir=/usr/sbin  \
-            --sysconfdir=/etc \
-            --libdir=/usr/lib \
             --enable-securedir=/usr/lib/security \
             --docdir=/usr/share/doc/Linux-PAM-1.6.1
 make
-make DESTDIR=$BUILD_ROOT install
+make DESTDIR=$SOVIET_BUILD_DIR install
 chmod -v 4755 /usr/sbin/unix_chkpwd

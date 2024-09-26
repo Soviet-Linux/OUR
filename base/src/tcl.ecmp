@@ -18,10 +18,9 @@ mv tcl$VERSION tcl-$VERSION
 cd unix
 # 64bit not enabled by default (??), and tz data already supplied by other programs
 ./configure --prefix=/usr \
-        --mandir=/usr/share/man \
         --enable-64bit \
         --without-tzdata
-make $MAKE_FLAGS
+make 
 # The various “sed” instructions after the “make” command remove references to the build directory from the configuration files and replace them with the install directory. This is not mandatory for the remainder of LFS, but may be needed if a package built later uses Tcl.
 SRCDIR=$(pwd)
 sed -e "s|$SRCDIR/unix|/usr/lib|" \
@@ -39,12 +38,12 @@ sed -e "s|$SRCDIR/unix/pkgs/itcl4.2.4|/usr/lib/itcl4.2.4|" \
     -e "s|$SRCDIR/pkgs/itcl4.2.4|/usr/include|"            \
     -i pkgs/itcl4.2.4/itclConfig.sh
 unset SRCDIR
-make DESTDIR=$BUILD_ROOT install install-private-headers
+make DESTDIR=$SOVIET_BUILD_DIR install install-private-headers
+
+[special]
 # necessary symlinks
-ln -sf tclsh${VERSION%.*} /usr/bin/tclsh
-ln -sf libtcl${VERSION%.*}.so /usr/lib/libtcl.so
-# conflict with perl
-rm /usr/share/man/man3/{Thread,Tcl_Thread}.3
+ln -sf tclsh${VERSION%.*} "$SOVIET_ROOT/usr/bin/tclsh"
+ln -sf libtcl${VERSION%.*}.so "$SOVIET_ROOT/usr/lib/libtcl.so"
 # fix permissions
-chmod 644 /usr/lib/libtclstub8.6.a
-chmod -v u+w /usr/lib/libtcl8.6.so
+chmod 644 "$SOVIET_ROOT/usr/lib/libtclstub8.6.a"
+chmod -v u+w "$SOVIET_ROOT"/usr/lib/libtcl8.6.so"

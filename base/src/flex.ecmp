@@ -17,11 +17,11 @@ tar -xzf $NAME-$VERSION.tar.gz
 ./configure --prefix=/usr \
             --docdir=/usr/share/doc/$NAME-$VERSION \
             --disable-static
-make $MAKE_FLAGS
-make DESTDIR=$BUILD_ROOT install
+make 
+make DESTDIR=$SOVIET_BUILD_DIR install
 
 # A few programs do not know about flex yet and try to run its predecessor, lex. To support those programs, create a
 # symbolic link named lex that runs flex in lex emulation mode:
 
-ln -sv flex $BUILD_ROOT/usr/bin/lex
-ln -sv flex.1 $BUILD_ROOT/usr/share/man/man1/lex.1
+ln -sv flex $SOVIET_BUILD_DIR/usr/bin/lex
+ln -sv flex.1 $SOVIET_BUILD_DIR/usr/share/man/man1/lex.1

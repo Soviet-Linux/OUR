@@ -14,12 +14,23 @@ curl -L $URL --output $NAME-$VERSION.tar.lz
 tar xf $NAME-$VERSION.tar.lz
 
 [install] 
-make DESTDIR=$BUILD_ROOT install
+# put files in the right place
+sed -i "s:sbin:bin:g" Makefile
+make
+make DESTDIR=$SOVIET_BUILD_DIR install
+## why is this failing?? libspm problem??
+rm $SOVIET_BUILD_DIR/usr/share/zoneinfo-posix
 for tz in africa antarctica asia australasia europe northamerica southamerica etcetera backward factory; do
-    ./zic -b fat -d $BUILD_ROOT/usr/share/zoneinfo ${tz}
-    ./zic -b fat -d $BUILD_ROOT/usr/share/zoneinfo/posix ${tz}
-    ./zic -b fat -d $BUILD_ROOT/usr/share/zoneinfo/right -L leapseconds ${tz}
+    ./zic -v -b fat -d $SOVIET_BUILD_DIR/usr/share/zoneinfo ${tz}
+    ./zic -v -b fat -d $SOVIET_BUILD_DIR/usr/share/zoneinfo/posix ${tz}
+    ./zic -v -b fat -d $SOVIET_BUILD_DIR/usr/share/zoneinfo/right -L leapseconds ${tz}
 done
 #POSIX requires the daylight saving time rules to be in accordance with US rules
-./zic -b fat -d $BUILD_ROOT/usr/share/zoneinfo -p America/New_York
-install -m644 -t $BUILD_ROOT/usr/share/zoneinfo iso3166.tab leap-seconds.list zone1970.tab zone.tab SECURITY
+./zic -v -b fat -d $SOVIET_BUILD_DIR/usr/share/zoneinfo -p America/New_York
+install -m644 -t $SOVIET_BUILD_DIR/usr/share/zoneinfo iso3166.tab leap-seconds.list zone1970.tab zone.tab SECURITY
+
+[special]
+# put zoneinfo-posix back
+(cd $SOVIET_ROOT/usr/share
+ln -sfv zoneinfo zoneinfo-posix
+)

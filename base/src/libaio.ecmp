@@ -1,0 +1,18 @@
+[info]
+name = libaio
+version = 0.3.113
+type = src
+url = https://pagure.io/$NAME/archive/$NAME-$VERSION/$NAME-$VERSION.tar.gz
+sha256 = 1c561c20670c5c09cc8437a622008c0693c6a7816c1f30332da3796953b2f454
+
+[description]
+Libaio provides the Linux-native API for async I/O.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+sed -i '/install.*libaio.a/s/^/#/' src/Makefile
+make
+make DESTDIR=$SOVIET_BUILD_DIR install

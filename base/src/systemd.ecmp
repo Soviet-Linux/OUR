@@ -1,10 +1,11 @@
 [info] 
 name = systemd
-version = 256.1
+version = 256.5
 type = src
 license = GPLv3
 url = https://github.com/systemd/systemd/archive/v$VERSION/$NAME-$VERSION.tar.gz
-sha256 = 9c9243209e5b1bf429fc213ade6111a95769531a3a741bdf01c8a5dbeeab9f8a
+sha256 = 41bb91861ab9f2f2b6cadad558ea1f8764d701452b018852146d642a850c8a8b
+
 
 [description] 
 The systemd package contains programs for controlling the startup, running, and shutdown of the system. 
@@ -16,33 +17,32 @@ tar xf $NAME-$VERSION.tar.gz
 [install]
 # Remove two unneeded groups, render and sgx, from the default udev rules:
 sed -i -e 's/GROUP="render"/GROUP="video"/' -e 's/GROUP="sgx", //' rules.d/50-udev-default.rules.in
-
 mkdir build
 cd build
 meson setup \
 -Dmode=release \
 -Dlink-udev-shared=true \
+-Dlink-executor-shared=true \
 -Dlink-systemctl-shared=true \
 -Dlink-networkd-shared=true \
 -Dlink-timesyncd-shared=true \
 -Dlink-journalctl-shared=true \
 -Dlink-boot-shared=true \
 -Dlink-portabled-shared=true \
--Dfirst-boot-full-preset=true \
+-Dinitrd=true \
 -Dnscd=false \
+-Dvmspawn=true \
+-Dbootloader=true \
 -Ddefault-dnssec=no \
+-Dinstall-tests=false \
+-Dldconfig=false \
+-Drpmmacrosdir=no \
+-Dpamconfdir=/etc/pam.d \
 -Ddefault-locale='C.UTF-8' \
 -Dfallback-hostname='sovietlinux' \
 -Dsbat-distro-summary='Soviet Linux' \
 -Dsbat-distro-version='Vanguard' \
--Dsbat-distro-url='https://sovietlinux.org' \
+-Dsbat-distro-url='https://sovietlinux.org'
 ..
-ninja $MAKE_FLAGS
-DESTDIR=$BUILD_ROOT ninja install
-
-[special]
-# Create the /etc/machine-id file needed by systemd-journald:
-systemd-machine-id-setup
-
-#Set up the basic target structure:
-systemctl preset-all
+ninja
+DESTDIR=$SOVIET_BUILD_DIR ninja install

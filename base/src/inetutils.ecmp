@@ -31,5 +31,5 @@ sed -i 's/def HAVE_TERMCAP_TGETENT/ 1/' telnet/telnet.c
             --disable-rlogin     \
             --disable-rsh        \
             --disable-servers
-make $MAKE_FLAGS
-make DESTDIR=$BUILD_ROOT install
+make 
+make DESTDIR=$SOVIET_BUILD_DIR install

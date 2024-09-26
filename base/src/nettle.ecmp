@@ -1,0 +1,21 @@
+[info]
+name = nettle
+version = 3.10
+type = src
+url = https://ftp.gnu.org/gnu/$NAME/$NAME-$VERSION.tar.gz
+sha256 = b4c518adb174e484cb4acea54118f02380c7133771e7e9beb98a0787194ee47c
+
+[description]
+A low-level cryptographic library that is designed to fit easily in many contexts.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xf $NAME-$VERSION.tar.gz
+
+[install]
+./configure --prefix=/usr    \
+            --disable-static
+make
+make DESTDIR=$SOVIET_BUILD_DIR install
+
+chmod -v 755 $SOVIET_BUILD_DIR/usr/lib/lib{hogweed,nettle}.so

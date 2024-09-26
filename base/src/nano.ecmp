@@ -17,5 +17,5 @@ tar -xJf $NAME-$VERSION.tar.xz
             --sysconfdir=/etc \
             --enable-utf8     
 
-make $MAKE_FLAGS
-make DESTDIR=$BUILD_ROOT install
+make 
+make DESTDIR=$SOVIET_BUILD_DIR install

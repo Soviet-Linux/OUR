@@ -14,4 +14,4 @@ tar -xzf $VERSION.tar.gz
 
 [install]
 python3 setup.py build
-python3 setup.py install --root=$BUILD_ROOT
+python3 setup.py install --root=$SOVIET_BUILD_DIR

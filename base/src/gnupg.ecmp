@@ -1,0 +1,21 @@
+[info]
+name = gnupg
+version = 2.4.5
+type = src
+url = https://www.gnupg.org/ftp/gcrypt/$NAME/$NAME-$VERSION.tar.bz2
+sha256 = f68f7d75d06cb1635c336d34d844af97436c3f64ea14bcb7c869782f96f44277
+
+[description]
+The GnuPG package is GNU's tool for secure communication and data storage. It can be used to encrypt data and to create digital signatures.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.bz2
+tar -xf $NAME-$VERSION.tar.bz2
+
+[install]
+mkdir build &&
+cd    build &&
+
+../configure --prefix=/usr
+make
+make DESTDIR=$SOVIET_BUILD_DIR install

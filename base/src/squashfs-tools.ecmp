@@ -1,0 +1,21 @@
+[info]
+name = squashfs-tools
+version = 4.6.1
+type = src
+url = https://github.com/plougher/squashfs-tools/archive/refs/tags/$VERSION.tar.gz
+sha256 = 94201754b36121a9f022a190c75f718441df15402df32c2b520ca331a107511c
+
+[description]
+Tools to make and extract squashfs filesystems
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+# files are in subdirectory
+cd squashfs-tools
+# add various compression supports
+make GZIP_SUPPORT=1 LZ4_SUPPORT=1 LZMA_XZ_SUPPORT=1 LZO_SUPPORT=1 XATTR_SUPPORT=1 XZ_SUPPORT=1 ZSTD_SUPPORT=1 
+# set install dir, don't generate manpages
+make INSTALL_PREFIX=$SOVIET_BUILD_DIR/usr INSTALL_MANPAGES_DIR='' DESTDIR=$SOVIET_BUILD_DIR install

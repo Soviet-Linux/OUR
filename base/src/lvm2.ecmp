@@ -1,0 +1,48 @@
+[info]
+name = lvm2
+version = 2.03.25
+type = src
+url = https://sourceware.org/ftp/lvm2/LVM2.2.03.25.tgz
+sha256 = 4bea6fd2e5af9cdb3e27b48b4efa8d89210d9bfa13df900e092e404720a59b1d
+
+
+[description]
+The LVM2 package is a set of tools that manage logical partitions
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tgz
+tar -xf $NAME-$VERSION.tgz
+mv LVM2.$VERSION $NAME-$VERSION
+
+[install]
+sed -i -e `/^\[Install\]$/,$d` \
+scripts/dm_event_systemd_red_hat.socket.in \
+scripts/lvm2_lvmpolld_systemd_red_hat.socket.in \
+scripts/lvm2_monitoring_systemd_red_hat.service.in
+
+./configure --prefix=/usr \
+	--enable-cmdlib \
+	--enable-pkgconfig \
+	--enable-dmeventd \
+	--enable-lvmpolld \
+	--enable-pkgconfig \
+	--enable-readline \
+	--enable-udev_rules \
+	--enable-udev_sync \
+	--enable-write_install \
+	--with-cache=internal \
+	--with-default-dm-run-dir=/run \
+	--with-default-locking-dir=/run/lock/lvm \
+	--with-default-pid-dir=/run \
+	--with-default-run-dir=/run/lvm \
+	--with-libexecdir=/usr/lib/lvm2 \
+	--with-systemdsystemunitdir=/usr/lib/systemd/system \
+	--with-thin=internal \
+	--with-udev-prefix=/usr
+
+make
+make DESTDIR=$SOVIET_BUILD_DIR install
+make DESTDIR=$SOVIET_BUILD_DIR install_systemd_units
+
+# the default config still references the obsolete /var/lock directory
+sed -e '/locking_dir = /{s/#//;s/var/run/}' -i $SOVIET_BUILD_DIR/etc/lvm/lvm.conf

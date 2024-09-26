@@ -1,0 +1,28 @@
+[info]
+name = pcre2
+version = 10.44
+type = src
+url = https://github.com/PCRE2Project/$NAME/releases/download/$NAME-$VERSION/$NAME-$VERSION.tar.bz2
+sha256 = d34f02e113cf7193a1ebf2770d3ac527088d485d4e047ed10e5d217c6ef5de96
+
+[description]
+Perl Compatible Regular Expression libraries
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.bz2
+tar -xf $NAME-$VERSION.tar.bz2
+
+[install]
+./configure --prefix=/usr \
+--docdir=/usr/share/doc/$NAME-$VERSION \
+--enable-unicode \
+--enable-jit \
+--enable-pcre2-16 \
+--enable-pcre2-32 \
+--enable-pcre2grep-libz \
+--enable-pcre2grep-libbz2 \
+--enable-pcre2test-libreadline \
+--disable-static
+
+make
+make DESTDIR=$SOVIET_BUILD_DIR install

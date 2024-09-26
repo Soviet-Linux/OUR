@@ -1,0 +1,20 @@
+[info]
+name = popt
+version = 1.19
+type = src
+url = https://ftp.osuosl.org/pub/rpm/popt/releases/popt-1.x/popt-1.19.tar.gz
+sha256 = c25a4838fc8e4c1c8aacb8bd620edb3084a3d63bf8987fdad3ca2758c63240f9
+
+[description]
+the popt libraries are used to parse command-line options
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xf $NAME-$VERSION.tar.gz
+
+[install]
+./configure --prefix=/usr    \
+            --disable-static
+
+make 
+make DESTDIR=$SOVIET_BUILD_DIR install

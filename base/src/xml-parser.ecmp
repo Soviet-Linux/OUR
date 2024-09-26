@@ -1,8 +1,8 @@
 [info] 
-name = XML-Parser
+name = xml-parser
 version = 2.47
 type = src
-url = http://cpan.metacpan.org/authors/id/T/TO/TODDR/$NAME-$VERSION.tar.gz
+url = http://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-$VERSION.tar.gz
 sha256 = ad4aae643ec784f489b956abe952432871a622d4e2b5c619e8855accbfc4d1d8
 
 [description] # package description , it can be on multiple lines and we support makdown
@@ -11,8 +11,9 @@ Expat-based XML parser module for perl
 [download]
 curl -L $URL --output $NAME-$VERSION.tar.gz
 tar -xzf $NAME-$VERSION.tar.gz
+mv XML-Parser-$VERSION xml-parser-$VERSION
 
 [install]
 perl Makefile.PL
-make $MAKE_FLAGS
-make DESTDIR=$BUILD_ROOT install
+make 
+make DESTDIR=$SOVIET_BUILD_DIR install

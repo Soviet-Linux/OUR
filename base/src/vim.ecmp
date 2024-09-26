@@ -27,14 +27,14 @@ echo '#define SYS_VIMRC_FILE "/etc/vimrc"' >> src/feature.h
 	--disable-gui \
 	--with-tlib=ncursesw \
 	--without-x
-make $MAKE_FLAGS
-make DESTDIR=$BUILD_ROOT install
+make 
+make DESTDIR=$SOVIET_BUILD_DIR install
 # no desktop files and icons
-rm -r $BUILD_ROOT/usr/share/applications \
-		$BUILD_ROOT/usr/share/icons
+rm -r $SOVIET_BUILD_DIR/usr/share/applications \
+		$SOVIET_BUILD_DIR/usr/share/icons
 
-	mkdir -pv $BUILD_ROOT/etc
-cat > $BUILD_ROOT/etc/vimrc << "EOF"
+	mkdir -pv $SOVIET_BUILD_DIR/etc
+cat > $SOVIET_BUILD_DIR/etc/vimrc << "EOF"
 " Begin /etc/vimrc
 
 " Ensure defaults are set before customizing settings, not after
@@ -52,5 +52,5 @@ endif
 " End /etc/vimrc
 EOF
 
-ln -sv vim $BUILD_ROOT/usr/bin/vi
+ln -sv vim $SOVIET_BUILD_DIR/usr/bin/vi
 

@@ -23,4 +23,4 @@ patch -np1 -i procps-0002-ps-Don-t-crash-when-using-short-option.patch
             --disable-kill \
             --with-systemd
 make src_w_LDADD='$(LDADD) -lsystemd'
-make DESTDIR=$BUILD_ROOT install
+make DESTDIR=$SOVIET_BUILD_DIR install

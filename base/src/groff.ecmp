@@ -12,10 +12,17 @@ groff is a typesetting system that reads plain text input files that include for
 
 [download]
 curl -L $URL --output $NAME-$VERSION.tar.gz
-tar -xzf $NAME-$VERSION.tar.gz
+tar -xf $NAME-$VERSION.tar.gz
 
 [install]
 ./configure --prefix=/usr
 
-make $MAKE_FLAGS
-make DESTDIR=$BUILD_ROOT install
+make 
+make DESTDIR=$SOVIET_BUILD_DIR install
+ls -l $SOVIET_BUILD_DIR/usr/share/groff
+sleep 3
+
+# compatability symlinks
+ln -s eqn $SOVIET_BUILD_DIR/usr/bin/geqn
+ln -s tbl $SOVIET_BUILD_DIR/usr/bin/gtbl
+ln -s soelim $SOVIET_BUILD_DIR/usr/bin/zsoelim

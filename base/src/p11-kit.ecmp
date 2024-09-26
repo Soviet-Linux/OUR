@@ -1,21 +1,28 @@
 [info]
 name = p11-kit
-version = 0.25.3
+version = 0.25.5
 type = src
 license = LGPL
 url = https://github.com/p11-glue/$NAME/releases/download/$VERSION/$NAME-$VERSION.tar.xz
-sha256 = d8ddce1bb7e898986f9d250ccae7c09ce14d82f1009046d202a0eb1b428b2adc
+sha256 = 04d0a86450cdb1be018f26af6699857171a188ac6d5b8c90786a60854e1198e5
 
 [description]
 p11-kit is a library and utilities that provide a standard configuration and convenience functions for loading and enumerating PKCS#11 modules.
 
 [download]
 curl -L $URL --output $NAME-$VERSION.tar.xz
-tar -xJf $NAME-$VERSION.tar.xz
+tar -xf $NAME-$VERSION.tar.xz
 
 [install]
-meson setup _build   \
+mkdir p11-build
+cd p11-build
+meson setup ../   \
       --prefix=/usr       \
-      --buildtype=release 
-meson compile -C _build
-DESTDIR=$BUILD_ROOT meson install -C _build
+      --buildtype=release \
+	-D trust_paths=/etc/pki/anchors 
+ninja
+DESTDIR=$SOVIET_BUILD_DIR ninja install
+
+(cd $SOVIET_BUILD_DIR/usr/lib
+ln -sfv pkcs11/p11-kit-truse.so libnssckbi.so
+)

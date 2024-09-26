@@ -1,0 +1,17 @@
+[info]
+name = neofetch
+version = master
+type = src
+url = https://github.com/Soviet-Linux/neofetch/archive/refs/heads/master.zip
+sha256 = 5e761cc07d2df39f4877bf462f45597958e8492b41a3128e2115199114b81751
+
+
+[description]
+Libraries for the Soviet Package Manager.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.zip
+unzip $NAME-$VERSION.zip
+
+[install]
+make DESTDIR=$SOVIET_BUILD_DIR install

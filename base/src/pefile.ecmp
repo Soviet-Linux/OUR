@@ -1,0 +1,18 @@
+[info]
+name = pefile
+version = 2024.8.26
+type = src
+license = MIT
+url = https://github.com/erocarrera/pefile/archive/v$VERSION/$NAME-$VERSION.tar.gz
+sda256 = 116ec29b689ea4f0ede7327ebbd794ce8977e5eaa97565393441d3404deecda3
+
+[description]
+The Python Portable Executable (PE) parsing module
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xf $NAME-$VERSION.tar.gz
+
+[install]
+pip3 wheel -w dist --no-cache-dir --no-build-isolation --no-deps $PWD
+pip3 install --no-deps --target $SOVIET_BUILD_DIR/usr/lib/python3.12/site-packages/ --no-index --no-user --find-links dist pefile

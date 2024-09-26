@@ -1,0 +1,55 @@
+[info] 
+name = linux-zen
+version = 6.10.10
+type = src
+license = GPL2
+url = https://github.com/zen-kernel/zen-kernel/archive/refs/tags/v$VERSION-zen1.tar.gz
+sha256 = 679bc975a7babd8054834c5bbdcf5b7cb8c7755ba7228b3bdeab63894a8e3b36
+
+[description] 
+The Linux kernel is a free and open-source, monolithic, modular, multitasking, Unix-like operating system kernel.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar xf $NAME-$VERSION.tar.gz
+mv zen-kernel-$VERSION-zen1 $NAME-$VERSION
+
+[install]
+make mrproper
+# check for custom config file, else use generic
+if [[ -n $LINUX_CONFIG ]]; then
+    echo "using custom config $LINUX_CONFIG"
+    cp $LINUX_CONFIG .config
+    sleep 2
+    make oldconfig
+else
+    echo 'using generic config'
+    cp $SOVIET_REPOS_DIR/OUR/base/patch/config-zen-$VERSION .config
+    sleep 2
+    make oldconfig
+fi
+
+make oldconfig
+# make the kernel
+make $MAKEFLAGS all 
+# install kernel and modules
+make $MAKEFLAGS DESTDIR=$SOVIET_BUILD_DIR INSTALL_MOD_PATH="$SOVIET_BUILD_DIR/usr" INSTALL_MOD_STRIP=1 modules_install
+# copy the kernel, System.map, and config to /usr/lib/modules/*/
+cp -v arch/x86/boot/bzImage $SOVIET_BUILD_DIR/usr/lib/modules/$VERSION-zen1/vmlinuz-soviet
+cp -v System.map $SOVIET_BUILD_DIR/usr/lib/modules/$VERSION-zen1/System.map-soviet
+cp -v .config $SOVIET_BUILD_DIR/usr/lib/modules/$VERSION-zen1/config-zen-$VERSION
+# remove the build directory
+rm -rf $SOVIET_BUILD_DIR/usr/lib/modules/$VERSION-zen1/build
+
+
+[special]
+# Now that we've made a new kernel, we need to create the initrd and uki
+echo 'Generating initrd and unified kernel image! Please be patient.'
+sleep 2
+
+# first the initrd
+dracut --kver $VERSION-zen1 --kmoddir $SOVIET_ROOT/lib/modules/$VERSION-zen1 --host-only --add-drivers ' vfat btrfs ' --strip --install ' /usr/bin/nano ' $SOVIET_ROOT/lib/modules/$VERSION-zen1/initrd-soviet.img
+# then the uki
+# give this efi file a unique name, for sysupdate and keeping multiple versions
+BUILD="$(date +%y%m%d%H%M)"
+ukify build --linux=$SOVIET_ROOT/lib/modules/$VERSION-zen1/vmlinuz-soviet --initrd=$SOVIET_ROOT/lib/modules/$VERSION-zen1/initrd-soviet.img --uname=$VERSION --cmdline="rootflags=LABEL=sovietlinux rw" --output=$SOVIET_ROOT/efi/EFI/Linux/sovietlinux-$BUILD.efi

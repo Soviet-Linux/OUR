@@ -20,5 +20,5 @@ tar -xzf $NAME-$VERSION.tar.gz
             --host=x86_64-pc-linux-gnu \
             --docdir=/usr/share/doc/$NAME-$VERSION
 
-make $MAKE_FLAGS
-make DESTDIR=$BUILD_ROOT install
+make 
+make DESTDIR=$SOVIET_BUILD_DIR install

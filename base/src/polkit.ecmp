@@ -1,10 +1,10 @@
 [info] 
 name = polkit
-version = 124
+version = 125
 type = src
 license = GPL-2
-url = https://gitlab.freedesktop.org/polkit/polkit/-/archive/124/polkit-124.tar.gz
-sha256 = 72457d96a0538fd03a3ca96a6bf9b7faf82184d4d67c793eb759168e4fd49e20
+url = https://github.com/polkit-org/$NAME/archive/$VERSION/$NAME-$VERSION.tar.gz
+sha256 = 6a631867c0b41e6c159c22f921c4a4e59bed7e650e3bd022299f9d51f97f1c56
 
 [description] 
 Polkit is a toolkit for defining and handling authorizations. It is used for allowing unprivileged processes to communicate with privileged processes.
@@ -20,12 +20,12 @@ meson setup .. \
 --prefix=/usr \
 --buildtype=release \
 -D man=true \
--D session_tracking=libsystemd-login
-
-# adapt the shipped mocklibc copy to allow building the test suite with GCC 14 or later
-grep 'print_indent' ../subprojects/mocklibc-1.0/src/netgroup.c | sed 's/ {/;/' >> ../subprojects/mocklibc-1.0/src/netgroup.h
-sed -i '1 i #include <stdio.h>' ../subprojects/mocklibc-1.0/src/netgroup.h
-
+-D authfw=pam \
+-D session_tracking=logind \
+-D introspection=false
 ninja
-ninja DESTDIR=$SOVIET_BUILD_DIR install
+DESTDIR=$SOVIET_BUILD_DIR ninja install
 
+chmod 04755 $SOVIET_BUILD_DIR/usr/bin/pkexec
+chmod 04755 $SOVIET_BUILD_DIR/usr/lib/polkit-1/polkit-agent-helper-1
+install -d -m 0755 -o root -g polkitd $SOVIET_BUILD_DIR/usr/lib/polkit-1/rules.d/

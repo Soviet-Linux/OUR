@@ -16,5 +16,5 @@ tar -xf $NAME-$VERSION.tar.xz
 [install]
 
 ./configure --prefix=/usr --disable-static
-make $MAKE_FLAGS
-make DESTDIR=$BUILD_ROOT install
+make 
+make DESTDIR=$SOVIET_BUILD_DIR install

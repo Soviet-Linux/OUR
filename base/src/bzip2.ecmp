@@ -16,7 +16,18 @@ tar -xzf $NAME-$VERSION.tar.gz
 sed -i 's@\(ln -s -f \)$(PREFIX)/bin/@\1@' Makefile
 sed -i "s@(PREFIX)/man@(PREFIX)/share/man@g" Makefile
 
-make -f Makefile-libbz2_so $MAKE_FLAGS
-make clean
-make $MAKE_FLAGS
-make install PREFIX=$BUILD_ROOT/usr
+make -f Makefile-libbz2_so
+make 
+make DESTDIR=$SOVIET_BUILD_DIR PREFIX=$SOVIET_BUILD_DIR/usr install
+
+# symlinks to shared bzip2 files
+( cd $SOVIET_BUILD_DIR/usr/lib
+ln -sv libbz2.so.1.0.8 libbz2.so )
+( cd $SOVIET_BUILD_DIR/usr/bin
+ln -sfv bzip2 bzcat
+ln -sfv bzip2 bunzip2 )
+
+# install the shared library
+cp -av libbz2.so.* $SOVIET_BUILD_DIR/usr/lib
+cp -v bzip2-shared $SOVIET_BUILD_DIR/usr/bin/bzip2
+rm -fv $SOVIET_BUILD_DIR/usr/lib/libbz2.a

@@ -15,5 +15,5 @@ tar -xJf $NAME-$VERSION.tar.xz
 [install]
 ./configure --prefix=/usr
 make
-make DESTDIR=$BUILD_ROOT install
-make TEXMF=$BUILD_ROOT/usr/share/texmf install-tex
+make DESTDIR=$SOVIET_BUILD_DIR install
+make TEXMF=$SOVIET_BUILD_DIR/usr/share/texmf install-tex
