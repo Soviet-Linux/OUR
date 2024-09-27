@@ -4,14 +4,6 @@ type = src
 version = 20240808-3.1
 url = https://thrysoee.dk/editline/
 
-[dependencies]
-cairo
-fontconfig
-harfbuzz
-fribidi
-glib
-xorg-libs
-
 [description]
  This is an autotool- and libtoolized port of the NetBSD Editline library (libedit). This Berkeley-style licensed command line editor library provides generic line editing, history, and tokenization functions, similar to those found in GNU Readline.
 [files]

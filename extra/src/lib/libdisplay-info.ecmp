@@ -5,12 +5,7 @@ version = 0.2.0
 url = https://gitlab.freedesktop.org/emersion/libdisplay-info/
 
 [dependencies]
-cairo
-fontconfig
-harfbuzz
-fribidi
-glib
-xorg-libs
+hwdata
 
 [description]
 The libdisplay-info package provides a set of high-level and low-level functions to access detailed Extended Display Identification Data (EDID) information. 
