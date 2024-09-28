@@ -1,0 +1,23 @@
+[info] 
+name = wlgreet
+version = 0.5.0
+type = src
+url = https://gitlab.freedesktop.org/wayland/
+
+[dependencies]
+#TODO: replace with rustc
+rustup
+
+[description] 
+Raw wayland greeter for greetd.
+
+[files]
+wlgreet-0.5.0.tar.gz https://git.sr.ht/~kennylevinsen/wlgreet/archive/0.5.0.tar.gz bc36c1b20eacba999ff5af2569c80eb4b93306a6ca967e1d05e1ec6bd705c524
+
+[download]
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+cargo build --release
+mkdir -p $BUILD_ROOT/usr/bin/
+cp ./target/release/wlgreet $BUILD_ROOT/usr/bin/
