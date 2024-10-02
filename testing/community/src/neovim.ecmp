@@ -4,7 +4,7 @@ name = neovim
 version = 0.10.1
 license = Apache-2.0
 type = src
-url = https://github.com/$NAME/$NAME/archive/refs/tags/v$VERSION.tar-gz
+url = https://github.com/$NAME/$NAME/archive/refs/tags/v$VERSION.tar.gz
 sha256 = edce96e79903adfcb3c41e9a8238511946325ea9568fde177a70a614501af689
 
 
