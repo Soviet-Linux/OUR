@@ -1,0 +1,23 @@
+
+[info]
+name = neovim
+version = 0.10.1
+license = Apache-2.0
+type = src
+url = https://github.com/$NAME/$NAME/archive/refs/tags/v$VERSION.tar-gz
+sha256 = edce96e79903adfcb3c41e9a8238511946325ea9568fde177a70a614501af689
+
+
+[description]
+Vim-fork focused on extensibility and usability. A modal text editor.
+
+[dependencies]
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+make CMAKE_BUILD_TYPE=Release $MAKE_FLAGS
+make CMAKE_INSTALL_PREFIX=$BULID_ROOT install
+
