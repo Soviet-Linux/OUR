@@ -19,5 +19,5 @@ tar -xzf $NAME-$VERSION.tar.gz
 
 [install]
 make CMAKE_BUILD_TYPE=Release $MAKE_FLAGS
-make CMAKE_INSTALL_PREFIX=$BULID_ROOT install
+make CMAKE_INSTALL_PREFIX=$BUILD_ROOT install
 
