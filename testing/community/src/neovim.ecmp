@@ -1,14 +1,14 @@
 
 [info]
 name = neovim
-version = 0.10.1
+version = 0.10.2
 license = Apache-2.0
 url = neovim.io
 type = src
 
 
 [files]
-$NAME-$VERSION.tar.gz https://github.com/$NAME/$NAME/archive/refs/tags/v$VERSION.tar.gz 546cb2da9fffbb7e913261344bbf4cf1622721f6c5a67aa77609e976e78b8e89
+neovim-0.10.2.tar.gz https://github.com/neovim/neovim/archive/refs/tags/v0.10.2.tar.gz 546cb2da9fffbb7e913261344bbf4cf1622721f6c5a67aa77609e976e78b8e89
 
 
 
