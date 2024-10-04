@@ -1,0 +1,19 @@
+[info]
+name = libseccomp
+version = 2.5.5
+type = src
+url = https://github.com/seccomp/$NAME/releases/download/v$VERSION/$NAME-$VERSION.tar.gz
+sha256 = 248a2c8a4d9b9858aa6baf52712c34afefcf9c9e94b76dce02c1c9aa25fb3375
+
+[description]
+Libseccomp provides an easy to use, platform independent, interface to the Linux kernel's syscall filtering mechanism
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+./configure --prefix=/usr \
+--disable-static
+make
+make DESTDIR=$SOVIET_BUILD_DIR install

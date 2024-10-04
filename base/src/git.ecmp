@@ -1,9 +1,10 @@
 [info]
 name = git
-version = 2.43.0
+version = 2.46.1
 type = src
 url = https://mirrors.edge.kernel.org/pub/software/scm/$NAME/$NAME-$VERSION.tar.gz
-sha256 = ed238f5c72a014f238cc49fe7df4c6883732a3881111b381c105e2c5be77302f
+sha256 = 888cafb8bd6ab4cbbebc168040a8850eb088f81dc3ac2617195cfc0877f0f543
+
 
 [description]
 Version control system designed to handle everything from small to very large projects with speed and efficiency
@@ -17,6 +18,9 @@ make \
 	prefix=/usr \
 	gitexecdir=/usr/lib/git-core \
 	perllibdir="$(/usr/bin/perl -MConfig -wle 'print $Config{installvendorlib}')" \
-	DESTDIR=$BUILD_ROOT install $MAKE_FLAGS
-mkdir -p $BUILD_ROOT/usr/share/git/
-install -m644 ./contrib/completion/git-prompt.sh $BUILD_ROOT/usr/share/git/git-prompt.sh
+	DESTDIR=$SOVIET_BUILD_DIR \
+	INSTALL_SYMLINKS=1 \
+	USE_LIBPCRE2=1 \
+install 
+mkdir -p $SOVIET_BUILD_DIR/usr/share/git/
+install -m644 ./contrib/completion/git-prompt.sh $SOVIET_BUILD_DIR/usr/share/git/git-prompt.sh

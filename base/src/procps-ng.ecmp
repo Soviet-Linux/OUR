@@ -13,9 +13,14 @@ curl -L $URL --output $NAME-$VERSION.tar.xz
 tar -xf $NAME-$VERSION.tar.xz
 
 [install]
+cp $SOVIET_REPOS_DIR/OUR/base/patch/procps-0001-build-sys-Add-systemd-elogind-to-w.patch .
+patch -np1 -i ./procps-0001-build-sys-Add-systemd-elogind-to-w.patch
+cp $SOVIET_REPOS_DIR/OUR/base/patch/procps-0002-ps-Don-t-crash-when-using-short-option.patch .
+patch -np1 -i procps-0002-ps-Don-t-crash-when-using-short-option.patch
+
 ./configure --prefix=/usr \
             --disable-static \
             --disable-kill \
             --with-systemd
-make
-make DESTDIR=$BUILD_ROOT install
+make src_w_LDADD='$(LDADD) -lsystemd'
+make DESTDIR=$SOVIET_BUILD_DIR install

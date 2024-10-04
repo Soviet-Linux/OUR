@@ -16,7 +16,7 @@ tar xf $NAME-$VERSION.tar.xz
 [install] 
 # linux-4-17=true is a baseline for modern kernel features
 # system-console-users designates the listed users (all login manager accounts) as being able to access the console
-meson setup build -D linux-4-17=true -D system-console-users=gdm,sddm,lightdm,lxdm
+meson setup build --prefix /usr -D linux-4-17=true -D system-console-users=gdm,sddm,lightdm,lxdm
 meson compile -C build
 meson test -C build
-DESTDIR=$BUILD_ROOT meson install -C build
+DESTDIR=$SOVIET_BUILD_DIR meson install -C build

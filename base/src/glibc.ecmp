@@ -15,11 +15,14 @@ tar xf $NAME-$VERSION.tar.xz
 
 [install]
 # Patch 1 - Some of the Glibc programs use the non-FHS compliant /var/db directory to store their runtime data. Apply the following patch to make such programs store their runtime data in the FHS-compliant locations:
-cp $SOVIET_REPOS_DIR/OUR/base/patch/$NAME-$VERSION-fhs-1.patch
+cp $SOVIET_REPOS_DIR/OUR/base/patch/$NAME-$VERSION-fhs-1.patch .
 patch -Np1 -i $NAME-$VERSION-fhs-1.patch
 # Patch 2 - $ix a security vulnerability:
-cp $SOVIET_REPOS_DIR/OUR/base/patch/$NAME-$VERSION-upstream_fix-2.patch
+cp $SOVIET_REPOS_DIR/OUR/base/patch/$NAME-$VERSION-upstream_fix-2.patch .
 patch -Np1 -i $NAME-$VERSION-upstream_fix-2.patch
+
+## export a DESTDIR so it doesn't blow up the host
+export DESTDIR=$SOVIET_BUILD_DIR
 
 mkdir build
 cd build
@@ -30,14 +33,16 @@ cd build
 --enable-stack-protector=strong \
 --with-headers=/usr/include \
 --disable-nscd \
---enable-cet
-make $MAKE_FLAGS
+--disable-timezone-tools \
+--enable-cet \
+libc_cv_slibdir=/usr/lib
+
+make 
 # Fix the Makefile to skip an outdated sanity check that fails with a modern Glibc configuration: 
 sed '/test-installation/s@$(PERL)@echo not running@' -i ../Makefile
-make DESTDIR=$BUILD_ROOT install
-# Fix a hardcoded path to the executable loader in the ldd script:
-sed '/RTLDLIST=/s@/usr@@g' -i /usr/bin/ldd
 # add all the locales
-echo 'Installing Locales...'
-make DESTDIR=$BUILD_ROOT localedata/install-locales
+make DESTDIR=$SOVIET_BUILD_DIR localedata/install-locales
 localedef -i C -f UTF-8 C.UTF-8
+make DESTDIR=$SOVIET_BUILD_DIR install
+# Fix a hardcoded path to the executable loader in the ldd script:
+sed '/RTLDLIST=/s@/usr@@g' -i $SOVIET_BUILD_DIR/usr/bin/ldd

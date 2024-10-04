@@ -19,6 +19,6 @@ tar -xf $NAME-$VERSION.tar.gz
     --enable-static \
     --disable-libseccomp \
 	--disable-zstdlib
-make $MAKE_FLAGS
-make DESTDIR=$BUILD_ROOT install
+make 
+make DESTDIR=$SOVIET_BUILD_DIR install
 

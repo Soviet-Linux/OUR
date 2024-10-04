@@ -1,34 +1,42 @@
 [info] 
 name = util-linux
-version = 2.40
+version = 2.40.2
 type = src
 license = GPLv3
-url = https://www.kernel.org/pub/linux/utils/$NAME/v$VERSION/$NAME-$VERSION.tar.xz
-sha256 = d57a626081f9ead02fa44c63a6af162ec19c58f53e993f206ab7c3a6641c2cd7
+url = https://github.com/$NAME/$NAME/archive/refs/tags/v$VERSION.tar.gz
+sha256 = 8e5f5de12d1b02d44e2511e5f2c6c36236a5331b1cd915c2f7e8868bac677ace
+
 
 [description] 
 The Util-linux package contains miscellaneous utility programs. Among them are utilities for handling file systems, consoles, partitions, and messages. 
 
 [download]
-curl -L $URL --output $NAME-$VERSION.tar.xz
-tar xf $NAME-$VERSION.tar.xz
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar xf $NAME-$VERSION.tar.gz
 
 [install] 
-./configure --bindir=/usr/bin     \
-            --libdir=/usr/lib     \
-            --runstatedir=/run    \
-            --sbindir=/usr/sbin   \
-            --disable-chfn-chsh   \
-            --disable-login       \
-            --disable-nologin     \
-            --disable-su          \
-            --disable-setpriv     \
-            --disable-runuser     \
-            --disable-pylibmount  \
-            --disable-liblastlog2 \
-            --disable-static      \
-            --without-python      \
-            ADJTIME_PATH=/var/lib/hwclock/adjtime \
-            --docdir=/usr/share/doc/util-linux-$VERSION
-make $MAKE_FLAGS
-make DESTDIR=$BUILD_ROOT install
+meson build \
+-Dprefix=/usr \
+-Dfs-search-path=/usr/bin:/usr/local/bin \
+-Dlibuser=disabled \
+-Dlibutempter=disabled \
+-Dncurses=disabled \
+-Dncursesw=enabled \
+-Deconf=disabled \
+-Dbuild-login=disabled \
+-Dbuild-nologin=disabled \
+-Dbuild-su=disabled \
+-Dbuild-chfn-chsh=disabled \
+-Dbuild-line=disabled \
+-Dbuild-mesg=enabled \
+-Dbuild-newgrp=disabled \
+-Dbuild-vipw=disabled \
+-Dbuild-write=enabled \
+-Dbuild-liblastlog2=enabled \
+-Dbuild-pam-lastlog2=enabled \
+-Dbuild-libuuid=enabled \
+-Dbuild-uuidd=enabled \
+-Dbuild-libblkid=enabled
+
+meson compile -C build
+DESTDIR=$SOVIET_BUILD_DIR meson install -C build

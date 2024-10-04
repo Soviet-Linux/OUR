@@ -16,5 +16,8 @@ tar -xzf $NAME-$VERSION.tar.gz
 ./configure --prefix=/usr \
             --without-bash-malloc \
             --with-installed-readline 
-make $MAKE_FLAGS
-make DESTDIR=$BUILD_ROOT install
+make 
+make DESTDIR=$SOVIET_BUILD_DIR install
+
+(cd $SOVIET_BUILD_DIR/usr/bin/
+ln -sv bash sh )

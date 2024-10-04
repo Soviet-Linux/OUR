@@ -29,5 +29,5 @@ tar -xzf $NAME-$VERSION.tar.gz
 	sed -i "s|-O3|$CFLAGS|" Makefile
 
 	make depend
-	make $MAKE_FLAGS
-	make MANSUFFIX=ssl DESTDIR=$BUILD_ROOT install_sw install_ssldirs install_man_docs
+	make 
+	make MANSUFFIX=ssl DESTDIR=$SOVIET_BUILD_DIR install_sw install_ssldirs install_man_docs

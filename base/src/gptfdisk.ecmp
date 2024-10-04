@@ -1,0 +1,24 @@
+[info]
+name = gptfdisk
+version = 1.0.10
+type = src
+url = https://downloads.sourceforge.net/$NAME/$NAME-$VERSION.tar.gz
+sha256 = 2abed61bc6d2b9ec498973c0440b8b804b7a72d7144069b5a9209b2ad693a282
+
+[description]
+A set of programs for creation and maintenance of GUID Partition Table (GPT) disk drives.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xf $NAME-$VERSION.tar.gz
+
+[install]
+## from LFS: update makefile to provide a simple build and install interface
+cp $SOVIET_REPOS_DIR/OUR/base/patch/$NAME-$VERSION-convenience-1.patch .
+patch -Np1 -i $NAME-$VERSION-convenience-1.patch
+## fix location of a header file
+sed -i 's|ncursesw/||' gptcurses.cc
+## update to unified usr structure
+sed -i 's|sbin|usr/sbin|' Makefile
+make
+make DESTDIR=$SOVIET_BUILD_DIR install

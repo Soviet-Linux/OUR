@@ -17,6 +17,5 @@ tar -xf $NAME-$VERSION.tar.gz
 	--prefix=/usr \
 	--disable-nls \
 	--without-guile
-make $MAKE_FLAGS
-make DESTDIR=$BUILD_ROOT install
-
+make 
+make DESTDIR=$SOVIET_BUILD_DIR install

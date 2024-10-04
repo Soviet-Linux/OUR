@@ -22,4 +22,4 @@ tar -xJf $NAME-$VERSION.tar.xz
             --with-vgrind=/usr/bin/vgrind         \
             --with-grap=/usr/bin/gr
 make
-make DESTDIR=$BUILD_ROOT install
+make DESTDIR=$SOVIET_BUILD_DIR install

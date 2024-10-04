@@ -10,10 +10,10 @@ Small build system with a focus on speed
 
 [download]
 curl -L $URL --output v$VERSION.tar.gz
-tar -xzf v$VERSION.tar.gz
+tar -xf v$VERSION.tar.gz
 
 [install]
 python3 ./configure.py --bootstrap
-install -Dm755 ninja $BUILD_ROOT/usr/bin/ninja
-install -vDm644 misc/bash-completion /usr/share/bash-completion/completions/ninja
-install -vDm644 misc/zsh-completion  /usr/share/zsh/site-functions/_ninja
+install -Dm755 ninja $SOVIET_BUILD_DIR/usr/bin/ninja
+install -vDm644 misc/bash-completion $SOVIET_BUILD_DIR/usr/share/bash-completion/completions/ninja
+install -vDm644 misc/zsh-completion  $SOVIET_BUILD_DIR/usr/share/zsh/site-functions/_ninja

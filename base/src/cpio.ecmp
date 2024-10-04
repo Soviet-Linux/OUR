@@ -1,0 +1,20 @@
+[info]
+name = cpio
+version = 2.15
+type = src
+url = https://ftp.gnu.org/gnu/cpio/cpio-$VERSION.tar.bz2
+sha256 = 937610b97c329a1ec9268553fb780037bcfff0dcffe9725ebc4fd9c1aa9075db
+
+[description]
+cpio tools for archiving
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.bz2
+tar -xf $NAME-$VERSION.tar.bz2
+
+[install]
+./configure --prefix=/usr \
+	--enable-mt \
+	--with-rmt=/usr/libexec/rmt
+make
+make DESTDIR=$SOVIET_BUILD_DIR install

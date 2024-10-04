@@ -1,0 +1,28 @@
+[info]
+name = openldap
+version = 2.6.8
+type = src
+url = https://www.$NAME.org/software/download/OpenLDAP/$NAME-release/$NAME-$VERSION.tgz
+sha256 = 48969323e94e3be3b03c6a132942dcba7ef8d545f2ad35401709019f696c3c4e
+
+[description]
+The NPth package contains a very portable POSIX/ANSI-C based library for Unix platforms which provides non-preemptive priority-based scheduling for multiple threads of execution (multithreading) inside event-driven applications.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tgz
+tar -xf $NAME-$VERSION.tgz
+
+[install]
+cp $SOVIET_REPOS_DIR/OUR/base/patch/openldap-2.6.8-consolidated-1.patch .
+patch -Np1 -i openldap-2.6.8-consolidated-1.patch
+autoconf
+
+./configure --prefix=/usr        \
+            --disable-static     \
+            --enable-dynamic     \
+            --disable-debug      \
+            --disable-slapd
+
+make depend
+make
+make DESTDIR=$SOVIET_BUILD_DIR install

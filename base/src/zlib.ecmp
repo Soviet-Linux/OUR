@@ -14,7 +14,7 @@ tar -xf $NAME-$VERSION.tar.gz
 
 [install]
 ./configure --prefix=/usr
-make $MAKE_FLAGS
-make DESTDIR=$BUILD_ROOT install
-ln -sfv ../../lib/$(readlink $BUILD_ROOT/usr/lib/libz.so) $BUILD_ROOT/usr/lib/libz.so
+make 
+make DESTDIR=$SOVIET_BUILD_DIR install
+ln -sfv ../../lib/$(readlink $SOVIET_BUILD_DIR/usr/lib/libz.so) $SOVIET_BUILD_DIR/usr/lib/libz.so
 

@@ -10,9 +10,44 @@ Libraries for terminal-independent handling of character screens
 
 [download]
 curl -L $URL --output $NAME-$VERSION.tar.gz
-tar -xzf $NAME-$VERSION.tar.gz
+tar -xf $NAME-$VERSION.tar.gz
 
 [install]
-./configure --prefix=/usr
-make $MAKE_FLAGS
-make DESTDIR=$BUILD_ROOT install
+#do not link against test libraries
+cp $SOVIET_REPOS_DIR/OUR/base/patch/ncurses-6.3-libs.patch .
+patch -Np1 -i ncurses-6.3-libs.patch
+#fixes build-time LDFLAGS leaking into pkgconfig files
+cp $SOVIET_REPOS_DIR/OUR/base/patch/ncurses-6.3-pkgconfig.patch .
+patch -Np1 -i ncurses-6.3-pkgconfig.patch
+
+./configure --prefix=/usr \
+--mandir=/usr/share/man \
+--with-pkg-config-libdir=/usr/lib/pkgconfig \
+--with-shared \
+--without-debug \
+--enable-pc-files \
+--enable-widec \
+--disable-root-access \
+--disable-root-environ \
+--disable-setuid-environ \
+--with-cxx-binding \
+--with-cxx-shared \
+--with-manpage-format=normal \
+--with-versioned-syms \
+--with-xterm-kbs=del \
+--without-ada
+
+make 
+make DESTDIR=$SOVIET_BUILD_DIR install
+
+tree $SOVIET_BUILD_DIR
+
+(
+cd $SOVIET_BUILD_DIR/usr/lib
+for lib in ncurses ncurses++ form panel menu; do
+ln -sfv lib${lib}w.so lib${lib}.so
+ln -sfv ${lib}w.pc pkgconfig/${lib}.pc
+done
+
+ln -sfv libncursesw.so libcurses.so
+)

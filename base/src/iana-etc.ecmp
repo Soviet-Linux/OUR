@@ -13,4 +13,4 @@ curl -L $URL --output $NAME-$VERSION.tar.gz
 tar -xzf $NAME-$VERSION.tar.gz
 
 [install]
-mkdir $BUILD_ROOT/etc && cp services protocols $BUILD_ROOT/etc
+mkdir $SOVIET_BUILD_DIR/etc && cp services protocols $SOVIET_BUILD_DIR/etc

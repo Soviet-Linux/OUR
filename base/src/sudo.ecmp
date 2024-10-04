@@ -25,6 +25,6 @@ tar -xzf $NAME-$VERSION.tar.gz
             --with-env-editor          \
             --docdir=/usr/share/doc/$NAME-$VERSION \
             --with-passprompt="[sudo] password for %p" &&
-make $MAKE_FLAGS
+make 
 
-make DESTDIR=$BUILD_ROOT install
+make DESTDIR=$SOVIET_BUILD_DIR install

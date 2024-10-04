@@ -19,4 +19,4 @@ tar -xf $NAME-$VERSION.tar.xz
             --disable-static             \
             --disable-failure-tokens
 make
-make DESTDIR=$BUILD_ROOT install
+make DESTDIR=$SOVIET_BUILD_DIR install

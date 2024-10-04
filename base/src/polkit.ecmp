@@ -1,0 +1,31 @@
+[info] 
+name = polkit
+version = 125
+type = src
+license = GPL-2
+url = https://github.com/polkit-org/$NAME/archive/$VERSION/$NAME-$VERSION.tar.gz
+sha256 = 6a631867c0b41e6c159c22f921c4a4e59bed7e650e3bd022299f9d51f97f1c56
+
+[description] 
+Polkit is a toolkit for defining and handling authorizations. It is used for allowing unprivileged processes to communicate with privileged processes.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xf $NAME-$VERSION.tar.gz
+
+[install]
+mkdir build
+cd build
+meson setup .. \
+--prefix=/usr \
+--buildtype=release \
+-D man=true \
+-D authfw=pam \
+-D session_tracking=logind \
+-D introspection=false
+ninja
+DESTDIR=$SOVIET_BUILD_DIR ninja install
+
+chmod 04755 $SOVIET_BUILD_DIR/usr/bin/pkexec
+chmod 04755 $SOVIET_BUILD_DIR/usr/lib/polkit-1/polkit-agent-helper-1
+install -d -m 0755 -o root -g polkitd $SOVIET_BUILD_DIR/usr/lib/polkit-1/rules.d/
