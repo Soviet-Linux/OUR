@@ -8,7 +8,7 @@ type = src
 
 
 [files]
-neovim-0.10.2.tar.gz https://github.com/neovim/neovim/archive/refs/tags/v0.10.2.tar.gz 546cb2da9fffbb7e913261344bbf4cf1622721f6c5a67aa77609e976e78b8e89
+neovim-0.10.2.tar.gz https://codeload.github.com/neovim/neovim/tar.gz/refs/tags/v0.10.2 546cb2da9fffbb7e913261344bbf4cf1622721f6c5a67aa77609e976e78b8e89
 
 
 
@@ -21,7 +21,6 @@ Vim-fork focused on extensibility and usability. A modal text editor.
 ninja
 
 [download]
-curl -L $URL --output $NAME-$VERSION.tar.gz
 tar -xzf $NAME-$VERSION.tar.gz
 
 [exports]
