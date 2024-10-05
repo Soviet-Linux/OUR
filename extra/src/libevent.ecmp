@@ -1,0 +1,26 @@
+[info]
+name = libevent
+version = 2.1.12
+license = BSD 3-clause
+url = https://libevent.org/
+type = src
+
+
+[files]
+libevent-2.1.12-stable.tar.gz https://github.com/libevent/libevent/releases/download/release-2.1.12-stable/libevent-2.1.12-stable.tar.gz 92e6de1be9ec176428fd2367677e61ceffc2ee1cb119035037a27d346b0403bb  
+
+[description]
+libevent is an event notification library 
+
+[dependencies]
+cmake
+
+[download]
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+mkdir build && cd build
+cmake ..
+make
+make verify # optional
+make DEST_DIR=$BUILD_ROOT install

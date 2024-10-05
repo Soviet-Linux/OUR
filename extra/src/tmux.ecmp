@@ -1,0 +1,27 @@
+[info]
+name = tmux
+version = 3.5a
+license = BSD
+url = neovim.io
+type = src
+
+
+[files]
+$NAME-$VERSION.tar.gz https://github.com/tmux/tmux/archive/refs/tags/$VERSION.tar.gz 49e68b41dec0bf408990160ee12fa29b06dee8f74c1f0b4b71c9d2a1477dd910
+
+[description]
+tmux is a terminal multiplexer: it enables a number of terminals to be created, accessed, and controlled from a single screen.
+
+[dependencies]
+libevent
+ncurses
+bison
+
+[download]
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+./configure --prefix=/usr
+make 
+make install
+
