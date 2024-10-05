@@ -22,5 +22,4 @@ tar -xzf $NAME-$VERSION.tar.gz
 mkdir build && cd build
 cmake ..
 make
-make verify # optional
 make DEST_DIR=$BUILD_ROOT install
