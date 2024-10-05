@@ -23,5 +23,5 @@ tar -xzf $NAME-$VERSION.tar.gz
 [install]
 ./configure --prefix=/usr
 make 
-make install
+make DESTDIR=$BUILD_ROOT install
 
