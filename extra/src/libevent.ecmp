@@ -1,6 +1,6 @@
 [info]
 name = libevent
-version = 2.1.12
+version = 2.1.12-stable
 license = BSD 3-clause
 url = https://libevent.org/
 type = src

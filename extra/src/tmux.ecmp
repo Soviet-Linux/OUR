@@ -2,7 +2,7 @@
 name = tmux
 version = 3.5a
 license = BSD
-url = neovim.io
+url = https://github.com/tmux/tmux
 type = src
 
 
