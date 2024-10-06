@@ -1,0 +1,24 @@
+[info]
+name = xcb-proto
+type = src
+version = 1.16.0
+url = https://xorg.freedesktop.org/archive/individual/proto/
+environment = xorg-build-env
+
+[optional]
+xorg-build-env
+libxml2
+
+[description]
+The xcb-proto package provides the XML-XCB protocol descriptions that libxcb uses to generate the majority of its code and API. 
+
+[files]
+xcb-proto-1.16.0.tar.xz https://xorg.freedesktop.org/archive/individual/proto/xcb-proto-1.16.0.tar.xz a75a1848ad2a89a82d841a51be56ce988ff3c63a8d6bf4383ae3219d8d915119
+
+[download]
+tar -xf xcb-proto-1.16.0.tar.xz
+
+[install]
+PYTHON=python3 ./configure $XORG_CONFIG
+make
+make DESTDIR=$BUILD_ROOT install

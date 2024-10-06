@@ -1,0 +1,22 @@
+[info]
+name = seatd
+type = src
+version = 0.8.0
+url = https://git.sr.ht/~kennylevinsen/seatd/
+
+[description]
+A minimal seat management daemon, and a universal seat management library.
+
+[files]
+seatd-0.8.0.tar.gz https://git.sr.ht/~kennylevinsen/seatd/archive/0.8.0.tar.gz a562a44ee33ccb20954a1c1ec9a90ecb2db7a07ad6b18d0ac904328efbcf65a0
+
+[download]
+tar -xzf seatd-0.8.0.tar.gz
+
+[install]
+mkdir build &&
+cd    build &&
+
+meson setup --prefix=/usr --buildtype=release .. &&
+ninja
+DESTDIR=$BUILD_ROOT ninja install

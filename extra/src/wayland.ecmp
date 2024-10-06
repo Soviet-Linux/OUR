@@ -1,0 +1,25 @@
+[info] 
+name = wayland
+version = 1.23.0
+type = src
+url = https://gitlab.freedesktop.org/wayland/
+
+[description] 
+Wayland is a project to define a protocol for a compositor to talk to its clients as well as a library implementation of the protocol. 
+
+[files]
+wayland-1.23.0.tar.xz https://gitlab.freedesktop.org/wayland/wayland/-/releases/1.23.0/downloads/wayland-1.23.0.tar.xz 05b3e1574d3e67626b5974f862f36b5b427c7ceeb965cb36a4e6c2d342e45ab2
+
+[download]
+tar -xf $NAME-$VERSION.tar.xz
+
+[install]
+mkdir build &&
+cd    build &&
+
+meson setup ..            \
+      --prefix=/usr       \
+      --buildtype=release \
+      -D documentation=false &&
+ninja
+DESTDIR=$BUILD_ROOT ninja install

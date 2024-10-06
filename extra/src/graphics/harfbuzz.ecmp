@@ -1,0 +1,34 @@
+[info]
+name = harfbuzz
+type = src
+version = 9.0.0
+url = https://github.com/harfbuzz/
+
+[dependencies]
+glib
+freetype
+
+[description]
+The HarfBuzz package contains an OpenType text shaping engine.
+
+[files]
+harfbuzz-9.0.0.tar.xz https://github.com/harfbuzz/harfbuzz/releases/download/9.0.0/harfbuzz-9.0.0.tar.xz a41b272ceeb920c57263ec851604542d9ec85ee3030506d94662067c7b6ab89e
+
+[download]
+tar -xf harfbuzz-9.0.0.tar.xz
+
+[install]
+mkdir build &&
+cd    build &&
+
+meson setup ..             \
+      --prefix=/usr        \
+      --buildtype=release  &&
+ninja
+DESTDIR=$BUILD_ROOT ninja install
+
+[special]
+# These have to be rebuilt after harfbuzz is installed
+cccp -i cairo
+cccp -i freetype
+cccp -i fontconfig
