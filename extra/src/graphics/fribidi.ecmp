@@ -1,0 +1,22 @@
+[info]
+name = fribidi
+type = src
+version = 1.0.15
+url = https://github.com/fribidi/
+
+[description]
+The HarfBuzz package contains an OpenType text shaping engine.
+
+[files]
+fribidi-1.0.15.tar.xz https://github.com/fribidi/fribidi/releases/download/v1.0.15/fribidi-1.0.15.tar.xz 0bbc7ff633bfa208ae32d7e369cf5a7d20d5d2557a0b067c9aa98bcbf9967587
+
+[download]
+tar -xf fribidi-1.0.15.tar.xz
+
+[install]
+mkdir build &&
+cd    build &&
+
+meson setup --prefix=/usr --buildtype=release .. &&
+ninja
+DESTDIR=$BUILD_ROOT ninja install

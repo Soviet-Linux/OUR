@@ -1,0 +1,30 @@
+[info]
+name = glslang
+type = src
+version = 14.3.0
+url = https://github.com/KhronosGroup/glslang/
+
+[dependencies]
+spirv-tools
+
+[description]
+The Glslang package contains an frontend and validator for OpenGL, OpenGL ES, and Vulkan shaders. 
+
+[files]
+glslang-14.3.0.tar.gz https://github.com/KhronosGroup/glslang/archive/14.3.0/glslang-14.3.0.tar.gz be6339048e20280938d9cb399fcdd06e04f8654d43e170e8cce5a56c9a754284
+
+[download]
+tar -xzf glslang-14.3.0.tar.gz
+
+[install]
+mkdir build &&
+cd    build &&
+
+cmake -D CMAKE_INSTALL_PREFIX=/usr     \
+      -D CMAKE_BUILD_TYPE=Release      \
+      -D ALLOW_EXTERNAL_SPIRV_TOOLS=ON \
+      -D BUILD_SHARED_LIBS=ON          \
+      -D GLSLANG_TESTS=ON              \
+      -G Ninja .. &&
+ninja
+DESTDIR=$BUILD_ROOT ninja install

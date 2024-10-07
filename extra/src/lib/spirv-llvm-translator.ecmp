@@ -1,0 +1,33 @@
+[info]
+name = spirv-llvm-translator
+type = src
+version = 18.1.3
+url = https://github.com/KhronosGroup/SPIRV-LLVM-Translator/
+
+[dependencies]
+llvm
+spirv-tools
+
+[description]
+The SPIRV-LLVM-Translator package contains a library and utility for converting between LLVM IR and SPIR-V code.
+This package currently only supports the OpenCL/Compute version of SPIR-V. 
+
+[files]
+SPIRV-LLVM-Translator-18.1.3.tar.gz https://github.com/KhronosGroup/SPIRV-LLVM-Translator/archive/v18.1.3/SPIRV-LLVM-Translator-18.1.3.tar.gz d896f35102c3ba9e16ead7b4db53b75e6131982cdb36a3324f17c68a43598759
+
+[download]
+tar -xzf SPIRV-LLVM-Translator-18.1.3.tar.gz
+mv ./SPIRV-LLVM-Translator-18.1.3/ ./spirv-llvm-translator-18.1.3/
+
+[install]
+mkdir build &&
+cd    build &&
+
+cmake -D CMAKE_INSTALL_PREFIX=/usr                   \
+      -D CMAKE_BUILD_TYPE=Release                    \
+      -D BUILD_SHARED_LIBS=ON                        \
+      -D CMAKE_SKIP_INSTALL_RPATH=ON                 \
+      -D LLVM_EXTERNAL_SPIRV_HEADERS_SOURCE_DIR=/usr \
+      -G Ninja ..                                    &&
+ninja
+DESTDIR=$BUILD_ROOT ninja install

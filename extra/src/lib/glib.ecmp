@@ -1,0 +1,34 @@
+[info]
+name = glib
+type = src
+version = 2.80.4
+url = https://download.gnome.org/sources/glib/
+
+[dependencies]
+gobject-introspection
+
+[optional]
+gdb
+Mako
+
+[description]
+The GLib package contains low-level libraries useful for providing data structure handling for C,
+portability wrappers and interfaces for runtime functionality such as an event loop, threads, dynamic loading and an object system. 
+
+[files]
+glib-2.80.4.tar.xz https://download.gnome.org/sources/glib/2.80/glib-2.80.4.tar.xz 24e029c5dfc9b44e4573697adf33078a9827c48938555004b3b9096fa4ea034f
+
+[download]
+tar -xf glib-2.80.4.tar.xz
+
+[install]
+mkdir build &&
+cd    build &&
+
+meson setup ..                  \
+      --prefix=/usr             \
+      --buildtype=release       \
+      -D introspection=enabled \
+      -D man-pages=enabled      &&
+ninja
+DESTDIR=$BUILD_ROOT ninja install

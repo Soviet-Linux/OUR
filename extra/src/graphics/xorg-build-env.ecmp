@@ -1,0 +1,38 @@
+[info]
+name = xorg-build-env
+type = src
+version = 7.0
+
+[description]
+The Xorg Build Environment is some preps for all the apps of xorg
+
+[exports]
+XORG_PREFIX=/usr
+XORG_CONFIG=--prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+
+[download]
+mkdir xorg-build-env-7.0
+
+[install]
+export XORG_PREFIX="/usr"
+
+export XORG_CONFIG="--prefix=$XORG_PREFIX --sysconfdir=/etc \
+    --localstatedir=/var --disable-static"
+
+mkdir $BUILD_ROOT/etc/
+mkdir $BUILD_ROOT/etc/profile.d/
+mkdir $BUILD_ROOT/etc/sudoers.d/
+
+cat > $BUILD_ROOT/etc/profile.d/xorg.sh << EOF
+XORG_PREFIX="$XORG_PREFIX"
+XORG_CONFIG="--prefix=\$XORG_PREFIX --sysconfdir=/etc --localstatedir=/var --disable-static"
+export XORG_PREFIX XORG_CONFIG
+EOF
+
+cat > $BUILD_ROOT/etc/sudoers.d/xorg << EOF
+Defaults env_keep += XORG_PREFIX
+Defaults env_keep += XORG_CONFIG
+EOF
+
+[special]
+chmod 644 /etc/profile.d/xorg.sh

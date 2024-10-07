@@ -1,0 +1,23 @@
+[info]
+name = rust-bindgen
+type = src
+version = 0.70.0
+url = https://github.com/rust-lang/rust-bindgen/
+
+[dependencies]
+#TODO: replace with rustc
+rustup
+
+[description]
+The rust-bindgen package contains a utility that generates Rust bindings from C/C++ headers. 
+
+[files]
+rust-bindgen-0.70.0.tar.gz https://github.com/rust-lang/rust-bindgen/archive/v0.70.0/rust-bindgen-0.70.0.tar.gz 9afd95f52c55147c4e01976b16f8587526f0239306a5a4610234953ab2ee7268
+
+[download]
+tar -xzf rust-bindgen-0.70.0.tar.gz
+
+[install]
+cargo build --release
+mkdir -p $BUILD_ROOT/usr/bin/ &&
+install -v -m755 target/release/bindgen $BUILD_ROOT/usr/bin

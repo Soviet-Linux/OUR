@@ -1,0 +1,27 @@
+[info]
+name = xkeyboard-config
+type = src
+version = 2.42
+url = https://www.x.org/pub/individual/data/xkeyboard-config
+environment = xorg-build-env
+
+[dependencies]
+xorg-build-env
+xorg-libs
+
+[description]
+The XKeyboardConfig package contains the keyboard configuration database for the X Window System. 
+
+[files]
+xkeyboard-config-2.42.tar.xz https://www.x.org/pub/individual/data/xkeyboard-config/xkeyboard-config-2.42.tar.xz a6b06ebfc1f01fc505f2f05f265f95f67cc8873a54dd247e3c2d754b8f7e0807
+
+[download]
+tar -xf xkeyboard-config-2.42.tar.xz
+
+[install]
+mkdir build &&
+cd    build &&
+
+meson setup --prefix=$XORG_PREFIX --buildtype=release .. &&
+ninja
+DESTDIR=$BUILD_ROOT ninja install

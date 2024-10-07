@@ -1,0 +1,27 @@
+[info]
+name = desktop-file-utils
+type = src
+version = 0.27
+url = https://www.freedesktop.org/software/desktop-file-utils/
+
+[dependencies]
+glib
+
+[description]
+The Desktop File Utils package contains command line utilities for working with Desktop entries. 
+These utilities are used by Desktop Environments and other applications to manipulate the MIME-types-
+application databases and help adhere to the Desktop Entry Specification.
+
+[files]
+desktop-file-utils-0.27.tar.xz https://www.freedesktop.org/software/desktop-file-utils/releases/desktop-file-utils-0.27.tar.xz a0817df39ce385b6621880407c56f1f298168c040c2032cedf88d5b76affe836
+
+[download]
+tar -xf desktop-file-utils-0.27.tar.xz
+
+[install]
+mkdir build &&
+cd    build &&
+
+meson setup --prefix=/usr --buildtype=release .. &&
+ninja
+DESTDIR=$BUILD_ROOT ninja install
