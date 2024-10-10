@@ -3,14 +3,15 @@
 name = neofetch
 version = b6c66aa34874d426d2521fd72939b28dd663134d
 type = src
-url = https://github.com/Soviet-Linux/$NAME/archive/$VERSION.zip
-sha256 = cd863cfe461845899d7c7c880b441b5bab2b716e9c69c5c904956e2430109527
+url = https://github.com/Soviet-Linux/neofetch/
+
+[files]
+$NAME-$VERSION.zip https://github.com/Soviet-Linux/$NAME/archive/$VERSION.zip cd863cfe461845899d7c7c880b441b5bab2b716e9c69c5c904956e2430109527
 
 [description]
 A command-line system information tool written in bash 3.2+
 
 [download]
-curl -L $URL --output $NAME-$VERSION.zip
 unzip $NAME-$VERSION.zip
 
 [install]
