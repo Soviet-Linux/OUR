@@ -17,3 +17,5 @@ export CFLAGS="$CFLAGS -fPIC"
 ./configure --prefix=/usr
 make 
 make DESTDIR=$SOVIET_BUILD_DIR install
+# from LFS: remove a usless static lib
+rm $SOVIET_BUILD_DIR/usr/lib/libz.a
