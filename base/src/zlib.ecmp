@@ -13,8 +13,7 @@ curl -o $NAME-$VERSION.tar.gz $URL
 tar -xf $NAME-$VERSION.tar.gz
 
 [install]
+export CFLAGS="$CFLAGS -fPIC"
 ./configure --prefix=/usr
 make 
 make DESTDIR=$SOVIET_BUILD_DIR install
-ln -sfv ../../lib/$(readlink $SOVIET_BUILD_DIR/usr/lib/libz.so) $SOVIET_BUILD_DIR/usr/lib/libz.so
-
