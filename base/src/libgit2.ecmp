@@ -1,0 +1,19 @@
+[info]
+name = libgit2
+version = 1.8.1
+type = src
+url = https://libgit2.org/
+
+[files]
+libgit2-1.8.1.tar.gz https://codeload.github.com/libgit2/libgit2/tar.gz/refs/tags/v1.8.1 8c1eaf0cf07cba0e9021920bfba9502140220786ed5d8a8ec6c7ad9174522f8e
+
+[description]
+libgit2 is a portable, pure C implementation of the Git core methods
+
+[download]
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+mkdir build && cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=$SOVIET_BUILD_DIR
+cmake --build . --target install
