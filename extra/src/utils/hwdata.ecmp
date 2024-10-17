@@ -1,0 +1,19 @@
+[info]
+name = hwdata
+type = src
+version = 0.385
+url = https://github.com/vcrhonek/hwdata/archive/v0.385/hwdata-0.385.tar.gz
+
+[description]
+The hwdata package contains current PCI and vendor id data. 
+
+[files]
+hwdata-0.385.tar.gz https://github.com/vcrhonek/hwdata/archive/v0.385/hwdata-0.385.tar.gz 577219d44d9686e8177f6291adbff7bacdd785ad4e8a8d0c4b2a14dbf850d6ac
+
+[download]
+tar -xzf hwdata-0.385.tar.gz
+
+[install]
+./configure --prefix=/usr --disable-blacklist
+make
+make DESTDIR=$BUILD_ROOT install

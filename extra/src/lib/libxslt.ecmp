@@ -1,0 +1,22 @@
+[info]
+name = libxslt
+type = src
+version = 1.1.42
+url = https://download.gnome.org/sources/libxslt/
+
+[description]
+The PCRE2 package contains a new generation of the Perl Compatible Regular Expression libraries.
+These are useful for implementing regular expression pattern matching using the same syntax and semantics as Perl. 
+
+[files]
+libxslt-1.1.42.tar.xz https://download.gnome.org/sources/libxslt/1.1/libxslt-1.1.42.tar.xz 85ca62cac0d41fc77d3f6033da9df6fd73d20ea2fc18b0a3609ffb4110e1baeb
+
+[download]
+tar -xf libxslt-1.1.42.tar.xz
+
+[install]
+./configure --prefix=/usr                          \
+            --disable-static                       \
+            --docdir=/usr/share/doc/libxslt-1.1.42 &&
+make
+make DESTDIR=$BUILD_ROOT install

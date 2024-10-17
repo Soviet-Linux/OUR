@@ -1,0 +1,49 @@
+[info]
+name = mesa
+type = src
+version = 24.1.6
+url = https://mesa.freedesktop.org/
+environment = xorg-build-env
+
+[dependencies]
+xorg-build-env
+xorg-libs
+libdrm
+Mako
+
+[optional]
+glslang
+libclc
+ply
+cbindgen
+rust-bindgen
+libedit
+
+[inputs]
+Which Gallium3D drivers should be built? <auto,r300,r600,radeonsi,nouveau,virgl,svga,swrast,iris,crocus,i915,zink>, if unsure - type 'auto'.
+Which Vulkan drivers should be built? <auto,amd,intel,intel_hasvk,nouveau,swrast,"">, if unsure - type 'auto'.
+
+[description]
+Mesa is an OpenGL compatible 3D graphics library. 
+
+[files]
+mesa-24.1.6.tar.xz https://mesa.freedesktop.org/archive/mesa-24.1.6.tar.xz da94c0908d5662467369b69ed8236da1e1577141a6e7d25171a9bf56383b34e8
+
+[download]
+tar -xf mesa-24.1.6.tar.xz
+
+[install]
+mkdir build &&
+cd    build &&
+
+meson setup ..                      \
+      --prefix=$XORG_PREFIX         \
+      --buildtype=release           \
+      -D platforms=x11,wayland      \
+      -D gallium-drivers=$INPUT_0   \
+      -D vulkan-drivers=$INPUT_1    \
+      -D valgrind=disabled          \
+      -D libunwind=disabled         &&
+
+ninja
+DESTDIR=$BUILD_ROOT ninja install

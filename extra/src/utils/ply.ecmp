@@ -1,0 +1,18 @@
+[info]
+name = ply
+type = src
+version = 3.11
+url = https://files.pythonhosted.org/packages/source/p/ply/
+
+[description]
+The ply package is a 100% Python implementation of the common parsing tools 'lex' and 'yacc'.
+
+[files]
+ply-3.11.tar.gz https://files.pythonhosted.org/packages/source/p/ply/ply-3.11.tar.gz 00c7c1aaa88358b9c765b6d3000c6eec0ba42abca5351b095321aef446081da3
+
+[download]
+tar -xzf ply-3.11.tar.gz
+
+[install]
+pip3 wheel -w dist --no-build-isolation --no-deps --no-cache-dir $PWD
+pip3 install --no-deps --target $BUILD_ROOT/usr/lib/python3.12/site-packages/ --no-index --find-links=dist --no-cache-dir --no-user ply

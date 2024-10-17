@@ -1,0 +1,34 @@
+[info]
+name = cairo
+type = src
+version = 1.18.0 
+url =  https://www.cairographics.org/
+
+[dependencies]
+libpng
+pixman
+glib
+xorg-libs
+
+[description]
+Cairo is a 2D graphics library with support for multiple output devices.
+Currently supported output targets include the X Window System, Win32, image buffers, PostScript, PDF and SVG.
+Experimental backends include OpenGL, Quartz and XCB file output. Cairo is designed to produce consistent output on all-
+output media while taking advantage of display hardware acceleration when available (e.g. through the X Render Extension).
+The Cairo API provides operations similar to the drawing operators of PostScript and PDF.
+Operations in Cairo include stroking and filling cubic Bézier splines, transforming and compositing translucent images, and antialiased text rendering.
+All drawing operations can be transformed by any affine transformation (scale, rotation, shear, etc.) 
+
+[files]
+cairo-1.18.0.tar.xz https://www.cairographics.org/releases/cairo-1.18.0.tar.xz 243a0736b978a33dee29f9cca7521733b78a65b5418206fef7bd1c3d4cf10b64
+
+[download]
+tar -xf cairo-1.18.0.tar.xz
+
+[install]
+mkdir build &&
+cd    build &&
+
+meson setup --prefix=/usr --buildtype=release .. &&
+ninja
+DESTDIR=$BUILD_ROOT ninja install
