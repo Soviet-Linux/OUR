@@ -1,0 +1,19 @@
+[info]
+name = libspm
+version = 22db3bde884453ae90a23afa873f1501d5e313c3
+type = src
+url= https://github.com/Soviet-Linux/libspm/
+
+[description]
+SovietLinux's Official Package Management Library
+
+[files]
+$NAME-$VERSION.zip https://github.com/Soviet-Linux/libspm/archive/$VERSION.zip c5fffa83ee321177d0c2a6ab1aea011a7b613fda95423d6482cb2817f3dcc99a
+
+[download]
+unzip $NAME-$VERSION.zip
+
+[install]
+make all
+make formats
+make DESTDIR=$SOVIET_BUILD_DIR install
