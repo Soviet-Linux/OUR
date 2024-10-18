@@ -1,0 +1,22 @@
+[info]
+name = cccp
+version = 73702516813366c4aecde79b4240138e070be902
+type = src
+url= https://github.com/Soviet-Linux/CCCP/
+
+[description]
+This is the official package manager of the Soviet Linux Distribution
+
+[dependencies]
+libspm
+
+[files]
+$NAME-$VERSION.zip https://github.com/Soviet-Linux/CCCP/archive/$VERSION.zip 9c628d101094ac69ddf60a84c129acdcaaa729886a7d1ea8542559d7928ed3c3
+
+[download]
+unzip $NAME-$VERSION.zip
+mv CCCP-$VERSION $NAME-$VERSION
+
+[install]
+make
+make DESTDIR=$SOVIET_BUILD_DIR install
