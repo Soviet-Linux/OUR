@@ -1,5 +1,5 @@
 [info]
-name = CCCP
+name = cccp
 version = 73702516813366c4aecde79b4240138e070be902
 type = src
 url= https://github.com/Soviet-Linux/CCCP/
@@ -15,6 +15,7 @@ $NAME-$VERSION.zip https://github.com/Soviet-Linux/CCCP/archive/$VERSION.zip 9c6
 
 [download]
 unzip $NAME-$VERSION.zip
+mv CCCP-$VERSION $NAME-$VERSION
 
 [install]
 make
