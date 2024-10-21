@@ -1,6 +1,6 @@
 [info]
 name = libspm
-version = 22db3bde884453ae90a23afa873f1501d5e313c3
+version = 966d1cc96baa8d64f198da4d5efd54498b7636fe
 type = src
 url= https://github.com/Soviet-Linux/libspm/
 
@@ -8,7 +8,7 @@ url= https://github.com/Soviet-Linux/libspm/
 SovietLinux's Official Package Management Library
 
 [files]
-$NAME-$VERSION.zip https://github.com/Soviet-Linux/libspm/archive/$VERSION.zip c5fffa83ee321177d0c2a6ab1aea011a7b613fda95423d6482cb2817f3dcc99a
+$NAME-$VERSION.zip https://github.com/Soviet-Linux/libspm/archive/$VERSION.zip bb2786c5b39c49fe50a245cebe175d4fc1052cc14b040348e0f8bd60201da191
 cutils-a91260eba0df2f622be2389c04ddb0780a703751.zip https://github.com/Soviet-Linux/cutils/archive/a91260eba0df2f622be2389c04ddb0780a703751.zip 1b790371694ee85c424ffa93f637f677ad07ac159012e618548de5f5ebf4e67d
 
 [download]
