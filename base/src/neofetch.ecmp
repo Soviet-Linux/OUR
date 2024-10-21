@@ -1,16 +1,17 @@
+
 [info]
 name = neofetch
-version = master
+version = b6c66aa34874d426d2521fd72939b28dd663134d
 type = src
-url = https://github.com/Soviet-Linux/neofetch/archive/refs/heads/master.zip
-sha256 = 5e761cc07d2df39f4877bf462f45597958e8492b41a3128e2115199114b81751
+url = https://github.com/Soviet-Linux/neofetch/
 
+[files]
+$NAME-$VERSION.zip https://github.com/Soviet-Linux/$NAME/archive/$VERSION.zip cd863cfe461845899d7c7c880b441b5bab2b716e9c69c5c904956e2430109527
 
 [description]
-Libraries for the Soviet Package Manager.
+A command-line system information tool written in bash 3.2+
 
 [download]
-curl -L $URL --output $NAME-$VERSION.zip
 unzip $NAME-$VERSION.zip
 
 [install]
