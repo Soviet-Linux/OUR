@@ -1,0 +1,24 @@
+[info]
+name = libXau
+type = src
+version = 1.0.11
+url = https://www.x.org/pub/individual/lib/
+environment = xorg-build-env
+
+[dependencies]
+xorg-build-env
+xorgproto
+
+[files]
+libXau-1.0.11.tar.xz https://www.x.org/pub/individual/lib/libXau-1.0.11.tar.xz f3fa3282f5570c3f6bd620244438dbfbdd580fc80f02f549587a0f8ab329bbeb
+
+[description]
+The libXau package contains a library implementing the X11 Authorization Protocol. This is useful for restricting client access to the display.
+
+[download]
+tar -xf libXau-1.0.11.tar.xz
+
+[install]
+./configure $XORG_CONFIG &&
+make
+make DESTDIR=$BUILD_ROOT install

@@ -1,0 +1,19 @@
+[info]
+name = docutils
+type = src
+version = 0.21.2
+url = https://files.pythonhosted.org/packages/source/d/docutils/docutils-0.21.2.tar.gz
+
+[description]
+docutils is a set of Python modules and programs for processing plaintext docs into formats such as HTML, XML, or LaTeX. 
+
+[files]
+docutils-0.21.2.tar.gz https://files.pythonhosted.org/packages/source/d/docutils/docutils-0.21.2.tar.gz 3a6b18732edf182daa3cd12775bbb338cf5691468f91eeeb109deff6ebfa986f
+
+[download]
+tar -xzf docutils-0.21.2.tar.gz
+
+[install]
+pip3 wheel -w dist --no-build-isolation --no-deps --no-cache-dir $PWD
+pip3 install --no-deps --target $BUILD_ROOT/usr/lib/python3.12/site-packages/ --no-index --find-links=dist --no-cache-dir --no-user docutils
+mv $BUILD_ROOT/usr/lib/python3.12/site-packages/bin/ $BUILD_ROOT/usr/bin/

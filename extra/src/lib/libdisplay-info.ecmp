@@ -1,0 +1,25 @@
+[info]
+name = libdisplay-info
+type = src
+version = 0.2.0
+url = https://gitlab.freedesktop.org/emersion/libdisplay-info/
+
+[dependencies]
+hwdata
+
+[description]
+The libdisplay-info package provides a set of high-level and low-level functions to access detailed Extended Display Identification Data (EDID) information. 
+
+[files]
+libdisplay-info-0.2.0.tar.xz  https://gitlab.freedesktop.org/emersion/libdisplay-info/-/releases/0.2.0/downloads/libdisplay-info-0.2.0.tar.xz 5a2f002a16f42dd3540c8846f80a90b8f4bdcd067a94b9d2087bc2feae974176
+
+[download]
+tar -xf libdisplay-info-0.2.0.tar.xz 
+
+[install]
+mkdir build &&
+cd    build &&
+
+meson setup --prefix=/usr --buildtype=release .. &&
+ninja
+DESTDIR=$BUILD_ROOT ninja install

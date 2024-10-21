@@ -1,0 +1,29 @@
+[info]
+name = libxcb
+type = src
+version = 1.16
+url = https://xorg.freedesktop.org/archive/individual/lib/
+environment = xorg-build-env
+
+[dependencies]
+xorg-build-env
+libXau
+xcb-proto
+
+[description]
+The libxcb package provides an interface to the X Window System protocol, which replaces the current Xlib interface.
+Xlib can also use XCB as a transport layer, allowing software to make requests and receive responses with both. 
+
+[files]
+libxcb-1.16.tar.xz https://xorg.freedesktop.org/archive/individual/lib/libxcb-1.16.tar.xz 4348566aa0fbf196db5e0a576321c65966189210cb51328ea2bb2be39c711d71
+
+[download]
+tar -xf libxcb-1.16.tar.xz
+
+[install]
+./configure $XORG_CONFIG      \
+            --without-doxygen \
+            --docdir='${datadir}'/doc/libxcb-1.15
+LC_ALL=en_US.UTF-8 make
+make
+make DESTDIR=$BUILD_ROOT install

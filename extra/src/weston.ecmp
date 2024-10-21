@@ -1,0 +1,66 @@
+[info] 
+name = weston
+version = 13.0.92
+type = src
+url = https://gitlab.freedesktop.org/wayland/weston/
+
+[description] 
+Weston is a Wayland compositor designed for correctness, reliability, predictability, and performance.
+
+[dependencies]
+wayland
+wayland-protocols
+libxkbcommon
+pixman
+libinput
+libdrm
+mesa
+cairo
+libjpeg-turbo
+seatd
+hwdata
+pango
+libdisplay-info
+
+[optional]
+freefont
+
+[files]
+weston-13.0.92.tar.xz https://gitlab.freedesktop.org/wayland/weston/-/releases/13.0.92/downloads/weston-13.0.92.tar.xz bdabae02683199c1cfa9bee30c83ea1d351310c5d21de02d03d1c73e9656fd62
+# This file is licensed under the Creative Commons Attribution-Share Alike 3.0 Unported license. Attribution: wanghongliu
+aurora.jpg https://upload.wikimedia.org/wikipedia/commons/e/ed/%E9%98%BF%E8%8A%99%E4%B9%90%E5%B0%94%E5%8F%B7%E5%B7%A1%E6%B4%8B%E8%88%B0_AURORA_cruiser%2C_%D0%9A%D1%80%D0%B5%D0%B9%D1%81%D0%B5%D1%80_%D0%90%D0%B2%D1%80%D0%BE%D1%80%D0%B0_-_panoramio.jpg d94b25c5b10f4edf202798a72ef0ba20f1dc9f16798090cdc46344146abbfd0b
+
+[download]
+tar -xf $NAME-$VERSION.tar.xz
+mkdir -p $BUILD_ROOT/usr/share/backgrounds/
+cp aurora.jpg $BUILD_ROOT/usr/share/backgrounds/
+
+[install]
+mkdir build &&
+cd build &&
+
+meson setup ..                              \
+    --prefix=/usr                           \
+    -Dsystemd=false                         \
+    -Dxwayland=false                        \
+    -Dremoting=false                        \
+    -Dpipewire=false                        \
+    -Dimage-webp=false                      \
+    -Dbackend-rdp=false                     \
+    -Dbackend-x11=false                     \
+    -Dbackend-pipewire=false                \
+    -Dcolor-management-lcms=false           \
+    -Dbackend-drm-screencast-vaapi=false    &&
+ninja
+DESTDIR=$BUILD_ROOT ninja install
+
+[special]
+mkdir -p /etc/xdg/weston/ &&
+touch /etc/xdg/weston/weston.ini &&
+cat > /etc/xdg/weston/weston.ini << "EOF"
+ABC[shell]
+locking=true
+background-image=/usr/share/backgrounds/aurora.jpg
+background-type=scale-crop
+EOF
+sed -i 's/ABC//' /etc/xdg/weston/weston.ini
