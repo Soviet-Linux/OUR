@@ -1,0 +1,18 @@
+[info]
+name = libedit
+type = src
+version = 20240808-3.1
+url = https://thrysoee.dk/editline/
+
+[description]
+ This is an autotool- and libtoolized port of the NetBSD Editline library (libedit). This Berkeley-style licensed command line editor library provides generic line editing, history, and tokenization functions, similar to those found in GNU Readline.
+[files]
+libedit-20240808-3.1.tar.gz https://thrysoee.dk/editline/libedit-20240808-3.1.tar.gz 5f0573349d77c4a48967191cdd6634dd7aa5f6398c6a57fe037cc02696d6099f
+
+[download]
+tar -xzf libedit-20240808-3.1.tar.gz 
+
+[install]
+./configure --prefix=/usr --disable-blacklist
+make
+make DESTDIR=$BUILD_ROOT install

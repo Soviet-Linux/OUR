@@ -1,0 +1,22 @@
+[info]
+name = libspm
+version = 966d1cc96baa8d64f198da4d5efd54498b7636fe
+type = src
+url= https://github.com/Soviet-Linux/libspm/
+
+[description]
+SovietLinux's Official Package Management Library
+
+[files]
+$NAME-$VERSION.zip https://github.com/Soviet-Linux/libspm/archive/$VERSION.zip bb2786c5b39c49fe50a245cebe175d4fc1052cc14b040348e0f8bd60201da191
+cutils-a91260eba0df2f622be2389c04ddb0780a703751.zip https://github.com/Soviet-Linux/cutils/archive/a91260eba0df2f622be2389c04ddb0780a703751.zip 1b790371694ee85c424ffa93f637f677ad07ac159012e618548de5f5ebf4e67d
+
+[download]
+unzip $NAME-$VERSION.zip
+unzip cutils-a91260eba0df2f622be2389c04ddb0780a703751.zip
+mv ./cutils-a91260eba0df2f622be2389c04ddb0780a703751/* ./$NAME-$VERSION/lib/cutils/
+
+[install]
+make all
+make formats
+make DESTDIR=$SOVIET_BUILD_DIR install

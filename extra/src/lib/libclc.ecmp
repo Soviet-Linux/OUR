@@ -1,0 +1,27 @@
+[info]
+name = libclc
+type = src
+version = 18.1.7.src
+url =  https://github.com/llvm/llvm-project/
+
+[dependencies]
+spirv-llvm-translator
+
+[description]
+The libclc package contains an implementation of the library requirements of the OpenCL C programming language, as specified by the OpenCL 1.1 Specification. 
+
+[files]
+libclc-18.1.7.src.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.7/libclc-18.1.7.src.tar.xz bf99fdabd64ebfc688775754edf4c6bd3ffc361906b710ee49107e03fd3db396
+
+[download]
+tar -xf libclc-18.1.7.src.tar.xz
+
+[install]
+mkdir build &&
+cd    build &&
+
+cmake -D CMAKE_INSTALL_PREFIX=/usr \
+      -D CMAKE_BUILD_TYPE=Release  \
+      -G Ninja ..                  &&
+ninja
+DESTDIR=$BUILD_ROOT ninja install

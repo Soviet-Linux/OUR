@@ -1,0 +1,53 @@
+[info]
+name = llvm
+type = src
+version = 18.1.7.src
+url =  https://github.com/llvm/llvm-project/
+
+[description]
+The LLVM package contains a collection of modular and reusable compiler and toolchain technologies.
+The Low Level Virtual Machine (LLVM) Core libraries provide a modern source and target-independent optimizer,
+along with code generation support for many popular CPUs (as well as some less common ones!).
+These libraries are built around a well specified code representation known as the LLVM intermediate representation ("LLVM IR"). 
+
+[files]
+llvm-18.1.7.src.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.7/llvm-18.1.7.src.tar.xz 17ba3d57c3db185722c36e736a189b2110e8cb842cc9e53dcc74e938bdadb97e
+clang-18.1.7.src.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.7/clang-18.1.7.src.tar.xz c9191e4896e43425a8fbbb29e3b25b3a83050781809fbd4d0ad2382bc4a5c43d
+llvm-cmake-18.src.tar.xz https://anduin.linuxfromscratch.org/BLFS/llvm/llvm-cmake-18.src.tar.xz 857fb826ee0e159cb1ad282790c6613e55048bd9ecb3248940689d48cbe9da96
+llvm-third-party-18.src.tar.xz https://anduin.linuxfromscratch.org/BLFS/llvm/llvm-third-party-18.src.tar.xz ceb38dabc7250a3cda53fd81978d0f1b7aeaa8a3a055d5a336892665609b0f11
+
+[download]
+tar -xf llvm-18.1.7.src.tar.xz
+
+[install]
+tar -xf ../llvm-cmake-18.src.tar.xz                                   &&
+tar -xf ../llvm-third-party-18.src.tar.xz                             &&
+sed '/LLVM_COMMON_CMAKE_UTILS/s@../cmake@llvm-cmake-18.src@'          \
+    -i CMakeLists.txt                                                 &&
+sed '/LLVM_THIRD_PARTY_DIR/s@../third-party@llvm-third-party-18.src@' \
+    -i cmake/modules/HandleLLVMOptions.cmake
+tar -xf ../clang-18.1.7.src.tar.xz -C tools &&
+mv tools/clang-18.1.7.src tools/clang
+
+grep -rl '#!.*python' | xargs sed -i '1s/python$/python3/'
+sed 's/utility/tool/' -i utils/FileCheck/CMakeLists.txt
+
+mkdir -v build &&
+cd       build &&
+
+CC=gcc CXX=g++                               \
+cmake -D CMAKE_INSTALL_PREFIX=/usr           \
+      -D CMAKE_SKIP_INSTALL_RPATH=ON         \
+      -D LLVM_ENABLE_FFI=ON                  \
+      -D CMAKE_BUILD_TYPE=Release            \
+      -D LLVM_BUILD_LLVM_DYLIB=ON            \
+      -D LLVM_LINK_LLVM_DYLIB=ON             \
+      -D LLVM_ENABLE_RTTI=ON                 \
+      -D LLVM_TARGETS_TO_BUILD="host;AMDGPU" \
+      -D LLVM_BINUTILS_INCDIR=/usr/include   \
+      -D LLVM_INCLUDE_BENCHMARKS=OFF         \
+      -D CLANG_DEFAULT_PIE_ON_LINUX=ON       \
+      -D CLANG_CONFIG_FILE_SYSTEM_DIR=/etc/clang \
+      -W no-dev -G Ninja ..                  &&
+ninja
+DESTDIR=$BUILD_ROOT ninja install
