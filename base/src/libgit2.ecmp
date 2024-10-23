@@ -15,5 +15,5 @@ tar -xzf $NAME-$VERSION.tar.gz
 
 [install]
 mkdir build && cd build
-cmake .. -DCMAKE_INSTALL_PREFIX=$SOVIET_BUILD_DIR
+cmake .. -DCMAKE_INSTALL_PREFIX=$SOVIET_BUILD_DIR/usr
 cmake --build . --target install
