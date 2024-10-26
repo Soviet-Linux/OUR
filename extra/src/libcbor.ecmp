@@ -7,7 +7,7 @@ type = src
 
 
 [files]
-libcbor-0.11.0.tar.gz https://github.com/PJK/libcbor/releases/download/release-0.11.0/libcbor-0.11.0.tar.gz 89e0a83d16993ce50651a7501355453f5250e8729dfc8d4a251a78ea23bb26d7
+libcbor-0.11.0.tar.gz https://codeload.github.com/PJK/libcbor/tar.gz/refs/tags/v0.11.0 89e0a83d16993ce50651a7501355453f5250e8729dfc8d4a251a78ea23bb26d7
 
 [description]
 libcbor is a C library for parsing and generating CBOR, the general-purpose schema-less binary data format.
