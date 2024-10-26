@@ -7,7 +7,7 @@ type = src
 
 
 [files]
-openssh-1.15.0.tar.gz https://developers.yubico.com/openssh/Releases/openssh-1.15.0.tar.gz abaab1318d21d262ece416fb8a7132fa9374bda89f6fa52b86a98a2f5712b61e
+openssh-9.9p1.tar.gz https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.9p1.tar.gz b343fbcdbff87f15b1986e6e15d6d4fc9a7d36066be6b7fb507087ba8f966c02
 
 [description]
 openssh provides library functionality and command-line tools to communicate with a FIDO device over USB or NFC, and to verify attestation and assertion signatures.
