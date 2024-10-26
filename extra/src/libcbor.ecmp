@@ -19,6 +19,6 @@ cmake
 tar -xzf $NAME-$VERSION.tar.gz
 
 [install]
-cmake -DCMAKE_INSTALL_PREFIX=usr -DCMAKE_BUILD_TYPE=Release
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
 make
 make DESTDIR=$BUILD_ROOT install
