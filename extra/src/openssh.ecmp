@@ -37,3 +37,8 @@ tar -xzf $NAME-$VERSION.tar.gz
             --with-pam
 make
 make DESTDIR=$BUILD_ROOT install
+
+[special]
+if [ ! -e /etc/ssh/ssh_host_rsa_key ] || [ ! -e /etc/ssh/ssh_host_rsa_key.pub ] || [ ! -e /etc/ssh/ssh_host_ecdsa_key ] || [ ! -e  /etc/ssh/ssh_host_ecdsa_key.pub ] || [ ! -e /etc/ssh/ssh_host_ed25519_key ] || [ ! -e /etc/ssh/ssh_host_ed25519_key.pub ]; then
+  /usr/bin/ssh-keygen -A
+fi
