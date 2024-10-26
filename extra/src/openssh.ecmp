@@ -1,8 +1,8 @@
 [info]
 name = openssh
-version = 1.15.0
-license = BSD 2-clause
-url = https://developers.yubico.com/openssh
+version = 9.9p1
+license = BSD 2-clause, BSD 3-clause, MIT, ISC, public domain
+url = https://www.openssh.com/
 type = src
 
 
