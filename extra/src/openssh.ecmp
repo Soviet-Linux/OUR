@@ -1,0 +1,39 @@
+[info]
+name = openssh
+version = 1.15.0
+license = BSD 2-clause
+url = https://developers.yubico.com/openssh
+type = src
+
+
+[files]
+openssh-1.15.0.tar.gz https://developers.yubico.com/openssh/Releases/openssh-1.15.0.tar.gz abaab1318d21d262ece416fb8a7132fa9374bda89f6fa52b86a98a2f5712b61e
+
+[description]
+openssh provides library functionality and command-line tools to communicate with a FIDO device over USB or NFC, and to verify attestation and assertion signatures.
+
+[dependencies]
+make
+zlib
+pam
+openssl
+libedit
+
+[optional]
+libfido2
+
+
+[download]
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+./configure --prefix=/usr \
+            --sbindir/usr/bin \
+            --sysconfdir=/etc/ssh \
+            --libexecdir=/usr/lib/ssh \
+            --with-libedit \
+            --with-security-key-builtin \
+            --with-ssl-engine \
+            --with-pam
+make
+make DESTDIR=$BUILD_ROOT install
