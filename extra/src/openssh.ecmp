@@ -28,7 +28,7 @@ tar -xzf $NAME-$VERSION.tar.gz
 
 [install]
 ./configure --prefix=/usr \
-            --sbindir/usr/bin \
+            --sbindir=/usr/bin \
             --sysconfdir=/etc/ssh \
             --libexecdir=/usr/lib/ssh \
             --with-libedit \
