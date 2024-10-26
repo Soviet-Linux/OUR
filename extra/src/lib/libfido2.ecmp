@@ -1,0 +1,24 @@
+[info]
+name = libfido2
+version = 1.15.0
+license = BSD 2-clause
+url = https://developers.yubico.com/libfido2
+type = src
+
+
+[files]
+libfido2-1.15.0.tar.gz https://developers.yubico.com/libfido2/Releases/libfido2-1.15.0.tar.gz abaab1318d21d262ece416fb8a7132fa9374bda89f6fa52b86a98a2f5712b61e
+
+[description]
+libfido2 provides library functionality and command-line tools to communicate with a FIDO device over USB or NFC, and to verify attestation and assertion signatures.
+
+[dependencies]
+cmake
+
+[download]
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+cmake -DCMAKE_INSTALL_PREFIX=/usr -B build
+make -C build
+make DESTDIR=$BUILD_ROOT -C build install
