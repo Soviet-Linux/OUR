@@ -21,7 +21,7 @@ scdoc
 git
 
 [files]
-sway-1.9.tar.gz https://codeload.github.com/swaywm/sway/tar.gz/refs/tags/1.9 b6e4e8d74af744278201792bcc4447470fcb91e15bbda475c647d475bf8e7b0b
+swaybg-1.2.1.tar.gz https://codeload.github.com/swaywm/swaybg/tar.gz/refs/tags/v1.2.1 45c4a1a3b83c86ddc321a6136402b708f195a022d0ccee4641b23d14c3a3c25e
 
 [download]
 tar -xf $NAME-$VERSION.tar.xz
