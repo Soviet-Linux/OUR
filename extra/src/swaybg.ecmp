@@ -13,10 +13,10 @@ meson
 ninja
 wayland
 wayland-protocols
-
-[optional]
 # for images other than PNG
 gdk-pixbuf
+
+[optional]
 scdoc
 git
 
