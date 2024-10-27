@@ -1,0 +1,41 @@
+[info] 
+name = sway
+version = 1.9
+license = MIT
+type = src
+url = https://swaywm.org/
+
+[description] 
+Sway is a tiling Wayland compositor and a drop-in replacement for the i3 window manager for X11.
+
+[dependencies]
+meson
+ninja
+wlroots
+wayland
+wayland-protocols
+pcre2
+json-c
+pango
+cairo
+
+
+[optional]
+gdk-pixbuf
+swaybg
+scdoc
+git
+
+[files]
+sway-1.9.tar.gz https://codeload.github.com/swaywm/sway/tar.gz/refs/tags/1.9 b6e4e8d74af744278201792bcc4447470fcb91e15bbda475c647d475bf8e7b0b
+
+[download]
+tar -xf $NAME-$VERSION.tar.xz
+
+[install]
+meson setup .. --prefix=/usr
+meson build
+ninja -C build
+DESTDIR=$BUILD_ROOT ninja -C build install
+
+[special]

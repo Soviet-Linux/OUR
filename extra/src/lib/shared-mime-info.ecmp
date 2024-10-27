@@ -1,0 +1,30 @@
+[info] 
+name = shared-mime-info
+version = 2.4
+license = GNU GPLv2 or later
+type = src
+url = https://www.freedesktop.org/wiki/Software/shared-mime-info/
+
+[description] 
+The shared-mime-info package contains the core database of common MIME types and the update-mime-database command used to extend it.
+
+[dependencies]
+meson
+ninja
+gettext
+glib
+
+[optional]
+
+[files]
+shared-mime-info-2.4.tar.gz https://gitlab.freedesktop.org/xdg/shared-mime-info/-/archive/2.4/shared-mime-info-2.4.tar.gz 531291d0387eb94e16e775d7e73788d06d2b2fdd8cd2ac6b6b15287593b6a2de
+
+[download]
+tar -xf $NAME-$VERSION.tar.xz
+
+[install]
+meson _build -Dprefix=/usr
+DESTDIR=$BUILD_ROOT ninja -v -C _build install
+
+[special]
+update-mime-databse /usr/share/mime

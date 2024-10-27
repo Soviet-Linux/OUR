@@ -1,0 +1,32 @@
+[info] 
+name = gdk-pixbuf
+version = 2.42.9
+license = GNU LGPLv2.1
+type = src
+url = https://gitlab.gnome.org/GNOME/gdk-pixbuf/
+
+[description] 
+GdkPixbuf is a library that loads image data in various formats and stores it as linear buffers in memory. The buffers can then be scaled, composited, modified, saved, or rendered.
+
+[dependencies]
+meson
+glib
+libpng
+libjpeg-turbo
+libtiff
+shared-mime-info
+docutils
+
+
+[files]
+gdk-pixbuf-2.42.9.tar.gz https://gitlab.gnome.org/GNOME/gdk-pixbuf/-/archive/2.42.9/gdk-pixbuf-2.42.9.tar.gz 226d950375907857b23c5946ae6d30128f08cd75f65f14b14334c7a9fb686e36
+
+[download]
+tar -xf $NAME-$VERSION.tar.xz
+
+[install]
+meson setup _build . --prefix=/usr
+meson compile -C _build
+meson install -C _build --destdir $BUILD_ROOT
+
+[special]
