@@ -18,17 +18,18 @@ libxkbcommon
 pixman
 glslang
 
-
-
 [optional]
 GBM
 libinput
-udev
 seatd
 hwdata
 libdisplay-info
 libliftoff
 xwayland
+libxcb
+libxcb-render-util
+libxcb-wm
+libxcb-errors
 
 [files]
 wlroots-0.17.0.tar.gz https://gitlab.freedesktop.org/wlroots/wlroots/-/archive/0.17.0/wlroots-0.17.0.tar.gz 0db3bd4854c233409f881fa1ccd7936eee2f3633454a1dbdcaf834f49e231149

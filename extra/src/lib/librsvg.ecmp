@@ -6,6 +6,7 @@ type = src
 url = https://wiki.gnome.org/Projects/LibRsvg
 
 [description] 
+The librsvg package contains a library and tools used to manipulate, convert and view Scalable Vector Graphic (SVG) images. 
 
 [dependencies]
 meson
@@ -28,7 +29,7 @@ tar -xf $NAME-$VERSION.tar.xz
             --disable-static \
             --docdir=/usr/share/doc/$NAME-$VERSION
 make
-make DESTDIR=$BUILD_ROOT install
+make DESTDIR=$BUILD_ROOT DOC_INSTALL_DIR='$(docdir)' install
 
 [special]
 gdk-pixbuf-query-loaders --update-cache

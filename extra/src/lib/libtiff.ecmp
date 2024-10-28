@@ -6,6 +6,7 @@ type = src
 url = http://www.simplesystems.org/libtiff/
 
 [description] 
+The libtiff package contains the TIFF libraries and associated utilities. The libraries are used by many programs for reading and writing TIFF files and the utilities are used for general work with TIFF files. 
 
 [dependencies]
 cmake
@@ -19,7 +20,7 @@ tar -xf $NAME-$VERSION.tar.xz
 [install]
 mkdir build &&
 cd build &&
-cmake -D CMAKE_INSTALL_DOCDIR=/usr/share/doc/libtiff-4.7.0 \
+cmake -D CMAKE_INSTALL_DOCDIR=/usr/share/doc/$NAME-$VERSION \
       -D CMAKE_INSTALL_PREFIX=/usr -G Ninja .. &&
 ninja
 DESTDIR=$BUILD_ROOT ninja -C build install
