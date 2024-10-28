@@ -1,0 +1,34 @@
+[info] 
+name = librsvg
+version = 2.58.5
+license = GNU LGPLv3.1
+type = src
+url = https://wiki.gnome.org/Projects/LibRsvg
+
+[description] 
+
+[dependencies]
+meson
+rustup
+cairo
+libxml2
+pango
+glib
+freetype
+
+
+[files]
+librsvg-2.58.5.tar.xz https://download.gnome.org/sources/librsvg/2.58/librsvg-2.58.5.tar.xz 224233a0e347d38c415f15a49f0e0885313e3ecc18f3192055f9304dd2f3a27a
+
+[download]
+tar -xf $NAME-$VERSION.tar.xz
+
+[install]
+./configure --prefix=/usr \ # --enable-vala
+            --disable-static \
+            --docdir=/usr/share/doc/$NAME-$VERSION
+make
+make DESTDIR=$BUILD_ROOT install
+
+[special]
+gdk-pixbuf-query-loaders --update-cache

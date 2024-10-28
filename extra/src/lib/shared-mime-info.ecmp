@@ -20,11 +20,11 @@ glib
 shared-mime-info-2.4.tar.gz https://gitlab.freedesktop.org/xdg/shared-mime-info/-/archive/2.4/shared-mime-info-2.4.tar.gz 531291d0387eb94e16e775d7e73788d06d2b2fdd8cd2ac6b6b15287593b6a2de
 
 [download]
-tar -xf $NAME-$VERSION.tar.xz
+tar -xf $NAME-$VERSION.tar.gz
 
 [install]
-meson _build -Dprefix=/usr
+meson setup _build --prefix=/usr --buildtype=release -D update-mimedb=true
+ninja -C _buildj
 DESTDIR=$BUILD_ROOT ninja -v -C _build install
 
 [special]
-update-mime-databse /usr/share/mime
