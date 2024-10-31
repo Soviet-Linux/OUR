@@ -27,7 +27,7 @@ libdisplay-info
 libliftoff
 xwayland
 libxcb
-libxcb-renderutil
+libxcb-util-renderutil
 libxcb-util-wm
 libxcb-util-errors
 

@@ -18,9 +18,9 @@ pcre2
 json-c
 pango
 cairo
+gdk-pixbuf
 
 [optional]
-gdk-pixbuf
 swaybg
 scdoc
 git
