@@ -7,6 +7,9 @@ url = https://gitlab.freedesktop.org/wayland/weston/
 [description] 
 Weston is a Wayland compositor designed for correctness, reliability, predictability, and performance.
 
+[exports]
+XWAYLAND=false
+
 [dependencies]
 wayland
 wayland-protocols
@@ -24,6 +27,7 @@ libdisplay-info
 
 [optional]
 freefont
+xwayland
 
 [files]
 weston-13.0.92.tar.xz https://gitlab.freedesktop.org/wayland/weston/-/releases/13.0.92/downloads/weston-13.0.92.tar.xz bdabae02683199c1cfa9bee30c83ea1d351310c5d21de02d03d1c73e9656fd62
@@ -42,7 +46,7 @@ cd build &&
 meson setup ..                              \
     --prefix=/usr                           \
     -Dsystemd=false                         \
-    -Dxwayland=false                        \
+    -Dxwayland=$XWAYLAND                    \
     -Dremoting=false                        \
     -Dpipewire=false                        \
     -Dimage-webp=false                      \
