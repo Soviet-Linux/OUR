@@ -1,0 +1,24 @@
+[info]
+name = xcb-util
+type = src
+version = 0.4.1
+url = https://xcb.freedesktop.org/
+environment = xorg-build-env
+
+[dependencies]
+libxcb
+xorg-build-env
+
+[description]
+The xcb-util package provides additional extensions to the XCB library, many that were previously found in Xlib, but are not part of core X protocol. 
+ 
+[files]
+xcb-util-0.4.1.tar.xz https://xcb.freedesktop.org/dist/xcb-util-0.4.1.tar.xz 5abe3bbbd8e54f0fa3ec945291b7e8fa8cfd3cccc43718f8758430f94126e512
+
+[download]
+tar -xf xcb-util-0.4.1.tar.xz
+
+[install]
+./configure $XORG_CONFIG
+make
+make DESTDIR=$BUILD_ROOT install
