@@ -16,6 +16,7 @@ mesa
 libxcvt
 libepoxy
 libtirpc
+libXdmcp
 
 [description]
 The Xwayland package is an Xorg server running on top of the wayland server. It has been separated from the main Xorg server package. It allows running X clients inside a wayland session. 

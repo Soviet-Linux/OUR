@@ -24,7 +24,7 @@ smproxy-1.0.7.tar.xz $URL/smproxy-1.0.7.tar.xz 4aa99237cc9dab7d87ce9bc7cca411667
 x11perf-1.6.1.tar.bz2 $URL/x11perf-1.6.1.tar.bz2 1c7e0b8ffc2794b4ccf11e04d551823abe0ea47b4f7db0637390db6fbe817c34
 xauth-1.1.3.tar.xz $URL/xauth-1.1.3.tar.xz e7075498bae332f917f01d660f9b940c0752b2556a8da61ccb62a44d0ffe9d33
 xcmsdb-1.0.6.tar.xz $URL/xcmsdb-1.0.6.tar.xz 3c77eec4537d5942bb0966973b787bfdaf7121f3125ffa81bb1c9708d4cf4f55
-xcursorgen-1.0.8.tar.x $URL/xcursorgen-1.0.8.tar.xz 32b33ce27b4e285e64ff375731806bb7988cc626ff10915c65f1dc4da640cc9b
+xcursorgen-1.0.8.tar.xz $URL/xcursorgen-1.0.8.tar.xz 32b33ce27b4e285e64ff375731806bb7988cc626ff10915c65f1dc4da640cc9b
 xdpyinfo-1.3.4.tar.xz $URL/xdpyinfo-1.3.4.tar.xz a8ada581dbd7266440d7c3794fa89edf6b99b8857fc2e8c31042684f3af4822b
 xdriinfo-1.0.7.tar.xz $URL/xdriinfo-1.0.7.tar.xz dd838bae9d2b19ddd71fe6d30ed33abc7c85e19d223e79d35600db3fa44bf734
 xev-1.2.6.tar.xz $URL/xev-1.2.6.tar.xz 61e1c5e008ac9973aca7cdddf36e9df7410e77083b030eb04f4dc737c51807d7
@@ -94,11 +94,15 @@ cp ./*.tar.xz xorg-apps-7/
 [install]
 for package in $(grep -v '^#' ../list | awk '{print $1}')
 do
-  packagedir=${package%.tar.?z*}
-  tar -xf $package
-  pushd $packagedir
-  ./configure $XORG_CONFIG
-    make
-    make DESTDIR=$BUILD_ROOT install
-  popd
+  packagedir=${package%.tar.?z*}  
+  tar -xf $package &&
+  pushd $packagedir &&
+
+  echo "  Building $packagedir in $PWD" &&
+
+  ./configure $XORG_CONFIG &&
+    make &&
+    make DESTDIR=$BUILD_ROOT install &&
+  popd &&
+  rm -rf $packagedir
 done
