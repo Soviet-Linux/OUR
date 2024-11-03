@@ -17,9 +17,9 @@ libdrm
 libxkbcommon
 pixman
 glslang
+mesa
 
 [optional]
-GBM
 libinput
 seatd
 hwdata
