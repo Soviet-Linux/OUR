@@ -16,7 +16,16 @@ curl -L $URL --output $NAME-$VERSION.tar.gz
 tar -xzf $NAME-$VERSION.tar.gz
 
 [install]
-./configure --prefix=/usr
+./configure --prefix=/usr \
+--enable-gold \
+--enable-ld=default \
+--enable-plugins \
+--enable-shared \
+--disable-werror \
+--enable-64-bit-bfd \
+--enable-new-dtags \
+--with-system-zlib \
+--enable-default-hash-style=gnu
 
-make $MAKE_FLAGS
-make DESTDIR=$BUILD_ROOT install
+make 
+make DESTDIR=$SOVIET_BUILD_DIR install

@@ -1,0 +1,20 @@
+[info]
+name = dosfstools
+version = 4.2
+type = src
+url = https://github.com/$NAME/$NAME/releases/download/v$VERSION/$NAME-$VERSION.tar.gz
+sha256 = 64926eebf90092dca21b14259a5301b7b98e7b1943e8a201c7d726084809b527
+
+[description]
+Various utilities for use with the FAT family of file systems.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xf $NAME-$VERSION.tar.gz
+
+[install]
+./configure \
+--prefix=/usr \
+--enable-compat-symlinks
+make
+make DESTDIR=$SOVIET_BUILD_DIR install

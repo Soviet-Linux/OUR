@@ -19,10 +19,17 @@ tar -xf $NAME-$VERSION.tar.gz
 mv $NAME$VERSION $NAME-$VERSION
 
 [install]
+#update to support gcc 14
+cp $SOVIET_REPOS_DIR/OUR/base/patch/$NAME-$VERSION-gcc14-1.patch .
+patch -Np1 -i $NAME-$VERSION-gcc14-1.patch
+cp $SOVIET_REPOS_DIR/OUR/base/patch/$NAME-$VERSION-format-security.patch .
+patch -Np0 -i $NAME-$VERSION-format-security.patch
 ./configure --prefix=/usr \
     --with-tcl=/usr/lib \
+    --enable-64bit \
+    --enable-threads \
     --enable-shared \
     --mandir=/usr/share/man \
     --with-tclinclude=/usr/include
-make $MAKE_FLAGS
-make DESTDIR=$BUILD_ROOT install
+make 
+make DESTDIR=$SOVIET_BUILD_DIR install

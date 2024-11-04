@@ -23,5 +23,5 @@ mv $NAME-version-$VERSION $NAME-$VERSION
             -DSQLITE_SECURE_DELETE=1              \
             -DSQLITE_ENABLE_DBSTAT_VTAB=1	      \
 	        -DSQLITE_ENABLE_FTS3_TOKENIZER=1"
-make $MAKE_FLAGS
-make DESTDIR=$BUILD_ROOT install
+make 
+make DESTDIR=$SOVIET_BUILD_DIR install

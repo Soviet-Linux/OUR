@@ -1,0 +1,23 @@
+[info] 
+name = linux-pam
+version = 1.6.1
+type = src
+license = GPL-2
+url = https://github.com/linux-pam/linux-pam/releases/download/v$VERSION/Linux-PAM-$VERSION.tar.xz
+sha256 = f8923c740159052d719dbfc2a2f81942d68dd34fcaf61c706a02c9b80feeef8e
+
+[description] 
+The Linux PAM package contains Pluggable Authentication Modules used by the local system administrator to control how application programs authenticate users. 
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.xz
+tar -xf $NAME-$VERSION.tar.xz
+mv Linux-PAM-$VERSION $NAME-$VERSION
+
+[install] 
+./configure --prefix=/usr   \
+            --enable-securedir=/usr/lib/security \
+            --docdir=/usr/share/doc/Linux-PAM-1.6.1
+make
+make DESTDIR=$SOVIET_BUILD_DIR install
+chmod -v 4755 /usr/sbin/unix_chkpwd

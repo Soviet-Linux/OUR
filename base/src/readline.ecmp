@@ -10,13 +10,16 @@ The Readline package is a set of libraries that offer command-line editing and h
 
 [download]
 curl -L $URL --output $NAME-$VERSION.tar.gz
-tar -xzf $NAME-$VERSION.tar.gz
+tar -xf $NAME-$VERSION.tar.gz
 
 [install]
+# avoid possible linking bug in ldconfig
 sed -i '/MV.*old/d' Makefile.in
 sed -i '/{OLDSUFF}/c:' support/shlib-install
+# prevent hard coding library paths into the shared libraries
+sed -i 's/-Wl,-rpath,[^ ]*//' support/shobj-conf
 
-cp $SOVIET_REPOS_DIR/OUR/base/patch/readline-8.2-upstream_fixes-3.patch readline-8.2-upstream_fixes-3.patch
+cp $SOVIET_REPOS_DIR/OUR/base/patch/readline-8.2-upstream_fixes-3.patch .
 patch -Np1 -i readline-8.2-upstream_fixes-3.patch
 
 ./configure --prefix=/usr    \
@@ -24,4 +27,4 @@ patch -Np1 -i readline-8.2-upstream_fixes-3.patch
             --with-curses    \
             --docdir=/usr/share/doc/$NAME-$VERSION
 make SHLIB_LIBS="-lncursesw"
-make SHLIB_LIBS="-lncursesw" DESTDIR=$BUILD_ROOT install
+make SHLIB_LIBS="-lncursesw" DESTDIR=$SOVIET_BUILD_DIR install

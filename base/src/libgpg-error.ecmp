@@ -1,0 +1,19 @@
+[info]
+name = libgpg-error
+version = 1.50
+type = src
+license = LGPL
+url = https://gnupg.org/ftp/gcrypt/$NAME/$NAME-$VERSION.tar.bz2
+sha256 = 69405349e0a633e444a28c5b35ce8f14484684518a508dc48a089992fe93e20a
+
+[description]
+The libgpg-error package contains a library that defines common error values for all GnuPG components.
+
+[download]
+curl -L $URL -o $NAME-$VERSION.tar.bz2
+tar -xf $NAME-$VERSION.tar.bz2
+
+[install]
+./configure --prefix=/usr
+make
+make DESTDIR=$SOVIET_BUILD_DIR install

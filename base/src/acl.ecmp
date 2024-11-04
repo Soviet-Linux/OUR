@@ -1,26 +1,19 @@
 [info]
 name = acl
-version = 2.3.1
+version = 2.3.2
 type = src
 url = https://download.savannah.gnu.org/releases/$NAME/$NAME-$VERSION.tar.gz
-sha256 = 760c61c68901b37fdd5eefeeaf4c0c7a26bdfdd8ac747a1edff1ce0e243c11af
+sha256 = 5f2bdbad629707aa7d85c623f994aa8a1d2dec55a73de5205bac0bf6058a2f7c
 
 [description]
 Utilities to administer Access Control Lists, which are used to define more fine-grained discretionary access rights for files and directories
 
-[dependencies]
-make
-curl
-attr
-
 [download]
 curl -L $URL --output $NAME-$VERSION.tar.gz
-tar -xzf $NAME-$VERSION.tar.gz
+tar -xf $NAME-$VERSION.tar.gz
 
 [install]
 ./configure --prefix=/usr    \
-            --bindir=/bin    \
-            --disable-static \
-            --libexecdir=/usr/lib
-make $MAKE_FLAGS
-make DESTDIR=$BUILD_ROOT install
+            --disable-static
+make
+make DESTDIR=$SOVIET_BUILD_DIR install

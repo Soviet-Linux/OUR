@@ -1,0 +1,31 @@
+[info]
+name = freefont
+version = 20080323
+url = https://ftpmirror.gnu.org/gnu/freefont/
+type = src
+
+[files]
+freefont-otf-20080323.zip https://ftpmirror.gnu.org/gnu/freefont/freefont-otf-20080323.zip c41a7907907776ec485d43a78c3fc2e1329630f64f22e2276ae6974ff8a35f4b
+freefont-ttf-20051206.tar.gz https://ftpmirror.gnu.org/gnu/freefont/freefont-ttf-20051206.tar.gz 247af4ab5be736df63d9572665ea341251e8afaf924f384ddcb18c3549113ed3
+
+[description]
+This set of fonts covers many non-CJK characters
+
+[dependencies]
+fontconfig
+
+[download]
+mkdir freefont-20080323
+cd freefont-20080323
+unzip -j ../freefont-otf-20080323.zip
+tar -xzf ../freefont-ttf-20051206.tar.gz --strip-components=1
+
+[install]
+mkdir -p $BUILD_ROOT/usr/share/fonts/opentype/freefont
+mkdir -p $BUILD_ROOT/usr/share/fonts/truetype/freefont
+install -v -m644 *.otf $BUILD_ROOT/usr/share/fonts/opentype/freefont
+install -v -m644 *.ttf $BUILD_ROOT/usr/share/fonts/truetype/freefont
+
+[special]
+fc-cache -v /usr/share/fonts/opentype/freefont
+fc-cache -v /usr/share/fonts/truetype/freefont

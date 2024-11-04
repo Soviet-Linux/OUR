@@ -1,0 +1,21 @@
+[info]
+name = btrfs-progs
+version = 6.10.1
+type = src
+url = https://www.kernel.org/pub/linux/kernel/people/kdave/$NAME/$NAME-v$VERSION.tar.xz
+sha256 = 25684696bc5b5d07c98f19d4bf7a48b53ab94870ca4c468a68af3df9e2c8a35e
+
+[description]
+Administration and debugging tools for the B-tree file system (btrfs)
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.xz
+tar -xf $NAME-$VERSION.tar.xz
+mv $NAME-v$VERSION $NAME-$VERSION
+
+[install]
+./configure --prefix=/usr \
+	--disable-static \
+	--disable-documentation
+make
+make DESTDIR=$SOVIET_BUILD_DIR install

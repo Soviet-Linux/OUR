@@ -1,9 +1,9 @@
 [info]
 name = man-pages
-version = 6.7
+version = 6.9.1
 type = src
 url = https://mirrors.edge.kernel.org/pub/linux/docs/$NAME/$NAME-$VERSION.tar.xz
-sha256 = 82403ad4bc17aadb924f68638b79d6930b2cbd551531248a7a9688779db4efb2
+sha256 = e23cbac29f110ba571f0da8523e79d373691466ed7f2a31301721817d34530bd
 
 [description]
 Linux man pages
@@ -13,4 +13,5 @@ curl -L $URL --output $NAME-$VERSION.tar.xz
 tar -xf $NAME-$VERSION.tar.xz
 
 [install]
-make prefix=/usr DESTDIR=$BUILD_ROOT install
+rm -v man3/crypt.3 man3/crypt_r.3 man5/tzfile.5 man8/tzselect.8 man8/zdump.8 man8/zic.8
+make prefix=/usr DESTDIR=$SOVIET_BUILD_DIR install

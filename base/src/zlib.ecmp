@@ -13,8 +13,9 @@ curl -o $NAME-$VERSION.tar.gz $URL
 tar -xf $NAME-$VERSION.tar.gz
 
 [install]
+export CFLAGS="$CFLAGS -fPIC"
 ./configure --prefix=/usr
-make $MAKE_FLAGS
-make DESTDIR=$BUILD_ROOT install
-ln -sfv ../../lib/$(readlink $BUILD_ROOT/usr/lib/libz.so) $BUILD_ROOT/usr/lib/libz.so
-
+make 
+make DESTDIR=$SOVIET_BUILD_DIR install
+# from LFS: remove a usless static lib
+rm $SOVIET_BUILD_DIR/usr/lib/libz.a

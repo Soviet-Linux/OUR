@@ -1,0 +1,20 @@
+[info]
+name = libpsl
+version = 0.21.5
+type = src
+url= https://github.com/rockdaboot/$NAME/releases/download/$VERSION/$NAME-$VERSION.tar.gz
+sha256 = 1dcc9ceae8b128f3c0b3f654decd0e1e891afc6ff81098f227ef260449dae208
+
+[description]
+A library for accessing and resolving information from the Public Suffix List.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xf $NAME-$VERSION.tar.gz
+
+[install]
+mkdir build
+cd build
+meson setup --prefix=/usr --buildtype=release
+ninja
+DESTDIR=$SOVIET_BUILD_DIR ninja install

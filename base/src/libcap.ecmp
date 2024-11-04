@@ -16,4 +16,4 @@ tar -xf $NAME-$VERSION.tar.xz
 [install]
 sed -i '/install -m.*STA/d' libcap/Makefile
 make prefix=/usr lib=lib
-make prefix=$BUILD_ROOT/usr lib=lib install
+make prefix=$SOVIET_BUILD_DIR/usr lib=lib install

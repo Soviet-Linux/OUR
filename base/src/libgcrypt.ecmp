@@ -1,0 +1,20 @@
+[info]
+name = libgcrypt
+version = 1.11.0
+type = src
+license = LGPL
+url = https://gnupg.org/ftp/gcrypt/$NAME/$NAME-$VERSION.tar.bz2
+sha256 = 09120c9867ce7f2081d6aaa1775386b98c2f2f246135761aae47d81f58685b9c
+
+[description]
+The libgcrypt package contains a general purpose crypto library based on the code used in GnuPG.
+
+[download]
+curl -L $URL -o $NAME-$VERSION.tar.bz2
+tar -xf $NAME-$VERSION.tar.bz2
+
+[install]
+./configure --prefix=/usr
+
+make
+make DESTDIR=$SOVIET_BUILD_DIR install

@@ -14,4 +14,4 @@ tar -xf $NAME-$VERSION.tar.gz
 
 [install]
 make prefix=/usr
-make DESTDIR=$BUILD_ROOT prefix=/usr install
+make DESTDIR=$SOVIET_BUILD_DIR prefix=/usr install

@@ -1,10 +1,10 @@
 [info]
 name = curl
-version = 8.5.0
+version = 8.9.1
 type = src
-url = https://curl.se/download/$NAME-$VERSION.tar.gz
-sha256 = 05fc17ff25b793a437a0906e0484b82172a9f4de02be5ed447e0cab8c3475add
 license = MIT
+url = https://curl.se/download/$NAME-$VERSION.tar.gz
+sha256 = 291124a007ee5111997825940b3876b3048f7d31e73e9caa681b80fe48b2dcd5
 
 [description]
 Utility and a library used for transferring files
@@ -22,5 +22,5 @@ tar -xzf $NAME-$VERSION.tar.gz
 	        --without-libidn2 \
 	        --disable-ldap \
 	        --disable-ldaps
-make $MAKE_FLAGS
-make DESTDIR=$BUILD_ROOT install
+make 
+make DESTDIR=$SOVIET_BUILD_DIR install

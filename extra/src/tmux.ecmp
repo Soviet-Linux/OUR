@@ -1,0 +1,27 @@
+[info]
+name = tmux
+version = 3.5a
+license = BSD
+url = https://github.com/tmux/tmux
+type = src
+
+
+[files]
+tmux-3.5a.tar.gz https://github.com/tmux/tmux/releases/download/3.5a/tmux-3.5a.tar.gz 16216bd0877170dfcc64157085ba9013610b12b082548c7c9542cc0103198951
+
+[description]
+tmux is a terminal multiplexer: it enables a number of terminals to be created, accessed, and controlled from a single screen.
+
+[dependencies]
+libevent
+ncurses
+bison
+
+[download]
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+./configure --prefix=/usr
+make 
+make DESTDIR=$BUILD_ROOT install
+

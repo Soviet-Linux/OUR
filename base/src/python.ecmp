@@ -1,10 +1,10 @@
 [info] 
 name = python
-version = 3.12.2
+version = 3.12.7
 type = src
 license = PSF
 url = https://www.python.org/ftp/python/$VERSION/Python-$VERSION.tar.xz
-sha256 = be28112dac813d2053545c14bf13a16401a21877f1a69eb6ea5d84c4a0f3d870
+sha256 = 24887b92e2afd4a2ac602419ad4b596372f67ac9b077190f459aba390faf5550
 
 [description]
 The Python 3 package contains the Python development environment. It is useful for object-oriented programming, writing scripts, prototyping large programs, and developing entire applications. Python is an interpreted computer language. 
@@ -12,11 +12,17 @@ The Python 3 package contains the Python development environment. It is useful f
 [download]
 curl -L $URL --output $NAME-$VERSION.tar.xz
 tar xf $NAME-$VERSION.tar.xz
+mv Python-$VERSION python-$VERSION
 
 [install]
+# improves pgo
+export CFLAGS="${CFLAGS/-O2/-O3} -ffat-lto-objects"
 ./configure --prefix=/usr        \
             --enable-shared      \
+            --with-lto \
             --with-system-expat  \
-            --enable-optimizations
-make $MAKE_FLAGS
-make DESTDIR=$BUILD_ROOT install
+            --enable-optimizations \
+	    --with-ensurepip=install
+
+make
+make DESTDIR=$SOVIET_BUILD_DIR install

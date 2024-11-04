@@ -26,5 +26,5 @@ sed -i '/"lib64"/s/64//' Modules/GNUInstallDirs.cmake &&
             --no-system-librhash \
             --mandir=/share/man \
             --docdir=/share/doc/cmake-$VERSION &&
-make $MAKE_FLAGS
-make DESTDIR=$BUILD_ROOT install
+make 
+make DESTDIR=$SOVIET_BUILD_DIR install

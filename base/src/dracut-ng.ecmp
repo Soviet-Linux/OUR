@@ -1,0 +1,19 @@
+[info]
+name = dracut-ng
+version = 102
+type = src
+url = https://github.com/$NAME/$NAME/archive/refs/tags/$VERSION.tar.gz
+sha256 = 601b175cbf4d2ee902bb7bda3af8826ae2ca060c1af880f6da5a833413f4ec70
+
+[description]
+Event driven initramfs infrastructure
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+./configure --prefix=/usr \
+--disable-documentation
+make
+DESTDIR=$SOVIET_BUILD_DIR make install

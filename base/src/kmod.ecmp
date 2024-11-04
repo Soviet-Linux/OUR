@@ -21,13 +21,11 @@ tar -xJf $NAME-$VERSION.tar.xz
             --with-zstd            \
             --with-zlib
 
-make $MAKE_FLAGS
-make DESTDIR=$BUILD_ROOT install
+make 
+make DESTDIR=$SOVIET_BUILD_DIR install
 
-# “sanitized” kernel headers or smthing
-for target in depmod insmod modinfo modprobe rmmod; do
-  ln -sfv /bin/kmod /usr/sbin/$target
+(cd $SOVIET_BUILD_DIR/usr/bin
+for target in depmod insmod lsmod modinfo modprobe rmmod; do
+ln -sfv kmod $target
 done
-
-ln -sfv kmod /usr/bin/lsmod
-
+)

@@ -1,0 +1,22 @@
+[info] 
+name = linux-zen-headers
+version = 6.10.10
+type = src
+license = GPL2
+url = https://github.com/zen-kernel/zen-kernel/archive/refs/tags/v$VERSION-zen1.tar.gz
+sha256 = 679bc975a7babd8054834c5bbdcf5b7cb8c7755ba7228b3bdeab63894a8e3b36
+
+[description] 
+The Linux kernel is a free and open-source, monolithic, modular, multitasking, Unix-like operating system kernel.
+
+[download]
+curl -L $URL --output $NAME-$VERSION.tar.gz
+tar xf $NAME-$VERSION.tar.gz
+mv zen-kernel-$VERSION-zen1 $NAME-$VERSION
+
+[install]
+make mrproper
+make headers
+find $SOVIET_MAKE_DIR/$NAME-$VERSION/usr/include/ -type f ! -name '*.h' -delete
+mkdir -p $SOVIET_BUILD_DIR/usr/include
+mv -v $SOVIET_MAKE_DIR/$NAME-$VERSION/usr/include/* $SOVIET_BUILD_DIR/usr/include/

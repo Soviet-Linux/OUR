@@ -18,5 +18,5 @@ tar -xf $NAME-$VERSION.tar.xz
 # this is basically a bash script to install the package
 [install]
 ./configure --prefix=/usr --localstatedir=/var/lib/locate
-make $MAKE_FLAGS
-make DESTDIR=$BUILD_ROOT install
+make 
+make DESTDIR=$SOVIET_BUILD_DIR install
