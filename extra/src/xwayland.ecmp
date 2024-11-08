@@ -1,0 +1,42 @@
+[info]
+name = xwayland
+type = src
+version = 24.1.2
+url = https://www.x.org/pub/individual/xserver/
+environment = xorg-build-env
+
+[dependencies]
+xorg-build-env
+xorg-libs
+xorg-apps
+xorg-fonts
+wayland-protocols
+pixman
+mesa
+libxcvt
+libepoxy
+libtirpc
+libXdmcp
+
+[description]
+The Xwayland package is an Xorg server running on top of the wayland server. It has been separated from the main Xorg server package. It allows running X clients inside a wayland session. 
+
+[files]
+xwayland-24.1.2.tar.xz https://www.x.org/pub/individual/xserver/xwayland-24.1.2.tar.xz 141eb76e7e422a3661c08782c70be40931084755042c04506e0d97dd463ef7d2
+
+[download]
+tar -xf xwayland-24.1.2.tar.xz
+
+[install]
+sed -i '/install_man/,$d' meson.build &&
+
+mkdir build &&
+cd    build &&
+
+meson setup ..                       \
+      --prefix=$XORG_PREFIX          \
+      --buildtype=release            \
+      -D xkb_output_dir=/var/lib/xkb &&
+ninja
+DESTDIR=$BUILD_ROOT ninja install
+install -vm755 hw/vfb/Xvfb $BUILD_ROOT/usr/bin

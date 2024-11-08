@@ -1,0 +1,56 @@
+[info]
+name = xorg-fonts
+type = src
+version = 7
+url = https://www.x.org/pub/individual/font
+environment = xorg-build-env
+
+[dependencies]
+xorg-build-env
+xcursor-themes
+
+[description]
+The Xorg font packages provide some scalable fonts and supporting packages for Xorg applications.
+
+[files]
+font-util-1.4.1.tar.xz $URL/font-util-1.4.1.tar.xz 5c9f64123c194b150fee89049991687386e6ff36ef2af7b80ba53efaf368cc95
+encodings-1.1.0.tar.xz $URL/encodings-1.1.0.tar.xz 9ff13c621756cfa12e95f32ba48a5b23839e8f577d0048beda66c67dab4de975
+font-alias-1.0.5.tar.xz $URL/font-alias-1.0.5.tar.xz 9f89e217bb73e0e3636a0a493fbf8b7c995156e0c53d9a0476d201b67c2d6b6e
+font-adobe-utopia-type1-1.0.5.tar.xz $URL/font-adobe-utopia-type1-1.0.5.tar.xz 4cb280bc47693b07c5e00fd0e5ad5721aabebc0548c3f06774e5cc3cbcf75697
+font-bh-ttf-1.0.4.tar.xz $URL/font-bh-ttf-1.0.4.tar.xz 85a5f90d00c48c2b06fd125ea8adbc8b8ee97429e3075081c8710926efec3a56
+font-bh-type1-1.0.4.tar.xz $URL/font-bh-type1-1.0.4.tar.xz 19dec3ec06abde6bedd10094579e928be0f0fc3bdb4fbe93f4c69cce406d72a6
+font-ibm-type1-1.0.4.tar.xz $URL/font-ibm-type1-1.0.4.tar.xz c4395e95ba46d40c4ad1737e91cac20c0ab75411329b60db5d99fed92b60ce7f
+font-misc-ethiopic-1.0.5.tar.xz $URL/font-misc-ethiopic-1.0.5.tar.xz 4749a7e6e1a1eef6c91fcc9a04e8b1c0ed027d40c1599e5a6c93270d8469b612
+font-xfree86-type1-1.0.5.tar.xz $URL/font-xfree86-type1-1.0.5.tar.xz a93c2c788a5ea1c002af7c8662cf9d9821fb1df51b8d2b2c5e0026dfdfea4837
+
+[download]
+cat > list << "EOF"
+font-util-1.4.1.tar.xz
+encodings-1.1.0.tar.xz
+font-alias-1.0.5.tar.xz
+font-adobe-utopia-type1-1.0.5.tar.xz
+font-bh-ttf-1.0.4.tar.xz
+font-bh-type1-1.0.4.tar.xz
+font-ibm-type1-1.0.4.tar.xz
+font-misc-ethiopic-1.0.5.tar.xz
+font-xfree86-type1-1.0.5.tar.xz
+EOF
+mkdir xorg-fonts-7
+cp ./*.tar.xz xorg-fonts-7/
+
+[install]
+for package in $(grep -v '^#' ../list | awk '{print $1}')
+do
+  packagedir=${package%.tar.?z*}
+  tar -xf $package
+  pushd $packagedir
+  ./configure $XORG_CONFIG
+    make
+    make DESTDIR=$BUILD_ROOT install
+  popd
+  rm -rf $packagedir
+done
+
+[special]
+fc-cache -v /usr/share/fonts/X11/OTF
+fc-cache -v /usr/share/fonts/X11/TTF
