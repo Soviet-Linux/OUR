@@ -34,6 +34,3 @@ cd    build
 meson --prefix=$XORG_PREFIX -Dlegacy=true ..
 ninja
 DESTDIR=$BUILD_ROOT ninja install
-
-[special]
-mv -v $XORG_PREFIX/share/doc/xorgproto{,-2024.1}
