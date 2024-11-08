@@ -1,5 +1,5 @@
 [info] 
-name = libtiff
+name = tiff
 version = 4.7.0
 license = libtiff license
 type = src

@@ -27,9 +27,9 @@ libdisplay-info
 libliftoff
 xwayland
 libxcb
-libxcb-util-renderutil
-libxcb-util-wm
-libxcb-util-errors
+xcb-util-renderutil
+xcb-util-wm
+xcb-util-errors
 
 [files]
 wlroots-0.17.0.tar.gz https://gitlab.freedesktop.org/wlroots/wlroots/-/archive/0.17.0/wlroots-0.17.0.tar.gz 0db3bd4854c233409f881fa1ccd7936eee2f3633454a1dbdcaf834f49e231149
@@ -38,7 +38,10 @@ wlroots-0.17.0.tar.gz https://gitlab.freedesktop.org/wlroots/wlroots/-/archive/0
 tar -xf $NAME-$VERSION.tar.gz
 
 [install]
-meson setup build -Dprefix=/usr -Dbuildtype=release
+meson setup build -Dprefix=/usr \
+                  -Dbuildtype=release \
+                  -Dauto_features=enabled \
+                  -Dwerror=false
 ninja -C build
 DESTDIR=$BUILD_ROOT ninja -C build install
 

@@ -19,7 +19,7 @@ docutils
 
 
 [files]
-gdk-pixbuf-2.42.9.tar.gz https://gitlab.gnome.org/GNOME/gdk-pixbuf/-/archive/2.42.9/gdk-pixbuf-2.42.9.tar.gz 226d950375907857b23c5946ae6d30128f08cd75f65f14b14334c7a9fb686e36
+gdk-pixbuf-2.42.12.tar.xz https://gemmei.ftp.acc.umu.se/pub/GNOME/sources/gdk-pixbuf/2.42/gdk-pixbuf-2.42.12.tar.xz b9505b3445b9a7e48ced34760c3bcb73e966df3ac94c95a148cb669ab748e3c7
 
 [download]
 tar -xf $NAME-$VERSION.tar.gz

@@ -21,4 +21,4 @@ tar -xf $NAME-$VERSION.tar.gz
 [install]
 meson setup build
 meson compile -C build
-DESTDIR=$BUILD_ROOT meson -C build install
+DESTDIR=$BUILD_ROOT meson install -C build
