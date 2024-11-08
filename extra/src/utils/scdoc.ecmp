@@ -1,0 +1,24 @@
+[info] 
+name = scdoc
+version = 1.11.3
+license = MIT
+type = src
+url = https://git.sr.ht/~sircmpwn/scdoc
+
+[description] 
+scdoc is a simple man page generator for POSIX systems written in C99.
+
+[dependencies]
+make
+
+[files]
+scdoc-1.11.3.tar.gz https://git.sr.ht/~sircmpwn/scdoc/archive/1.11.3.tar.gz 4c5c6136540384e5455b250f768e7ca11b03fdba1a8efc2341ee0f1111e57612
+
+[download]
+tar -xf $NAME-$VERSION.tar.gz
+
+[install]
+make PREFIX=/usr
+make PREFIX=/usr install
+
+[special]

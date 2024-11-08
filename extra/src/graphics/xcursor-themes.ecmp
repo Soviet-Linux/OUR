@@ -1,0 +1,24 @@
+[info]
+name = xcursor-themes 
+type = src
+version = 1.0.7
+url = https://www.x.org/pub/individual/data/
+environment = xorg-build-env
+
+[dependencies]
+libxcb
+xorg-build-env
+
+[description]
+The xcursor-themes package contains the redglass and whiteglass animated cursor themes. 
+
+[files]
+xcursor-themes-1.0.7.tar.xz https://www.x.org/pub/individual/data/xcursor-themes-1.0.7.tar.xz 95bae8f48823d894a05bf42dfbf453674ab7dbdeb11e2bc079e8525ad47378c8
+
+[download]
+tar -xf xcursor-themes-1.0.7.tar.xz
+
+[install]
+./configure --prefix=$XORG_PREFIX
+make
+make DESTDIR=$BUILD_ROOT install

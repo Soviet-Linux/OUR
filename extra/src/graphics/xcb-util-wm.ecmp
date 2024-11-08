@@ -1,0 +1,23 @@
+[info] 
+name = xcb-util-wm
+version = 0.4.2
+license = BSD 1-clause
+type = src
+url = https://xcb.freedesktop.org/
+
+[description] 
+The xcb-util-wm package contains libraries which provide client and window-manager helpers for EWMH and ICCCM. 
+
+[dependencies]
+libxcb
+
+[files]
+xcb-util-wm-0.4.2.tar.xz https://xcb.freedesktop.org/dist/xcb-util-wm-0.4.2.tar.xz 62c34e21d06264687faea7edbf63632c9f04d55e72114aa4a57bb95e4f888a0b
+
+[download]
+tar -xf $NAME-$VERSION.tar.xz
+
+[install]
+./configure $XORG_CONFIG --prefix=/usr
+make
+make DESTDIR=$BUILD_ROOT install

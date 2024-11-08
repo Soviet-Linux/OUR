@@ -1,0 +1,48 @@
+[info] 
+name = wlroots
+version = 0.17.0
+license = MIT
+type = src
+url = https://gitlab.freedesktop.org/wlroots/wlroots
+
+[description] 
+Pluggable, composable, unopinionated modules for building a Wayland compositor.
+
+[dependencies]
+meson
+ninja
+wayland
+wayland-protocols
+libdrm
+libxkbcommon
+pixman
+glslang
+mesa
+
+[optional]
+libinput
+seatd
+hwdata
+libdisplay-info
+libliftoff
+xwayland
+libxcb
+xcb-util-renderutil
+xcb-util-wm
+xcb-util-errors
+
+[files]
+wlroots-0.17.0.tar.gz https://gitlab.freedesktop.org/wlroots/wlroots/-/archive/0.17.0/wlroots-0.17.0.tar.gz 0db3bd4854c233409f881fa1ccd7936eee2f3633454a1dbdcaf834f49e231149
+
+[download]
+tar -xf $NAME-$VERSION.tar.gz
+
+[install]
+meson setup build -Dprefix=/usr \
+                  -Dbuildtype=release \
+                  -Dauto_features=enabled \
+                  -Dwerror=false
+ninja -C build
+DESTDIR=$BUILD_ROOT ninja -C build install
+
+[special]
