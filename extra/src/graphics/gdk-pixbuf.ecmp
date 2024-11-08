@@ -1,6 +1,6 @@
 [info] 
 name = gdk-pixbuf
-version = 2.42.9
+version = 2.42.12
 license = GNU LGPLv2.1
 type = src
 url = https://gitlab.gnome.org/GNOME/gdk-pixbuf/
@@ -22,7 +22,7 @@ docutils
 gdk-pixbuf-2.42.12.tar.xz https://gemmei.ftp.acc.umu.se/pub/GNOME/sources/gdk-pixbuf/2.42/gdk-pixbuf-2.42.12.tar.xz b9505b3445b9a7e48ced34760c3bcb73e966df3ac94c95a148cb669ab748e3c7
 
 [download]
-tar -xf $NAME-$VERSION.tar.gz
+tar -xf $NAME-$VERSION.tar.xz
 
 [install]
 mkdir build &&
