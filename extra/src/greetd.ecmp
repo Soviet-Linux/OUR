@@ -1,0 +1,35 @@
+[info] 
+name = greetd
+version = 0.10.3
+type = src
+url = https://git.sr.ht/~kennylevinsen/greetd
+
+[dependencies]
+#TODO: replace with rustc
+rustup
+
+[description] 
+greetd is a minimal and flexible login manager daemon that makes no assumptions.
+
+[files]
+greetd-0.10.3.tar.gz https://git.sr.ht/~kennylevinsen/greetd/archive/0.10.3.tar.gz ee5cb70e0add4ca9c9fe57e47581ab0002d44c07743fb5492469f3b570db640b
+
+[download]
+tar -xzf $NAME-$VERSION.tar.gz
+
+[install]
+cargo build --release
+
+mkdir -p $BUILD_ROOT/usr/bin/
+mkdir -p $BUILD_ROOT/etc/systemd/system/
+
+sudo cp target/release/{greetd,agreety} $BUILD_ROOT/usr/bin/
+sudo cp greetd.service $BUILD_ROOT/etc/systemd/system/greetd.service
+
+mkdir $BUILD_ROOT/etc/greetd
+cp config.toml $BUILD_ROOT/etc/greetd/config.toml
+
+[special]
+sudo useradd -M -G video greeter
+sudo chmod -R go+r /etc/greetd/
+systemctl enable --now greetd
