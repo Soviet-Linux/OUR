@@ -1,0 +1,33 @@
+[info]
+name = go
+type = src
+version = 1.23.3
+url = https://go.dev/dl/
+
+[description]
+The Go programming language is an open source project to make programmers more productive. 
+
+[files]
+go1.23.3.src.tar.gz https://dl.google.com/go/go1.23.3.src.tar.gz 8d6a77332487557c6afa2421131b50f83db4ae3c579c3bc72e670ee1f6968599
+
+[optional]
+go-bootstrap-x86-64
+
+[exports]
+GOROOT_BOOTSTRAP=/opt/go-bootstrap
+
+[download]
+tar -xf go1.23.3.src.tar.gz
+mv ./go ./go-1.23.3
+
+[install]
+cd src &&
+./make.bash &&
+cd ..
+
+mkdir -p $SOVIET_BUILD_DIR/usr/bin
+mkdir -p $SOVIET_BUILD_DIR/opt/go
+mv ./* $SOVIET_BUILD_DIR/opt/go/
+
+ln -sfv $SOVIET_BUILD_DIR/opt/go/bin/go $SOVIET_BUILD_DIR/usr/bin/go
+ln -sfv $SOVIET_BUILD_DIR/opt/go/bin/gofmt $SOVIET_BUILD_DIR/usr/bin/gofmt
