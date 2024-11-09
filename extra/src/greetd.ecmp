@@ -30,6 +30,6 @@ mkdir $BUILD_ROOT/etc/greetd
 cp config.toml $BUILD_ROOT/etc/greetd/config.toml
 
 [special]
-sudo useradd -M -G video greeter
-sudo chmod -R go+r /etc/greetd/
+useradd -M -G video greeter
+chmod -R go+r /etc/greetd/
 systemctl enable --now greetd
