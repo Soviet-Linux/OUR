@@ -23,8 +23,8 @@ cargo build --release
 mkdir -p $BUILD_ROOT/usr/bin/
 mkdir -p $BUILD_ROOT/etc/systemd/system/
 
-sudo cp target/release/{greetd,agreety} $BUILD_ROOT/usr/bin/
-sudo cp greetd.service $BUILD_ROOT/etc/systemd/system/greetd.service
+cp target/release/{greetd,agreety} $BUILD_ROOT/usr/bin/
+cp greetd.service $BUILD_ROOT/etc/systemd/system/greetd.service
 
 mkdir $BUILD_ROOT/etc/greetd
 cp config.toml $BUILD_ROOT/etc/greetd/config.toml
