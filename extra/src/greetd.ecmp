@@ -32,4 +32,4 @@ cp config.toml $BUILD_ROOT/etc/greetd/config.toml
 [special]
 useradd -M -G video greeter
 chmod -R go+r /etc/greetd/
-systemctl enable --now greetd
+systemctl enable greetd
