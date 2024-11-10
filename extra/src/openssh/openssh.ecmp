@@ -23,7 +23,7 @@ libedit
 libfido2
 
 [exports]
-PATCHES_DIRECTORY=$SOVIET_REPOS_DIR/OUR/extra/src/openssh
+PACKAGE_DIRECTORY=$SOVIET_REPOS_DIR/OUR/extra/src/openssh
 
 [download]
 tar -xzf $NAME-$VERSION.tar.gz
@@ -40,9 +40,9 @@ tar -xzf $NAME-$VERSION.tar.gz
 make
 make DESTDIR=$BUILD_ROOT install
 
-install -Dm644 $PATCHES_DIRECTORY/sshd.service -t /usr/lib/systemd/system/
-install -Dm644 $PATCHES_DIRECTORY/ssh-agent.service -t /usr/lib/systemd/user/
-install -Dm644 $PATCHES_DIRECTORY/sshd.pam /etc/pam.d/sshd
+install -Dm644 $PACKAGE_DIRECTORY/sshd.service -t       $SOVIET_BUILD_DIR/usr/lib/systemd/system/
+install -Dm644 $PACKAGE_DIRECTORY/ssh-agent.service -t  $SOVIET_BUILD_DIR/usr/lib/systemd/user/
+install -Dm644 $PACKAGE_DIRECTORY/sshd.pam              $SOVIET_BUILD_DIR/etc/pam.d/sshd
 
 
 [special]
