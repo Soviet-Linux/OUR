@@ -1,6 +1,6 @@
 [info]
 name = cccp
-version = 73702516813366c4aecde79b4240138e070be902
+version = e39ce8be9921706f7eae159a0ff715111317f2f4
 type = src
 url= https://github.com/Soviet-Linux/CCCP/
 
@@ -11,7 +11,7 @@ This is the official package manager of the Soviet Linux Distribution
 libspm
 
 [files]
-$NAME-$VERSION.zip https://github.com/Soviet-Linux/CCCP/archive/$VERSION.zip 9c628d101094ac69ddf60a84c129acdcaaa729886a7d1ea8542559d7928ed3c3
+$NAME-$VERSION.zip https://github.com/Soviet-Linux/CCCP/archive/$VERSION.zip 5caf52a5919e9a0fec54e878ff33324385cf84b89f3e603c2a7be22dc59a5a8a
 
 [download]
 unzip $NAME-$VERSION.zip
