@@ -1,0 +1,18 @@
+[info]
+name = go-bootstrap-x86-64
+type = bin
+version = 1.23.3
+url = https://go.dev/dl/
+
+[description]
+This is a binary bootstrap for compiling go
+
+[files]
+go1.23.3.linux-amd64.tar.gz https://dl.google.com/go/go1.23.3.linux-amd64.tar.gz a0afb9744c00648bafb1b90b4aba5bdb86f424f02f9275399ce0c20b93a2c3a8
+
+[download]
+tar -xf go1.23.3.linux-amd64.tar.gz
+mv ./go ./go-bootstrap-x86-64-1.23.3
+
+[install]
+mv ./* $SOVIET_BUILD_DIR/opt/go-bootstrap/
