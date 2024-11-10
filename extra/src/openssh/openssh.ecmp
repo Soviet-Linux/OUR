@@ -15,7 +15,7 @@ openssh provides library functionality and command-line tools to communicate wit
 [dependencies]
 make
 zlib
-pam
+linux-pam
 openssl
 libedit
 
