@@ -38,7 +38,7 @@ tar -xzf $NAME-$VERSION.tar.gz
             --with-ssl-engine \
             --with-pam
 make
-make DESTDIR=$BUILD_ROOT install
+make DESTDIR=$SOVIET_BUILD_DIR install
 
 install -Dm644 $PACKAGE_DIRECTORY/sshd.service -t       $SOVIET_BUILD_DIR/usr/lib/systemd/system/
 install -Dm644 $PACKAGE_DIRECTORY/ssh-agent.service -t  $SOVIET_BUILD_DIR/usr/lib/systemd/user/
